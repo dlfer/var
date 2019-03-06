@@ -1,0 +1,985 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\fileversion{0.89}
+\def\filedate{%
+2019-02-25
+}
+\def\Copyright{**********************************************
+Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non commerciale - Non opere derivate 3.0 Unported. Per leggere una copia della licenza visita il sito web http://creativecommons.org/licenses/by-nc-nd/3.0/ o spedisci una lettera a Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
+(C) DLFerrario http://www.matapp.unimib.it/~ferrario/var/o.html
+
+**********************************************
+}
+\NeedsTeXFormat{LaTeX2e}[1996/06/01]
+\typeout{Package `mcq' <\filedate>.}
+\typeout{\Copyright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2019-02-25: added numrisp count... 
+% 2019-01-27: added nopagebreak before blankareas... 
+% 2019-01-14: FIX PAGE GEOMETRY for exam class. 
+% 2019-01-09: add support to the class exam.cls 
+% 2018-10-10: add an option to keep ttf, if necessary.
+% 2017-04-07: fix the Linux Libertine O name. 
+\def\LinuxLibertineName{Linux Libertine O}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[centertags]{amsmath}
+\RequirePackage{amsthm,amssymb,amsfonts}
+\RequirePackage{multicol}
+\RequirePackage[neveradjust]{paralist} % altrimenti gli squarebox non sono allineati
+\RequirePackage{wasysym}
+\RequirePackage{changepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newif\ifallmarks\allmarksfalse
+\DeclareOption{allmarks}{\allmarkstrue}
+
+\newif\ifsol%
+\solfalse
+\DeclareOption{sol}{%
+\soltrue
+}
+
+\newif\ifnoblankpage%
+\noblankpagefalse
+\DeclareOption{noblankpage}{%
+\noblankpagetrue
+}
+
+\newif\ifduecolonne\duecolonnefalse
+
+\newif\ifbubblesheet\bubblesheetfalse
+\DeclareOption{bubblesheet}{%
+\bubblesheettrue
+}
+
+\newif\ifextrasheet\extrasheetfalse
+\DeclareOption{extrasheet}{%
+\extrasheettrue
+}
+
+\newif\ifdsa\dsafalse
+\DeclareOption{dsa}{%
+\dsatrue
+}
+
+\newif\ifttf\ttffalse
+\DeclareOption{ttf}{%
+\ttftrue
+\def\LinuxLibertineName{Linux Libertine}
+\typeout{mcq: Option `ttf' selected}
+}
+
+\newif\ifnomeesameheader\nomeesameheaderfalse
+\DeclareOption{namedheader}{%
+\nomeesameheadertrue
+\typeout{mcq: Option `namedheader' selected}
+}
+
+
+
+\ProcessOptions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% first: check if class is exam.cls or something else (fancyhdr problems...)
+\newif\ifexamclass
+\@ifclassloaded{exam}%
+{\examclasstrue%
+\typeout{Exam class: True}%
+}%
+{\examclassfalse%
+\typeout{Exam class: False}%
+}%
+
+
+\newcommand*\savesymbol[1]{%
+  \expandafter\let\csname orig#1\expandafter\endcsname\csname#1\endcsname
+  \expandafter\let\csname #1\endcsname\relax
+}
+
+% Restore a previously saved symbol, and rename the current one.
+\newcommand*\restoresymbol[2]{%
+  \expandafter\global\expandafter\let\csname#1#2\expandafter\endcsname%
+    \csname#2\endcsname
+  \expandafter\global\expandafter\let\csname#2\expandafter\endcsname%
+    \csname orig#2\endcsname
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\plitemsep}{6pt}
+\setlength{\pltopsep}{6pt}
+\newlength{\rmtemplength}
+\newlength{\squareboxoff}
+\setlength{\squareboxoff}{1.5em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Thanks to memoir.cls 
+% written by Peter Wilson 
+
+% \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+%   \hbox{}\thispagestyle{empty}%
+%   \newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+%%%%
+% \renewenvironment{samepage}{}{}
+
+\newenvironment{OLDrispm}[1][1]{%
+\ifnum#1>1 \duecolonnetrue\else\duecolonnefalse\fi%
+\ifduecolonne\typeout{DueColonne}%
+\multicolsep=12pt plus 4 pt minus 3 pt%
+\setcounter{collectmore}{-1}% %% ADDED this to prevent strange behaviour
+\raggedcolumns%  %% also this is possible. 
+% \flushcolumns%
+% \null\par\nopagebreak
+\begin{multicols}{#1}\else\begin{samepage}\fi%
+\begin{compactenum}[\squarebox\hspace{\squareboxoff} \itshape (a)]%
+}%
+{%
+\end{compactenum}\ifduecolonne\end{multicols}\else\end{samepage}\fi%
+}
+
+%% get a counter of answers 
+\newcounter{number@of@explicit@answers}
+
+\newenvironment{rispm}[1][1]{%
+% \ifnum#1>1 \duecolonnetrue\else\duecolonnefalse\fi%
+\ifnum#1>1 \ifdsa\duecolonnefalse\else\duecolonnetrue\fi\else\duecolonnefalse\fi%
+\ifduecolonne\typeout{DueColonne}%
+%% \multicolsep=11pt plus 4 pt minus 3 pt%
+\multicolsep=-1pt plus 2 pt minus 1 pt%
+\par\vspace\multicolsep\noindent\nopagebreak%%_ \begin{minipage}{\textwidth}
+\setcounter{collectmore}{-1}% %% ADDED this to prevent strange behaviour
+\flushcolumns%
+% \raggedcolumns%  %% also this is possible. 
+% \null\par\nopagebreak
+\setcounter{number@of@explicit@answers}{0}%
+\begin{multicols}{#1}\else\nopagebreak\fi%
+\begin{compactenum}[\squarebox\hspace{\squareboxoff} \itshape (a)]%
+}%
+{%
+% check the number of explicit answers:
+\ifnum\value{number@of@explicit@answers}=0% 
+\@latexerr{{rispm} Question without correct answers: 
+please manually use some [-1]'s if you *really* need it ... }\@ehd 
+\fi
+\end{compactenum}\ifduecolonne\end{multicols}\fi%%_ \end{minipage}%
+}
+
+
+%% 2013-06-29: with begin{samepage}...end{samepage} or begin{minipage}..end{minipage} the page counter bugs and checkoddpage gives an extra blank page  at the end of esercizi environment. 
+
+%% 2014-04-02: fixed the order of "ifduecolonne" and vertical space... 
+
+
+
+\ifbubblesheet
+\def\squarebox{%
+{\fontspec{\LinuxLibertineName}\large\UTFsquarebox}%
+}
+\else
+\def\squarebox{{\begin{tabular}{|c|}%
+\hline
+\  \\
+\hline
+\end{tabular}}}
+\fi
+
+
+\newcommand{\risp}[1][\@empty]{%
+\item%
+\ifsol
+\ifx\@empty#1%
+\else
+[#1]\fi\fi
+\ifx\@empty#1%
+\else% increment the number of explicit answers, given at least
+\stepcounter{number@of@explicit@answers}%
+\fi%
+}
+
+\newcommand{\fb}[1]{%
+\ifsol
+\ifx\@empty#1%
+\else
+{\itshape (*) #1 }
+\fi
+\fi
+}
+
+
+\newcommand{\vero}[1][\@empty]{%
+\begin{rispm}
+\risp[=] Vero
+\risp Falso
+\fb{#1}
+\end{rispm}
+}
+
+\newcommand{\falso}[1][\@empty]{%
+\begin{rispm}
+\risp Vero
+\fb{#1}
+\risp[=] Falso
+\end{rispm}
+}
+
+
+\newcommand{\puntigiusta}[1]{%
+\def\src@puntigiusta{#1}%
+}\puntigiusta{1}
+\newcommand{\puntisbagliata}[1]{%
+\def\src@puntisbagliata{#1}%
+}\puntisbagliata{0}
+\newcommand{\puntiempty}[1]{%
+\def\src@puntisempty{#1}%
+}\puntiempty{0}
+\newcommand{\formulavoto}[1]{}
+\newcommand{\qtitle}[1]{}
+\newcommand{\UIDdigits}[1]{%
+\def\src@UIDdigits{#1}%
+}
+\UIDdigits{6}
+
+
+%%% per le varianti (label, oppure interne all'esercizio)
+\newcommand{\variantlabel}[1]{%
+\def\src@variantlabel{#1}%
+}
+\newenvironment{varianti}{%
+\begin{enumerate}[{[\bfseries {Var.} 1]}]
+}{%
+\end{enumerate}
+}
+\newcommand{\varitem}{\item}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifbubblesheet
+\def\nomeesame{%
+\vspace{1.6cm}
+% \noindent{$\mbox{}$}
+% \vspace{\baselineskip}
+\noindent%
+\textbf{\Cognomename:}\dotfill%
+\textbf{\Nomename:}\dotfill%
+\textbf{\Firmaname:}\dotfill%
+}
+\else
+\def\nomeesame{%
+\thispagestyle{firstexampage}%
+\vspace{\baselineskip}
+\noindent%
+\textbf{\Cognomename:}\dotfill\dotfill%
+\textbf{\Nomename:}\dotfill\dotfill%
+\textbf{\uidname:}\dotfill%
+\\
+\vspace{\baselineskip}
+\hrule
+% \vspace{24pt}
+}
+\fi
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\SolName{Soluzione}
+\newenvironment{sol}[1][\SolName]{%
+\begin{proof}[#1]
+}{\end{proof}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\WarningSign}{%
+{\centering\fontsize{100}{120}\fontspec{\LinuxLibertineName}★★!!★★
+}}
+\newcommand{\OrnamentalBreak}{%
+\vfill
+% \centerline{\fontspec{\LinuxLibertineName}----- ★★★  ----- }
+\centerline{\fontspec[Scale=1.4]{\LinuxLibertineName}\char"E008}
+\vfill
+}
+
+% \newcommand{\quindi}{\fontspec[Scale=1.4]{\LinuxLibertineName}\char"2234}
+% \newcommand{\datoche}{\fontspec[Scale=1.4]{\LinuxLibertineName}\char"2235}
+
+
+
+\newenvironment{esercizi}[1]{%
+\typeout{Begin Esercizi (try NEWGEOMETRY-RESTOREGEOMETRY if needed...)}
+\ifdsa\setmainfont[Mapping=tex-text]{OpenDyslexic}\fi
+\setcounter{exer}{0}
+\subsection{#1}%
+}{%
+\typeout{End Esercizi}
+\checkoddpage
+\ifoddpage
+\blankpage
+\fi
+\ifsol{
+  
+\WarningSign%
+}\fi
+}
+
+\newenvironment{esercizi*}[1]{%
+\typeout{Begin Esercizi* (try NEWGEOMETRY-RESTOREGEOMETRY if needed...)}
+\ifdsa\setmainfont[Mapping=tex-text]{OpenDyslexic}\fi
+\renewcommand{\theexer}{(\arabic{exer})}
+\setcounter{exer}{0}
+\subsection*{#1}%
+}{%
+\typeout{End Esercizi}
+\checkoddpage
+\ifoddpage
+% DP ODD PAGE BEFORE : \thepage
+\blankpage
+% DP ODD PAGE AFTER : \thepage  
+\fi
+\ifsol{
+  
+\WarningSign%
+}\fi
+}
+
+%===================================================================
+\newcounter{exer}
+\numberwithin{exer}{subsection}
+\renewcommand{\theexer}{(\Alph{subsection}.\arabic{exer})}
+\renewcommand{\thesubsection}{\Alph{subsection})}
+
+\newtheoremstyle{exer}% name
+     {24pt}%      Space above
+     {24pt}%      Space below
+     {}%         Body font: it was: \itshape
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {}%        Punctuation after thm head
+     {.5em}%     Space after thm head: " " = normal interword space;
+               % \newline = linebreak
+     {}%         Thm head spec (can be left empty, meaning `normal')
+
+\theoremstyle{exer}
+\newtheorem{exe}[exer]{}
+\newtheorem{exerm}[exer]{}
+
+%===================================================================
+\renewcommand{\labelenumi}{{\itshape(\alph{enumi})}}
+%===================================================================
+%===================================================================
+\newcommand{\blankpage}{%
+\ifnoblankpage
+\typeout{NoBlankPage: doing nothing.}
+\else
+\newpage\vfill\null%$\mbox{}$
+%\noindent
+%\begin{picture}(20,30)(0,0)
+%\linethickness{1pt}
+%\setlength{\unitlength}{1cm}
+%\put(0,0){\line(1,-1){17.5}}
+%\end{picture}
+\fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\geninfo}{%
+Istruzioni: riempire \textbf{completamente} le bolle con le
+cifre del numero di matricola (una cifra per colonna);  nella parte sotto 
+del foglio, riempire \textbf{completamente} le bolle con le
+risposte alle domande a scelta multipla.
+Per riempire, usare penna o matita nera,
+colorando tutto l'interno e cercando di non
+uscire dal bordo. Non sono ammesse correzioni,
+dato che il foglio verrà analizzato da un computer.
+}
+\newcommand{\ansinfo}{\textbf{Segnare le risposte delle domande a scelta multipla}}
+\newcommand{\uidname}{Matricola}
+\newcommand{\Cognomename}{Cognome}
+\newcommand{\Nomename}{Nome}
+\newcommand{\Firmaname}{Firma}
+
+
+
+\newcommand{\englishinfo}{%
+\typeout{Warning mcq.sty: english language choosen!}
+\renewcommand{\geninfo}{%
+Instructions: fill \textbf{completely} the bubbles 
+with the digits of the SID (one for each column); 
+in the lower part of the sheet, fill \textbf{completely} 
+the bubbles with the correct answers to the corresponding question. 
+Use a black or dark blue pen or pencil, 
+trying to fill completely the inside of the bubble.
+Write only in the designated areas. 
+}
+\renewcommand{\ansinfo}{\textbf{Mark the answers of the multiple-choice questions}}
+\renewcommand{\uidname}{Student ID}
+\renewcommand{\Cognomename}{Last Name}
+\renewcommand{\Nomename}{First name}
+\renewcommand{\Firmaname}{Signature}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\setcodice}[1]{%
+\def\@codice{#1}%
+}
+
+\newcommand{\src@bubblesheet}[3][1]{%
+\thispagestyle{bubbles}
+
+
+\noindent\textbf{\uidname}: \UID[\src@UIDdigits] 
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\vspace{\baselineskip}
+{\noindent\itshape
+\geninfo
+}
+\end{minipage}
+
+
+\nomeesame
+
+\vspace{\baselineskip}
+\hrule
+\vspace{1.5\baselineskip}
+
+\centerline{\ansinfo}
+
+\ansbubbles[#1]{ans}{#2}{#3}
+
+\blankpage\ifnoblankpage\else
+\thispagestyle{empty}\fi%
+\clearpage%
+\setcounter{page}{1}%
+}
+
+
+\ifbubblesheet%
+\ifextrasheet%
+\newcommand{\bubblesheet}[3][1]{%
+\src@bubblesheet[#1]{#2}{#3}%
+\src@bubblesheet[#1]{#2}{#3}%
+}
+\else
+\newcommand{\bubblesheet}[3][1]{\src@bubblesheet[#1]{#2}{#3}}
+\fi
+\else
+\newcommand{\bubblesheet}[3][1]{%
+\nomeesame
+}
+\fi
+
+\ifdsa%
+% Dyslexia going...
+\typeout{Warning: trying to load OpenDyslexic fonts...  http://opendyslexic.org/ }
+\renewcommand{\bubblesheet}[3][1]{%
+\setmainfont[Mapping=tex-text]{\LinuxLibertineName}
+\normalsize
+\src@bubblesheet[#1]{#2}{#3}
+% \setmainfont[Mapping=tex-text]{OpenDyslexic}
+\setmainfont[Mapping=tex-text]{OpenDyslexic}
+\Large
+}
+\fi
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% page header and dimension
+\RequirePackage{lastpage}
+
+\ifexamclass
+\typeout{for Exam Class: Protecting commands from fancyhdr...}
+\savesymbol{rhead}
+\savesymbol{chead}
+\savesymbol{lhead}
+\savesymbol{lfoot}
+\savesymbol{cfoot}
+\savesymbol{rfoot}
+\RequirePackage{fancyhdr}
+\restoresymbol{rhead}{examrhead}
+\restoresymbol{chead}{examchead}
+\restoresymbol{lhead}{examlhead}
+\restoresymbol{lfoot}{examlfoot}
+\restoresymbol{cfoot}{examcfoot}
+\restoresymbol{rfoot}{examrfoot}
+
+\newcommand{\nameofpoints}[1]{%
+  \begingroup
+    \let\half=\relax
+    \edef\pt@string{#1}%
+    % \ifthenelse{\equal{\pt@string}{1} \or \equal{\pt@string}{\half}}
+    \ifthenelse{\equal{\pt@string}{1}}
+          {\point@sing}{\point@plur}%
+  \endgroup
+}
+
+\pointpoints{punto}{punti}
+\bonuspointpoints{punto \emph{bonus}}{punti \emph{bonus}}
+\qformat{\textbf{\thequestion.} (\totalpoints~\nameofpoints{\totalpoints})\hfill}
+\bonusqformat{\textbf{\thequestion.} (\totalpoints~\nameofpoints{\totalpoints} bonus)\hfill}
+
+\chqword{Esercizio:}
+\chpword{Punti:}
+\chbpword{Punti \emph{bonus}:}
+\chtword{Totale}
+
+\newcommand{\norme}[1]{%
+\begin{center}
+\fbox{\fbox{\parbox{0.9\textwidth}{%
+#1
+}}}\end{center}
+}
+
+% \pagestyle{headandfoot}
+% \runningheader{R1}{R2}{R3}
+
+\else
+\typeout{for Exam Class: NOT Protecting commands from fancyhdr...}
+\RequirePackage{fancyhdr}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\solutionname}{\tt\textbf{Sol:}\/{}\null}
+
+% some tikz magic
+\RequirePackage{tikz}
+% source: https://tex.stackexchange.com/questions/17349/is-there-a-way-to-measure-the-remaining-space-of-a-line-of-text
+
+\RequirePackage{tikzpagenodes}
+\usetikzlibrary{calc}
+
+\newlength{\whatsleft}
+\newcommand{\measureremainder}[1]{%
+\begin{tikzpicture}[overlay,remember picture]
+    % Measure distance to right text border
+    \path let \p0 = (0,0), \p1 = (current page text area.east) in
+        [/utils/exec={\pgfmathsetlength#1{\x1-\x0}\global#1=#1}];
+\end{tikzpicture}%
+}
+
+
+\newcommand{\blank}[1]{%
+% \measureremainder{\whatsleft}\tikz[baseline]{\draw[fill=yellow!50!, line width=1pt, rounded corners] (0,0) rectangle (\whatsleft,1)} 
+% \measureremainder{\whatsleft}\tikz[baseline]{\draw[line width=0.5pt, rounded corners] (0,0) rectangle (\whatsleft,1)} 
+\hspace{8pt}\measureremainder{\whatsleft}\tikz[baseline]{\draw[line width=0.5pt] (0,-\baselineskip) rectangle (\whatsleft,+1.5\baselineskip)
+\ifsol
+node  [text width=\whatsleft, midway ]{\hspace{0.5em}\solutionname{} #1};
+\fi
+}
+}
+
+
+\newcommand{\src@blankarea}[2][10]{%
+% \par~\\[-0.5\baselineskip]%
+% \noindent%
+
+\measureremainder{\whatsleft}%
+\def\numblankareacols{30}%
+\def\numblankarearows{#1}%
+\pgfmathsetlengthmacro\blankareawidth{\whatsleft}%
+\pgfmathsetlengthmacro\blankareawidthinside{\whatsleft-1em}%
+\pgfmathsetlengthmacro\blankareaheight{\whatsleft/\numblankareacols * \numblankarearows}%
+\pgfmathsetlengthmacro\blankareaheightinside{\blankareaheight-\baselineskip}%
+\begin{tikzpicture}[color=gray!40!]
+\draw[line width=0.5pt, step=\blankareawidth/\numblankareacols] (0,0) grid +(\blankareawidth,\blankareaheight  );
+\draw[line width=0.5pt,color=black]  (0,0) rectangle (\blankareawidth,\blankareaheight) 
+\ifsol
+% node  [text width=\blankareawidth, text depth=\blankareaheight, anchor=north east, minimum width=\blankareawidth , minimum height=\blankareaheight]{%
+node  [text width=\blankareawidth, text depth=\blankareaheightinside, anchor=north east, minimum width=\blankareawidth  ]{%
+\hspace{1.4em}{\begin{minipage}{\blankareawidthinside}
+\vspace{0.5\baselineskip}\raggedright\solutionname{} #2
+\end{minipage}
+}}
+\fi 
+; 
+%\node  [draw,rectangle,anchor=west, right, color=red, text width=\blankareawidthinside, minimum width=\blankareawidth, minimum height=\blankareaheight] (0,0) {%
+%\hspace{1em}\fbox{\begin{minipage}{\blankareawidthinside}
+%\textbf{Sol:} asd boasibd oasibd oasbid oabsod bad
+%\end{minipage}
+%}}
+%; 
+
+\end{tikzpicture}
+}
+
+\ifexamclass
+\newcommand{\blankarea}[2][10]{\nopagebreak\fullwidth{\src@blankarea[#1]{#2}}}
+\else
+\newcommand{\blankarea}[2][10]{
+\nopagebreak\par~\\[-0.5\baselineskip]%
+\noindent%
+\src@blankarea[#1]{#2}}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[includeheadfoot,a4paper]{geometry}
+\ifexamclass%
+\geometry{a4paper,margin={1.4cm,1.4cm}} % ,top=1cm,bottom=1cm}
+\else
+\geometry{a4paper,margin={0.9in,1.4in}}
+%options: showframe
+\fi
+
+\RequirePackage{color}
+\definecolor{gray}{gray}{0.60}
+\usepackage[no-math]{fontspec}
+\RequirePackage{xltxtra} %% it's probably not necessary.
+\RequirePackage{xunicode}
+\setmainfont[Mapping=tex-text]{\LinuxLibertineName}
+\defaultfontfeatures{Mapping=tex-text}
+
+\ifbubblesheet
+\newlength{\matrixwidth}
+\newlength{\matrixheight}
+\setlength{\matrixheight}{0.5in}
+\setlength{\matrixwidth}{0.5in}
+%\RequirePackage{pst-pdf}
+\RequirePackage{pst-barcode}
+\def\qLabel{}
+
+\newcommand{\datamatrix}[2][14]{%
+\begin{pspicture}(\matrixwidth,\matrixheight)%
+\psbarcode{#2}{rows=#1 columns=#1 height=0.5 width=0.5}{datamatrix}%
+\end{pspicture}}
+\else
+\newcommand{\datamatrix}[2][14]{DataMatrix[#1][#2]}
+\fi
+
+
+
+
+\setlength{\columnseprule}{1pt}
+\setlength{\columnsep}{4\baselineskip}
+%% __HERE__
+
+
+%% pagestyles 
+
+
+\fancypagestyle{bubbles}{%
+\fancyhead[R,C,L]{}
+\fancyfoot[R,C,L]{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{2pt}
+\setlength{\headheight}{1.15\matrixheight}
+\setlength{\headsep}{2\baselineskip}
+\setlength{\footskip}{2\baselineskip}
+%%_NO_LOGO \fancyhead[L]{\includegraphics[height=\matrixheight]{LogoBicocca.pdf}}
+\fancyhead[L]{\tt \@myheadline\  [\@codice]}
+\fancyhead[R]{\hfill \datamatrix{\@codice}}
+% \fancyfoot[C]{\itshape \textcopyright\  {Lorem ipsum dolor sit amet, consectetur adipisicing elit, 2011-3011}}
+}
+
+\fancypagestyle{plainexam}{%
+\renewcommand{\headrulewidth}{0.6pt}%
+\chead{}
+\lhead[\tt \@myheadline]{ \makebox[0.95\textwidth]{%
+\textbf{\Cognomename:}\dotfill\dotfill%
+\textbf{\Nomename:}\dotfill\dotfill%
+\textbf{\uidname:}\dotfill%
+}}
+\rhead{\tt {[\@codice]}-p\thepage/\pageref{LastPage}}
+\lfoot{{}}
+\cfoot{{}}
+% \cfoot{{\copyright Dipartimento di Matematica e Applicazioni @Univeristy of Milano-Bicocca}}
+\rfoot{{}}
+}
+
+\fancypagestyle{plain}{%
+\renewcommand{\headrulewidth}{0.6pt}%
+\chead{}
+\lhead{\tt \@myheadline}
+\rhead{\tt {[\@codice]}-p\thepage/\pageref{LastPage}}
+\lfoot{{}}
+\cfoot{{}}
+\rfoot{{}}
+}
+
+
+\fancypagestyle{firstexampage}{%
+\renewcommand{\headrulewidth}{0.6pt}%
+\chead{}
+\lhead{\tt \@myheadline}
+\rhead{\tt p\thepage/\pageref{LastPage}}
+\lfoot{{}}
+\cfoot{{}}
+\rfoot{{}}
+}
+
+\ifexamclass
+\ifnomeesameheader
+\pagestyle{plainexam}
+\else
+\pagestyle{plain}
+\fi
+\else
+\pagestyle{plain}
+\fi
+
+\newcommand{\headline}[1]{%
+\def\@myheadline{#1}%
+}
+\def\@myheadline{\relax}
+\def\@codice{0000}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifbubblesheet
+\def\Ufont{\fontspec{\LinuxLibertineName}}
+%%%%%%%%%%%%%%%%
+\newlength{\tempbubblewidth}
+\newcommand{\blackmark}{\color{black}\large$\blacksquare$}
+\settowidth{\tempbubblewidth}{\blackmark}
+
+\newcommand{\bubble}[1][-12pt]{%
+\ifallmarks{\hspace{-1.1\tempbubblewidth}\blackmark\hspace{0.1\tempbubblewidth}}\fi%
+}
+
+\fi
+
+\newcounter{bubble}
+\setcounter{bubble}{0}
+
+\newif\ifwritelblfile
+\writelblfiletrue
+
+\newcommand{\checkhassol}{%
+\ifsol
+\@latexerr{Do not deliver exams with SOL option!!! Has-Sol option detected!
+Please remove the option 'sol' from  usepackage[...,sol,...]{mcq} 
+}{Do not produce exam sheets with SOL options. Load the package without it.
+Use usepackage{mcq} instead. 
+}
+\fi
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% taken from: http://www.tug.org/TUGboat/tb30-1/tb94zyka.pdf
+
+% remember: dimension is in sp, 4736286.72sp = 1in 
+% 186467.98110236222 = 1mm
+ 
+\newwrite\posHandle
+\def\posFile{\jobname.pos }
+\newwrite\lblHandle
+\def\lblFile{\jobname.lbl }
+
+\def\posOpen{\openout\posHandle=\posFile}
+\def\posClose{\closeout\posHandle}
+\def\lblOpen{\immediate\openout\lblHandle=\lblFile}
+\def\lblClose{\immediate\closeout\lblHandle}
+
+\newlength{\bubblewidth}
+\newlength{\bubbleheight}
+\AtBeginDocument{\ifwritelblfile%
+\posOpen\lblOpen%
+\settowidth{\bubblewidth}{\UTFcirclednum{0}}
+\settoheight{\bubbleheight}{\UTFcirclednum{0}}
+\writeheaddata{paperwidth}{\the\paperwidth}%
+\writeheaddata{paperheight}{\the\paperheight}%
+\writeheaddata{bubblewidth}{\the\bubblewidth}%
+\writeheaddata{bubbleheight}{\the\bubbleheight}%
+\fi}
+
+\AtEndDocument{\ifwritelblfile\lblClose\posClose\fi}
+
+
+\newcommand{\writeheaddata}[2]{%
+\stepcounter{bubble}%
+\immediate\write\lblHandle{%
+\string{\thebubble\string}\string{head\string}\string{#1\string}}
+\write\posHandle{%
+\string{#2\string}%
+\string{\the\pdflastxpos\string}%
+\string{\the\pdflastypos\string}}%
+}
+
+\newcommand{\cifra}[1]{\setcounter{enumi}{#1}}
+
+\def\posMark#1{% 1=place_label
+\stepcounter{bubble}%
+\ifwritelblfile%
+\immediate\write\lblHandle{%
+\string{\thebubble\string}% bubble number
+\string{\qLabel\string}%
+\string{\theenumi:#1\string}%
+}%
+\pdfsavepos%
+\write\posHandle{%
+\string{--\string}%
+\string{\the\pdflastxpos\string}%
+\string{\the\pdflastypos\string}}\fi}
+ 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% glyph 2491
+\newcommand{\UTFsquarebox}{%
+\char"E12A%
+}
+
+\newcommand{\UTFcirclednum}[1]{%
+\ifcase #1%
+\char"24EA%
+\or\char"2460%
+\or\char"2461%
+\or\char"2462%
+\or\char"2463%
+\or\char"2464%
+\or\char"2465%
+\or\char"2466%
+\or\char"2467%
+\or\char"2468%
+\fi
+}
+\newcommand{\UTFcircledchar}[1]{%
+\ifcase #1%
+\char"24B6%
+\or\char"24B7%
+\or\char"24B8%
+\or\char"24B9%
+\or\char"24BA%
+\or\char"24BB%
+\or\char"24BC%
+\or\char"24BD%
+\or\char"24BE%
+\or\char"24BF%
+\or\char"24C0%
+\or\char"24C1%
+\or\char"24C2%
+\or\char"24C3%
+\or\char"24C4%
+\or\char"24C5%
+\or\char"24C6%
+\or\char"24C7%
+\or\char"24C8%
+\or\char"24C9%
+\or\char"24CA%
+\or\char"24CB%
+\or\char"24CC%
+\or\char"24CD%
+\or\char"24CE%
+\or\char"24CF%
+\fi
+}
+\newcommand{\ASCIIcircledchar}[1]{%
+\ifcase #1 A%
+\or B%
+\or C%
+\or D%
+\or E%
+\or F%
+\or G%
+\or H%
+\or I%
+\or J%
+\or K%
+\or L%
+\or M%
+\or N%
+\or O%
+\or P%
+\or Q%
+\or R%
+\or S%
+\or T%
+\or U%
+\or V%
+\or W%
+\or X%
+\or Y%
+\or Z%
+\fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{forloop}
+\RequirePackage{array}
+
+\newcounter{tmp@for}
+\newcounter{tmp@numrisp}
+\newcounter{tmp@maxnumrisp}
+\newcounter{tmp@maxfor}
+\newlength{\tmp@length}
+
+\newcommand{\cerchio}[1]{%
+\Large\Ufont\UTFcirclednum{#1}\bubble\posMark{#1}%
+}
+
+\newcommand{\UIDrow}[2][6]{%
+\setcounter{tmp@maxnumrisp}{#1}%
+\setcounter{tmp@numrisp}{0}%
+\cifra{0}\cerchio{#2}%
+\forloop{tmp@numrisp}{1}{\value{tmp@numrisp}<\value{tmp@maxnumrisp}}{%
+&\cifra{\thetmp@numrisp}\cerchio{#2}}%
+}
+
+\newcommand{\UID}[1][6]{
+\def\qLabel{UID}%
+\setcounter{tmp@maxfor}{10}
+\setcounter{tmp@maxnumrisp}{#1}
+\settowidth{\tmp@length}{\UTFcirclednum{0}-}
+\begin{minipage}[t]{0.35\textwidth}
+\renewcommand{\arraystretch}{1.2}\color{gray}%
+\vspace{-\baselineskip}%
+\begin{tabular}[t]{|*{#1}{p{\tmp@length}|}}
+\hline  %% __TODO__ make into a for loop
+\forloop{tmp@numrisp}{1}{\value{tmp@numrisp}<\value{tmp@maxnumrisp}}{&}
+\\[-1em]
+\UIDrow[#1]{0}\\
+\UIDrow[#1]{1}\\
+\UIDrow[#1]{2}\\
+\UIDrow[#1]{3}\\
+\UIDrow[#1]{4}\\
+\UIDrow[#1]{5}\\
+\UIDrow[#1]{6}\\
+\UIDrow[#1]{7}\\
+\UIDrow[#1]{8}\\
+\UIDrow[#1]{9}\\
+\hline
+\end{tabular}\end{minipage}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{enumerate}
+
+\newcommand{\ABCDrow}[1]{%
+\setcounter{tmp@numrisp}{0}%
+\setcounter{tmp@maxnumrisp}{#1}%
+{\Ufont\color{gray}\Large%
+\forloop{tmp@numrisp}{0}{\value{tmp@numrisp}<\value{tmp@maxnumrisp}}{%
+\hspace{8pt}\UTFcircledchar{\thetmp@numrisp}\bubble\posMark{\ASCIIcircledchar{\thetmp@numrisp}}%
+}%
+}%
+}
+
+
+\newcommand{\ansbubbles}[4][3]{%
+\ifnum#1>1 \duecolonnetrue\else\duecolonnefalse\fi%
+\setcounter{tmp@maxfor}{#3}%
+\setcounter{tmp@for}{0}%
+\ifduecolonne\begin{multicols}{#1}\fi
+% \begin{enumerate}[\textbf{(1)}\egroup]\def\qLabel{#2}
+\begin{enumerate}[\bfseries (1)]\def\qLabel{#2}
+\forloop{tmp@for}{0}{\value{tmp@for}<\value{tmp@maxfor}}{%
+\item \raisebox{-2pt}{\ABCDrow{#4}}}
+\end{enumerate}\ifthenelse{\isodd{tmp@maxfor}}{\vfill$\mbox{}$}{}%
+\ifduecolonne\end{multicols}\fi
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

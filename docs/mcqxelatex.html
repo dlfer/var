@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX &mdash; var  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="var  documentation" href="index.html" />
+    <link rel="next" title="ESSE3: nei meandri della burocrazia" href="esse3.html" />
+    <link rel="prev" title="MCQ-XeLaTeX: Quickstart" href="mcq-quickstart.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mcq-xelatex-multiple-choice-questions-for-mathematics-and-xelatex">
+<h1>MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX<a class="headerlink" href="#mcq-xelatex-multiple-choice-questions-for-mathematics-and-xelatex" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">-dlf</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="multiple-choice-questions-in-xelatex-and-omr-optical-mark-recognition">
+<h2>Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)<a class="headerlink" href="#multiple-choice-questions-in-xelatex-and-omr-optical-mark-recognition" title="Permalink to this headline">¶</a></h2>
+<img alt="Immagine di bolle" class="align-right" src="_images/Bubbles.png" />
+<p>MCQ-XeLaTeX is a program I&#8217;ve been using and developing over
+the last few years, to author, manage, mark, analyse and transcode exams
+based on <strong>Multiple Choice Questions</strong> entirely in <strong>LaTeX</strong>. It is
+supposed to be multi-platform (it runs on <strong>unix/linux</strong>, <strong>mac</strong> and
+with a few limitations, due to missing system libraries, on <strong>windows</strong>
+- with or withour cygwin), and features an <strong>OMR (Optical Mark
+Recognotion)</strong> engine to automatically grade/mark the exam sheets. By
+design it does not have any Graphical User Interface, and it reinforces
+a paranoid control model, where every step of the process is
+accountable, verified, logged and traced. It can help performing the
+following tasks, keeping the possibility that each of the steps can be
+performed manually as a failsafe procedure.</p>
+<p><strong>Authoring</strong>: The format of the questions is LaTeX, with the LaTeX
+style <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a>. For a series of reasons it is
+necessary to compile it with the <code class="docutils literal"><span class="pre">xelatex</span></code> engine, to see a PDF
+printable version (useful for reviewing and proof-reading). The
+questions can be just exported to <a class="reference external" href="http://www.moodle.org">MOODLE</a> or
+saved as dynamical HTML.</p>
+<p><strong>Managing and shuffling</strong>: Given a list of questions, it can generate
+<em>n</em> copies of the exam sheet, each with a permutation of the questions,
+and each question with permuted answers. Plus, there are truth/false
+questions, and variants of multiple choice questions. Each sheet has a
+unique barcode, and the students can be identified by their UID. A table
+with UID&#8217;s and student names can be used to fill the names. If you have
+a list of previous files with MCQ questions (a question bank, a library
+of questions), <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> can choose a random sample of
+questions.</p>
+<p><strong>Marking</strong>: If you have a scanner, you can automatically mark the
+answer sheets (bubblesheets), and export a CSV file with the results.
+Double-checking possible mistakes is performed by reviewing a visually
+annotated PDF. The <strong>OMR</strong> (<strong>Optical Mark Recognition</strong>) is automatic
+and reasonably reliable (being a client-server model, it needs internet:
+the actual Mark Recognition is performed elsewhere, on a secure server).
+But it is easy, if and where needed, to revert to manual human marking.</p>
+<p><strong>Analysing</strong>: A few simple statistical indices are computed on the
+marking data (facility index, discrimination index, non-responses),
+helping to assess problems.</p>
+<p><strong>Transcoding</strong>: The MCQ LaTeX format is sufficiently abstract, that
+<a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> can export
+<a class="reference external" href="http://docs.moodle.org/24/en/GIFT_format">GIFT files</a> (to be imported on a
+<a class="reference external" href="http://www.moodle.org">MOODLE</a> course) or dynamical HTML files (such
+as <a class="reference external" href="http://www.matapp.unimib.it/~ferrario/qb/">these examples</a>). In
+the latter case, the resulting HTML files will be self-contained, will
+display mathematical symbols with <a class="reference external" href="http://www.mathjax.org">MathJax</a>
+and will be dynamical (showing proper feedback to readers) with
+CSS+Javascript (see these
+<a class="reference external" href="http://www.matapp.unimib.it/~ferrario/qb/">examples</a>).</p>
+</div>
+<div class="section" id="how">
+<h2>How<a class="headerlink" href="#how" title="Permalink to this headline">¶</a></h2>
+<p>Check the requirements below, first. Then simply download the files
+<a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> and <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a>, put them in
+some proper path, and then run</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mcq</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>in a terminal. Then follow the on-screen instructions.</p>
+<p>A typical list of actions might be:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">generate a new file main.tex</p>
+</li>
+<li><p class="first">add exercises to main.tex, compile it, review it, print it, until ready.</p>
+</li>
+<li><p class="first"><cite>exam 120</cite> : generated 120 different copies to print and give to students.</p>
+</li>
+<li><p class="first">scan the students sheets, or, if no scanner works, create a TXT file
+with the students answers.</p>
+</li>
+<li><dl class="first docutils">
+<dt><cite>omr scannedfiles*.pdf</cite> <span class="classifier-delimiter">:</span> <span class="classifier">perform Optical Mark Recognition on the scanned sheets,</span></dt>
+<dd><p class="first last">and obtain a TXT file of their answers, which can be reviewed and modified
+with any text editor (vim, emacs, notepad).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>open main_answers.pdf</cite> <span class="classifier-delimiter">:</span> <span class="classifier">open an annotated copy of the student scanned answers,</span></dt>
+<dd><p class="first last">to review possible system errors or human mistakes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>uid uidlist.csv</cite> <span class="classifier-delimiter">:</span> <span class="classifier">add student names to the reviewed answers file,</span></dt>
+<dd><p class="first last">taken from the file <cite>uidlist.csv</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>mark</cite> <span class="classifier-delimiter">:</span> <span class="classifier">evaluate and mark. The output can be later processed with</span></dt>
+<dd><p class="first last">any spreadsheet software, or text editor.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>makestats</cite> <span class="classifier-delimiter">:</span> <span class="classifier">make a PDF versione of the exam, with annotations</span></dt>
+<dd><p class="first last">about some statistical indices.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><cite>export main.gift</cite> : export the questions in GIFT format.</p>
+</li>
+<li><p class="first"><cite>export main.html</cite> : export the questions in HTML format.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>Since a session usually takes several days, the status is kept
+persistent between partial sessions, and a few checks are performed, to
+be sure to avoid simple mistakes. If after delivering the exam you
+notice that some questions were wrongly evaluated, or some correct
+answers wrongly attributed, it is always possible to trace back a few
+steps and correct the mistake, by checking the logs and manually
+modifying the proper files.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Consider the file <a class="reference download internal" href="_downloads/example.tex" download=""><code class="xref download docutils literal"><span class="pre">example.tex</span></code></a>, which produces
+<a class="reference download internal" href="_downloads/example.pdf" download=""><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">PDF</span></code></a> (it is a subset of a the
+<a class="reference external" href="http://www.math.ucla.edu/~tao/java/MultipleChoice/MultipleChoice.html">Multiple Choice questions</a>
+written by <a class="reference external" href="http://www.math.ucla.edu/~tao/">T. Tao</a>). First we
+generate and print <a class="reference download internal" href="_downloads/example_exam.pdf" download=""><code class="xref download docutils literal"><span class="pre">10</span> <span class="pre">permuted</span> <span class="pre">copies</span></code></a>, then
+we collect the scanned OMR filled sheets like
+<a class="reference download internal" href="_downloads/scan-try2.pdf" download=""><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">file</span></code></a>, and let <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> do the
+rest. In this example I&#8217;ve used all possible wrong pens, with different
+outcomes. A <a class="reference external" href="_static/screen-log.html">sample session</a> can be of some help to
+understand the workflow (I used `vi` to edit the text files, but of
+course it is not mandatory: you can use whatever text editor works). The
+<a class="reference download internal" href="_downloads/example_stats.pdf" download=""><code class="xref download docutils literal"><span class="pre">stats</span> <span class="pre">output</span></code></a> can be generated after the
+marking.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Requirements are very minimal, and the program has been tested on a
+variety of platforms.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.python.org">Python</a>. Any version 2.* should work</li>
+</ul>
+<p>but it&#8217;s safer to stay with 2.7 (warning: 2.7.5 might show
+<a class="reference external" href="http://bugs.python.org/issue17998">this bug</a>). Unfortunately, <strong>not</strong> 3.*
+because on most macs it is not yet readily available. If you have a
+default python3, just edit the script file <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> and
+in the first line replace the word <code class="docutils literal"><span class="pre">'python'</span></code> with the word
+<code class="docutils literal"><span class="pre">'python2.7'</span></code> (or the 2.* version available).</p>
+<ul class="simple">
+<li>The (free) OTF font <a class="reference external" href="http://www.linuxlibertine.org">Linux Libertine</a>,</li>
+</ul>
+<blockquote>
+<div><dl class="docutils">
+<dt>or the TTF version (but</dt>
+<dd>in this case: plase call the sty package with the `ttf` option, and</dd>
+</dl>
+</div></blockquote>
+<ul>
+<li><p class="first">a not-too-old <a class="reference external" href="http://www.tug.org/texlive/acquire-netinstall.html">TeX
+system</a>.</p>
+<p>If you do not have one already installed, probably you do not know what
+LaTeX is, and you cannot use MCQ-XeLaTeX.</p>
+</li>
+<li><p class="first">On <strong>windows</strong>: it is not strictly necessary, but it is much better
+to install <a class="reference external" href="https://pypi.python.org/pypi/pyreadline">pyreadline</a>.
+This will allow tab-completion in the interface, and avoid annoying
+messages.</p>
+</li>
+</ul>
+<p>To install the OTF/TTF font <a class="reference external" href="http://www.linuxlibertine.org">Linux Libertine</a>, as follows:</p>
+<ul class="simple">
+<li><strong>MacOSX</strong>: unzip the font archive, then click on all the TTF/OTF
+files, and</li>
+</ul>
+<p>follow the FontBook instructions.</p>
+<ul class="simple">
+<li><strong>Linux</strong>: Unzip the package and install the fonts with the help of
+your desktop control app, such as KDE-Kontrol, or simply copy
+the content in <code class="docutils literal"><span class="pre">${HOME}/.fonts/</span></code>. There was an easy package
+<strong>ttf-linux-libertine</strong> on debian/ubuntu based systems, if you had admin
+privileges, but now, despite its name, apparently it does not contain
+the TTF version, but only the OTF version (which is now the default with
+<a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a>).</li>
+<li><strong>Windows</strong>: Unzip the package and copy all the OTF/TTF font files
+into the folder C:\Windows\Fonts,
+or control-click and select <strong>Install</strong>.</li>
+</ul>
+<p>Important: the 2018 default is now OTF, not TTF. To use TTF simply call
+mcq.sty with the additional option `ttf`</p>
+<div class="highlight-python"><div class="highlight"><pre>\usepackage[ttf]{mcq}
+</pre></div>
+</div>
+<p>To install <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a> in a place where it can be found
+by TeX: the main point is to know what is the value of TEXMFHOME, for
+the local TeX installation. So, run</p>
+<div class="highlight-python"><div class="highlight"><pre>kpsewhich -var-value TEXMFHOME
+</pre></div>
+</div>
+<p>and check the output (see how to have <a class="reference external" href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst">private installations of
+files</a>).
+Then, add <code class="docutils literal"><span class="pre">mcq.sty</span></code> to <code class="docutils literal"><span class="pre">${TEXMFHOME}/tex/latex/</span></code>, or to a
+subdirectory in it, and run <code class="docutils literal"><span class="pre">texhash</span></code>. Or, simply put
+<a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a> in the directory where you plan to work.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><strong>MacOSX</strong>: put <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a> in the directory
+<code class="docutils literal"><span class="pre">${HOME}/Library/texmf/tex/latex/</span></code></li>
+</ul>
+<p>(create it if it does not exists).</p>
+<ul class="simple">
+<li><strong>Linux</strong>: put it in a directory like <code class="docutils literal"><span class="pre">${HOME}/.texmf/tex/latex/</span></code>,</li>
+</ul>
+<p>or <code class="docutils literal"><span class="pre">${HOME}/.texmf-var/tex/latex/</span></code>.</p>
+<ul class="simple">
+<li><strong>Windows</strong>: Same as above</li>
+</ul>
+<p>(you could run <code class="docutils literal"><span class="pre">texconfig</span></code> instead of
+<code class="docutils literal"><span class="pre">kpsewhich</span> <span class="pre">-var-value</span> <span class="pre">TEXMFHOME</span></code>).</p>
+<p>To install <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> in a place where it can be
+automatically found by your shell, it suffices to put it in one of the
+directories listed in the environment variable
+<a class="reference external" href="http://en.wikipedia.org/wiki/PATH_%28variable%29">PATH</a>
+(``${PATH}``, or <code class="docutils literal"><span class="pre">%PATH%</span></code> accordingly).</p>
+<p>Do not forget to make it <strong>executable</strong>: control-click on the file, or</p>
+<div class="highlight-python"><div class="highlight"><pre>chmod +x mcq.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+<p>(to appear)</p>
+</div>
+<div class="section" id="latex-commands-and-environments">
+<h2>LaTeX commands and environments<a class="headerlink" href="#latex-commands-and-environments" title="Permalink to this headline">¶</a></h2>
+<p>(to appear) Please try to read the (outdated) <a class="reference external" href="http://www.matapp.unimib.it/~ferrario/var/o.html">manual
+page</a> and <a class="reference external" href="http://www.matapp.unimib.it/~ferrario/var/oq.html">quick
+install page</a>.
+There is a google-translate button somewhere for the few not
+understanding Italian. Also, there are some comments in
+<a class="reference external" href="soft/mcq.sty">mcq.sty</a> and some explanation in the in-line help of
+the software itself.</p>
+</div>
+<div class="section" id="similar-programs">
+<h2>Similar programs<a class="headerlink" href="#similar-programs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://home.gna.org/auto-qcm/">Auto Multiple Choice</a>: it&#8217;s
+obviously a better program, powerful and complete, but I had problems
+installing it on macs (it is designed for linux), and I found the LaTeX
+syntax not as easy as I would have liked it to be. Also, it did not seem
+possible to export the questions to other formats, or to randomly choose the
+questions from a questions-bank; also, it did not seem to have simple
+bubblesheets.</li>
+<li><a class="reference external" href="http://www.tcexam.org/">TCExam</a>: an Open Source system for
+electronic exams (also know as CBA - Computer-Based Assessment, CBT -
+Computer-Based Testing or e-exam), with OMR functionality. It is not
+something an individual would install and use, and as an individual I did not.</li>
+<li><a class="reference external" href="http://www.formreturn.com/">FormReturn</a>: a commercial (an
+academic site license costs 3495$) package. Costly, and their
+definition of <em>Integrated, Easy Setup &amp; Easy To Use</em> differed from
+mine. I could reproduce most of its functionality in <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a>,
+adding LaTeX authoring and a more paranoid control model.</li>
+<li><a class="reference external" href="http://www.gravic.com/remark/officeomr/">Remark Office OMR</a>: another</li>
+</ul>
+<blockquote>
+<div>commercial package (a site license costs in the range of thousands of $).</div></blockquote>
+<ul class="simple">
+<li>On the <a class="reference external" href="http://en.wikipedia.org/wiki/Optical_mark_recognition#OMR_software">Wikipedia
+page</a>
+there are a few other programs, which did not meet my needs.</li>
+</ul>
+</div>
+<div class="section" id="end-user-license-agreement-eula">
+<h2>End-User License Agreement (EULA)<a class="headerlink" href="#end-user-license-agreement-eula" title="Permalink to this headline">¶</a></h2>
+<p>You can use the software described and linked in this page as a trial
+and evaluation, as-it-is, without any guarantee, at the following
+additional conditions. By downloading the files you automatically accept
+these terms and conditions.</p>
+</div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Example file: <a class="reference download internal" href="_downloads/file.tex" download=""><code class="xref download docutils literal"><span class="pre">file.tex</span></code></a></li>
+<li>(Xe)LaTeX style file: <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a></li>
+<li>Python {2.5?,2.6?,2.7} script: <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="mcq-quickstart.html" title="previous chapter">MCQ-XeLaTeX: Quickstart</a></li>
+      <li>Next: <a href="esse3.html" title="next chapter">ESSE3: nei meandri della burocrazia</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, -dlf.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/mcqxelatex.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

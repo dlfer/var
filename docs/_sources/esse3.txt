@@ -1,0 +1,35 @@
+===================================
+ESSE3: nei meandri della burocrazia
+===================================
+
+:Date: 2019-03-06
+
+
+
+
+.. include:: soft/esse3.rst
+
+
+------------------------------------------------
+
+
+.. .. automodule:: esse3
+
+
+.. autofunction:: esse3.ymltocsv
+
+
+.. autofunction:: esse3.ymltocsv
+
+------------------------------------------------
+
+
+
+And now a link: esse3.py_ 
+
+.. _esse3.py: soft/esse3.py
+
+
+And a download thing: :download:`esse3.py <soft/esse3.py>`
+
+

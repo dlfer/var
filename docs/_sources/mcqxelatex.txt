@@ -1,0 +1,287 @@
+================================================================
+MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
+================================================================
+
+:Date:   2019-02-07
+:Author: -dlf
+
+
+Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
+======================================================================
+
+.. image:: img/Bubbles.png
+  :alt:   Immagine di bolle
+  :align:  right
+MCQ-XeLaTeX is a program I've been using and developing over
+the last few years, to author, manage, mark, analyse and transcode exams
+based on **Multiple Choice Questions** entirely in **LaTeX**. It is
+supposed to be multi-platform (it runs on **unix/linux**, **mac** and
+with a few limitations, due to missing system libraries, on **windows**
+- with or withour cygwin), and features an **OMR (Optical Mark
+Recognotion)** engine to automatically grade/mark the exam sheets. By
+design it does not have any Graphical User Interface, and it reinforces
+a paranoid control model, where every step of the process is
+accountable, verified, logged and traced. It can help performing the
+following tasks, keeping the possibility that each of the steps can be
+performed manually as a failsafe procedure.
+
+**Authoring**: The format of the questions is LaTeX, with the LaTeX
+style :download:`mcq.sty <soft/mcq.sty>`. For a series of reasons it is
+necessary to compile it with the ``xelatex`` engine, to see a PDF
+printable version (useful for reviewing and proof-reading). The
+questions can be just exported to `MOODLE <http://www.moodle.org>`__ or
+saved as dynamical HTML.
+
+**Managing and shuffling**: Given a list of questions, it can generate
+*n* copies of the exam sheet, each with a permutation of the questions,
+and each question with permuted answers. Plus, there are truth/false
+questions, and variants of multiple choice questions. Each sheet has a
+unique barcode, and the students can be identified by their UID. A table
+with UID's and student names can be used to fill the names. If you have
+a list of previous files with MCQ questions (a question bank, a library
+of questions), :download:`mcq.py <soft/mcq.py>` can choose a random sample of
+questions.
+
+**Marking**: If you have a scanner, you can automatically mark the
+answer sheets (bubblesheets), and export a CSV file with the results.
+Double-checking possible mistakes is performed by reviewing a visually
+annotated PDF. The **OMR** (**Optical Mark Recognition**) is automatic
+and reasonably reliable (being a client-server model, it needs internet:
+the actual Mark Recognition is performed elsewhere, on a secure server).
+But it is easy, if and where needed, to revert to manual human marking.
+
+**Analysing**: A few simple statistical indices are computed on the
+marking data (facility index, discrimination index, non-responses),
+helping to assess problems.
+
+**Transcoding**: The MCQ LaTeX format is sufficiently abstract, that
+:download:`mcq.py <soft/mcq.py>` can export 
+`GIFT files <http://docs.moodle.org/24/en/GIFT_format>`__ (to be imported on a
+`MOODLE <http://www.moodle.org>`__ course) or dynamical HTML files (such
+as `these examples <http://www.matapp.unimib.it/~ferrario/qb/>`__). In
+the latter case, the resulting HTML files will be self-contained, will
+display mathematical symbols with `MathJax <http://www.mathjax.org>`__
+and will be dynamical (showing proper feedback to readers) with
+CSS+Javascript (see these
+`examples <http://www.matapp.unimib.it/~ferrario/qb/>`__).
+
+How
+===
+
+Check the requirements below, first. Then simply download the files
+:download:`mcq.py <soft/mcq.py>` and :download:`mcq.sty <soft/mcq.sty>`, put them in
+some proper path, and then run
+
+::
+
+    mcq.py
+
+in a terminal. Then follow the on-screen instructions.
+
+A typical list of actions might be:
+
+
+    - generate a new file main.tex
+    - add exercises to main.tex, compile it, review it, print it, until ready.
+    - `exam 120` : generated 120 different copies to print and give to students.
+    - scan the students sheets, or, if no scanner works, create a TXT file 
+      with the students answers.
+    - `omr scannedfiles*.pdf` : perform Optical Mark Recognition on the scanned sheets,
+       and obtain a TXT file of their answers, which can be reviewed and modified
+       with any text editor (vim, emacs, notepad). 
+    - `open main_answers.pdf` : open an annotated copy of the student scanned answers,
+       to review possible system errors or human mistakes. 
+    - `uid uidlist.csv`  : add student names to the reviewed answers file, 
+       taken from the file `uidlist.csv`. 
+    - `mark` : evaluate and mark. The output can be later processed with
+       any spreadsheet software, or text editor. 
+    - `makestats` : make a PDF versione of the exam, with annotations
+       about some statistical indices. 
+    - `export main.gift` : export the questions in GIFT format.
+    - `export main.html` : export the questions in HTML format. 
+
+Since a session usually takes several days, the status is kept
+persistent between partial sessions, and a few checks are performed, to
+be sure to avoid simple mistakes. If after delivering the exam you
+notice that some questions were wrongly evaluated, or some correct
+answers wrongly attributed, it is always possible to trace back a few
+steps and correct the mistake, by checking the logs and manually
+modifying the proper files.
+
+Example
+=======
+
+Consider the file :download:`example.tex <soft/example.tex>`, which produces
+:download:`this PDF <soft/example.pdf>` (it is a subset of a the 
+`Multiple Choice questions <http://www.math.ucla.edu/~tao/java/MultipleChoice/MultipleChoice.html>`__
+written by `T. Tao <http://www.math.ucla.edu/~tao/>`__). First we
+generate and print :download:`10 permuted copies <soft/example_exam.pdf>`, then
+we collect the scanned OMR filled sheets like 
+:download:`this file <soft/scan-try2.pdf>`, and let :download:`mcq.py <soft/mcq.py>` do the
+rest. In this example I've used all possible wrong pens, with different
+outcomes. A `sample session <_static/screen-log.html>`__ can be of some help to
+understand the workflow (I used \`vi\` to edit the text files, but of
+course it is not mandatory: you can use whatever text editor works). The
+:download:`stats output <soft/example_stats.pdf>` can be generated after the
+marking.
+
+
+Requirements
+============
+
+Requirements are very minimal, and the program has been tested on a
+variety of platforms.
+
+-  `Python <http://www.python.org>`__. Any version 2.\* should work
+
+but it's safer to stay with 2.7 (warning: 2.7.5 might show 
+`this bug <http://bugs.python.org/issue17998>`__). Unfortunately, **not** 3.\*
+because on most macs it is not yet readily available. If you have a
+default python3, just edit the script file :download:`mcq.py <soft/mcq.py>` and
+in the first line replace the word ``'python'`` with the word
+``'python2.7'`` (or the 2.\* version available).
+
+-  The (free) OTF font `Linux Libertine <http://www.linuxlibertine.org>`__, 
+  or the TTF version (but
+   in this case: plase call the sty package with the \`ttf\` option, and
+-  a not-too-old `TeX
+   system <http://www.tug.org/texlive/acquire-netinstall.html>`__.
+
+   If you do not have one already installed, probably you do not know what
+   LaTeX is, and you cannot use MCQ-XeLaTeX.
+
+-  On **windows**: it is not strictly necessary, but it is much better
+   to install `pyreadline <https://pypi.python.org/pypi/pyreadline>`__.
+   This will allow tab-completion in the interface, and avoid annoying
+   messages.
+
+To install the OTF/TTF font `Linux Libertine <http://www.linuxlibertine.org>`__, as follows:
+
+-  **MacOSX**: unzip the font archive, then click on all the TTF/OTF
+   files, and
+
+follow the FontBook instructions.
+
+-  **Linux**: Unzip the package and install the fonts with the help of
+   your desktop control app, such as KDE-Kontrol, or simply copy
+   the content in ``${HOME}/.fonts/``. There was an easy package
+   **ttf-linux-libertine** on debian/ubuntu based systems, if you had admin
+   privileges, but now, despite its name, apparently it does not contain
+   the TTF version, but only the OTF version (which is now the default with
+   :download:`mcq.sty <soft/mcq.sty>`).
+
+-  **Windows**: Unzip the package and copy all the OTF/TTF font files
+   into the folder C:\\Windows\\Fonts,
+   or control-click and select **Install**.
+
+Important: the 2018 default is now OTF, not TTF. To use TTF simply call
+mcq.sty with the additional option \`ttf\`
+
+::
+
+    \usepackage[ttf]{mcq}
+
+To install :download:`mcq.sty <soft/mcq.sty>` in a place where it can be found
+by TeX: the main point is to know what is the value of TEXMFHOME, for
+the local TeX installation. So, run
+
+::
+
+    kpsewhich -var-value TEXMFHOME
+
+and check the output (see how to have `private installations of
+files <http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst>`__).
+Then, add ``mcq.sty`` to ``${TEXMFHOME}/tex/latex/``, or to a
+subdirectory in it, and run ``texhash``. Or, simply put
+:download:`mcq.sty <soft/mcq.sty>` in the directory where you plan to work.
+
+For example:
+
+-  **MacOSX**: put :download:`mcq.sty <soft/mcq.sty>` in the directory
+   ``${HOME}/Library/texmf/tex/latex/``
+
+(create it if it does not exists).
+
+-  **Linux**: put it in a directory like ``${HOME}/.texmf/tex/latex/``,
+
+or ``${HOME}/.texmf-var/tex/latex/``.
+
+-  **Windows**: Same as above
+
+(you could run ``texconfig`` instead of
+``kpsewhich -var-value TEXMFHOME``).
+
+To install :download:`mcq.py <soft/mcq.py>` in a place where it can be
+automatically found by your shell, it suffices to put it in one of the
+directories listed in the environment variable
+`PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`__
+(\`\`${PATH}\`\`, or ``%PATH%`` accordingly).
+
+Do not forget to make it **executable**: control-click on the file, or
+
+::
+
+    chmod +x mcq.py
+
+How it works
+============
+
+(to appear)
+
+LaTeX commands and environments
+===============================
+
+(to appear) Please try to read the (outdated) `manual
+page <http://www.matapp.unimib.it/~ferrario/var/o.html>`__ and `quick
+install page <http://www.matapp.unimib.it/~ferrario/var/oq.html>`__.
+There is a google-translate button somewhere for the few not
+understanding Italian. Also, there are some comments in
+`mcq.sty <soft/mcq.sty>`__ and some explanation in the in-line help of
+the software itself.
+
+Similar programs
+================
+
+-  `Auto Multiple Choice <http://home.gna.org/auto-qcm/>`__: it's
+   obviously a better program, powerful and complete, but I had problems
+   installing it on macs (it is designed for linux), and I found the LaTeX
+   syntax not as easy as I would have liked it to be. Also, it did not seem
+   possible to export the questions to other formats, or to randomly choose the
+   questions from a questions-bank; also, it did not seem to have simple
+   bubblesheets.
+
+-  `TCExam <http://www.tcexam.org/>`__: an Open Source system for
+   electronic exams (also know as CBA - Computer-Based Assessment, CBT -
+   Computer-Based Testing or e-exam), with OMR functionality. It is not
+   something an individual would install and use, and as an individual I did not.
+
+-  `FormReturn <http://www.formreturn.com/>`__: a commercial (an
+   academic site license costs 3495$) package. Costly, and their
+   definition of *Integrated, Easy Setup & Easy To Use* differed from
+   mine. I could reproduce most of its functionality in :download:`mcq.py <soft/mcq.py>`, 
+   adding LaTeX authoring and a more paranoid control model.
+
+-  `Remark Office OMR <http://www.gravic.com/remark/officeomr/>`__: another
+  commercial package (a site license costs in the range of thousands of $).
+
+-  On the `Wikipedia
+   page <http://en.wikipedia.org/wiki/Optical_mark_recognition#OMR_software>`__
+   there are a few other programs, which did not meet my needs.
+
+End-User License Agreement (EULA)
+=================================
+
+You can use the software described and linked in this page as a trial
+and evaluation, as-it-is, without any guarantee, at the following
+additional conditions. By downloading the files you automatically accept
+these terms and conditions.
+
+
+Download
+========
+
+-  Example file: :download:`file.tex <soft/file.tex>`
+-  (Xe)LaTeX style file: :download:`mcq.sty <soft/mcq.sty>`
+-  Python {2.5?,2.6?,2.7} script: :download:`mcq.py <soft/mcq.py>`
+
+

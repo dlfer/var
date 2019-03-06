@@ -1,0 +1,15 @@
+====================
+psd2pdf
+====================
+
+:Date:   2019-03-07
+:Author: -dlf
+
+
+Generare diapositive incrementali per presentazioni in PDF
+==========================================================
+
+
+        (toappear)
+
+

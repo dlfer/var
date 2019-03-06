@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ESSE3: nei meandri della burocrazia &mdash; var  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="var  documentation" href="index.html" />
+    <link rel="next" title="psd2pdf" href="psd2pdf.html" />
+    <link rel="prev" title="MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX" href="mcqxelatex.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="esse3-nei-meandri-della-burocrazia">
+<h1>ESSE3: nei meandri della burocrazia<a class="headerlink" href="#esse3-nei-meandri-della-burocrazia" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-03-06</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="esse3-py-a-few-useful-functions-for-u-gov-s3">
+<h2>ESSE3.py: a few useful functions for u-gov S3<a class="headerlink" href="#esse3-py-a-few-useful-functions-for-u-gov-s3" title="Permalink to this headline">¶</a></h2>
+<p>A damn literal block:</p>
+<p>USAGE:</p>
+<div class="highlight-python"><div class="highlight"><pre>esse3.py [options] [argument]
+# Version: __INCLUDE_DATE__
+
+OPTIONS:
+    --help|-h
+    --uid Nomefile.xls # lista iscritti
+                       # :matricola:cognome,nome:
+    --pdf Nomefile.xls # registro pdf
+    --call             # chiama per firma digitale
+    --yml              # genera il file csv del registro
+                       # delle lezioni da yml
+    --baseoutput|-b=[base]
+
+FILES:
+    ~/.esse3rc         (options file)
+---
+
+(C) DLFerrario http://www.dlfer.xyz
+</pre></div>
+</div>
+<p>Options with the dictionary syntax:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><strong>&#8211;help, -h</strong></dt>
+<dd>Aiuto (this)</dd>
+</dl>
+<p><strong>&#8211;uid Nomefile.xls</strong></p>
+<blockquote>
+<div>lista iscritti :matricola:cognome,nome:</div></blockquote>
+<p>pdf Nomefile.xls | and what</p>
+<blockquote>
+<div>registro pdf</div></blockquote>
+<p>call | and therefore</p>
+<blockquote>
+<div>chiama</div></blockquote>
+<p>yml xmlfile | e su e giu&#8217;</p>
+<blockquote>
+<div>Crea registro</div></blockquote>
+</div></blockquote>
+<p>Options as option lists:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--help</span>, <span class="option">-h</span></kbd></td>
+<td>aiuto</td></tr>
+</tbody>
+</table>
+<p class="attribution">&mdash;uid &lt;Nomefile.xls&gt;
+lista iscritti :matricola:cognome,nome:
+Questa dovrebbe essere una lunga cosa, che
+forse funziona e forse no.</p>
+</div></blockquote>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--pdf <var>&lt;Nomefile.xls&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>crea registro pdf</td></tr>
+</tbody>
+</table>
+<p class="attribution">&mdash;call
+chiama per firma digitale</p>
+</div></blockquote>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--yml <var>&lt;Nomefile.yml&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>genera il file csv del registro delle lezioni da yml</td></tr>
+</tbody>
+</table>
+<p class="attribution">&mdash;baseoutput,-b=&lt;base&gt;
+output</p>
+</div></blockquote>
+<p>Examples:</p>
+<blockquote>
+<div><p>First example:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --yml
+</pre></div>
+</div>
+<p>Another example:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --pdf Lista.xls
+</pre></div>
+</div>
+<p>Last example:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --uid Lista.xls
+</pre></div>
+</div>
+</div></blockquote>
+<p>This module demonstrates documentation as specified by the <a class="reference external" href="http://google.github.io/styleguide/pyguide.html">Google Python
+Style Guide</a>. Docstrings may extend over multiple lines. Sections are created
+with a section header and a colon followed by a block of indented text.</p>
+<dl class="docutils">
+<dt>Example:</dt>
+<dd><p class="first">Examples can be given using either the <code class="docutils literal"><span class="pre">Example</span></code> or <code class="docutils literal"><span class="pre">Examples</span></code>
+sections. Sections support any reStructuredText formatting, including
+literal blocks:</p>
+<div class="last highlight-python"><div class="highlight"><pre>$ python example_google.py
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Section breaks are created by resuming unindented text. Section breaks
+are also implicitly created anytime a new section starts.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><dl class="first last docutils">
+<dt>module_level_variable1 (int): Module level variables may be documented in</dt>
+<dd><p class="first">either the <code class="docutils literal"><span class="pre">Attributes</span></code> section of the module docstring, or in an
+inline docstring immediately following the variable.</p>
+<p class="last">Either form is acceptable, but the two should not be mixed. Choose
+one convention to document module level variables and be consistent
+with it.</p>
+</dd>
+</dl>
+</dd>
+<dt>Todo:</dt>
+<dd><ul class="first last simple">
+<li>For module TODOs</li>
+<li>You have to also use <code class="docutils literal"><span class="pre">sphinx.ext.todo</span></code> extension</li>
+</ul>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="function">
+<dt id="esse3.ymltocsv">
+<code class="descclassname">esse3.</code><code class="descname">ymltocsv</code><span class="sig-paren">(</span><em>yamlfile</em>, <em>csvfile</em><span class="sig-paren">)</span><a class="headerlink" href="#esse3.ymltocsv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">esse3.</code><code class="descname">ymltocsv</code><span class="sig-paren">(</span><em>yamlfile</em>, <em>csvfile</em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<p>And now a link: <a class="reference external" href="soft/esse3.py">esse3.py</a></p>
+<p>And a download thing: <a class="reference download internal" href="_downloads/esse3.py" download=""><code class="xref download docutils literal"><span class="pre">esse3.py</span></code></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">ESSE3: nei meandri della burocrazia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="mcqxelatex.html" title="previous chapter">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+      <li>Next: <a href="psd2pdf.html" title="next chapter">psd2pdf</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, -dlf.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/esse3.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

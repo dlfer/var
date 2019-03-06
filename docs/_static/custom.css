@@ -1,0 +1,93 @@
+/* .... top right bottom left (pixel-width)*/ 
+
+div.sphinxsidebar {
+	border-style: groove;
+	border-width: 2px ;
+	border-radius: 14px;
+	text-rendering: optimizeLegibility;
+    }
+
+
+div.sphinxsidebar h3 {
+	margin-top: 0.75em;
+	border-top: 2px dashed;
+}
+
+/* --- old style file... */ 
+
+/*
+
+	modern.css - A modern look CSS sample file
+
+	Author : Osvaldo Santana Neto <osantanabr (a) brturbo com>
+	Date   : June 2004
+	License: GPL
+
+	Part of the txt2tags project <http://txt2tags.sf.net>
+
+
+	Modified by D.L. Ferrario 
+//  src:url(http://www.matapp.unimib.it/~ferrario/MyUnderwood.ttf) format('truetype');
+// src:url(http://www.matapp.unimib.it/~ferrario/uwch.ttf) format('truetype');
+
+*/
+
+
+h1, h2, h3,  h4,  h5, h6 {
+	border-bottom: 2px solid black;
+}
+
+
+img {
+vertical-align: text-top;
+}
+
+
+li  {
+width:82%;
+padding: 6px;
+background: #FFFFBB;
+border: 1px dashed black;
+margin: 12px;
+vertical-align: middle;
+}
+
+li li  {
+border: none;
+background: #F0F0B0;
+padding: 6px;
+}
+
+ol li {
+display: list-item;
+vertical-align: top;
+}
+
+/* Tables are used by: docs, sample */
+table
+	{
+	font-size	: 100%; /* Needed to inherit the body font size*/
+	border-color	: #ccc;
+	}
+th
+	{
+	background-color: #ddd;
+	padding		: .5em 0;
+	border-color	: #ccc;
+	border-style	: solid;
+	}
+td
+	{
+	border-style	: none;
+	padding		: .2em .5em;
+	}
+
+form
+	{
+	margin-bottom	: 2em;
+	}
+
+
+
+
+`

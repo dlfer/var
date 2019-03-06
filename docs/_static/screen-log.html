@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- This file was created with the aha Ansi HTML Adapter. http://ziz.delphigl.com/tool_aha.php -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8" />
+<title>stdin</title>
+</head>
+<body style="color:white; background-color:black">
+<pre>
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> ~ $</span> cd /tmp/mcq/
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> wget http://www.matapp.unimib.it/~ferrario/var/soft/mcq.py 
+--2013-06-19 13:42:18--  http://www.matapp.unimib.it/~ferrario/var/soft/mcq.py
+Resolving www.matapp.unimib.it (www.matapp.unimib.it)... 149.132.104.42
+Connecting to www.matapp.unimib.it (www.matapp.unimib.it)|149.132.104.42|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 119689 (117K) [text/x-python]
+Saving to: `mcq.py'
+
+ 0% [                                       ] 0           --.-K/s              100%[======================================&gt;] 119,689     --.-K/s   in 0.01s   
+
+2013-06-19 13:42:18 (10.8 MB/s) - `mcq.py' saved [119689/119689]
+
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> wget http://www.matapp.unimib.it/~ferrario/var/soft/mcq.sty
+--2013-06-19 13:42:25--  http://www.matapp.unimib.it/~ferrario/var/soft/mcq.sty
+Resolving www.matapp.unimib.it (www.matapp.unimib.it)... 149.132.104.42
+Connecting to www.matapp.unimib.it (www.matapp.unimib.it)|149.132.104.42|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15363 (15K) [text/x-tex]
+Saving to: `mcq.sty'
+
+ 0% [                                       ] 0           --.-K/s              100%[======================================&gt;] 15,363      --.-K/s   in 0.002s  
+
+2013-06-19 13:42:25 (8.38 MB/s) - `mcq.sty' saved [15363/15363]
+
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> wget http://www.matapp.unimib.it/~ferrario/var/soft/example.tex
+--2013-06-19 13:44:35--  http://www.matapp.unimib.it/~ferrario/var/soft/example.tex
+Resolving www.matapp.unimib.it (www.matapp.unimib.it)... 149.132.104.42
+Connecting to www.matapp.unimib.it (www.matapp.unimib.it)|149.132.104.42|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 13816 (13K) [text/x-tex]
+Saving to: `example.tex'
+
+ 0% [                                       ] 0           --.-K/s              100%[======================================&gt;] 13,816      --.-K/s   in 0.002s  
+
+2013-06-19 13:44:35 (8.30 MB/s) - `example.tex' saved [13816/13816]
+
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> ls
+example.tex  mcq.py  mcq.sty
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> chmod +x mcq.py 
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> wget http://www.matapp.unimib.it/~ferrario/var/soft/scan-try2.pdf
+--2013-06-19 13:45:13--  http://www.matapp.unimib.it/~ferrario/var/soft/scan-try2.pdf
+Resolving www.matapp.unimib.it (www.matapp.unimib.it)... 149.132.104.42
+Connecting to www.matapp.unimib.it (www.matapp.unimib.it)|149.132.104.42|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1051688 (1.0M) [application/pdf]
+Saving to: `scan-try2.pdf'
+
+ 0% [                                       ] 0           --.-K/s              100%[======================================&gt;] 1,051,688   --.-K/s   in 0.09s   
+
+2013-06-19 13:45:14 (11.2 MB/s) - `scan-try2.pdf' saved [1051688/1051688]
+
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> ./mcq.py 
+MCQ-XeLaTeX Interactive Interface loading...
+fontconfig version 2.10.1
+ mcq.py &lt;http://www.matapp.unimib.it/~ferrario/var/mcqxelatex.html&gt;
+     ==================
+      |@@@@----@|@@--|           _ __ ___   ___ __ _ 
+      |@@@----@@|--@@|          | '_ ` _ \ / __/ _` |
+      |@@----@@@|@--@|          | | | | | | (_| (_| |
+o_--_ |@@@@----@|--@@| __-.-.__ |_| |_| |_|\___\__, | - XeLaTeX __--.-_o
+      |@@@@@----|@--@|                            | |
+      |@----@@@@|@--@|                            |_|
+     ==================
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Welcome to the MCQ-XeLaTeX majestic CLI, comrade Ferrario.                  ┃
+┃ I'm a very primitive and fragile interface, so please read the messages.    ┃
+┃ You can choose to be guided in authoring a new MCQ-XeLaTeX main file,       ┃
+┃ reviewing all its commands, or to work on an existing one.                  ┃
+┃ After this menu, you will be using just Command Line Interfaces, no         ┃
+┃ windows, and will be given further details about the procedures.            ┃
+┃ Your progress will be saved, unless otherwise instructed or stated.  By     ┃
+┃ proceeding further, you accept the terms of the End User Licence Agreement  ┃
+┃ available on http://www.matapp.unimib.it/~ferrario/var/mcqxelatex.html      ┃
+┃                                                                             ┃
+┃ Check the REQUIREMENTS at the same web-page.                                ┃
+┃ Your Python version apparently is 2.7.3.                                    ┃
+┃                                                                             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+<span style="color:yellow;font-weight:bold;">: Press &lt;Return&gt; to proceed...</span>
+<span style="color:lime;font-weight:bold;"> mcq-&gt;&gt; </span>
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Available single-letter commands:                                           ┃
+┃ o : [O]pen an existing MCQ-XeLaTeX main file.                               ┃
+┃ c : [C]reate a new MCQ-XeLaTeX main file from a template.                   ┃
+┃ q : [Q]uit                                                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+<span style="color:yellow;font-weight:bold;">: Command?</span>
+<span style="color:lime;font-weight:bold;"> mcq-&gt;&gt; </span>o
+Welcome. This is the MCQ-XeLaTeX File Navigator.
+You can use the commands listed below to navigate in the filesystem,
+and to load the MCQ-XeLaTeX main TeX file you want to use for the exam. 
+If your Operative System is not too primitive, you can tab-complete commands
+and arguments of commands. In the prompt you will see the current directory. 
+
+Arguments of commands will be denoted by &lt;argument&gt;. 
+Optional arguments will be denoted by [&lt;argument&gt;].
+
+Main Commands (type `? &lt;command&gt;` for help):
+load &lt;file&gt;      : Load main XeLaTeX file &lt;file&gt; 
+cd [&lt;directory&gt;] : Change directory ( cd .. for parent directory )
+ls [&lt;dir&gt;]       : Show content of &lt;dir&gt; (or current dir if &lt;dir&gt; is empty)
+q                : Quit 
+
+<span style="color:lime;font-weight:bold;">(File)mcq[/tmp/mcq]-&gt;&gt; </span>ls
+..
+example.tex
+<span style="color:lime;font-weight:bold;">(File)mcq[/tmp/mcq]-&gt;&gt; </span>load example.tex
+<span style="color:yellow;font-weight:bold;">: File example.tex loaded: back to main menu.</span>
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ &gt;Main File: `example.tex` [Multiple Choice questions on Logic (2013-12-31)] ┃
+┃ Number of exercises: 14 --  Number of (max) answers: 7                      ┃
+┃ Last edited on:                                          2013-06-19 13:43:01┃
+┃ Last XeLaTeX'ed on:                                                    Never┃
+┃ Generated None permuted copies in `example_exam.pdf`:                  Never┃
+┃ Answers file `example_answers.txt` (No lines):                         Never┃
+┃ UIDs file `example.uid` (No lines):                                    Never┃
+┃ Results CSV file `example_exam.csv`(No lines):                         Never┃
+┃ STATS file `example_stats.pdf`:                                        Never┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Main Commands (type `? &lt;command&gt;` for help):
+status                 : show MCQ-XeLaTex status
+make                   : compile the main TeX file &lt;main&gt;.tex (with XeLaTeX)
+exam &lt;n&gt;               : gen &lt;n&gt; exam permuted copies -&gt; *_exam.{tex,pdf}
+omr &lt;scanfiles*.pdf&gt;   : get the OMR  answers file `&lt;main&gt;_answers.txt`
+open &lt;file&gt;            : open and view/edit &lt;file&gt; with appropriate program
+uid [&lt;file&gt;][:&lt;specs&gt;] : align UIDs with names, following specs  (in-place)
+mark [&lt;file&gt;]          : evaluate and mark, using answers file (default given)
+makestats              : generate a STATS file &lt;main&gt;_stats.pdf
+export &lt;filename.gift&gt; : export to filename.gift, in GIFT moodle format
+export &lt;filename.html&gt; : export to filename.html, in HTML format 
+! &lt;shell commands&gt;     : execute directly shell commands
+x                      : clear the status and go to main menu
+q                      : quit (without clearing the status)
+
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>make
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
+entering extended mode
+(./example.tex
+LaTeX2e &lt;2011/06/27&gt;
+
+[...OMISSIS...]
+
+** WARNING ** 5 memory objects still allocated
+You may want to report this to tex-k@tug.org
+
+(see the transcript file for additional information)
+Output written on example.pdf (8 pages).
+Transcript written on example.log.
+<span style="color:yellow;font-weight:bold;">: Compilation seems OK. Check `example.pdf` please.</span>
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>exam 10
+Extracted Punti: 6.00 -1.00 0.00
+# number of questions: 14
+# max number of answers:  7
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
+
+[...OMISSIS...]
+
+(see the transcript file for additional information)
+Output written on example_exam.pdf (80 pages).
+Transcript written on example_exam.log.
+<span style="color:yellow;font-weight:bold;">: DEBUG: human readable keys file: example_exam.sols</span>
+<span style="color:yellow;font-weight:bold;">: DEBUG: XML Output written to file: example.xml</span>
+<span style="color:yellow;font-weight:bold;">: PDF output seems OK. Check and review `example_exam.pdf` please.</span>
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>omr scan-try2.pdf
+ OMaRScan @https://*****.matapp.unimib.it/omar/cgi-bin/*****.cgi
+     ==================
+      |@@@@----@|@@--|
+      |@@@----@@|--@@|
+      |@@----@@@|@--@|
+      |@@@@----@|--@@|
+      |@@@@@----|@--@|
+      |@----@@@@|@--@|
+     ==================
+Sending data... Done!
+Working... 
+ACCEPTED:OLDkPKN9I5x_voDTseA....................ETA:5 sec [2/7]
+....................DONE
+File `example_answers.pdf' created.
+Elapsed time: 6 seconds.
+<span style="color:yellow;font-weight:bold;">: PDF annotated file `example_answers.pdf` created!</span>
+<span style="color:yellow;font-weight:bold;">: Answers file `example_answers.txt` created!</span>
+<span style="color:yellow;font-weight:bold;">:   Please review it and compare the markings in `example_answers.pdf`</span>
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>
+ Main Commands (type `? &lt;command&gt;` for help):
+status                 : show MCQ-XeLaTex status
+make                   : compile the main TeX file &lt;main&gt;.tex (with XeLaTeX)
+exam &lt;n&gt;               : gen &lt;n&gt; exam permuted copies -&gt; *_exam.{tex,pdf}
+omr &lt;scanfiles*.pdf&gt;   : get the OMR  answers file `&lt;main&gt;_answers.txt`
+open &lt;file&gt;            : open and view/edit &lt;file&gt; with appropriate program
+uid [&lt;file&gt;][:&lt;specs&gt;] : align UIDs with names, following specs  (in-place)
+mark [&lt;file&gt;]          : evaluate and mark, using answers file (default given)
+makestats              : generate a STATS file &lt;main&gt;_stats.pdf
+export &lt;filename.gift&gt; : export to filename.gift, in GIFT moodle format
+export &lt;filename.html&gt; : export to filename.html, in HTML format 
+! &lt;shell commands&gt;     : execute directly shell commands
+x                      : clear the status and go to main menu
+q                      : quit (without clearing the status)
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>mark
+pts: 6.00 -1.00 0.00
+formulavoto: None
+answer key '*' not valid (codice=E7HX):
+E7Hx:	:206143:BDBFEBFCGDEGD*:
+<span style="color:yellow;font-weight:bold;"></span><span style="color:yellow;background-color:red;font-weight:bold;">!!ERROR: marking failed... check logs... and re-try.</span>
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>open ansexample_answers.txt
+<span style="color:yellow;font-weight:bold;">: Trying to open file example_answers.txt on linux...</span>
+7:   :0*817*:CADECEBCE0D0BE:
+3A33:   :027151:DCFC0CFDGEEGBF:
+E7Hx:   :206143:BDBFEBFCGDEGD*:
+112F:   :223456:FBDGCBEBDAC0FC:
+xBFx:   :135678:BCFBDDFBCBGDCB:
+BG3E:   :01245*:ABDECEGBCDAFBF:
+xA2B:   :******:00000000000000:
+example_answers.txt (END)(END)<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>!vi example_eanswers.txt
+&quot;example_answers.txt&quot; 7L, 210C16A7:   :0*817*:CADECEBCE0D0BE:
+3A33:   :027151:DCFC0CFDGEEGBF:
+E7Hx:   :206143:BDBFEBFCGDEGD0: #here I replaced '*' with '0'
+112F:   :223456:FBDGCBEBDAC0FC:
+xBFx:   :135678:BCFBDDFBCBGDCB:
+BG3E:   :01245*:ABDECEGBCDAFBF:
+xA2B:   :******:00000000000000:
+<span style="font-weight:bold;"></span><span style="color:#3333FF;font-weight:bold;">~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               </span>1,1All23454329-318-30D0:w&quot;example_answers.txt&quot; 7L, 210C written3,28-30All3,28-30All:q<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>!vi example_answers.txtpenmark
+pts: 6.00 -1.00 0.00
+formulavoto: None
+: 	9.0 =&gt; 9.0
+: 	1.0 =&gt; 1.0
+: 	14.0 =&gt; 14.0
+: 	13.5 =&gt; 13.5
+: 	-1.0 =&gt; -1.0
+: 	7.0 =&gt; 7.0
+: 	0.0 =&gt; 0.0
+************************************************************
+target= None
+a,b= 1.00, 0.00
+<span style="color:yellow;font-weight:bold;">: Results File `example_exam.csv` created, with 7 lines.</span>
+<span style="color:yellow;font-weight:bold;">: You might want to publish the anonymous version `example_exam.txt.`</span>
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>!vi example_exam.csv
+&quot;example_exam.csv&quot; 7L, 202CE7HX;;206143;14.00;0.00;14.00
+112F;;223456;13.50;0.00;13.50
+16A7;;0*817*;9.00;0.00;9.00
+BG3E;;01245*;7.00;0.00;7.00
+3A33;;027151;1.00;0.00;1.00
+XA2B;;******;0.00;0.00;0.00
+XBFX;;135678;-1.00;0.00;-1.00
+<span style="font-weight:bold;"></span><span style="color:#3333FF;font-weight:bold;">~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               </span>1,1All:q<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>q
+<span style="color:yellow;font-weight:bold;">: Quitting from MCQ-XeLaTeX Work...</span>
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> exit
+
+*** AFTER SOME TIME ***
+
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> ~ $</span> cd /tmp/mcq/
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> ./mcq.py 
+MCQ-XeLaTeX Interactive Interface loading...
+fontconfig version 2.10.1
+ mcq.py &lt;http://www.matapp.unimib.it/~ferrario/var/mcqxelatex.html&gt;
+     ==================
+      |@@@@----@|@@--|           _ __ ___   ___ __ _ 
+      |@@@----@@|--@@|          | '_ ` _ \ / __/ _` |
+      |@@----@@@|@--@|          | | | | | | (_| (_| |
+o_--_ |@@@@----@|--@@| __-.-.__ |_| |_| |_|\___\__, | - XeLaTeX __--.-_o
+      |@@@@@----|@--@|                            | |
+      |@----@@@@|@--@|                            |_|
+     ==================
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ &gt;Main File: `example.tex` [Multiple Choice questions on Logic (2013-12-31)] ┃
+┃ Number of exercises: 14 --  Number of (max) answers: 7                      ┃
+┃ Last edited on:                                          2013-06-19 13:43:01┃
+┃ Last XeLaTeX'ed on:                                      2013-06-19 13:46:02┃
+┃ Generated 10 permuted copies in `example_exam.pdf`:      2013-06-19 13:46:17┃
+┃ Answers file `example_answers.txt` (7 lines):            2013-06-19 13:49:54┃
+┃ UIDs file `example.uid` (No lines):                                    Never┃
+┃ Results CSV file `example_exam.csv`(7 lines):            2013-06-19 13:50:01┃
+┃ STATS file `example_stats.pdf`:                                        Never┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Main Commands (type `? &lt;command&gt;` for help):
+status                 : show MCQ-XeLaTex status
+make                   : compile the main TeX file &lt;main&gt;.tex (with XeLaTeX)
+exam &lt;n&gt;               : gen &lt;n&gt; exam permuted copies -&gt; *_exam.{tex,pdf}
+omr &lt;scanfiles*.pdf&gt;   : get the OMR  answers file `&lt;main&gt;_answers.txt`
+open &lt;file&gt;            : open and view/edit &lt;file&gt; with appropriate program
+uid [&lt;file&gt;][:&lt;specs&gt;] : align UIDs with names, following specs  (in-place)
+mark [&lt;file&gt;]          : evaluate and mark, using answers file (default given)
+makestats              : generate a STATS file &lt;main&gt;_stats.pdf
+export &lt;filename.gift&gt; : export to filename.gift, in GIFT moodle format
+export &lt;filename.html&gt; : export to filename.html, in HTML format 
+! &lt;shell commands&gt;     : execute directly shell commands
+x                      : clear the status and go to main menu
+q                      : quit (without clearing the status)
+
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>status
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ &gt;Main File: `example.tex` [Multiple Choice questions on Logic (2013-12-31)] ┃
+┃ Number of exercises: 14 --  Number of (max) answers: 7                      ┃
+┃ Last edited on:                                          2013-06-19 13:43:01┃
+┃ Last XeLaTeX'ed on:                                      2013-06-19 13:46:02┃
+┃ Generated 10 permuted copies in `example_exam.pdf`:      2013-06-19 13:46:17┃
+┃ Answers file `example_answers.txt` (7 lines):            2013-06-19 13:49:54┃
+┃ UIDs file `example.uid` (No lines):                                    Never┃
+┃ Results CSV file `example_exam.csv`(7 lines):            2013-06-19 13:50:01┃
+┃ STATS file `example_stats.pdf`:                                        Never┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+LOG file : /home/ferrario/.mcq_log
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>makestats
+MultiEsercizio \begin{varianti}\end{varianti}: variant 1 chosen.
+  =&gt; Answers count might be wrong!
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
+entering extended mode
+(./example_stats.tex
+LaTeX2e &lt;2011/06/27&gt;
+
+[...OMISSIS...]
+
+Transcript written on example_stats.log.
+<span style="color:yellow;font-weight:bold;">: Statistics file example_stats.pdf generated.</span>
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>status
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ &gt;Main File: `example.tex` [Multiple Choice questions on Logic (2013-12-31)] ┃
+┃ Number of exercises: 14 --  Number of (max) answers: 7                      ┃
+┃ Last edited on:                                          2013-06-19 13:43:01┃
+┃ Last XeLaTeX'ed on:                                      2013-06-19 13:46:02┃
+┃ Generated 10 permuted copies in `example_exam.pdf`:      2013-06-19 13:46:17┃
+┃ Answers file `example_answers.txt` (7 lines):            2013-06-19 13:49:54┃
+┃ UIDs file `example.uid` (No lines):                                    Never┃
+┃ Results CSV file `example_exam.csv`(7 lines):            2013-06-19 13:50:01┃
+┃ STATS file `example_stats.pdf`:                          2013-06-19 14:10:33┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+LOG file : /home/ferrario/.mcq_log
+<span style="color:lime;font-weight:bold;">(Work)mcq[/tmp/mcq]-&gt;&gt; </span>q
+<span style="color:yellow;font-weight:bold;">: Quitting from MCQ-XeLaTeX Work...</span>
+<span style="color:lime;font-weight:bold;">ferrario@h</span><span style="color:#3333FF;font-weight:bold;"> /tmp/mcq $</span> exit
+
+
+*** LOGFILE (${HOME}/.mcq_log) CONTENT: ***
+2013-06-19 13:45:38 [---] : `ls`
+2013-06-19 13:45:44 [---] : `load example.tex`
+2013-06-19 13:45:57 [/tmp/mcq/example.tex] : `make`
+2013-06-19 13:46:10 [/tmp/mcq/example.tex] : `exam 10`
+2013-06-19 13:46:40 [/tmp/mcq/example.tex] : `omr scan-try2.pdf`
+2013-06-19 13:47:02 [/tmp/mcq/example.tex] : `mark`
+2013-06-19 13:49:04 [/tmp/mcq/example.tex] : `open example_answers.txt`
+2013-06-19 13:49:48 [/tmp/mcq/example.tex] : `!vi example_answers.txt`
+2013-06-19 13:50:01 [/tmp/mcq/example.tex] : `mark`
+2013-06-19 13:50:09 [/tmp/mcq/example.tex] : `!vi example_exam.csv`
+2013-06-19 13:50:21 [/tmp/mcq/example.tex] : `q`
+2013-06-19 14:10:14 [/tmp/mcq/example.tex] : `status`
+2013-06-19 14:10:31 [/tmp/mcq/example.tex] : `makestats`
+2013-06-19 14:10:38 [/tmp/mcq/example.tex] : `status`
+2013-06-19 14:10:46 [/tmp/mcq/example.tex] : `q`
+</pre>
+</body>
+</html>
