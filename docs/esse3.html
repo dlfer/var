@@ -52,6 +52,8 @@
 </table>
 <div class="section" id="esse3-py-a-cosa-serve">
 <h2>esse3.py: A cosa serve<a class="headerlink" href="#esse3-py-a-cosa-serve" title="Permalink to this headline">¶</a></h2>
+<p>Automatizza alcune delle fasi delle operazioni più ripetitive della burocrazia accademica:
+compilare il registro delle lezioni, verbalizzare gli esami.</p>
 <p>USAGE:</p>
 <div class="highlight-python"><div class="highlight"><pre>esse3.py [options] [argument]
 
@@ -72,80 +74,91 @@ FILES:
 (C) DLFerrario http://www.dlfer.xyz
 </pre></div>
 </div>
-<p>Options with the dictionary syntax:</p>
-<blockquote>
-<div><dl class="docutils">
-<dt><strong>&#8211;help, -h</strong></dt>
-<dd>Aiuto (this)</dd>
+<div class="section" id="dettaglio-delle-opzioni">
+<h3>Dettaglio delle opzioni:<a class="headerlink" href="#dettaglio-delle-opzioni" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">--help,</span> <span class="pre">-h</span></code></dt>
+<dd>Un breve aiuto</dd>
+<dt><code class="docutils literal"><span class="pre">--uid</span> <span class="pre">Nomefile.xls</span></code></dt>
+<dd><p class="first">Produce una lista iscritti formattata come <code class="docutils literal"><span class="pre">:matricola:cognome,nome:</span></code>,
+che è già pronta per poter essere usata da <code class="docutils literal"><span class="pre">mcq.py</span></code>. Il file <code class="docutils literal"><span class="pre">Nomefile.xls</span></code>
+è il file <em>excel</em> scaricato dal sito delle segreterie online
+(in genere ha il nome <code class="docutils literal"><span class="pre">ListaStudentiEsameExportExcel.xls</span></code>.
+Un esempio:</p>
+<div class="last highlight-python"><div class="highlight"><pre>$ esse3.py --uid ListaStudenti.xls &gt; sc1-Lista.uid
+</pre></div>
+</div>
+</dd>
 </dl>
-<p><strong>&#8211;uid Nomefile.xls</strong></p>
+<p><code class="docutils literal"><span class="pre">--pdf</span> <span class="pre">Nomefile.xls</span></code></p>
 <blockquote>
-<div>lista iscritti :matricola:cognome,nome:</div></blockquote>
-<p><strong>&#8211;pdf Nomefile.xls</strong></p>
-<blockquote>
-<div>registro pdf</div></blockquote>
-<p><strong>&#8211;call</strong></p>
-<blockquote>
-<div>chiama</div></blockquote>
-<p><strong>&#8211;yml xmlfile</strong></p>
-<blockquote>
-<div>Crea registro</div></blockquote>
-</div></blockquote>
-<p>Examples:</p>
-<blockquote>
-<div><p>First example:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --yml
+<div><p>Crea una versione PDF del registro (cartaceo) per l&#8217;esame, a partire dal file <em>excel</em>
+<code class="docutils literal"><span class="pre">Nomefile.xls</span></code> scaricato dal sito delle segreterie online. Esempio:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --pdf ListaStudenti.xls
 </pre></div>
 </div>
-<p>Another example:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --pdf Lista.xls
-</pre></div>
-</div>
-<p>Last example:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --uid Lista.xls
+<p>Verrà prodotto il file <code class="docutils literal"><span class="pre">esse3_output.pdf</span></code>. Se si vuole un altro nome del file prodotto,
+per esempio <code class="docutils literal"><span class="pre">sc1-Registro.pdf</span></code>, basta usare l&#8217;opzione:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ esse3.py  --baseoutput=sc1-Registro --pdf ListaStudenti.xls
 </pre></div>
 </div>
 </div></blockquote>
-<p>This module demonstrates documentation as specified by the <a class="reference external" href="http://google.github.io/styleguide/pyguide.html">Google Python
-Style Guide</a>. Docstrings may extend over multiple lines. Sections are created
-with a section header and a colon followed by a block of indented text.</p>
-<dl class="docutils">
-<dt>Example:</dt>
-<dd><p class="first">Examples can be given using either the <code class="docutils literal"><span class="pre">Example</span></code> or <code class="docutils literal"><span class="pre">Examples</span></code>
-sections. Sections support any reStructuredText formatting, including
-literal blocks:</p>
-<div class="last highlight-python"><div class="highlight"><pre>$ python example_google.py
+<p><code class="docutils literal"><span class="pre">--call</span></code></p>
+<blockquote>
+<div><p>Per la registrazione dei voti: chiama il numero di verbalizzazione online, e
+interattivamente chiede il numero di quattro cifre indicato nella pagina, per poi inserire
+automaticamente il PIN di otto cifre. Per poter funzionare, occorre collegare un telefono GSM alla
+porta USB del computer, e conoscere qual è il nome del dispositivo:</p>
+<div class="highlight-python"><div class="highlight"><pre>/dev/ttyACM0
+/dev/ttyS
 </pre></div>
 </div>
-</dd>
-</dl>
-<p>Section breaks are created by resuming unindented text. Section breaks
-are also implicitly created anytime a new section starts.</p>
+<p>I dati utilizzati vengono poi salvati nel file:</p>
+<div class="highlight-python"><div class="highlight"><pre>${HOME}/.esse3rc
+</pre></div>
+</div>
+</div></blockquote>
 <dl class="docutils">
-<dt>Attributes:</dt>
-<dd><dl class="first last docutils">
-<dt>module_level_variable1 (int): Module level variables may be documented in</dt>
-<dd><p class="first">either the <code class="docutils literal"><span class="pre">Attributes</span></code> section of the module docstring, or in an
-inline docstring immediately following the variable.</p>
-<p class="last">Either form is acceptable, but the two should not be mixed. Choose
-one convention to document module level variables and be consistent
-with it.</p>
-</dd>
+<dt><code class="docutils literal"><span class="pre">--yml</span> <span class="pre">ymlfile.yml</span></code></dt>
+<dd>Crea una versione CSV del registro delle lezioni, da compilare tramite il sito delle segreterie online.
+Il formato corretto del file <code class="docutils literal"><span class="pre">ymlfile</span></code> è una variante locale di <a class="reference external" href="https://yaml.org/">YAML</a>, seguendo questo esempio:</dd>
 </dl>
-</dd>
-<dt>Todo:</dt>
-<dd><ul class="first last simple">
-<li>For module TODOs</li>
-<li>You have to also use <code class="docutils literal"><span class="pre">sphinx.ext.todo</span></code> extension</li>
-</ul>
-</dd>
-</dl>
-<hr class="docutils" />
-<dl class="function">
-<dt id="esse3.ymltocsv">
-<code class="descclassname">esse3.</code><code class="descname">ymltocsv</code><span class="sig-paren">(</span><em>yamlfile</em>, <em>csvfile</em><span class="sig-paren">)</span><a class="headerlink" href="#esse3.ymltocsv" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="c1"># commenti</span>
+<span class="c1">#</span>
+<span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span>
 
+<span class="l l-Scalar l-Scalar-Plain">orario</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">lun</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">14:30-16:30</span>
+<span class="l l-Scalar l-Scalar-Plain">mar</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">17:30-18:30</span>
+<span class="l l-Scalar l-Scalar-Plain">mer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-19:30</span>
+<span class="l l-Scalar l-Scalar-Plain">gio</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span>
+<span class="l l-Scalar l-Scalar-Plain">ven</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span>
+
+<span class="l l-Scalar l-Scalar-Plain">anno</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2018</span>
+<span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="s">&#39;0001&#39;</span>
+<span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span>
+<span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span>
+
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">OTT</span><span class="p p-Indicator">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">01 *L1,2  Distanza negli spazi vettoriali euclidei.</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">02 *L3 Topologia di R^n.</span>
+
+<span class="l l-Scalar l-Scalar-Plain">NOV</span><span class="p p-Indicator">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">03 *L4 Altro argomento</span>
+
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">GEN</span><span class="p p-Indicator">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">04 *L5 Ultima lezione</span>
+</pre></div>
+</div>
+<p>Osservazione importante: le lezioni <strong>devono</strong> iniziare con un trattivo, a
+inizio riga. La parte <strong>senza spazi</strong> che segue l&#8217;asterisco viene del tutto
+ignorata (in modo che l&#8217;annotazione sul numero di lezioni non compaia nel
+registro).</p>
+<p>Una volta prodotto il file CSV, occorre copia-e-incollarlo nel file XLS delle
+segreterie online, per il registro delle lezioni.</p>
+</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="download">

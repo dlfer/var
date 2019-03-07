@@ -1,17 +1,18 @@
-================================================================
+==================================================================
 MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
-================================================================
+==================================================================
 
 :Date:   2019-02-07
 :Author: -dlf
 
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
-======================================================================
+========================================================================
 
 .. image:: img/Bubbles.png
   :alt:   Immagine di bolle
   :align:  right
+
 MCQ-XeLaTeX is a program I've been using and developing over
 the last few years, to author, manage, mark, analyse and transcode exams
 based on **Multiple Choice Questions** entirely in **LaTeX**. It is
@@ -83,22 +84,22 @@ A typical list of actions might be:
 
     - generate a new file main.tex
     - add exercises to main.tex, compile it, review it, print it, until ready.
-    - `exam 120` : generated 120 different copies to print and give to students.
+    - ``exam 120`` : generated 120 different copies to print and give to students.
     - scan the students sheets, or, if no scanner works, create a TXT file 
       with the students answers.
-    - `omr scannedfiles*.pdf` : perform Optical Mark Recognition on the scanned sheets,
-       and obtain a TXT file of their answers, which can be reviewed and modified
-       with any text editor (vim, emacs, notepad). 
-    - `open main_answers.pdf` : open an annotated copy of the student scanned answers,
-       to review possible system errors or human mistakes. 
-    - `uid uidlist.csv`  : add student names to the reviewed answers file, 
-       taken from the file `uidlist.csv`. 
-    - `mark` : evaluate and mark. The output can be later processed with
-       any spreadsheet software, or text editor. 
-    - `makestats` : make a PDF versione of the exam, with annotations
-       about some statistical indices. 
-    - `export main.gift` : export the questions in GIFT format.
-    - `export main.html` : export the questions in HTML format. 
+    - ``omr scannedfiles*.pdf`` : perform Optical Mark Recognition on the scanned sheets,
+      and obtain a TXT file of their answers, which can be reviewed and modified
+      with any text editor (vim, emacs, notepad). 
+    - ``open main_answers.pdf`` : open an annotated copy of the student scanned answers,
+      to review possible system errors or human mistakes. 
+    - ``uid uidlist.csv``  : add student names to the reviewed answers file, 
+      taken from the file ``uidlist.csv``. 
+    - ``mark`` : evaluate and mark. The output can be later processed with
+      any spreadsheet software, or text editor. 
+    - ``makestats`` : make a PDF versione of the exam, with annotations
+      about some statistical indices. 
+    - ``export main.gift`` : export the questions in GIFT format.
+    - ``export main.html`` : export the questions in HTML format. 
 
 Since a session usually takes several days, the status is kept
 persistent between partial sessions, and a few checks are performed, to
@@ -142,14 +143,13 @@ in the first line replace the word ``'python'`` with the word
 ``'python2.7'`` (or the 2.\* version available).
 
 -  The (free) OTF font `Linux Libertine <http://www.linuxlibertine.org>`__, 
-  or the TTF version (but
+   or the TTF version (but
    in this case: plase call the sty package with the \`ttf\` option, and
 -  a not-too-old `TeX
    system <http://www.tug.org/texlive/acquire-netinstall.html>`__.
-
+   
    If you do not have one already installed, probably you do not know what
    LaTeX is, and you cannot use MCQ-XeLaTeX.
-
 -  On **windows**: it is not strictly necessary, but it is much better
    to install `pyreadline <https://pypi.python.org/pypi/pyreadline>`__.
    This will allow tab-completion in the interface, and avoid annoying
@@ -158,9 +158,7 @@ in the first line replace the word ``'python'`` with the word
 To install the OTF/TTF font `Linux Libertine <http://www.linuxlibertine.org>`__, as follows:
 
 -  **MacOSX**: unzip the font archive, then click on all the TTF/OTF
-   files, and
-
-follow the FontBook instructions.
+   files, and follow the FontBook instructions.
 
 -  **Linux**: Unzip the package and install the fonts with the help of
    your desktop control app, such as KDE-Kontrol, or simply copy
@@ -174,12 +172,13 @@ follow the FontBook instructions.
    into the folder C:\\Windows\\Fonts,
    or control-click and select **Install**.
 
-Important: the 2018 default is now OTF, not TTF. To use TTF simply call
+**Important**: the 2018 default is now OTF, not TTF. To use TTF simply call
 mcq.sty with the additional option \`ttf\`
 
 ::
 
     \usepackage[ttf]{mcq}
+
 
 To install :download:`mcq.sty <soft/mcq.sty>` in a place where it can be found
 by TeX: the main point is to know what is the value of TEXMFHOME, for
@@ -199,17 +198,14 @@ For example:
 
 -  **MacOSX**: put :download:`mcq.sty <soft/mcq.sty>` in the directory
    ``${HOME}/Library/texmf/tex/latex/``
-
-(create it if it does not exists).
+   (create it if it does not exists).
 
 -  **Linux**: put it in a directory like ``${HOME}/.texmf/tex/latex/``,
-
-or ``${HOME}/.texmf-var/tex/latex/``.
+   or ``${HOME}/.texmf-var/tex/latex/``.
 
 -  **Windows**: Same as above
-
-(you could run ``texconfig`` instead of
-``kpsewhich -var-value TEXMFHOME``).
+   (you could run ``texconfig`` instead of
+   ``kpsewhich -var-value TEXMFHOME``).
 
 To install :download:`mcq.py <soft/mcq.py>` in a place where it can be
 automatically found by your shell, it suffices to put it in one of the
@@ -262,11 +258,12 @@ Similar programs
    adding LaTeX authoring and a more paranoid control model.
 
 -  `Remark Office OMR <http://www.gravic.com/remark/officeomr/>`__: another
-  commercial package (a site license costs in the range of thousands of $).
+   commercial package (a site license costs in the range of thousands of $).
 
 -  On the `Wikipedia
    page <http://en.wikipedia.org/wiki/Optical_mark_recognition#OMR_software>`__
    there are a few other programs, which did not meet my needs.
+
 
 End-User License Agreement (EULA)
 =================================
