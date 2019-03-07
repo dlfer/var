@@ -238,7 +238,7 @@ the software itself.
 Similar programs
 ================
 
--  `Auto Multiple Choice <http://home.gna.org/auto-qcm/>`__: it's
+-  `Auto Multiple Choice <https://www.auto-multiple-choice.net/>`__: it's
    obviously a better program, powerful and complete, but I had problems
    installing it on macs (it is designed for linux), and I found the LaTeX
    syntax not as easy as I would have liked it to be. Also, it did not seem
@@ -246,7 +246,7 @@ Similar programs
    questions from a questions-bank; also, it did not seem to have simple
    bubblesheets.
 
--  `TCExam <http://www.tcexam.org/>`__: an Open Source system for
+-  `TCExam <https://www.tcexam.org/>`__: an Open Source system for
    electronic exams (also know as CBA - Computer-Based Assessment, CBT -
    Computer-Based Testing or e-exam), with OMR functionality. It is not
    something an individual would install and use, and as an individual I did not.
