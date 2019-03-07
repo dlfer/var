@@ -1,15 +1,129 @@
-====================
-psd2pdf
-====================
+=================================
+psd2pdf: drawing and presentation
+=================================
 
 :Date:   2019-03-07
 :Author: -dlf
 
 
-Generare diapositive incrementali per presentazioni in PDF
-==========================================================
+What for 
+========
+
+Two purposes: 
+ 1. Convert a bitmap image (from scan or table drawing) to a vector format (PDF).
+ 2. Convert a multi-layer PSD raster image to an incremental PDF presentation.
 
 
-        (toappear)
+USAGE::
+
+  psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
+
+  Convert PSD ... graphics files to usable (vector or incremental) PDF
+  
+  positional arguments:
+    psdfile          PSD file
+  
+  optional arguments:
+    -h, --help       show this help message and exit
+    --autotrace, -a  make a vector-graphics version with autotrace
+    --potrace, -p    make a vector-graphics version with potrace
+    --png            convert and trim the PSD image
+    --crop, -c       crop the final image
+  
+  [https://www.dlfer.xyz/var/psd2pdf]
+
+
+Make a presentation (latex beamer and PDF)
+==========================================
+
+Assume ``image.psd`` is a multi-layer image (made with photoshop or sketchbook or whatever).
+
+Then::
+
+  $ psd2pdf.py image.psd
+
+will produce ``image.pdf`` which is a multi-page incremental file.
+
+To use it in a beamer presentation:
+
+.. code-block:: latex
+
+  % in preamble
+  \usepackage{pdfpages} 
+
+  % in  document
+  \includepdf[pages=-]{figs/image.pdf}  
+ 
+
+ 
+Make vector image (to be includegraphics'ed by LaTeX)
+=====================================================
+
+Assume ``image.psd`` is a bitmap image (made with photoshop or sketchbook or whatever).
+
+Then::
+
+  $ psd2pdf.py -a image.psd
+  $ psd2pdf.py --autotrace image.psd
+
+will make a vector graphics version (PDF) with autotrace. 
+
+
+Otherwise::
+
+  $ psd2pdf.py -p image.psd
+  $ psd2pdf.py --potrace image.psd
+
+will make a vector graphics versione (PDF) with potrace. 
+
+For both cases, adding the option ``--crop`` or ``-c`` will crop the final image. 
+
+If, instead of PDF, one wants a PNG image, then::
+
+  $ psd2pdf.py --png image.psd
+
+If, instead of a PSD file, one has a PNG (or JPEG, or whatever) file, just do it like this::
+
+  $ psd2pdf.py -a image.png 
+  $ psd2pdf.py -p image.png
+
+to obtain vector graphics versions. 
+
+
+INSTALL and REQUIREMENTS
+========================
+
+The script should work on both python 2 and python 3.
+To install it, just download and copy it somewhere in your path. 
+
+**Requirements**: first install the following things
+ 
+ - ``mkbitmap`` and ``potrace`` from http://potrace.sourceforge.net/
+ - ``autotrace`` from http://autotrace.sourceforge.net/
+ - ``convert`` and ``identify`` from `ImageMagick <https://imagemagick.org/index.php>`__ 
+ - ``pngtopnm`` from `netpbm <http://netpbm.sourceforge.net/>`__ 
+ - ``pdfcrop`` from `CTAN page <https://ctan.org/pkg/pdfcrop?lang=en>`__ 
+ - ``qpdf`` from http://qpdf.sourceforge.net/
+
+
+.. warning::
+  
+ In imagemagick policy.xml, found maybe in::
+ 
+    /etc/ImageMagick-6/policy.xml
+
+ comment out the line::
+  
+   <!-- <policy domain="coder" rights="none" pattern="PDF" /> -->
+
+ otherwise it will not work.  
+
+
+DOWNLOAD
+========
+
+ - :download:`psd2pdf.py <soft/psd2pdf.py>`
+
+
 
 

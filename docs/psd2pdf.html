@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>psd2pdf &mdash; var  documentation</title>
+    <title>psd2pdf: drawing and presentation &mdash; var  documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -40,8 +40,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="psd2pdf">
-<h1>psd2pdf<a class="headerlink" href="#psd2pdf" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="psd2pdf-drawing-and-presentation">
+<h1>psd2pdf: drawing and presentation<a class="headerlink" href="#psd2pdf-drawing-and-presentation" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -52,10 +52,114 @@
 </tr>
 </tbody>
 </table>
-<div class="section" id="generare-diapositive-incrementali-per-presentazioni-in-pdf">
-<h2>Generare diapositive incrementali per presentazioni in PDF<a class="headerlink" href="#generare-diapositive-incrementali-per-presentazioni-in-pdf" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-for">
+<h2>What for<a class="headerlink" href="#what-for" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Two purposes:</dt>
+<dd><ol class="first last arabic simple">
+<li>Convert a bitmap image (from scan or table drawing) to a vector format (PDF).</li>
+<li>Convert a multi-layer PSD raster image to an incremental PDF presentation.</li>
+</ol>
+</dd>
+</dl>
+<p>USAGE:</p>
+<div class="highlight-python"><div class="highlight"><pre>psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
+
+Convert PSD ... graphics files to usable (vector or incremental) PDF
+
+positional arguments:
+  psdfile          PSD file
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --autotrace, -a  make a vector-graphics version with autotrace
+  --potrace, -p    make a vector-graphics version with potrace
+  --png            convert and trim the PSD image
+  --crop, -c       crop the final image
+
+[https://www.dlfer.xyz/var/psd2pdf]
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-a-presentation-latex-beamer-and-pdf">
+<h2>Make a presentation (latex beamer and PDF)<a class="headerlink" href="#make-a-presentation-latex-beamer-and-pdf" title="Permalink to this headline">¶</a></h2>
+<p>Assume <code class="docutils literal"><span class="pre">image.psd</span></code> is a multi-layer image (made with photoshop or sketchbook or whatever).</p>
+<p>Then:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ psd2pdf.py image.psd
+</pre></div>
+</div>
+<p>will produce <code class="docutils literal"><span class="pre">image.pdf</span></code> which is a multi-page incremental file.</p>
+<p>To use it in a beamer presentation:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="c">% in preamble</span>
+<span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
+
+<span class="c">% in  document</span>
+<span class="k">\includepdf</span><span class="na">[pages=-]</span><span class="nb">{</span>figs/image.pdf<span class="nb">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-vector-image-to-be-includegraphics-ed-by-latex">
+<h2>Make vector image (to be includegraphics&#8217;ed by LaTeX)<a class="headerlink" href="#make-vector-image-to-be-includegraphics-ed-by-latex" title="Permalink to this headline">¶</a></h2>
+<p>Assume <code class="docutils literal"><span class="pre">image.psd</span></code> is a bitmap image (made with photoshop or sketchbook or whatever).</p>
+<p>Then:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ psd2pdf.py -a image.psd
+$ psd2pdf.py --autotrace image.psd
+</pre></div>
+</div>
+<p>will make a vector graphics version (PDF) with autotrace.</p>
+<p>Otherwise:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ psd2pdf.py -p image.psd
+$ psd2pdf.py --potrace image.psd
+</pre></div>
+</div>
+<p>will make a vector graphics versione (PDF) with potrace.</p>
+<p>For both cases, adding the option <code class="docutils literal"><span class="pre">--crop</span></code> or <code class="docutils literal"><span class="pre">-c</span></code> will crop the final image.</p>
+<p>If, instead of PDF, one wants a PNG image, then:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ psd2pdf.py --png image.psd
+</pre></div>
+</div>
+<p>If, instead of a PSD file, one has a PNG (or JPEG, or whatever) file, just do it like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ psd2pdf.py -a image.png
+$ psd2pdf.py -p image.png
+</pre></div>
+</div>
+<p>to obtain vector graphics versions.</p>
+</div>
+<div class="section" id="install-and-requirements">
+<h2>INSTALL and REQUIREMENTS<a class="headerlink" href="#install-and-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The script should work on both python 2 and python 3.
+To install it, just download and copy it somewhere in your path.</p>
+<p><strong>Requirements</strong>: first install the following things</p>
 <blockquote>
-<div>(toappear)</div></blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">mkbitmap</span></code> and <code class="docutils literal"><span class="pre">potrace</span></code> from <a class="reference external" href="http://potrace.sourceforge.net/">http://potrace.sourceforge.net/</a></li>
+<li><code class="docutils literal"><span class="pre">autotrace</span></code> from <a class="reference external" href="http://autotrace.sourceforge.net/">http://autotrace.sourceforge.net/</a></li>
+<li><code class="docutils literal"><span class="pre">convert</span></code> and <code class="docutils literal"><span class="pre">identify</span></code> from <a class="reference external" href="https://imagemagick.org/index.php">ImageMagick</a></li>
+<li><code class="docutils literal"><span class="pre">pngtopnm</span></code> from <a class="reference external" href="http://netpbm.sourceforge.net/">netpbm</a></li>
+<li><code class="docutils literal"><span class="pre">pdfcrop</span></code> from <a class="reference external" href="https://ctan.org/pkg/pdfcrop?lang=en">CTAN page</a></li>
+<li><code class="docutils literal"><span class="pre">qpdf</span></code> from <a class="reference external" href="http://qpdf.sourceforge.net/">http://qpdf.sourceforge.net/</a></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>In imagemagick policy.xml, found maybe in:</p>
+<div class="highlight-python"><div class="highlight"><pre>/etc/ImageMagick-6/policy.xml
+</pre></div>
+</div>
+<p>comment out the line:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;!-- &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt; --&gt;
+</pre></div>
+</div>
+<p class="last">otherwise it will not work.</p>
+</div>
+</div>
+<div class="section" id="download">
+<h2>DOWNLOAD<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference download internal" href="_downloads/psd2pdf.py" download=""><code class="xref download docutils literal"><span class="pre">psd2pdf.py</span></code></a></li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -70,7 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">psd2pdf</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
 </ul>
 <div class="relations">
