@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MCQ-XeLaTeX Full Documentation &mdash; var  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
+    <link rel="top" title="var  documentation" href="index.html" />
+    <link rel="next" title="ESSE3: nei meandri della burocrazia" href="esse3.html" />
+    <link rel="prev" title="MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX" href="mcqxelatex.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mcq-xelatex-full-documentation">
+<h1>MCQ-XeLaTeX Full Documentation<a class="headerlink" href="#mcq-xelatex-full-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="latex-documentation-of-mcq-sty">
+<span id="mcq-latex"></span><h2>LaTeX documentation of mcq.sty<a class="headerlink" href="#latex-documentation-of-mcq-sty" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
+</div>
+<div class="section" id="documentation-of-the-cli">
+<span id="mcq-cli"></span><h2>Documentation of the CLI<a class="headerlink" href="#documentation-of-the-cli" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
+</div>
+<div class="section" id="managing-and-using-a-question-bank-with-random-choices">
+<span id="mcq-qb"></span><h2>Managing and using a Question Bank with Random Choices<a class="headerlink" href="#managing-and-using-a-question-bank-with-random-choices" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
+</div>
+<div class="section" id="exporting-to-other-formats-html-and-gift">
+<span id="mcq-export"></span><h2>Exporting to other formats: HTML and GIFT<a class="headerlink" href="#exporting-to-other-formats-html-and-gift" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
+</div>
+<div class="section" id="when-things-go-wrong">
+<span id="mcq-errors"></span><h2>When things go wrong<a class="headerlink" href="#when-things-go-wrong" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
+</div>
+<div class="section" id="advanced-usage-command-line-options">
+<span id="mcq-options"></span><h2>Advanced usage: command line options<a class="headerlink" href="#advanced-usage-command-line-options" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="mcq-as-a-python-module-mcq-classes">
+<span id="mcq-python"></span><h2>mcq as a python module: mcq CLASSES<a class="headerlink" href="#mcq-as-a-python-module-mcq-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcq.Esercizio">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">Esercizio</code><span class="sig-paren">(</span><em>testo</em>, <em>type='EXERM'</em>, <em>numero_colonne=1</em>, <em>risposte=None</em>, <em>src=''</em>, <em>fb=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for exercises</p>
+<dl class="method">
+<dt id="mcq.Esercizio.latex_perm">
+<code class="descname">latex_perm</code><span class="sig-paren">(</span><em>perm</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_perm" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a latex representation of the exercise,
+with permuted answers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.Esercizio.latex_withstats">
+<code class="descname">latex_withstats</code><span class="sig-paren">(</span><em>stats</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_withstats" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a latex (unpermuted) representation of the exercise,
+together with statistical data annotations.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mcq.MultiEsercizio">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">MultiEsercizio</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.MultiEsercizio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="mcq.Risposta">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">Risposta</code><span class="sig-paren">(</span><em>testo</em>, <em>giusta=False</em>, <em>punti=None</em>, <em>fb=None</em>, <em>src=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Risposta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="mcq.myTerm">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">myTerm</code><span class="sig-paren">(</span><em>output=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w'&gt;</em>, <em>prompt='mcq-&gt; '</em>, <em>number_of_columns=79</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.myTerm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="mcq.ExamFile">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">ExamFile</code><span class="sig-paren">(</span><em>abspath</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mcq.ExamFile.show_status">
+<code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.show_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the poset of dependencies</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.ExamFile.view">
+<code class="descname">view</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>View status, log, ...</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mcq.uiShell">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiShell</code><span class="sig-paren">(</span><em>name</em>, <em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">cmd.Cmd</span></code></p>
+<dl class="method">
+<dt id="mcq.uiShell.do_shell">
+<code class="descname">do_shell</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_shell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shell (direct) commands</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiShell.do_open">
+<code class="descname">do_open</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_open" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; open &lt;file&gt;
+</pre></div>
+</div>
+<p>Open PDF/TXT/CVS/... file with the appropriate program
+(according to system configuration / mime-types / OS... )</p>
+<p>EXAMPLES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; open main_answers.pdf
+-&gt;&gt; open main_answers.txt
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiShell.do_EOF">
+<code class="descname">do_EOF</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_EOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>EndOfFile (equivalent to Quit)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiShell.do_x">
+<code class="descname">do_x</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exit (interrupting everything and not saving)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiShell.help_help">
+<code class="descname">help_help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.help_help" title="Permalink to this definition">¶</a></dt>
+<dd><p>help</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiShell.do_q">
+<code class="descname">do_q</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quit (saving status)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mcq.uiFileNavigator">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiFileNavigator</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
+<dl class="method">
+<dt id="mcq.uiFileNavigator.do_ls">
+<code class="descname">do_ls</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_ls" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; ls [&lt;path&gt;]
+</pre></div>
+</div>
+<p>Return the list of .TeX files or directories containing TeX files
+or directories. If the optional argument &lt;path&gt; is missing,
+the current dir will be listed.</p>
+<blockquote>
+<div><ul class="simple">
+<li>If &lt;path&gt; is a directory, its content will be listed.</li>
+<li>If &lt;path&gt; is a file, just this file will be listed.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiFileNavigator.do_cd">
+<code class="descname">do_cd</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_cd" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; cd [&lt;dir&gt;]
+</pre></div>
+</div>
+<p>Change working directory to directory &lt;arg&gt;. With no &lt;dir&gt; argument,
+it will go to the Home Directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiFileNavigator.do_load">
+<code class="descname">do_load</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; load &lt;mainfile&gt;
+</pre></div>
+</div>
+<p>This commands simply loads the MCQ-XeLaTeX file &lt;mainfile&gt;.
+Use ls, cd and tab-completion to locate the file, first.</p>
+<p>EQUIVALENT EXAMPLES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; load main.tex
+-&gt;&gt; load main
+-&gt;&gt; load mai&lt;TAB&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mcq.uiMasterFile">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
+<p>Main Commands (type <code class="docutils literal"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="n">status</span>                 <span class="o">:</span> <span class="n">show</span> <span class="n">MCQ</span><span class="o">-</span><span class="n">XeLaTex</span> <span class="n">status</span>
+<span class="n">make</span>                   <span class="o">:</span> <span class="n">compile</span> <span class="n">the</span> <span class="n">main</span> <span class="n">TeX</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;.</span><span class="n">tex</span> <span class="o">(</span><span class="k">with</span> <span class="n">XeLaTeX</span><span class="o">)</span>
+<span class="n">exam</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span>               <span class="o">:</span> <span class="n">gen</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">exam</span> <span class="n">permuted</span> <span class="n">copies</span> <span class="o">-&gt;</span> <span class="o">*</span><span class="n">_exam</span><span class="o">.{</span><span class="n">tex</span><span class="o">,</span><span class="n">pdf</span><span class="o">}</span>
+<span class="n">omr</span> <span class="o">&lt;</span><span class="n">scanfiles</span><span class="o">*.</span><span class="n">pdf</span><span class="o">&gt;</span>   <span class="o">:</span> <span class="kd">get</span> <span class="n">the</span> <span class="n">OMR</span>  <span class="n">answers</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_answers</span><span class="o">.</span><span class="na">txt</span>
+<span class="n">open</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>            <span class="o">:</span> <span class="n">open</span> <span class="n">and</span> <span class="n">view</span><span class="o">/</span><span class="n">edit</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span> <span class="k">with</span> <span class="n">appropriate</span> <span class="n">program</span>
+<span class="n">uid</span> <span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;][:&lt;</span><span class="n">specs</span><span class="o">&gt;]</span> <span class="o">:</span> <span class="n">align</span> <span class="n">UIDs</span> <span class="k">with</span> <span class="n">names</span><span class="o">,</span> <span class="n">following</span> <span class="n">specs</span>  <span class="o">(</span><span class="k">in</span><span class="o">-</span><span class="n">place</span><span class="o">)</span>
+<span class="n">mark</span> <span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;]</span>          <span class="o">:</span> <span class="n">evaluate</span> <span class="n">and</span> <span class="n">mark</span><span class="o">,</span> <span class="n">via</span> <span class="n">answers</span> <span class="n">file</span> <span class="o">(</span><span class="k">default</span> <span class="n">given</span><span class="o">)</span>
+<span class="n">makestats</span>              <span class="o">:</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">STATS</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_stats</span><span class="o">.</span><span class="na">pdf</span>
+<span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">,</span> <span class="k">in</span> <span class="n">GIFT</span> <span class="n">moodle</span> <span class="n">format</span>
+<span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">,</span> <span class="k">in</span> <span class="n">HTML</span> <span class="n">format</span>
+<span class="o">!</span> <span class="o">&lt;</span><span class="n">shell</span> <span class="n">commands</span><span class="o">&gt;</span>     <span class="o">:</span> <span class="n">execute</span> <span class="n">directly</span> <span class="n">shell</span> <span class="n">commands</span>
+<span class="n">x</span>                      <span class="o">:</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">status</span> <span class="n">and</span> <span class="n">go</span> <span class="n">to</span> <span class="n">main</span> <span class="n">menu</span>
+<span class="n">q</span>                      <span class="o">:</span> <span class="n">quit</span> <span class="o">(</span><span class="n">without</span> <span class="n">clearing</span> <span class="n">the</span> <span class="n">status</span><span class="o">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_x">
+<code class="descname">do_x</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; x
+</pre></div>
+</div>
+<p>Clear the status and go to main menu.
+Use with caution: you need to re-load a main MCQ-XeLaTeX file after.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_q">
+<code class="descname">do_q</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quit, saving the status.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_status">
+<code class="descname">do_status</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the status of the job.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_make">
+<code class="descname">do_make</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_make" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; make
+</pre></div>
+</div>
+<p>Compile (XeLaTeX-ing) the TeX file &lt;main&gt;.tex, and generates some
+internal files necessary for the OMR scan:</p>
+<blockquote>
+<div>OUTPUT: &lt;main&gt;.pdf
+INTERNAL: &lt;main&gt;.lbl, &lt;main&gt;.pos</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_export">
+<code class="descname">do_export</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; export &lt;outputfile&gt;
+</pre></div>
+</div>
+<p>It exports all the questions in the main TeX to &lt;outputfile&gt;,
+in a format depending on the &lt;outputfile&gt; extension.
+If the extension is <code class="docutils literal"><span class="pre">.gift</span></code>, the format is MOODLE GIFT.
+If the extension is <code class="docutils literal"><span class="pre">.html</span></code> or <code class="docutils literal"><span class="pre">.htm</span></code>, the format is HTML.</p>
+<p>EXAMPLES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; export file.gift
+-&gt;&gt; export file.html
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_exam_nolatex">
+<code class="descname">do_exam_nolatex</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam_nolatex" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>UNDOCUMENTED (DANGEROUS) FUNCTION: USAGE exam_nolatex &lt;n&gt;</strong></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_exam">
+<code class="descname">do_exam</code><span class="sig-paren">(</span><em>args</em>, <em>DOLATEX=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>exam &lt;n&gt;
+</pre></div>
+</div>
+<p>Generate &lt;n&gt; exam copies of <code class="docutils literal"><span class="pre">&lt;main&gt;.tex</span></code>, permuting the questions
+and the anwsers if &lt;n&gt; is at least 2. It will save the output in
+file <code class="docutils literal"><span class="pre">&lt;main&gt;_exam.tex</span></code> and then compile it to obtain
+<code class="docutils literal"><span class="pre">&lt;main&gt;_exam.pdf</span></code>, where &lt;main&gt;.tex is the name of the main TeX file.
+If &lt;n&gt;=1, then it will not permute questions and answers.
+If &lt;n&gt; &gt;= 2, the permutations will be pseudo-random, with a constant
+seed, so that each run will give exactly the same permutations.
+So, if a mistake in <code class="docutils literal"><span class="pre">&lt;main&gt;.tex</span></code> needs to be fixed, it is possible
+to re-generate the answer keys by XeLaTeX-ing &lt;main&gt;.tex and
+re-running <cite>exam &lt;n&gt;</cite> as many times necessary:</p>
+<div class="highlight-guess"><div class="highlight"><pre>OUTPUT: &lt;main&gt;_exam.pdf
+INTERNAL: &lt;main&gt;_exam.tex, &lt;main&gt;.xml, &lt;main&gt;_exam.db
+HUMAN-READABLE DEBUG: &lt;main&gt;_exam.sols
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_omr">
+<code class="descname">do_omr</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_omr" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>omr &lt;scanfiles*.pdf&gt;
+</pre></div>
+</div>
+<p>Parse the scanned bubblesheets in <code class="docutils literal"><span class="pre">&lt;scanfiles*.pdf&gt;</span></code>, and save
+the list of answers in <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
+The argument is a list of PDF files (wildcard * is accepted).</p>
+<p>EXAMPLES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; omr scan/c1-s1.pdf scan/c1-s2.pdf scan/c2-s1.pdf
+-&gt;&gt; omr scan/c1-*.pdf scan/c2-S*.pdf
+</pre></div>
+</div>
+<p>The annotated PDF file <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.pdf</span></code> is created. It is possible
+to visually check the errors in the Optical Marks Recognition,
+and (more likely) the mistakes of the humans on the bubblesheets.
+A <strong>RED</strong> circle means it is an out-of place mark,
+a <strong>YELLOW</strong> circle means it is a (probably) ignorable out-of-place mark,
+a <strong>GREEN</strong> circle means the mark was identified correctly.
+The OMR is based on a client-server model (a remote OMR service),
+therefore it is necessary to be connected to internet, and to wait some
+time.  If running multiple times on different PDF sets, the different
+answers files can be simply manually merged.</p>
+<p>The format of the output, written in <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>
+is the format required by the subsequent <cite>mark</cite> process:</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;CODE&gt;:&lt;NAME&gt;:&lt;UID&gt;:&lt;ANSWERS&gt;:&lt;OPTIONAL_MARK&gt;
+</pre></div>
+</div>
+<p>with empty column name and empty <code class="docutils literal"><span class="pre">&lt;OPTIONAL_MARK&gt;</span></code>.
+The string <code class="docutils literal"><span class="pre">&lt;ANSWERS&gt;</span></code> is a string of length = number of questions,
+with a `` 0 `` for a missed answer,
+one of <code class="docutils literal"><span class="pre">ABCD</span></code>... for a given answer,
+and a `` * `` for a multiple answer found.
+One needs to manually check <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.pdf</span></code> to possibly correct
+the output <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>.</p>
+<p><strong>WARNING:</strong> Please scan the bubblesheets in GRAYSCALE format, not BW,
+to minimize OMR errors.</p>
+<p>OUTPUT:</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;main&gt;_answers.txt  &lt;main&gt;_answers.pdf
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_uid">
+<code class="descname">do_uid</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_uid" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; uid [&lt;UIDfile&gt;][:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
+</pre></div>
+</div>
+<p>Add Names to the answers list &lt;main&gt;_answers.txt, from a &lt;UIDfile&gt;.
+The file <code class="docutils literal"><span class="pre">&lt;UIDfile&gt;</span></code> is a CSV file, with delimiter <code class="docutils literal"><span class="pre">&lt;delim&gt;</span></code>
+(default is the colon <code class="docutils literal"><span class="pre">:</span></code>)</p>
+<p>EXAMPLES OF DEFAULT LINES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>:Verdi, Giuseppe:762809:
+1F5G:Peano, Giuseppe:012345:
+</pre></div>
+</div>
+<p>After the optional argument &lt;UIDfile&gt; there is an optional
+specification of which columns contain the UID and the NAME,
+and which character is the delimiter (for example, <cite>:</cite>, <cite>;</cite> or <cite>,</cite>):</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;UIDfile&gt;[:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
+</pre></div>
+</div>
+<p><strong>EXAMPLE:</strong></p>
+<p>If the file <cite>main.uid</cite> contains lines such as:</p>
+<div class="highlight-guess"><div class="highlight"><pre>012345;Rossi,Giuseppe
+</pre></div>
+</div>
+<p>the columns specifications are &lt;UIDcol&gt;=1 &lt;delim&gt;=; &lt;NAMEcol&gt;=2
+and therefore one has to type:</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="err">`</span><span class="nt">uid</span> <span class="nt">main</span><span class="nc">.uid</span><span class="nd">:1</span><span class="o">;</span><span class="nt">2</span><span class="err">`</span>
+</pre></div>
+</div>
+<p>Omitting the optional &#8216;spec&#8217; argument gives the default:
+<code class="docutils literal"><span class="pre">filename.uid</span></code> correponds to  <code class="docutils literal"><span class="pre">filename.uid:3:2</span></code>, i.e.,
+the third and second columns contain UID and name, with delimiter <cite>:</cite>.</p>
+<p>The default format is the output of &#8216;esse3.py &#8211;uid Table.xls&#8217;, the multi-tool
+available at www.dlfer.xyz/var/ (cf. the documentation there).</p>
+<p>If &lt;UIDfile&gt; is empty, the default is &lt;main&gt;.uid (if it exists),
+where &lt;main&gt;.tex is the main MCQ-XeLaTeX file.</p>
+<p>OUTPUT:</p>
+<div class="highlight-guess"><div class="highlight"><pre>none; the file &lt;main&gt;_answers.txt is modified in-place.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_mark">
+<code class="descname">do_mark</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_mark" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>mark [&lt;answersfile&gt;]
+</pre></div>
+</div>
+<p>Take the optional argument &lt;answersfile&gt;, and give marks according to
+the answer keys generated by <code class="docutils literal"><span class="pre">exam</span></code>.</p>
+<p>Default answersfile: <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
+The general format of the answers lines is the following:</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span><span class="mi">30</span>
+<span class="o">&lt;</span><span class="n">CODE</span><span class="o">&gt;:&lt;</span><span class="n">NAME</span><span class="o">&gt;:&lt;</span><span class="n">UID</span><span class="o">&gt;:&lt;</span><span class="n">ANSWERS</span><span class="o">&gt;:&lt;</span><span class="n">OPTIONAL_MARK</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>where &lt;CODE&gt; is the code of the permutation,
+&lt;NAME&gt; is the name, &lt;UID&gt; the User Identification number, and
+&lt;ANSWERS&gt; is a string of length = number of questions, where the k-th
+character is the given answer (a case-insensitive letter),
+or <cite>0</cite> if no answer was given.
+The optional field &lt;OPTIONAL_MARK&gt; is a number, which can be given
+to assess other forms of exercises in the exam.
+In general it is not used, so the line reads as:</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span>
+</pre></div>
+</div>
+<p>The output files are <cite>&lt;main&gt;_exam.csv</cite> and <cite>&lt;main&gt;_exam.txt</cite>.
+The format of the CSV version is:</p>
+<div class="highlight-guess"><div class="highlight"><pre>FXZH;Verdi, Giuseppe;193146;15.0;14.0;29.0
+&lt;CODE&gt;;&lt;NAME&gt;;&lt;UID&gt;;&lt;MCQ_MARK&gt;;&lt;OPTIONAL_MARK&gt;;&lt;TOTAL&gt;
+</pre></div>
+</div>
+<p>where &lt;CODE&gt;,&lt;NAME&gt;,&lt;UID&gt;, and &lt;OPTIONAL_MARK&gt; are as above.
+The new field &lt;MCQ_MARK&gt; is the sum of the numerical values
+of the given answers, and &lt;TOTAL&gt; is the combination of
+&lt;MCQ_MARK&gt; with &lt;OPTIONAL_MARK&gt; using the formula
+<code class="docutils literal"><span class="pre">formulavoto</span></code> defined in the &lt;main&gt;.tex file (python syntax),
+where <cite>x</cite> stands for &lt;MCQ_MARK&gt; and <cite>y</cite> stands for &lt;OPTIONAL_MARK&gt;.</p>
+<p><strong>EXAMPLE:</strong></p>
+<p>If in the &lt;main&gt;.tex file there is a:</p>
+<div class="highlight-guess"><div class="highlight"><pre>\formulavoto{x+2*y}
+</pre></div>
+</div>
+<p>then in the result list the total mark will be:</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;TOTAL&gt;=&lt;MCQ_MARK&gt; + 2 *&lt;OPTIONAL_MARK&gt;
+</pre></div>
+</div>
+<p>The output file <code class="docutils literal"><span class="pre">&lt;main&gt;_exam.txt</span></code> is an anonymous version, with
+just the &lt;CODE&gt; and &lt;TOTAL&gt; columns, used to publish results on-line.</p>
+<p>OUTPUT:</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;main&gt;_exam.csv, &lt;main&gt;_exam.txt
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_makestats">
+<code class="descname">do_makestats</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_makestats" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; makestats
+</pre></div>
+</div>
+<p>Generate the statistics file (after marking).
+Each question will have the following indices for item analysis.</p>
+<p>The <strong>FACILITY INDEX</strong> $f$ is the percentage of students who
+gave the right answer: if $f$&lt; 30%, the question is too hard,
+if $f$&gt;75%, the question is too easy.</p>
+<p>The <strong>DISCRIMINATION INDEX</strong> $d$ is the number of 27% top students
+who gave the correct answer, minus the number of 27% bottom
+students who gave the correct answer, divided by the number
+of 27% students). If $d$&gt;25%, it os OK. If $d$&lt;20%, or worse,
+$d$ is negative, probably there is a mistake in the answer keys.</p>
+<p>OUTPUT:</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;main&gt;_stats.pdf
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiMasterFile.do_pdfx">
+<code class="descname">do_pdfx</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_pdfx" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; pdfx
+</pre></div>
+</div>
+<p>Attempt to convert the <code class="docutils literal"><span class="pre">&lt;main&gt;_exam.pdf</span></code> PDF file to a PDFX version,
+more suitable for error-free printing, using ghostscript, if installed.
+It tries to set a proper GS_FONTPATH.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mcq.uiChooser">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiChooser</code><span class="sig-paren">(</span><em>dbvars={}</em>, <em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
+<dl class="method">
+<dt id="mcq.uiChooser.do_make">
+<code class="descname">do_make</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_make" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; make
+</pre></div>
+</div>
+<p>Compile (XeLaTeX-ing) the TeX file generated file.</p>
+<p>OUTPUT:</p>
+<div class="highlight-guess"><div class="highlight"><pre>&lt;file&gt;.pdf
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_add">
+<code class="descname">do_add</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; add &lt;n&gt; from file1.tex f2.tex ... f2*.tex
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_ls">
+<code class="descname">do_ls</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_ls" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; ls [&lt;path&gt;]
+</pre></div>
+</div>
+<p>Return the list of .TeX files or directories containing TeX files
+or directories. If the optional argument &lt;path&gt; is missing,
+the current dir will be listed.
+If &lt;path&gt; is a directory, its content will be listed.
+If &lt;path&gt; is a file, just this file will be listed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_lsbank">
+<code class="descname">do_lsbank</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_lsbank" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; ls
+</pre></div>
+</div>
+<p>Return the list of .TeX files in the Question Bank Directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_qbank">
+<code class="descname">do_qbank</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_qbank" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>qbank &lt;directory&gt;
+</pre></div>
+</div>
+<p>This commands define the Question Bank = &lt;directory&gt;
+Use ls, cd and tab-completion to locate the file, first.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_cd">
+<code class="descname">do_cd</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_cd" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; cd [&lt;dir&gt;]
+</pre></div>
+</div>
+<p>Change working directory to directory &lt;arg&gt;. With no &lt;dir&gt; argument,
+it will go to the Main File Directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_status">
+<code class="descname">do_status</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>status: print the current status of all chosen questions form the databank</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_rehash">
+<code class="descname">do_rehash</code><span class="sig-paren">(</span><em>args=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_rehash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restart and rehash all</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_random">
+<code class="descname">do_random</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; random [all]|[&lt;n&gt;] [n_2] ...
+</pre></div>
+</div>
+<p>Random choose either all questions (if no argument or <cite>all</cite> is given).
+Otherwise random choose just the n-th question.</p>
+<p>EXAMPLES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; random all
+-&gt;&gt; random
+-&gt;&gt; random 3
+-&gt;&gt; random 3 5 7
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_del">
+<code class="descname">do_del</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_del" title="Permalink to this definition">¶</a></dt>
+<dd><p>del &lt;n&gt;|all: delete the n-th question from the list, or all</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_q">
+<code class="descname">do_q</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_q" title="Permalink to this definition">¶</a></dt>
+<dd><p>q: quit from the procedure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_next">
+<code class="descname">do_next</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Next: all finished, proceed to the Work Menu.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiChooser.do_load">
+<code class="descname">do_load</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>USAGE:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; load &lt;commandsfile&gt;
+</pre></div>
+</div>
+<p>Load a file with add|del|random|qbank|... commands,
+one per line (same syntax as the UI shell)&#8221;</p>
+<p>EQUIVALENT EXAMPLES:</p>
+<div class="highlight-guess"><div class="highlight"><pre>-&gt;&gt; load commandsfile.txt
+-&gt;&gt; load command&lt;TAB&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="junkyard">
+<h2>JUNKYARD<a class="headerlink" href="#junkyard" title="Permalink to this headline">¶</a></h2>
+<p><strong>default_combina_voti ARGOMENTO</strong>:</p>
+<blockquote>
+<div><p>Return the formula for the two parts, default of:</p>
+<div class="highlight-guess"><div class="highlight"><pre>\formulavoto{x+y}
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="function">
+<dt id="mcq.default_combina_voti">
+<code class="descclassname">mcq.</code><code class="descname">default_combina_voti</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.default_combina_voti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the formula for the two parts, default of:</p>
+<div class="highlight-guess"><div class="highlight"><pre>\formulavoto{x+y}
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">MCQ-XeLaTeX Full Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="mcqxelatex.html" title="previous chapter">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+      <li>Next: <a href="esse3.html" title="next chapter">ESSE3: nei meandri della burocrazia</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, -dlf.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/mcq-full.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

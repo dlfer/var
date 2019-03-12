@@ -10,26 +10,12 @@ esse3.py: A cosa serve
 Automatizza alcune delle fasi delle operazioni più ripetitive della burocrazia accademica: 
 compilare il registro delle lezioni, verbalizzare gli esami. 
 
-USAGE::
 
- esse3.py [options] [argument]
-  
- OPTIONS:
-     --help|-h
-     --uid Nomefile.xls	# lista iscritti 
-                        # :matricola:cognome,nome:
-     --pdf Nomefile.xls	# registro pdf
-     --call 		# chiama per firma digitale
-     --yml 		# genera il file csv del registro 
-                        # delle lezioni da yml
-     --baseoutput|-b=[base]
-  
- FILES:
-     ~/.esse3rc 	(options file)
- ---
-  
- (C) DLFerrario http://www.dlfer.xyz
 
+.. pip install sphinxcontrib-programoutput
+.. but also apt
+
+.. program-output:: python2.7 ./soft/esse3.py -h
 
 
 

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 psd2pdf.py 
 
 Tools for drawing vector slides and images. 
 
-DOCS: https://www.dlfer.xyz/var/psd2pdf.py
+DOCS: https://www.dlfer.xyz/var/psd2pdf
 
 [help void]
 Important: in imagemagick policy.xml: comment
@@ -19,7 +20,7 @@ import argparse
 import subprocess
 
 #--------------------------------------------------------------------------
-__version__='2019-03-07'
+__version__='2019-03-11'
 #--------------------------------------------------------------------------
 
 
@@ -177,8 +178,29 @@ def do_make_vect(psdfile,crop=False,method='potrace'):
  shutil.rmtree(tmpdir) 
 
 #-------------------------------------------------------------------
+def get_opt_parser():
+    "get the arguments"
+    if not check_self() :
+       sys.stderr.write("Self-integrity checksum failed! Aborting...\nInstall a new clean version!\n" )
+       sys.exit(1)
+
+    parser=argparse.ArgumentParser(description='''psd2pdf.py: A tool for converting PSD graphics files''',
+            epilog='[https://www.dlfer.xyz/var/psd2pdf]') 
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--autotrace','-a', help='make a vector-graphics version with autotrace', 
+            action='store_true')
+    group.add_argument('--potrace','-p', help='make a vector-graphics version with potrace', 
+            action='store_true')
+    group.add_argument('--png', help='convert and trim the PSD image', 
+            action='store_true')
+    parser.add_argument('--crop','-c', help='crop the final image', 
+            action='store_true')
+    parser.add_argument('psdfile', help='The input PSD file (multi-layered or raster)')
+    return parser
+
+#-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiAgICAgcmV0dXJuIFRydWUKCmRlZiBnZXRfb3B0KCk6CiAgICAiZ2V0IHRoZSBhcmd1bWVudHMiCiAgICBpZiBub3QgY2hlY2tfc2VsZigpIDoKICAgICAgIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogICAgICAgc3lzLmV4aXQoMSkKCiAgICBwYXJzZXI9YXJncGFyc2UuQXJndW1lbnRQYXJzZXIoZGVzY3JpcHRpb249JycnQ29udmVydCBQU0QgZ3JhcGhpY3MgZmlsZXMnJycsCiAgICAgICAgICAgIGVwaWxvZz0nW2h0dHBzOi8vd3d3LmRsZmVyLnh5ei92YXIvcHNkMnBkZl0nKSAKICAgIGdyb3VwID0gcGFyc2VyLmFkZF9tdXR1YWxseV9leGNsdXNpdmVfZ3JvdXAoKQogICAgZ3JvdXAuYWRkX2FyZ3VtZW50KCctLWF1dG90cmFjZScsJy1hJywgaGVscD0nbWFrZSBhIHZlY3Rvci1ncmFwaGljcyB2ZXJzaW9uIHdpdGggYXV0b3RyYWNlJywgCiAgICAgICAgICAgIGFjdGlvbj0nc3RvcmVfdHJ1ZScpCiAgICBncm91cC5hZGRfYXJndW1lbnQoJy0tcG90cmFjZScsJy1wJywgaGVscD0nbWFrZSBhIHZlY3Rvci1ncmFwaGljcyB2ZXJzaW9uIHdpdGggcG90cmFjZScsIAogICAgICAgICAgICBhY3Rpb249J3N0b3JlX3RydWUnKQogICAgZ3JvdXAuYWRkX2FyZ3VtZW50KCctLXBuZycsIGhlbHA9J2NvbnZlcnQgYW5kIHRyaW0gdGhlIFBTRCBpbWFnZScsIAogICAgICAgICAgICBhY3Rpb249J3N0b3JlX3RydWUnKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgnLS1jcm9wJywnLWMnLCBoZWxwPSdjcm9wIHRoZSBmaW5hbCBpbWFnZScsIAogICAgICAgICAgICBhY3Rpb249J3N0b3JlX3RydWUnKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgncHNkZmlsZScsIGhlbHA9J1BTRCBmaWxlJykKICAgIHJldHVybiBwYXJzZXIucGFyc2VfYXJncygpCgoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZQogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogYWxsPW9wZW4oTUUpLnJlYWQoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1sZW4oYm9keV9maXJzdC5zdHJpcCgpKStsZW4oYm9keV9sYXN0LnN0cmlwKCkpCiBsPWhhc2hsaWIuc2hhMjI0KChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkuZW5jb2RlKCd1dGYtOCcpKS5oZXhkaWdlc3QoKQogZXhwZWN0X2w9JzY0ZTZlN2Q4OGViYTFkZGJhNTA2NWIyYTdlOWZmOTQ0NjAyMWM1ZWJjYmE4ZGExZDEwODZmZjViJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiAgICAgcmV0dXJuIFRydWUKCmRlZiBnZXRfb3B0KCk6CiAgICBwYXJzZXI9Z2V0X29wdF9wYXJzZXIoKQogICAgcmV0dXJuIHBhcnNlci5wYXJzZV9hcmdzKCkKCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSc0ODQ3OGYxZmQ2OTg1YzY1Yjc4MzgzMmIwNGFkMjJhNmNjZTYyNDEzM2MyMDllNDkxYjRjMjY1YycKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 

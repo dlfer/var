@@ -1,0 +1,117 @@
+==============================
+MCQ-XeLaTeX Full Documentation
+==============================
+
+.. highlight:: latex
+
+
+
+.. _MCQ-Latex:
+
+LaTeX documentation of mcq.sty
+==============================
+
+(TODO)
+
+.. _MCQ-CLI: 
+
+Documentation of the CLI
+========================
+
+(TODO)
+
+.. _MCQ-QB:
+
+Managing and using a Question Bank with Random Choices
+======================================================
+
+(TODO)
+
+
+.. _MCQ-export:
+
+Exporting to other formats: HTML and GIFT
+=========================================
+
+(TODO)
+
+.. _MCQ-errors:
+
+When things go wrong
+====================
+
+(TODO)
+
+.. _MCQ-options:
+
+Advanced usage: command line options
+====================================
+
+(TODO)
+
+
+
+
+----------------------------------------------------
+
+
+
+.. highlight:: guess
+
+
+
+
+.. _MCQ-python: 
+
+mcq as a python module: mcq CLASSES
+===================================
+
+.. autoclass:: mcq.Esercizio
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.MultiEsercizio
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.Risposta
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.myTerm
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.ExamFile
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.uiShell
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.uiFileNavigator
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.uiMasterFile
+  :members:
+  :show-inheritance:                 
+
+.. autoclass:: mcq.uiChooser
+  :members:
+  :show-inheritance:                 
+
+
+
+JUNKYARD
+========
+
+**default_combina_voti ARGOMENTO**:
+
+.. autosimplefunc:: mcq.default_combina_voti
+
+
+
+.. autofunction:: mcq.default_combina_voti
+

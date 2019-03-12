@@ -88,6 +88,10 @@ form
 	}
 
 
+/* fix the damn pre width */
+div.document {
+  width: 1024px;
+}
 
 
-`
+

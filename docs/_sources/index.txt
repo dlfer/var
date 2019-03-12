@@ -14,6 +14,7 @@ Various pieces of software for math and teaching
 
    mcq-quickstart
    mcqxelatex
+   mcq-full
    esse3
    psd2pdf
    casengine

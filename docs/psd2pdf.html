@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="top" title="var  documentation" href="index.html" />
     <link rel="next" title="CASengine" href="casengine.html" />
     <link rel="prev" title="ESSE3: nei meandri della burocrazia" href="esse3.html" />
@@ -48,27 +49,14 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-03-07</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">-dlf</td>
-</tr>
 </tbody>
 </table>
-<div class="section" id="what-for">
-<h2>What for<a class="headerlink" href="#what-for" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Two purposes:</dt>
-<dd><ol class="first last arabic simple">
-<li>Convert a bitmap image (from scan or table drawing) to a vector format (PDF).</li>
-<li>Convert a multi-layer PSD raster image to an incremental PDF presentation.</li>
-</ol>
-</dd>
-</dl>
-<p>USAGE:</p>
-<div class="highlight-python"><div class="highlight"><pre>psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
+<div class="highlight-text"><div class="highlight"><pre>usage: psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
 
-Convert PSD ... graphics files to usable (vector or incremental) PDF
+psd2pdf.py: A tool for converting PSD graphics files
 
 positional arguments:
-  psdfile          PSD file
+  psdfile          The input PSD file (multi-layered or raster)
 
 optional arguments:
   -h, --help       show this help message and exit
@@ -80,6 +68,15 @@ optional arguments:
 [https://www.dlfer.xyz/var/psd2pdf]
 </pre></div>
 </div>
+<div class="section" id="what-for">
+<h2>What for<a class="headerlink" href="#what-for" title="Permalink to this headline">¶</a></h2>
+<p>Two purposes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Convert a bitmap image (from scan or table drawing) to a vector format (PDF).</li>
+<li>Convert a multi-layer PSD raster image to an incremental PDF presentation.</li>
+</ol>
+</div></blockquote>
 </div>
 <div class="section" id="make-a-presentation-latex-beamer-and-pdf">
 <h2>Make a presentation (latex beamer and PDF)<a class="headerlink" href="#make-a-presentation-latex-beamer-and-pdf" title="Permalink to this headline">¶</a></h2>
@@ -173,6 +170,7 @@ To install it, just download and copy it somewhere in your path.</p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>

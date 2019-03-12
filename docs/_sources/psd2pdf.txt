@@ -3,36 +3,21 @@ psd2pdf: drawing and presentation
 =================================
 
 :Date:   2019-03-07
-:Author: -dlf
+
+
+
+.. program-output:: python ./soft/psd2pdf.py -h 
 
 
 What for 
 ========
 
 Two purposes: 
- 1. Convert a bitmap image (from scan or table drawing) to a vector format (PDF).
- 2. Convert a multi-layer PSD raster image to an incremental PDF presentation.
 
+    1. Convert a bitmap image (from scan or table drawing) to a vector format (PDF).
+    2. Convert a multi-layer PSD raster image to an incremental PDF presentation.
 
-USAGE::
-
-  psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
-
-  Convert PSD ... graphics files to usable (vector or incremental) PDF
-  
-  positional arguments:
-    psdfile          PSD file
-  
-  optional arguments:
-    -h, --help       show this help message and exit
-    --autotrace, -a  make a vector-graphics version with autotrace
-    --potrace, -p    make a vector-graphics version with potrace
-    --png            convert and trim the PSD image
-    --crop, -c       crop the final image
-  
-  [https://www.dlfer.xyz/var/psd2pdf]
-
-
+          
 Make a presentation (latex beamer and PDF)
 ==========================================
 
@@ -123,6 +108,10 @@ DOWNLOAD
 ========
 
  - :download:`psd2pdf.py <soft/psd2pdf.py>`
+
+
+  
+
 
 
 

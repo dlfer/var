@@ -3,8 +3,6 @@ MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
 ==================================================================
 
 :Date:   2019-02-07
-:Author: -dlf
-
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
 ========================================================================
@@ -77,7 +75,8 @@ some proper path, and then run
 
     mcq.py
 
-in a terminal. Then follow the on-screen instructions.
+in a terminal. Then follow the on-screen instructions, or check 
+the :ref:`mcq-quickstart`.
 
 A typical list of actions might be:
 
@@ -126,6 +125,8 @@ course it is not mandatory: you can use whatever text editor works). The
 :download:`stats output <soft/example_stats.pdf>` can be generated after the
 marking.
 
+
+.. _Requirements:
 
 Requirements
 ============
@@ -227,11 +228,10 @@ How it works
 LaTeX commands and environments
 ===============================
 
-(to appear) Please try to read the (outdated) `manual
-page <http://www.matapp.unimib.it/~ferrario/var/o.html>`__ and `quick
-install page <http://www.matapp.unimib.it/~ferrario/var/oq.html>`__.
-There is a google-translate button somewhere for the few not
-understanding Italian. Also, there are some comments in
+(to appear) Please try to read the (preliminary) 
+`manual page <mcq-full.html>`__ and 
+`quick start page <mcq-quickstart.html>`__.
+Also, there are some comments in
 `mcq.sty <soft/mcq.sty>`__ and some explanation in the in-line help of
 the software itself.
 
