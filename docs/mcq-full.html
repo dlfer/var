@@ -479,7 +479,106 @@ Determinare in quali punti di <span class="s">$</span><span class="nv">\mathbb</
 </div>
 <div class="section" id="documentation-of-the-cli">
 <span id="mcq-cli"></span><h2>Documentation of the CLI<a class="headerlink" href="#documentation-of-the-cli" title="Permalink to this headline">¶</a></h2>
-<p>(TODO)</p>
+<p>The Command Line Interface, which runs simply by:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="s">$</span><span class="nb"> mcq.py</span>
+</pre></div>
+</div>
+<p>has can be summarized by the following graph. Full documentation and
+use instructions are shown in the interface itself.</p>
+<p class="graphviz">
+<img src="_images/graphviz-0008f2227fa48d2ce0c0f8a161b1c5062d77e983.png" alt="digraph {
+
+welcome [shape = box, label=&quot;Welcome\n[prompt = ' mcq-&gt;&gt;']&quot; ] ;
+open [shape = oval , label = &quot;Open a XeLaTeX file\n(uiFileNavigator)\n[prompt = '(File)mcq[folder]-&gt;&gt; ']&quot; ] ;
+create [shape = oval , label = &quot;Create from guided template \n (newfileloop)\n[prompt='(New)mcq[default] &gt;']&quot; ] ;
+exit [shape = box, label=&quot;Exit&quot; ];
+
+active [shape = box, label = &quot;Active File= 'file.tex'\n (uiMasterFile)\n[prompt='(Work)mcq[folder]-&gt;&gt; '&quot; ];
+
+
+welcome -&gt; open   [label = &quot; o &quot;];
+welcome -&gt; create [label = &quot; c &quot; ] ;
+welcome -&gt; exit   [label = &quot; q &quot; ];
+
+open -&gt; active;
+create -&gt; active;
+         }" />
+</p>
+<p>After this,  several commands are available, each with their own help (see below,
+prepending <code class="docutils literal"><span class="pre">do_</span></code> with the commands: for example, <code class="docutils literal"><span class="pre">do_x</span></code> will
+give the help for the command <code class="docutils literal"><span class="pre">x</span></code> in the CLI.</p>
+<dl class="class">
+<dt id="mcq.uiMasterFile">
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main Commands (type <code class="docutils literal"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
+<div class="highlight-latex"><div class="highlight"><pre>status                 : show MCQ-XeLaTex status
+make                   : compile the main TeX file &lt;main&gt;.tex (with XeLaTeX)
+exam &lt;n&gt;               : gen &lt;n&gt; exam permuted copies -&gt; *<span class="nb">_</span>exam.<span class="nb">{</span>tex,pdf<span class="nb">}</span>
+omr &lt;scanfiles*.pdf&gt;   : get the OMR  answers file &lt;main&gt;<span class="nb">_</span>answers.txt
+open &lt;file&gt;            : open and view/edit &lt;file&gt; with appropriate program
+uid [&lt;file&gt;][:&lt;specs&gt;] : align UIDs with names, following specs  (in-place)
+mark [&lt;file&gt;]          : evaluate and mark, via answers file (default given)
+makestats              : generate a STATS file &lt;main&gt;<span class="nb">_</span>stats.pdf
+export &lt;filename.gift&gt; : export to filename.gift, in GIFT moodle format
+export &lt;filename.html&gt; : export to filename.html, in HTML format
+! &lt;shell commands&gt;     : execute directly shell commands
+x                      : clear the status and go to main menu
+q                      : quit (without clearing the status)
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Quitting the CLI keeps a persistent status, found in pickle objects saved in the
+home directory. Next time <code class="docutils literal"><span class="pre">mcq.py</span></code> is run, it will start from where left.</p>
+</div>
+<p>Assuming the exam file name is <code class="docutils literal"><span class="pre">f.tex</span></code>, the following hierarchy of files
+will be generated, among others. The commands are on the arrows.</p>
+<p class="graphviz">
+<img src="_images/graphviz-d581a286c83773a4574671017ac4f021d99f19c6.png" alt="digraph {
+
+main [label=&quot;Main file: f.tex&quot;];
+xml [label=&quot;f.pos\n f.lbl\n f.pdf&quot;] ;
+exam [label=&quot;f_exam.pdf\n(DEBUG: f_exam.tex, f_exam.sols, f.xml)&quot;] ;
+
+gift [ label=&quot;f.gift&quot; ];
+html [ label=&quot;f.html&quot; ];
+
+
+answers [label=&quot;f_answers.txt\n f_answers.pdf&quot;] ;
+esse3 [label=&quot;esse3.py\n -&gt;  f.uid&quot;,shape = box ] ;
+
+marked [label=&quot;f_exam.txt\nf_exam.csv&quot;] ;
+
+stats [ label = &quot;f_stats.pdf&quot; ] ;
+
+end [ shape = box , label = &quot;Exit&quot; ];
+
+main -&gt; xml [ label = &quot; make &quot; ];
+
+main -&gt; gift [ label = &quot;export f.gift&quot;];
+main -&gt; html [ label = &quot;export f.html&quot;];
+
+
+xml -&gt; main [ label = &quot; check and remake &quot; ];
+
+xml -&gt; exam [label = &quot; exam &quot; ];
+
+exam -&gt; answers [ label = &quot; omr &quot; ] ;
+exam -&gt; answers [ label = &quot; (manual typing) &quot; ]
+esse3 -&gt; answers  [label = &quot; uid &quot; ];
+answers -&gt; answers [ label = &quot; check PDF and fix TXT &quot; ] ;
+
+answers -&gt; marked [ label = &quot; mark &quot; ];
+
+marked -&gt; stats  [ label = &quot; makestats &quot; ];
+
+stats -&gt; main [ label = &quot; check stats\n and fix f.tex &quot; ];
+
+stats -&gt; end [label = &quot; x &quot; ];
+}" />
+</p>
 </div>
 <div class="section" id="managing-and-using-a-question-bank-with-random-choices">
 <span id="mcq-qb"></span><h2>Managing and using a Question Bank with Random Choices<a class="headerlink" href="#managing-and-using-a-question-bank-with-random-choices" title="Permalink to this headline">¶</a></h2>
@@ -657,8 +756,8 @@ Use ls, cd and tab-completion to locate the file, first.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="mcq.uiMasterFile">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
 <p>Main Commands (type <code class="docutils literal"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
 <div class="highlight-guess"><div class="highlight"><pre><span class="n">status</span>                 <span class="o">:</span> <span class="n">show</span> <span class="n">MCQ</span><span class="o">-</span><span class="n">XeLaTex</span> <span class="n">status</span>

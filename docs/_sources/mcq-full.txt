@@ -495,7 +495,94 @@ the ``sol`` option)::
 Documentation of the CLI
 ========================
 
-(TODO)
+The Command Line Interface, which runs simply by::
+
+  $ mcq.py
+
+has can be summarized by the following graph. Full documentation and 
+use instructions are shown in the interface itself. 
+
+
+.. graphviz::
+
+   digraph {
+          
+   welcome [shape = box, label="Welcome\n[prompt = ' mcq->>']" ] ;
+   open [shape = oval , label = "Open a XeLaTeX file\n(uiFileNavigator)\n[prompt = '(File)mcq[folder]->> ']" ] ;
+   create [shape = oval , label = "Create from guided template \n (newfileloop)\n[prompt='(New)mcq[default] >']" ] ;
+   exit [shape = box, label="Exit" ];
+
+   active [shape = box, label = "Active File= 'file.tex'\n (uiMasterFile)\n[prompt='(Work)mcq[folder]->> '" ]; 
+
+
+   welcome -> open   [label = " o "];
+   welcome -> create [label = " c " ] ;
+   welcome -> exit   [label = " q " ];
+
+   open -> active; 
+   create -> active; 
+            }
+
+
+After this,  several commands are available, each with their own help (see below,
+prepending ``do_`` with the commands: for example, ``do_x`` will 
+give the help for the command ``x`` in the CLI. 
+
+.. autoclass:: mcq.uiMasterFile
+
+
+.. important::
+  Quitting the CLI keeps a persistent status, found in pickle objects saved in the 
+  home directory. Next time ``mcq.py`` is run, it will start from where left. 
+
+Assuming the exam file name is ``f.tex``, the following hierarchy of files 
+will be generated, among others. The commands are on the arrows.
+
+.. graphviz::
+
+  digraph {
+
+  main [label="Main file: f.tex"]; 
+  xml [label="f.pos\n f.lbl\n f.pdf"] ; 
+  exam [label="f_exam.pdf\n(DEBUG: f_exam.tex, f_exam.sols, f.xml)"] ;
+ 
+  gift [ label="f.gift" ];
+  html [ label="f.html" ];
+
+
+  answers [label="f_answers.txt\n f_answers.pdf"] ; 
+  esse3 [label="esse3.py\n ->  f.uid",shape = box ] ; 
+
+  marked [label="f_exam.txt\nf_exam.csv"] ; 
+
+  stats [ label = "f_stats.pdf" ] ; 
+
+  end [ shape = box , label = "Exit" ];
+
+  main -> xml [ label = " make " ]; 
+
+  main -> gift [ label = "export f.gift"]; 
+  main -> html [ label = "export f.html"]; 
+
+
+  xml -> main [ label = " check and remake " ]; 
+
+  xml -> exam [label = " exam " ]; 
+
+  exam -> answers [ label = " omr " ] ;
+  exam -> answers [ label = " (manual typing) " ]
+  esse3 -> answers  [label = " uid " ];
+  answers -> answers [ label = " check PDF and fix TXT " ] ; 
+
+  answers -> marked [ label = " mark " ]; 
+
+  marked -> stats  [ label = " makestats " ]; 
+  
+  stats -> main [ label = " check stats\n and fix f.tex " ]; 
+
+  stats -> end [label = " x " ];
+  }
+
 
 .. _MCQ-QB:
 
