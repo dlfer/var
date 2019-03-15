@@ -45,7 +45,437 @@
 <h1>MCQ-XeLaTeX Full Documentation<a class="headerlink" href="#mcq-xelatex-full-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="latex-documentation-of-mcq-sty">
 <span id="mcq-latex"></span><h2>LaTeX documentation of mcq.sty<a class="headerlink" href="#latex-documentation-of-mcq-sty" title="Permalink to this headline">¶</a></h2>
-<p>(TODO)</p>
+<p>The package can be called with any latex class, but recommended classes
+are <code class="docutils literal"><span class="pre">article</span></code> (for Multiple Choice Questions and Optical Mark Recognition).
+It also support the <code class="docutils literal"><span class="pre">exam</span></code> class(for open questions, see below <a class="reference internal" href="#exam"><span>An exam class example:</span></a>):</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>mcq<span class="nb">}</span>
+</pre></div>
+</div>
+<p>To install, download it: <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a>. Then, put it
+somewhere. For example, in <a class="reference external" href="https://help.ubuntu.com/community/LaTeX">ubuntu</a>:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="s">$</span><span class="nb"> mkdir </span><span class="o">-</span><span class="nb">p ~</span><span class="o">/</span><span class="nb">texmf</span><span class="o">/</span><span class="nb">tex</span><span class="o">/</span><span class="nb">latex</span><span class="o">/</span><span class="nb">mcq</span>
+<span class="s">$</span> cd ~/texmf/tex/latex/mcq
+<span class="s">$</span><span class="nb"> wget https:</span><span class="o">//</span><span class="nb">www.dlfer.xyz</span><span class="o">/</span><span class="nb">var</span><span class="o">/</span><span class="nb">_downloads</span><span class="o">/</span><span class="nb">mcq.sty</span>
+<span class="s">$</span> texhash
+</pre></div>
+</div>
+<div class="section" id="package-options">
+<h3>Package options:<a class="headerlink" href="#package-options" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">bubblesheet</span></code></dt>
+<dd>Print a cover sheet with the grid of bubbles (to be filled) for student UID and
+answers.</dd>
+<dt><code class="docutils literal"><span class="pre">dsa</span></code></dt>
+<dd><p class="first">Use <a class="reference external" href="https://www.opendyslexic.org">OpenDyslexic</a> font, a typeface for Dyslexia.
+It has to be installed on the system. On ubuntu linux, for example:</p>
+<div class="last highlight-latex"><div class="highlight"><pre><span class="s">$</span><span class="nb"> sudo apt install fonts</span><span class="o">-</span><span class="nb">opendyslexic</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">extrasheet</span></code></dt>
+<dd>Print a second bubblesheet after the first, just in case, if the students are
+considered not careful enough in filling the bubbles (and therefore a high percentage will
+do a mistake).</dd>
+<dt><code class="docutils literal"><span class="pre">namedheader</span></code></dt>
+<dd>Print a named header, useful for when a multi-page document has to be returned by students,
+and therefore they need to write their own name on each sheet.</dd>
+<dt><code class="docutils literal"><span class="pre">noblankpage</span></code></dt>
+<dd>Do not print a blank page after the <code class="docutils literal"><span class="pre">bubblesheet</span></code> page. Usefule if one does not print
+on duplex printers.</dd>
+<dt><code class="docutils literal"><span class="pre">sol</span></code></dt>
+<dd>With this option, an explicit graphic mark will highlight the (correct) answers. Userful for
+proof-reading the exam document, but <strong>absolutely</strong> to remove befor generating
+the real production document.</dd>
+<dt><code class="docutils literal"><span class="pre">ttf</span></code></dt>
+<dd>Use the TTF version of <a class="reference external" href="http://libertine-fonts.org/">Linux Libertine</a> instead of the
+default OTF version.</dd>
+</dl>
+</div>
+<div class="section" id="preamble-commands">
+<h3>Preamble commands:<a class="headerlink" href="#preamble-commands" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">\puntigiusta{&lt;number&gt;}</span></code></dt>
+<dd>Number of points (float or signed integer) assigned to a correct answer. Typical value: <em>n - 1</em>, where
+<em>n</em>  is the  number of answers.
+Dafault value: <code class="docutils literal"><span class="pre">1</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\puntisbagliata{&lt;number&gt;}</span></code></dt>
+<dd>Number of points (float or signed integer) assigned to a wrong answer. Typical value: <em>-1</em>.  Default value: <code class="docutils literal"><span class="pre">0</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\puntiempty{&lt;number&gt;}</span></code></dt>
+<dd>Number of points (float or signed integer) assigned to a ungiven answer. Typical value: <em>0</em>. Default value: <code class="docutils literal"><span class="pre">0</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\formulavoto{&lt;python</span> <span class="pre">expression</span> <span class="pre">in</span> <span class="pre">x</span> <span class="pre">and</span> <span class="pre">y&gt;}</span></code></dt>
+<dd>Formula to aggregate <em>x</em> = &lt;MCQ_MARK&gt; and <em>y</em> = &lt;OPTIONAL_MARK&gt;.
+The exam might consist of a Multiple-Choice part, followed by some
+open questions or exercises. The mark of the MCQ part will be
+computed automatically, and denoted by &lt;MCQ_MARK&gt;. The mark of the
+open-ended part needs to be given by your grading.
+This formula is simply the way to sum the two parts, in python syntax.</dd>
+<dt><code class="docutils literal"><span class="pre">\UIDdigits{number}</span></code></dt>
+<dd>Number of UID digits. Default value: <code class="docutils literal"><span class="pre">6</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\headline{text}</span></code></dt>
+<dd>Headline of the page (with info about the exam).</dd>
+<dt><code class="docutils literal"><span class="pre">\englishinfo</span></code></dt>
+<dd>Choose <code class="docutils literal"><span class="pre">English</span></code> language, instead of Italian, for the front sheet info.</dd>
+<dt><code class="docutils literal"><span class="pre">\variantlabel{ABC}</span></code></dt>
+<dd>Optional label to prepend to the permutation code of each sheet.</dd>
+</dl>
+</div>
+<div class="section" id="environments-and-list-of-questions">
+<h3>Environments and list of questions:<a class="headerlink" href="#environments-and-list-of-questions" title="Permalink to this headline">¶</a></h3>
+<p>Just after the <code class="docutils literal"><span class="pre">\begin{document}</span></code>, one of the two following commands should appear:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">\nomeesame</span></code></dt>
+<dd>Write <code class="docutils literal"><span class="pre">\Cognomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Nomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Firmaname:\dotfill</span></code>,
+or an analogue.</dd>
+<dt><code class="docutils literal"><span class="pre">\bubblesheet[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">columns]{number</span> <span class="pre">of</span> <span class="pre">questions}{number</span> <span class="pre">of</span> <span class="pre">anwsers}</span></code></dt>
+<dd>Print a cover page with fillable bubbles, to be fed to a document scanner and OMR.</dd>
+</dl>
+<p>Then, there will be all questions/exercises, grouped in some environments.
+The top (numbered or *-numbered) environment is <code class="docutils literal"><span class="pre">esercizi</span></code>, which surrounds the list of questions,
+each given by an <code class="docutils literal"><span class="pre">exerm</span></code> or <code class="docutils literal"><span class="pre">exe</span></code>. The <code class="docutils literal"><span class="pre">exe</span></code> type does not have any features. The <code class="docutils literal"><span class="pre">exerm</span></code>
+environment is a multiple choice question: its anwers are enumerated as in the
+following example:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="c">% here a normal section of exercises</span>
+<span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>Title of the section<span class="nb">}</span>
+
+  <span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[optional text]
+  Body of the question.
+  <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>[2]
+    <span class="c">% the optional argument is the number of columns of the answers.</span>
+  <span class="k">\risp</span><span class="na">[=]</span>
+  <span class="k">\risp</span>
+  <span class="k">\risp</span>
+  <span class="k">\risp</span>
+  <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+  <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+
+  ... continued
+
+<span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
+
+<span class="c">% here an unnumbered section of exercises</span>
+<span class="k">\begin</span><span class="nb">{</span>esercizi*<span class="nb">}{</span>Title of the unnumbered section<span class="nb">}</span>
+
+  <span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+  Body of the question.
+  <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>
+  <span class="k">\risp</span><span class="na">[=]</span>
+  <span class="k">\risp</span>
+  <span class="k">\risp</span>
+  <span class="k">\risp</span>
+  <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+  <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+
+  ... continued
+
+<span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
+</pre></div>
+</div>
+<p>The difference of <code class="docutils literal"><span class="pre">esercizi</span></code> and <code class="docutils literal"><span class="pre">esercizi*</span></code>
+is the same as the <code class="docutils literal"><span class="pre">\section</span></code> and <code class="docutils literal"><span class="pre">\section*</span></code> commands.</p>
+<p>The two questions/exercises types are <code class="docutils literal"><span class="pre">exerm</span></code> and <code class="docutils literal"><span class="pre">exe</span></code>: the first is a <strong>Multiple Choice Question</strong>,
+the second is a normal <strong>exercise</strong>.</p>
+<p>More precisely, in <code class="docutils literal"><span class="pre">exerm</span></code> the question with answers
+can be formatted as in the following full example:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[Optional text]
+<span class="k">\qtitle</span><span class="nb">{</span>Optional command for the title of the question: it is
+ not shown in the PDF<span class="nb">}</span>
+<span class="c">% the qtitle can be used to assign a unique ID to questions,</span>
+<span class="c">% so that they can be kept in a Question Bank.</span>
+Here write the text of the question.
+
+  <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>[4] <span class="c">% The answers will be on 4 columns.</span>
+                   <span class="c">% The default value is 1.</span>
+  <span class="k">\risp</span><span class="na">[=]</span> Correct answer
+    <span class="c">% it will be graded as correct, with a number of points</span>
+    <span class="c">% given by \puntigiusta{number} command defined above</span>
+    <span class="k">\fb</span><span class="nb">{</span>Very well!<span class="nb">}</span>  <span class="c">% This feedback is very important, for questions</span>
+                     <span class="c">% converted to GIFT or HTML (interactive).</span>
+  <span class="k">\risp</span> Wrong answer
+    <span class="c">% it will be graded as wrong, if checked, with a number</span>
+    <span class="c">% of points given by \puntisbagliata{number} command</span>
+    <span class="k">\fb</span><span class="nb">{</span>No, you are wrong, since ...<span class="nb">}</span>
+        <span class="c">% This feedback is very important, for questions</span>
+        <span class="c">% converted to GIFT or HTML (interactive).</span>
+  <span class="k">\risp</span><span class="na">[0.5]</span> Kind of wrong answer.
+    <span class="c">% It will be graded as an answer with a manual value,</span>
+    <span class="c">% given by the float 0.5.</span>
+    <span class="k">\fb</span><span class="nb">{</span>Almost correct! In fact ... (explanation)<span class="nb">}</span>
+          <span class="c">% This feedback is very important, for questions</span>
+          <span class="c">% converted to GIFT or HTML (interactive).</span>
+  <span class="k">\risp</span><span class="na">[-10]</span> Very wrong answer.
+    <span class="c">% It will be graded with -10 points (signed integer).</span>
+    <span class="k">\fb</span><span class="nb">{</span>Very bad! You do not get it since (explanation)<span class="nb">}</span>
+          <span class="c">% This feedback is very important, for questions</span>
+          <span class="c">% converted to GIFT or HTML (interactive).</span>
+  <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+</pre></div>
+</div>
+<p>The other exercise type is a simple environment, that can be also used as follows:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[Optional text]
+Text of the exercise
+<span class="k">\end</span><span class="nb">{</span>exe<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>sol<span class="nb">}</span>
+Solution
+<span class="k">\end</span><span class="nb">{</span>sol<span class="nb">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="questions-with-variants">
+<h3>Questions with variants:<a class="headerlink" href="#questions-with-variants" title="Permalink to this headline">¶</a></h3>
+<p>Instead of just permuting the questions and the answers, it can
+randomly choose variants (with different numerical values, or different
+questions and different answers) of the questions.</p>
+<p>The syntax is as in the following example:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+  <span class="k">\begin</span><span class="nb">{</span>varianti<span class="nb">}</span>
+  <span class="c">%% this is an exercise with two variants (randomly select just one of the two).</span>
+  <span class="k">\varitem</span>
+
+    <span class="s">$</span><span class="m">1</span><span class="o">+</span><span class="m">2</span><span class="o">=</span><span class="s">$</span>?
+    <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>
+      <span class="k">\risp</span><span class="na">[=]</span>  3
+      <span class="k">\risp</span>  2
+      <span class="k">\risp</span>  1
+      <span class="k">\risp</span>  0
+    <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+
+  <span class="k">\varitem</span>
+
+    <span class="s">$</span><span class="m">2</span><span class="o">+</span><span class="m">3</span><span class="o">=</span><span class="s">$</span>?
+    <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>
+      <span class="k">\risp</span><span class="na">[=]</span>  5
+      <span class="k">\risp</span>  4
+      <span class="k">\risp</span>  3
+      <span class="k">\risp</span>  2
+    <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+
+  <span class="k">\end</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-commands">
+<h3>Other commands:<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">\begin{sol}</span> <span class="pre">...</span> <span class="pre">\end{sol}</span></code></dt>
+<dd>It is a proof-like environment, for solutions of exercises.</dd>
+<dt><code class="docutils literal"><span class="pre">\WarningSign</span></code></dt>
+<dd>Default: the string <code class="docutils literal"><span class="pre">★★!!★★``</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\OrnamentalBreak</span></code></dt>
+<dd>An ornamental break (centered).</dd>
+<dt><code class="docutils literal"><span class="pre">\blank{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
+<dd>Will draw a blank line with space for a solution (until the end of the line).</dd>
+<dt><code class="docutils literal"><span class="pre">\blankarea[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows]{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
+<dd>Will draw a blank area with space for a solution.</dd>
+</dl>
+<p>When compiled with the <code class="docutils literal"><span class="pre">sol</span></code> option:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\usepackage</span><span class="na">[sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+</pre></div>
+</div>
+<p>the blank areas/lines will be filled with the texts of the solutions.
+Otherwise, they will be white or filled with squares. The default number of rows is 10, if omitted.
+Otherwise, it can be any positive integer.</p>
+</div>
+<div class="section" id="latex-variables">
+<h3>LaTeX variables:<a class="headerlink" href="#latex-variables" title="Permalink to this headline">¶</a></h3>
+<p>can be redefined with <code class="docutils literal"><span class="pre">\renewcommand</span></code>, and are meant for internal use):</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">\geninfo</span></code></dt>
+<dd>Definition of the text giving the instructions/info about the test/exam.</dd>
+<dt><code class="docutils literal"><span class="pre">\ansinfo</span></code></dt>
+<dd>Text to write before the bubblesheet answers.</dd>
+<dt><code class="docutils literal"><span class="pre">\uidname</span></code></dt>
+<dd>Name of the UID. Default: <code class="docutils literal"><span class="pre">Matricola</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\Cognomename</span></code></dt>
+<dd>Name of FamilyName. Default: <code class="docutils literal"><span class="pre">Cognome</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\Nomename</span></code></dt>
+<dd>Name of GivenName. Default: <code class="docutils literal"><span class="pre">Nome</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\Firmaname</span></code></dt>
+<dd>Name of the signature. Default: <code class="docutils literal"><span class="pre">Firma</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\SolName</span></code></dt>
+<dd>Name of the solution. Default: <code class="docutils literal"><span class="pre">Soluzione</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">\squarebox</span></code></dt>
+<dd>The character for the symbol appearing on the left of each possible item-answer.
+Check that the characters is included in the font Linux Libertine first.</dd>
+<dt><code class="docutils literal"><span class="pre">\variantlabel</span></code></dt>
+<dd>A label (possibly empty) to prepend to each permutation code.</dd>
+</dl>
+</div>
+<div class="section" id="mcq-w-bubblesheet-example">
+<h3>MCQ w/Bubblesheet example:<a class="headerlink" href="#mcq-w-bubblesheet-example" title="Permalink to this headline">¶</a></h3>
+<p>An example of MCQ exam with bubblesheet (try to compile it with or without the
+<code class="docutils literal"><span class="pre">sol</span></code> package option):</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="c">%===================================================================</span>
+<span class="k">\documentclass</span><span class="na">[twoside,a4paper,leqno]</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="c">%===================================================================</span>
+<span class="k">\usepackage</span><span class="nb">{</span>mathpazo<span class="nb">}</span> <span class="c">% I like it.</span>
+<span class="k">\usepackage</span><span class="na">[bubblesheet]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<span class="k">\englishinfo</span> <span class="c">%% this if you want English sentences.</span>
+<span class="k">\usepackage</span><span class="nb">{</span>polyglossia<span class="nb">}</span>
+<span class="k">\setdefaultlanguage</span><span class="nb">{</span>english<span class="nb">}</span> <span class="c">%% it needs to be *after* mcq.</span>
+
+<span class="c">%===================================================================</span>
+<span class="k">\headline</span><span class="nb">{</span>Multiple Choice questions on Logic (2013-12-31)<span class="nb">}</span>
+<span class="c">%% this is the &quot;name&quot; of the exam</span>
+<span class="c">%  http://www.math.ucla.edu/\char`~tao/java/MultipleChoice/logic.txt</span>
+
+<span class="k">\puntigiusta</span><span class="nb">{</span>6<span class="nb">}</span> <span class="c">% points for a correct answer</span>
+<span class="k">\puntisbagliata</span><span class="nb">{</span>-1<span class="nb">}</span> <span class="c">% points for a wrong answer</span>
+<span class="k">\puntiempty</span><span class="nb">{</span>0<span class="nb">}</span> <span class="c">% points for non-response.</span>
+
+<span class="c">%===================================================================</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\bubblesheet</span><span class="na">[2]</span><span class="nb">{</span>14<span class="nb">}{</span>7<span class="nb">}</span>
+<span class="c">% [number of columns] {number of questions} {number of answers}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>esercizi*<span class="nb">}{}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[Optional text]
+  <span class="k">\qtitle</span><span class="nb">{</span>This is an unseen title<span class="nb">}</span>
+  Let <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> be statements.  If we know that <span class="s">$</span><span class="nb">X</span><span class="s">$</span> implies <span class="s">$</span><span class="nb">Y</span><span class="s">$</span>, then
+  we can also conclude that
+  <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>[2]
+    <span class="k">\risp</span> <span class="s">$</span><span class="nb">X</span><span class="s">$</span> is true, and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is also true.
+      <span class="k">\fb</span><span class="nb">{</span><span class="c">%</span>
+      This is a feedback comment (optional). Useful only in the conversion
+      to HTML or for dynamical formats on MOODLE.
+      <span class="nb">}</span>
+    <span class="k">\risp</span><span class="na">[-2]</span>
+      <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> cannot be false.
+      <span class="k">\fb</span><span class="nb">{</span>This was terribly wrong.<span class="nb">}</span>
+    <span class="k">\risp</span><span class="na">[3]</span> If <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is true, then <span class="s">$</span><span class="nb">X</span><span class="s">$</span> is true.
+      <span class="k">\fb</span><span class="nb">{</span>Kind of true?<span class="nb">}</span>
+    <span class="k">\risp</span><span class="na">[=]</span>
+      If <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is false, then <span class="s">$</span><span class="nb">X</span><span class="s">$</span> is false.
+    <span class="k">\risp</span> If <span class="s">$</span><span class="nb">X</span><span class="s">$</span> is false, then <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is false.
+    <span class="k">\risp</span> <span class="s">$</span><span class="nb">X</span><span class="s">$</span> cannot be false.
+    <span class="k">\risp</span><span class="na">[3.1415]</span>
+      At least one of <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is true.
+  <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+  Let <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> be statements.  If we want to DISPROVE the claim that
+  &quot;Both <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> are true&quot;, we need to show that
+  <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>
+    <span class="k">\risp</span><span class="na">[=]</span>  At least one of <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> are false.
+    <span class="k">\risp</span> <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> are both false.
+    <span class="k">\risp</span><span class="na">[0.5]</span> <span class="s">$</span><span class="nb">X</span><span class="s">$</span> is false.
+      <span class="k">\fb</span><span class="nb">{</span>This will indeed disprove &quot;Both <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> are true&quot;, but <span class="s">$</span><span class="nb">X</span><span class="s">$</span> does
+      not need to be false in order to disprove the above statement.<span class="nb">}</span>
+    <span class="k">\risp</span><span class="na">[0.5]</span> <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is false.
+      <span class="k">\fb</span><span class="nb">{</span>This will indeed disprove &quot;Both <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> are true&quot;, but <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> does
+      not need to be false in order to disprove the above statement.<span class="nb">}</span>
+    <span class="k">\risp</span> <span class="s">$</span><span class="nb">X</span><span class="s">$</span> does not imply <span class="s">$</span><span class="nb">Y</span><span class="s">$</span>, and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> does not imply <span class="s">$</span><span class="nb">X</span><span class="s">$</span>.
+    <span class="k">\risp</span> Exactly one of <span class="s">$</span><span class="nb">X</span><span class="s">$</span> and <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> are false.
+    <span class="k">\risp</span> <span class="s">$</span><span class="nb">X</span><span class="s">$</span> is true if and only if <span class="s">$</span><span class="nb">Y</span><span class="s">$</span> is false.
+  <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+
+
+(..omissis..)
+
+<span class="k">\end</span><span class="nb">{</span>esercizi*<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="an-exam-class-example">
+<span id="exam"></span><h3>An exam class example:<a class="headerlink" href="#an-exam-class-example" title="Permalink to this headline">¶</a></h3>
+<p>Some commands taken from  the <a class="reference external" href="http://www-math.mit.edu/~psh/exam/examdoc.pdf">exam latex class</a>:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\documentclass</span><span class="nb">{</span>exam<span class="nb">}</span>
+
+<span class="k">\pointpoints</span><span class="nb">{</span>point<span class="nb">}{</span>points<span class="nb">}</span>
+<span class="k">\bonuspointspoints</span><span class="nb">{</span>bonus point<span class="nb">}{</span>bonus points<span class="nb">}</span>
+<span class="k">\qformat</span><span class="nb">{</span>Format specification<span class="nb">}</span>
+<span class="k">\bonusqformat</span><span class="nb">{</span>Format specification<span class="nb">}</span>
+
+<span class="k">\chqword</span><span class="nb">{</span>Exercise:<span class="nb">}</span>
+<span class="k">\chpword</span><span class="nb">{</span>Points:<span class="nb">}</span>
+<span class="k">\chbpword</span><span class="nb">{</span>Bonus points:<span class="nb">}</span>
+<span class="k">\chtword</span><span class="nb">{</span>Total<span class="nb">}</span>
+</pre></div>
+</div>
+<p>An example of an exam with blankareas and no bubblesheet (try to compile it with or without
+the <code class="docutils literal"><span class="pre">sol</span></code> option):</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="c">%===================================================================</span>
+<span class="k">\documentclass</span><span class="na">[twoside,a4paper,leqno,addpoints]</span><span class="nb">{</span>exam<span class="nb">}</span>
+<span class="c">%===================================================================</span>
+<span class="k">\usepackage</span><span class="nb">{</span>mathpazo<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="na">[noblankpage,sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+
+<span class="k">\usepackage</span><span class="na">[italian]</span><span class="nb">{</span>babel<span class="nb">}</span>
+<span class="k">\headline</span><span class="nb">{</span>Analisi 2 - Scritto <span class="k">\#</span>3  -- 2019-02-25, 1430-1630, aula U2-07<span class="nb">}</span>
+<span class="c">%===================================================================</span>
+<span class="k">\usepackage</span><span class="nb">{</span>xspace<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\quindi</span><span class="nb">}{</span><span class="k">\fontspec</span><span class="na">[Scale=1.0]</span><span class="nb">{</span>Junicode<span class="nb">}</span><span class="k">\char</span>&quot;2234<span class="k">\xspace</span><span class="nb">}</span>
+<span class="c">%===================================================================</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\nomeesame</span>
+
+<span class="k">\norme</span><span class="nb">{</span><span class="k">\itshape\small</span>
+Norme per la prova:
+<span class="k">\begin</span><span class="nb">{</span>compactenum<span class="nb">}</span>
+<span class="k">\item</span> Scrivere cognome, nome e numero di matricola negli appositi spazi.
+<span class="k">\item</span> Consegnare <span class="k">\emph</span><span class="nb">{</span>solo<span class="nb">}</span> il presente fascicolo.
+<span class="k">\item</span> Rispondere alle domande utilizzando gli appositi spazi.
+<span class="k">\item</span> Tempo: 120 minuti.
+<span class="k">\item</span> I punti di ciascun esercizio sono indicati tra parentesi.
+<span class="k">\item</span> I punti <span class="k">\emph</span><span class="nb">{</span>bonus<span class="nb">}</span> valgono soltanto se le parti precedenti
+nell&#39;esercizio sono state valutate con punteggio pieno.
+<span class="k">\end</span><span class="nb">{</span>compactenum<span class="nb">}</span>
+<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>questions<span class="nb">}</span>
+<span class="k">\question</span><span class="na">[3]</span>
+Il limite
+<span class="k">\begin</span><span class="nb">{</span>equation*<span class="nb">}</span>
+<span class="k">\lim</span><span class="nb">_{</span>(x,y) <span class="k">\to</span> (0,0)<span class="nb">}</span><span class="k">\,</span> <span class="k">\frac</span><span class="nb">{</span>x <span class="k">\,</span> <span class="nb">{</span>|y|<span class="nb">}^</span><span class="k">\alpha</span><span class="nb">}{</span>x<span class="nb">^</span>2 + y<span class="nb">^</span>2<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>equation*<span class="nb">}</span>
+esiste se  e solo se  <span class="s">$</span><span class="nv">\alpha</span><span class="nb"> </span><span class="nv">\in</span><span class="nb"> </span><span class="s">$</span>
+<span class="k">\blank</span><span class="nb">{</span><span class="s">$</span><span class="o">(</span><span class="m">1</span><span class="nb">,</span><span class="o">+</span><span class="nv">\infty</span><span class="o">)</span><span class="s">$</span><span class="nb">}</span>
+
+<span class="k">\question</span><span class="na">[3]</span>
+Sia <span class="s">$</span><span class="nb">T</span><span class="s">$</span> il triangolo in <span class="s">$</span><span class="nv">\mathbb</span><span class="nb">{R}^</span><span class="m">2</span><span class="s">$</span> di vertici <span class="s">$</span><span class="nv">\left</span><span class="o">(</span><span class="m">1</span><span class="nb">,</span><span class="m">1</span><span class="nv">\right</span><span class="o">)</span><span class="s">$</span>,
+<span class="s">$</span><span class="nv">\left</span><span class="o">(</span><span class="m">2</span><span class="nb">,</span><span class="m">2</span><span class="nv">\right</span><span class="o">)</span><span class="s">$</span> e <span class="s">$</span><span class="nv">\left</span><span class="o">(</span><span class="m">1</span><span class="nb">, </span><span class="m">3</span><span class="nv">\right</span><span class="o">)</span><span class="s">$</span>.
+
+Calcolare l&#39;integrale <span class="s">$</span><span class="nv">\displaystyle</span><span class="nb"> </span><span class="nv">\int</span><span class="nb">_T xy</span><span class="nv">\,</span><span class="nb"> dx</span><span class="nv">\,</span><span class="nb"> dy </span><span class="o">=</span><span class="s">$</span>
+<span class="k">\blank</span><span class="nb">{</span><span class="s">$</span><span class="nv">\frac</span><span class="nb">{</span><span class="m">8</span><span class="nb">}{</span><span class="m">3</span><span class="nb">}</span><span class="s">$</span><span class="nb">}</span>
+
+(..omissis..)
+
+<span class="k">\OrnamentalBreak</span>
+
+<span class="k">\question</span><span class="na">[8]</span>
+Sia <span class="s">$</span><span class="nb">f_n</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\dfrac</span><span class="nb">{</span><span class="nv">\sin</span><span class="nb">^</span><span class="m">2</span><span class="nb"> nx}{n}</span><span class="s">$</span>, e <span class="s">$</span><span class="nb">f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\lim</span><span class="nb">_n f_n</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="s">$</span>,
+dove esiste.
+
+Determinare in quali punti di <span class="s">$</span><span class="nv">\mathbb</span><span class="nb">{R}</span><span class="s">$</span> la successione
+<span class="s">$</span><span class="nb">f_n</span><span class="s">$</span> converge puntualmente a <span class="s">$</span><span class="nb">f</span><span class="s">$</span>.
+
+<span class="k">\blankarea</span><span class="na">[5]</span><span class="nb">{</span><span class="c">%</span>
+<span class="s">$</span><span class="nv">\forall</span><span class="nb"> x</span><span class="nv">\in</span><span class="nb"> </span><span class="nv">\mathbb</span><span class="nb">{R}</span><span class="s">$</span>, <span class="s">$</span><span class="nv">\left</span><span class="nb">|{</span><span class="nv">\sin</span><span class="nb">^</span><span class="m">2</span><span class="nb"> nx}</span><span class="nv">\right</span><span class="nb">|</span><span class="nv">\leq</span><span class="nb"> </span><span class="m">1</span><span class="s">$</span>, e quindi
+<span class="s">$</span><span class="nv">\lim</span><span class="nb">_n </span><span class="o">-</span><span class="nv">\frac</span><span class="nb">{</span><span class="m">1</span><span class="nb">}{n} </span><span class="nv">\leq</span><span class="nb"> </span><span class="nv">\lim</span><span class="nb">_n f_n</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="nv">\leq</span><span class="nb"> </span><span class="nv">\lim</span><span class="nb">_n </span><span class="nv">\frac</span><span class="nb">{</span><span class="m">1</span><span class="nb">}{n} </span><span class="s">$</span>,
+<span class="k">\quindi</span> <span class="s">$</span><span class="nv">\lim</span><span class="nb">_n f_n</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="m">0</span><span class="nb"> </span><span class="s">$</span>, <span class="s">$</span><span class="nv">\forall</span><span class="nb"> x</span><span class="nv">\in</span><span class="nb"> </span><span class="nv">\mathbb</span><span class="nb">{R}</span><span class="s">$</span>.
+<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>questions<span class="nb">}</span>
+
+<span class="k">\clearpage</span>
+<span class="k">\fillwithdottedlines</span><span class="nb">{</span><span class="k">\stretch</span><span class="nb">{</span>1<span class="nb">}}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>center<span class="nb">}</span>
+<span class="k">\combinedpointtable</span><span class="na">[h]</span>
+<span class="k">\end</span><span class="nb">{</span>center<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="documentation-of-the-cli">
 <span id="mcq-cli"></span><h2>Documentation of the CLI<a class="headerlink" href="#documentation-of-the-cli" title="Permalink to this headline">¶</a></h2>

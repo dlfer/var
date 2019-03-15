@@ -1,14 +1,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{0.89}
+\def\fileversion{1.00}
 \def\filedate{%
-2019-02-25
+2019-03-15
 }
-\def\Copyright{**********************************************
-Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non commerciale - Non opere derivate 3.0 Unported. Per leggere una copia della licenza visita il sito web http://creativecommons.org/licenses/by-nc-nd/3.0/ o spedisci una lettera a Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+\def\Copyright{****************************************************************
+Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
+commerciale - Non opere derivate 3.0 Unported. Per leggere una copia della
+licenza visita il sito web http://creativecommons.org/licenses/by-nc-nd/3.0/ o
+spedisci una lettera a Creative Commons, 171 Second Street, Suite 300, San
+Francisco, California, 94105, USA.
 
-(C) DLFerrario http://www.matapp.unimib.it/~ferrario/var/o.html
+(C) DLFerrario http://www.dlfer.xyz/var/mcq-full.html
 
-**********************************************
+*******************************************************************************
 }
 \NeedsTeXFormat{LaTeX2e}[1996/06/01]
 \typeout{Package `mcq' <\filedate>.}
@@ -32,7 +36,9 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non 
 \RequirePackage{changepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% OPTIONS:
 
+% hidden option. Not necessary for ordinary use. 
 \newif\ifallmarks\allmarksfalse
 \DeclareOption{allmarks}{\allmarkstrue}
 
@@ -79,8 +85,8 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non 
 }
 
 
-
 \ProcessOptions
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,58 +133,106 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non 
 %   \newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
-%%%%
-% \renewenvironment{samepage}{}{}
-
-\newenvironment{OLDrispm}[1][1]{%
-\ifnum#1>1 \duecolonnetrue\else\duecolonnefalse\fi%
-\ifduecolonne\typeout{DueColonne}%
-\multicolsep=12pt plus 4 pt minus 3 pt%
-\setcounter{collectmore}{-1}% %% ADDED this to prevent strange behaviour
-\raggedcolumns%  %% also this is possible. 
-% \flushcolumns%
-% \null\par\nopagebreak
-\begin{multicols}{#1}\else\begin{samepage}\fi%
-\begin{compactenum}[\squarebox\hspace{\squareboxoff} \itshape (a)]%
-}%
-{%
-\end{compactenum}\ifduecolonne\end{multicols}\else\end{samepage}\fi%
-}
-
 %% get a counter of answers 
 \newcounter{number@of@explicit@answers}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% preamble commands
+\newcommand{\puntigiusta}[1]{%
+\def\src@puntigiusta{#1}%
+}\puntigiusta{1}
+\newcommand{\puntisbagliata}[1]{%
+\def\src@puntisbagliata{#1}%
+}\puntisbagliata{0}
+\newcommand{\puntiempty}[1]{%
+\def\src@puntisempty{#1}%
+}\puntiempty{0}
+\newcommand{\formulavoto}[1]{}
+\newcommand{\qtitle}[1]{}
+\newcommand{\UIDdigits}[1]{%
+\def\src@UIDdigits{#1}%
+}
+\UIDdigits{6}
+
+% \headline: later 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\geninfo}{%
+Istruzioni: riempire \textbf{completamente} le bolle con le
+cifre del numero di matricola (una cifra per colonna);  nella parte sotto 
+del foglio, riempire \textbf{completamente} le bolle con le
+risposte alle domande a scelta multipla.
+Per riempire, usare penna o matita nera,
+colorando tutto l'interno e cercando di non
+uscire dal bordo. Non sono ammesse correzioni,
+dato che il foglio verrà analizzato da un computer.
+}
+\newcommand{\ansinfo}{\textbf{Segnare le risposte delle domande a scelta multipla}}
+\newcommand{\uidname}{Matricola}
+\newcommand{\Cognomename}{Cognome}
+\newcommand{\Nomename}{Nome}
+\newcommand{\Firmaname}{Firma}
+\def\SolName{Soluzione}
+
+
+
+\newcommand{\englishinfo}{%
+\typeout{Warning mcq.sty: english language choosen!}
+\renewcommand{\geninfo}{%
+Instructions: fill \textbf{completely} the bubbles 
+with the digits of the SID (one for each column); 
+in the lower part of the sheet, fill \textbf{completely} 
+the bubbles with the correct answers to the corresponding question. 
+Use a black or dark blue pen or pencil, 
+trying to fill completely the inside of the bubble.
+Write only in the designated areas. 
+}
+\renewcommand{\ansinfo}{\textbf{Mark the answers of the multiple-choice questions}}
+\renewcommand{\uidname}{Student ID}
+\renewcommand{\Cognomename}{Last Name}
+\renewcommand{\Nomename}{First name}
+\renewcommand{\Firmaname}{Signature}
+\def\SolName{Solution}
+}
+
+\newcommand{\norme}[1]{%
+\begin{center}
+\fbox{\fbox{\parbox{0.9\textwidth}{%
+#1
+}}}\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{rispm}[1][1]{%
-% \ifnum#1>1 \duecolonnetrue\else\duecolonnefalse\fi%
 \ifnum#1>1 \ifdsa\duecolonnefalse\else\duecolonnetrue\fi\else\duecolonnefalse\fi%
 \ifduecolonne\typeout{DueColonne}%
-%% \multicolsep=11pt plus 4 pt minus 3 pt%
 \multicolsep=-1pt plus 2 pt minus 1 pt%
-\par\vspace\multicolsep\noindent\nopagebreak%%_ \begin{minipage}{\textwidth}
+\par\vspace\multicolsep\noindent\nopagebreak%
 \setcounter{collectmore}{-1}% %% ADDED this to prevent strange behaviour
 \flushcolumns%
-% \raggedcolumns%  %% also this is possible. 
-% \null\par\nopagebreak
 \setcounter{number@of@explicit@answers}{0}%
 \begin{multicols}{#1}\else\nopagebreak\fi%
 \begin{compactenum}[\squarebox\hspace{\squareboxoff} \itshape (a)]%
 }%
 {%
-% check the number of explicit answers:
 \ifnum\value{number@of@explicit@answers}=0% 
 \@latexerr{{rispm} Question without correct answers: 
 please manually use some [-1]'s if you *really* need it ... }\@ehd 
 \fi
-\end{compactenum}\ifduecolonne\end{multicols}\fi%%_ \end{minipage}%
+\end{compactenum}\ifduecolonne\end{multicols}\fi%
 }
 
 
-%% 2013-06-29: with begin{samepage}...end{samepage} or begin{minipage}..end{minipage} the page counter bugs and checkoddpage gives an extra blank page  at the end of esercizi environment. 
+%% 2013-06-29: with begin{samepage}...end{samepage} or 
+%% begin{minipage}..end{minipage} the page counter bugs and checkoddpage 
+%% gives an extra blank page  at the end of esercizi environment. 
 
 %% 2014-04-02: fixed the order of "ifduecolonne" and vertical space... 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% definition of squarebox
 \ifbubblesheet
 \def\squarebox{%
 {\fontspec{\LinuxLibertineName}\large\UTFsquarebox}%
@@ -230,23 +284,7 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 \end{rispm}
 }
 
-
-\newcommand{\puntigiusta}[1]{%
-\def\src@puntigiusta{#1}%
-}\puntigiusta{1}
-\newcommand{\puntisbagliata}[1]{%
-\def\src@puntisbagliata{#1}%
-}\puntisbagliata{0}
-\newcommand{\puntiempty}[1]{%
-\def\src@puntisempty{#1}%
-}\puntiempty{0}
-\newcommand{\formulavoto}[1]{}
-\newcommand{\qtitle}[1]{}
-\newcommand{\UIDdigits}[1]{%
-\def\src@UIDdigits{#1}%
-}
-\UIDdigits{6}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 
 %%% per le varianti (label, oppure interne all'esercizio)
 \newcommand{\variantlabel}[1]{%
@@ -258,8 +296,6 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 \end{enumerate}
 }
 \newcommand{\varitem}{\item}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -292,7 +328,6 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\SolName{Soluzione}
 \newenvironment{sol}[1][\SolName]{%
 \begin{proof}[#1]
 }{\end{proof}}
@@ -303,7 +338,6 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 }}
 \newcommand{\OrnamentalBreak}{%
 \vfill
-% \centerline{\fontspec{\LinuxLibertineName}----- ★★★  ----- }
 \centerline{\fontspec[Scale=1.4]{\LinuxLibertineName}\char"E008}
 \vfill
 }
@@ -389,42 +423,6 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 \fi
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\geninfo}{%
-Istruzioni: riempire \textbf{completamente} le bolle con le
-cifre del numero di matricola (una cifra per colonna);  nella parte sotto 
-del foglio, riempire \textbf{completamente} le bolle con le
-risposte alle domande a scelta multipla.
-Per riempire, usare penna o matita nera,
-colorando tutto l'interno e cercando di non
-uscire dal bordo. Non sono ammesse correzioni,
-dato che il foglio verrà analizzato da un computer.
-}
-\newcommand{\ansinfo}{\textbf{Segnare le risposte delle domande a scelta multipla}}
-\newcommand{\uidname}{Matricola}
-\newcommand{\Cognomename}{Cognome}
-\newcommand{\Nomename}{Nome}
-\newcommand{\Firmaname}{Firma}
-
-
-
-\newcommand{\englishinfo}{%
-\typeout{Warning mcq.sty: english language choosen!}
-\renewcommand{\geninfo}{%
-Instructions: fill \textbf{completely} the bubbles 
-with the digits of the SID (one for each column); 
-in the lower part of the sheet, fill \textbf{completely} 
-the bubbles with the correct answers to the corresponding question. 
-Use a black or dark blue pen or pencil, 
-trying to fill completely the inside of the bubble.
-Write only in the designated areas. 
-}
-\renewcommand{\ansinfo}{\textbf{Mark the answers of the multiple-choice questions}}
-\renewcommand{\uidname}{Student ID}
-\renewcommand{\Cognomename}{Last Name}
-\renewcommand{\Nomename}{First name}
-\renewcommand{\Firmaname}{Signature}
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\setcodice}[1]{%
@@ -532,12 +530,6 @@ Write only in the designated areas.
 \chbpword{Punti \emph{bonus}:}
 \chtword{Totale}
 
-\newcommand{\norme}[1]{%
-\begin{center}
-\fbox{\fbox{\parbox{0.9\textwidth}{%
-#1
-}}}\end{center}
-}
 
 % \pagestyle{headandfoot}
 % \runningheader{R1}{R2}{R3}
@@ -982,4 +974,5 @@ Use usepackage{mcq} instead.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
