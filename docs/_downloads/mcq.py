@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2019-03-15
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2019-05-20
 
 USAGE:
 ------
@@ -274,6 +274,26 @@ non-homogeneous::
     \end{exerm}
 
 
+OPTIONS:
+--------
+
+There are a few options that might be useful, but please use them only
+for debugging purposes.
+
+
+	--help|-h               this help
+	-v|--verbose            verbose output
+	--gift|-g               GIFT output
+	--xhtml|-x              XHTML output
+	--output=|-o [FILENAME] explicit output=[FILENAME]
+	--number=|-n [N]        number of copies = [n]
+	--db= [FILENAME]        data for the marking
+	--stats= [FILENAME]     make a stats tex file
+	--omr= [BASENAME] [SCANFILES]   OMR scan of [BASENAME].tex and [SCANFILES]
+	--uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
+	--join  [FILE1_exam.csv] [FILE2_exam.csv] join two csv tables
+	--choose= [N] [files*.tex] random choose N from files*.tex
+
 
 Some aspect of the script are controlled by the following
 **ENVIRONMENT VARIABLES**::
@@ -513,7 +533,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yLCBlcnI6CiAgICAgICAgcHJpbnQgc3RyKGVycikKICAgICAgICBwcmludCAiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIgogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50IF9fZG9jX18KICAgICAgICAgICAgc3lzLmV4aXQoKQogICAgICAgIGVsaWYgbyBpbiAoIi1nIiwgIi0tZ2lmdCIpOgogICAgICAgICAgICBHSUZUID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi14IiwgIi0teGh0bWwiKToKICAgICAgICAgICAgWEhUTUwgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW8iLCAiLS1vdXRwdXQiKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgb3V0cHV0ID0gZmlsZShhLCAndycpCiAgICAgICAgICAgIFNPTFVUSU9OU19GSUxFID0gZmlsZShiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgICAgIERCX0ZJTEUgPSBmaWxlKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgICAgICAgICBleHBsaWNpdF9vdXRwdXQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1kYiIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX0ZJTEUgPSBmaWxlKGEsICdyYicpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBmaWxlKGIgKyAiX3N0YXRzLmRiIiwgJ3diJykKICAgICAgICAgICAgb3V0cHV0ID0gZmlsZShiICsgIi5jc3YiLCAndycpCiAgICAgICAgICAgIEVWQUxVQVRFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tdWlkIiwgKToKICAgICAgICAgICAgVUlERklMRSA9IGEKICAgICAgICAgICAgTUVSR0VGSUxFUyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWNob29zZSIsICk6CiAgICAgICAgICAgIENIT09TRU5VTUJFUiA9IGludChhKQogICAgICAgICAgICBSQU5ET01DSE9PU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1vbXIiLCApOgogICAgICAgICAgICBPTUFSQkFTRSwgXyA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgT01BUlNDQU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1qb2luIiwgKToKICAgICAgICAgICAgQ1NWSk9JTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXN0YXRzIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IGZpbGUoYSwgJ3JiJykKICAgICAgICAgICAgIyBvdXRwdXQgPSBmaWxlKGIrIi50ZXgiLCd3JykKICAgICAgICAgICAgTUFLRV9TVEFUUyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbiIsICItLW51bWJlciIpOgogICAgICAgICAgICBOVU1CRVJfT0ZfQ09QSUVTID0gaW50KGEpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAoZmlsZShhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMoZmlsZShhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IGZpbGUoYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBmaWxlKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gZmlsZShiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAoZmlsZShhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSc2Y2U4Y2U0NDU0ODk0YWUwMDMwNGE2M2FmZDdkZTBmYTA2ODg2ZDhhOTcwNDA4Y2I2ODkzZjlmYScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
+import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yLCBlcnI6CiAgICAgICAgcHJpbnQgc3RyKGVycikKICAgICAgICBwcmludCAiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIgogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50IF9fZG9jX18KICAgICAgICAgICAgc3lzLmV4aXQoKQogICAgICAgIGVsaWYgbyBpbiAoIi1nIiwgIi0tZ2lmdCIpOgogICAgICAgICAgICBHSUZUID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi14IiwgIi0teGh0bWwiKToKICAgICAgICAgICAgWEhUTUwgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW8iLCAiLS1vdXRwdXQiKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgb3V0cHV0ID0gZmlsZShhLCAndycpCiAgICAgICAgICAgIFNPTFVUSU9OU19GSUxFID0gZmlsZShiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgICAgIERCX0ZJTEUgPSBmaWxlKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgICAgICAgICBleHBsaWNpdF9vdXRwdXQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1kYiIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX0ZJTEUgPSBmaWxlKGEsICdyYicpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBmaWxlKGIgKyAiX3N0YXRzLmRiIiwgJ3diJykKICAgICAgICAgICAgb3V0cHV0ID0gZmlsZShiICsgIi5jc3YiLCAndycpCiAgICAgICAgICAgIEVWQUxVQVRFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tdWlkIiwgKToKICAgICAgICAgICAgVUlERklMRSA9IGEKICAgICAgICAgICAgTUVSR0VGSUxFUyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWNob29zZSIsICk6CiAgICAgICAgICAgIENIT09TRU5VTUJFUiA9IGludChhKQogICAgICAgICAgICBSQU5ET01DSE9PU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1vbXIiLCApOgogICAgICAgICAgICBPTUFSQkFTRSwgXyA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgT01BUlNDQU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1qb2luIiwgKToKICAgICAgICAgICAgQ1NWSk9JTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXN0YXRzIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IGZpbGUoYSwgJ3JiJykKICAgICAgICAgICAgIyBvdXRwdXQgPSBmaWxlKGIrIi50ZXgiLCd3JykKICAgICAgICAgICAgTUFLRV9TVEFUUyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbiIsICItLW51bWJlciIpOgogICAgICAgICAgICBOVU1CRVJfT0ZfQ09QSUVTID0gaW50KGEpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAoZmlsZShhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMoZmlsZShhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IGZpbGUoYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBmaWxlKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gZmlsZShiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAoZmlsZShhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSc4NjNhMTBhMmU2MDc0ZTFkMjNkODViYjQyMDJjM2VhZTM1MTgzMTg3NTRlYzI2ZjZiY2NkODUyNScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -856,13 +876,14 @@ class Esercizio:
     Base class for exercises
     """
 
-    def __init__(self, testo, type='EXERM', numero_colonne=1, risposte=None, src='', fb=None):
+    def __init__(self, testo, type='EXERM', numero_colonne=1, risposte=None, src='', fb=None,coda=''):
         self.qtitle, self.testo = get_qtitle(testo)
         self.type = type  # vero|falso,exerm
         self.numero_colonne = numero_colonne
         self.risposte = risposte
         self.src = src
         self.fb = fb
+        self.coda = coda
 
     def __repr__(self):
         return self.__str__()
@@ -876,7 +897,7 @@ class Esercizio:
             risposte = "\n".join([str(x) for x in self.risposte])
         return """%% type: %s fbbegin--%s--fbend
 %s
-%s""" % (self.type, fb, self.testo, risposte)
+%s""" % (self.type, fb, self.testo, risposte )
 
     def numero_risposte(self):
         if self.risposte:
@@ -895,7 +916,7 @@ class Esercizio:
             n = len(self.risposte)
             for i in range(n):
                 res += (self.risposte[perm[i]]).latex()
-            res += "\\end{rispm}\n"
+            res += "\\end{rispm}\n" + self.coda
         else:
             if self.type == "VERO":
                 res += "\\vero\n"
@@ -920,7 +941,7 @@ class Esercizio:
             for i in range(n):
                 res += (self.risposte[i]).latex()
                 res += stats[i]
-            res += "\\end{rispm}\n"
+            res += "\\end{rispm}\n" + self.coda
         else:
             if self.type == "VERO":
                 res += "\\vero\n"
@@ -1214,7 +1235,8 @@ def parse_risposta(s):
     reg = re.compile(r"^(?P<punti>\[.+?\])", re.M)
     if reg.match(s):
         punti = reg.match(s).group('punti')[1:-1]
-        s = reg.sub("", s).strip()
+        s = reg.sub("", s,1).strip() 
+        # fixed 2019-05-20 thanks to Ultano Kindelan
         if punti == '=':
             giusta = True
             punti = None
@@ -1235,7 +1257,7 @@ def parse_esercizio(s):
     # reg=re.compile(r"(.+?)\\begin{rispm}(.+?)\\end{rispm}", re.M and
     # re.DOTALL) # IT IS OK TO BE EMPTY...
     reg = re.compile(
-        r"(.*?)\\begin{rispm}(.+?)\\end{rispm}", re.M and re.DOTALL)
+        r"(.*?)\\begin{rispm}(.+?)\\end{rispm}(.*?)(\\varitem|$)", re.M and re.DOTALL) #testo+rispm+coda (.*?)
     strings_found = [x for x in reg.findall(s)]
     if strings_found == []:
         # allora e' vero-falso:
@@ -1267,7 +1289,9 @@ def parse_esercizio(s):
     # quindi supponiamo che sia a risposta multipla:
     # per prima cosa il numero di colonne.
     reg = re.compile(r"^(?P<numcols>\[[0-9]+?\])", re.M)
-    testo, rispm = strings_found[0]
+    # testo, rispm  = strings_found[0] 
+    # sys.stderr.write("strings_found: <<<%s>>>" % strings_found)
+    testo, rispm , coda, _ = strings_found[0] 
     if reg.match(rispm):
         numero_colonne = int(reg.match(rispm).group('numcols')[1:-1])
         rispm = reg.sub("", rispm).strip()
@@ -1276,7 +1300,7 @@ def parse_esercizio(s):
     reg = re.compile(r"\\risp", re.M)
     tokens = [parse_risposta(x) for x in reg.split(rispm)[1:]]
     result = Esercizio(
-        testo, type="EXERM", numero_colonne=numero_colonne, risposte=tokens)
+        testo, type="EXERM", numero_colonne=numero_colonne, risposte=tokens,coda=coda)
     return result
 
 # ----------------------------------------------------------------------
@@ -1537,6 +1561,7 @@ def correggi(dbl, data):
                 name = name.strip()
                 matr = matr.strip()
                 risposte = risposte.strip()
+                voto = voto.strip()
                 # eliminare spazi
                 risposte = re.sub(r'\s', '', risposte)
                 if voto:
@@ -1544,7 +1569,7 @@ def correggi(dbl, data):
                 else:
                     voto = 0
             except Exception, v:
-                sys.stderr.write("** riga %s : Errore %s\n" % (l, v))
+                sys.stderr.write("** riga %s : Errore %s (voto=%s)\n" % (l, v,voto))
                 exit_on_error('ERROR')  # sys.exit(1)
             if codice not in dbl.keys():
                 if dbl['__variantlabel__']:

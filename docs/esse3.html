@@ -1,40 +1,41 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>ESSE3: nei meandri della burocrazia &mdash; var  documentation</title>
-    
+    <title>ESSE3: nei meandri della burocrazia &#8212; var  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
-    <link rel="top" title="var  documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="psd2pdf: drawing and presentation" href="psd2pdf.html" />
     <link rel="prev" title="MCQ-XeLaTeX Full Documentation" href="mcq-full.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body>
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -55,7 +56,7 @@
 <h2>esse3.py: A cosa serve<a class="headerlink" href="#esse3-py-a-cosa-serve" title="Permalink to this headline">¶</a></h2>
 <p>Automatizza alcune delle fasi delle operazioni più ripetitive della burocrazia accademica:
 compilare il registro delle lezioni, verbalizzare gli esami.</p>
-<div class="highlight-text"><div class="highlight"><pre>USAGE: esse3.py [options] [argument]
+<div class="highlight-text"><div class="highlight"><pre><span></span>USAGE: esse3.py [options] [argument]
 
 
 # Version: 2019-03-11
@@ -87,21 +88,21 @@ che è già pronta per poter essere usata da <code class="docutils literal"><spa
 è il file <em>excel</em> scaricato dal sito delle segreterie online
 (in genere ha il nome <code class="docutils literal"><span class="pre">ListaStudentiEsameExportExcel.xls</span></code>.
 Un esempio:</p>
-<div class="last highlight-python"><div class="highlight"><pre>$ esse3.py --uid ListaStudenti.xls &gt; sc1-Lista.uid
+<div class="last highlight-default"><div class="highlight"><pre><span></span>$ esse3.py --uid ListaStudenti.xls &gt; sc1-Lista.uid
 </pre></div>
 </div>
 </dd>
 </dl>
 <p><code class="docutils literal"><span class="pre">--pdf</span> <span class="pre">Nomefile.xls</span></code></p>
 <blockquote>
-<div><p>Crea una versione PDF del registro (cartaceo) per l&#8217;esame, a partire dal file <em>excel</em>
+<div><p>Crea una versione PDF del registro (cartaceo) per l’esame, a partire dal file <em>excel</em>
 <code class="docutils literal"><span class="pre">Nomefile.xls</span></code> scaricato dal sito delle segreterie online. Esempio:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ esse3.py --pdf ListaStudenti.xls
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ esse3.py --pdf ListaStudenti.xls
 </pre></div>
 </div>
 <p>Verrà prodotto il file <code class="docutils literal"><span class="pre">esse3_output.pdf</span></code>. Se si vuole un altro nome del file prodotto,
-per esempio <code class="docutils literal"><span class="pre">sc1-Registro.pdf</span></code>, basta usare l&#8217;opzione:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ esse3.py  --baseoutput=sc1-Registro --pdf ListaStudenti.xls
+per esempio <code class="docutils literal"><span class="pre">sc1-Registro.pdf</span></code>, basta usare l’opzione:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ esse3.py  --baseoutput=sc1-Registro --pdf ListaStudenti.xls
 </pre></div>
 </div>
 </div></blockquote>
@@ -111,12 +112,12 @@ per esempio <code class="docutils literal"><span class="pre">sc1-Registro.pdf</s
 interattivamente chiede il numero di quattro cifre indicato nella pagina, per poi inserire
 automaticamente il PIN di otto cifre. Per poter funzionare, occorre collegare un telefono GSM alla
 porta USB del computer, e conoscere qual è il nome del dispositivo:</p>
-<div class="highlight-python"><div class="highlight"><pre>/dev/ttyACM0
-/dev/ttyS
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyACM0</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyS</span>
 </pre></div>
 </div>
 <p>I dati utilizzati vengono poi salvati nel file:</p>
-<div class="highlight-python"><div class="highlight"><pre>${HOME}/.esse3rc
+<div class="highlight-default"><div class="highlight"><pre><span></span>${HOME}/.esse3rc
 </pre></div>
 </div>
 </div></blockquote>
@@ -125,7 +126,7 @@ porta USB del computer, e conoscere qual è il nome del dispositivo:</p>
 <dd>Crea una versione CSV del registro delle lezioni, da compilare tramite il sito delle segreterie online.
 Il formato corretto del file <code class="docutils literal"><span class="pre">ymlfile</span></code> è una variante locale di <a class="reference external" href="https://yaml.org/">YAML</a>, seguendo questo esempio:</dd>
 </dl>
-<div class="highlight-yaml"><div class="highlight"><pre><span class="c1"># commenti</span>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># commenti</span>
 <span class="c1">#</span>
 <span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span>
 
@@ -155,8 +156,8 @@ Il formato corretto del file <code class="docutils literal"><span class="pre">ym
 </pre></div>
 </div>
 <p>Osservazione importante: le lezioni <strong>devono</strong> iniziare con un trattivo, a
-inizio riga. La parte <strong>senza spazi</strong> che segue l&#8217;asterisco viene del tutto
-ignorata (in modo che l&#8217;annotazione sul numero di lezioni non compaia nel
+inizio riga. La parte <strong>senza spazi</strong> che segue l’asterisco viene del tutto
+ignorata (in modo che l’annotazione sul numero di lezioni non compaia nel
 registro).</p>
 <p>Una volta prodotto il file CSV, occorre copia-e-incollarlo nel file XLS delle
 segreterie online, per il registro delle lezioni.</p>
@@ -180,7 +181,7 @@ segreterie online, per il registro delle lezioni.</p>
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">ESSE3: nei meandri della burocrazia</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
 </ul>
@@ -196,14 +197,11 @@ segreterie online, per il registro delle lezioni.</p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -214,11 +212,11 @@ segreterie online, per il registro delle lezioni.</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="_sources/esse3.txt"
+      <a href="_sources/esse3.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,0 +1,126 @@
+===================================
+ESSE3: nei meandri della burocrazia
+===================================
+
+:Date: 2019-03-06
+
+esse3.py: A cosa serve
+======================
+
+Automatizza alcune delle fasi delle operazioni più ripetitive della burocrazia accademica: 
+compilare il registro delle lezioni, verbalizzare gli esami. 
+
+
+
+.. pip install sphinxcontrib-programoutput
+.. but also apt
+
+.. program-output:: python2.7 ./soft/esse3.py -h
+
+
+
+Dettaglio delle opzioni:
+------------------------
+
+
+``--help, -h``
+    Un breve aiuto
+ 
+
+``--uid Nomefile.xls`` 
+    Produce una lista iscritti formattata come ``:matricola:cognome,nome:``, 
+    che è già pronta per poter essere usata da ``mcq.py``. Il file ``Nomefile.xls``
+    è il file *excel* scaricato dal sito delle segreterie online
+    (in genere ha il nome ``ListaStudentiEsameExportExcel.xls``.
+    Un esempio::
+
+      $ esse3.py --uid ListaStudenti.xls > sc1-Lista.uid
+
+
+``--pdf Nomefile.xls`` 
+
+   Crea una versione PDF del registro (cartaceo) per l'esame, a partire dal file *excel* 
+   ``Nomefile.xls`` scaricato dal sito delle segreterie online. Esempio::
+
+    $ esse3.py --pdf ListaStudenti.xls
+
+
+   Verrà prodotto il file ``esse3_output.pdf``. Se si vuole un altro nome del file prodotto, 
+   per esempio ``sc1-Registro.pdf``, basta usare l'opzione:: 
+
+    $ esse3.py  --baseoutput=sc1-Registro --pdf ListaStudenti.xls
+
+
+``--call`` 
+
+   Per la registrazione dei voti: chiama il numero di verbalizzazione online, e
+   interattivamente chiede il numero di quattro cifre indicato nella pagina, per poi inserire 
+   automaticamente il PIN di otto cifre. Per poter funzionare, occorre collegare un telefono GSM alla
+   porta USB del computer, e conoscere qual è il nome del dispositivo::
+
+           /dev/ttyACM0
+           /dev/ttyS
+        
+   I dati utilizzati vengono poi salvati nel file::
+
+           ${HOME}/.esse3rc
+
+
+``--yml ymlfile.yml``
+ Crea una versione CSV del registro delle lezioni, da compilare tramite il sito delle segreterie online. 
+ Il formato corretto del file ``ymlfile`` è una variante locale di `YAML <https://yaml.org/>`__, seguendo questo esempio:
+
+.. code-block:: yaml
+
+ # commenti
+ #
+ # Importante le tree dash tra il preambolo e al cambio di anno)
+ 
+ orario:
+ lun: 14:30-16:30
+ mar: 17:30-18:30
+ mer: 16:30-19:30
+ gio: 16:30-18:30
+ ven: 13:30-15:30
+  
+ anno: 2018
+ type: '0001'
+ # cfr. file excel scaricato dal sito delle segreterie 
+ # (lezioni='0001', esercitazioni=... )
+ 
+ ---
+ OTT:
+ - 01 *L1,2  Distanza negli spazi vettoriali euclidei. 
+ - 02 *L3 Topologia di R^n.
+         
+ NOV:
+ - 03 *L4 Altro argomento
+         
+ ---
+ GEN:
+ - 04 *L5 Ultima lezione
+
+
+Osservazione importante: le lezioni **devono** iniziare con un trattivo, a
+inizio riga. La parte **senza spazi** che segue l'asterisco viene del tutto
+ignorata (in modo che l'annotazione sul numero di lezioni non compaia nel
+registro).
+
+
+Una volta prodotto il file CSV, occorre copia-e-incollarlo nel file XLS delle
+segreterie online, per il registro delle lezioni.
+
+.. .. automodule:: esse3
+
+
+.. .. autofunction:: esse3.ymltocsv
+
+------------------------------------------------
+
+
+Download
+======================
+
+Download : :download:`esse3.py <soft/esse3.py>`
+
+
