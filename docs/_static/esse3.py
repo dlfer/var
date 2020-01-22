@@ -4,13 +4,13 @@
 # get data from ~/.esse3rc
 
 
-__version__='2019-03-11'
+__version__='2019-09-12'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2019-03-11
+# Version: 2019-09-12
 
 OPTIONS:
 	--help|-h
@@ -117,7 +117,7 @@ def getesse3values():
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IsIGVycjoKICBzeXMuc3RkZXJyLndyaXRlKCIlc1xuIiAlIHN0cihlcnIpICkKICBzeXMuc3RkZXJyLndyaXRlKCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF1cbiIpCiAgc3lzLmV4aXQoMSkKIGZvciBvLGEgaW4gb3B0czoKICBpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgIHByaW50IF9fZG9jX18KICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50ICJQcm92aWFtbyBpbCBnc20uLi4iCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKCiBpZiBsZW4oYXJncyk9PTAgb3IgRE9OT1RISU5HOgogIHByaW50ICJbZXNzZTMucHkgLS1oZWxwIGZvciBoZWxwXSIKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQpCiAgZWxzZToKICAgRVMubWFrZXVpZChmaWxlKEJBU0VPVVRQVVQrJy51aWQnLCd3JykpCiAgIHByaW50ICJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPScyMGIxMDYyY2NlNzE0NTBlOGJkNDlkNzlmNzE1ZGZjMmM3ZjJkODg2MWI1MDljODJhNTBlMTY4NCcKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
+import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IsIGVycjoKICBzeXMuc3RkZXJyLndyaXRlKCIlc1xuIiAlIHN0cihlcnIpICkKICBzeXMuc3RkZXJyLndyaXRlKCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF1cbiIpCiAgc3lzLmV4aXQoMSkKIGZvciBvLGEgaW4gb3B0czoKICBpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgIHByaW50IF9fZG9jX18KICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50ICJQcm92aWFtbyBpbCBnc20uLi4iCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKCiBpZiBsZW4oYXJncyk9PTAgb3IgRE9OT1RISU5HOgogIHByaW50ICJbZXNzZTMucHkgLS1oZWxwIGZvciBoZWxwXSIKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQpCiAgZWxzZToKICAgRVMubWFrZXVpZChmaWxlKEJBU0VPVVRQVVQrJy51aWQnLCd3JykpCiAgIHByaW50ICJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSc5OWFhYWRkYjQ4MzM0NTE4OTAwNGZhYjE4NDM0NzYyOTNkMDNiMmQ2ODcyNjFkMTYxZjUyM2EzNicKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -323,6 +323,10 @@ TYPE_NAMES=['type','tipo']
 
 def parse_header(db):
     result = {} 
+    if db.has_key('target'):
+        result['target_letter']=db['target']
+    else:
+        result['target_letter']=''
     for x in ANNO_NAMES:
         if db.has_key(x):
             result['anno']=int(db[x])
@@ -353,6 +357,7 @@ def parse_body_parts(body_parts,header_db):
 
 def parse_body(body_db,header_db,year_offset=0):
     result = [] 
+    target_letter=header_db['target_letter']
     monthes_indices=[MESE_NAMES.index(m) for m in body_db.keys()]
     monthes_indices.sort()
     for m in monthes_indices:
@@ -371,8 +376,10 @@ def parse_body(body_db,header_db,year_offset=0):
                 raise Exception("Problem: week_day '{}' not in orario!".format(week_day))
             if day_tokens[1][0]=='*':
                 desc= " ".join(day_tokens[2:]) 
-            else:    
+            else:
                 desc= " ".join(day_tokens[1:]) 
+            if target_letter and day_tokens[1][:2]!=('*'+target_letter): 
+                continue
             desc=dirty_trick(desc,back=True)
             sys.stderr.write("  -> ore= {}\n".format(numero_ore(orario[0],orario[1])))
             result += [(day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , "{}".format(act_type).encode('utf-8'), "", desc.encode('utf-8'),desc.encode('utf-8')  ) ]

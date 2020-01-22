@@ -1,0 +1,401 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>simplicial: simplicial complexes and topology &#8212; var  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="CASengine" href="casengine.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="simplicial-simplicial-complexes-and-topology">
+<h1>simplicial: simplicial complexes and topology<a class="headerlink" href="#simplicial-simplicial-complexes-and-topology" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2020-01-22</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="what-for">
+<h2>What for<a class="headerlink" href="#what-for" title="Permalink to this headline">¶</a></h2>
+<p>Simplified package for understanding how to compute homology, persistent
+homology and how to visualize simplicial
+complexes and alike.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Work in progress (very much)</p>
+</div>
+<div class="section" id="install">
+<h3>INSTALL:<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<p>First install (download, or exec</p>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>$ wget https://www.dlfer.xyz/var/_downloads/simplicial.py
+</pre></div>
+</div>
+<p>from a shell, or</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;&gt;&gt; !wget https://www.dlfer.xyz/var/_downloads/simplicial.py
+</pre></div>
+</div>
+<p>from a jupyter notebook cell). Check it first if it is safe.</p>
+<span class="target" id="module-simplicial"></span><p>This is a simple module, maybe to explain simplicial complexes and simplicial homology.</p>
+<div class="section" id="usage">
+<h4>USAGE:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h4>
+<p>From jupyter/python console, then import it</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">simplicial</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h4>EXAMPLES:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 0:</span>
+<span class="go"> vertices: [&#39;a&#39;, &#39;b&#39;]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[&#39;a&#39;], [&#39;b&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">betti_numbers</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">[2]</span>
+</pre></div>
+</div>
+<p>Join of simplices</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s0</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t0</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span><span class="o">+</span><span class="n">t0</span><span class="p">)</span>
+<span class="go">They must be surfaces!</span>
+<span class="go">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span><span class="o">*</span><span class="n">t0</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 2:</span>
+<span class="go"> vertices: [0, 1, 2, 3, 4]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[0], [1], [2], [3], [4]]</span>
+<span class="go">  1: [[2, 3], [2, 4], [3, 4], [0, 2], [0, 3], [0, 4], [1, 2], [1, 3], [1, 4]]</span>
+<span class="go">  2: [[0, 2, 3], [0, 2, 4], [0, 3, 4], [1, 2, 3], [1, 2, 4], [1, 3, 4]]</span>
+</pre></div>
+</div>
+<p>Cartesian product</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span> <span class="o">%</span> <span class="n">t0</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 1:</span>
+<span class="go"> vertices: [(&#39;A&#39;, 0), (&#39;A&#39;, 1), (&#39;A&#39;, 2), (&#39;B&#39;, 0), (&#39;B&#39;, 1), (&#39;B&#39;, 2)]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[(&#39;A&#39;, 0)], [(&#39;A&#39;, 1)], [(&#39;A&#39;, 2)], [(&#39;B&#39;, 0)], [(&#39;B&#39;, 1)], [(&#39;B&#39;, 2)]]</span>
+<span class="go">  1: [[(&#39;A&#39;, 0), (&#39;A&#39;, 1)], [(&#39;A&#39;, 0), (&#39;A&#39;, 2)], [(&#39;A&#39;, 1), (&#39;A&#39;, 2)], [(&#39;B&#39;, 0), (&#39;B&#39;, 1)], [(&#39;B&#39;, 0), (&#39;B&#39;, 2)], [(&#39;B&#39;, 1), (&#39;B&#39;, 2)]]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span> <span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 1:</span>
+<span class="go"> vertices: [0, 1, 2]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[0], [1], [2]]</span>
+<span class="go">  1: [[0, 1], [0, 2], [1, 2]]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">(</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">maximal_simplices</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]]</span> <span class="p">}</span> <span class="p">,</span> <span class="n">must_reindex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 1:</span>
+<span class="go"> vertices: [&#39;A&#39;, &#39;B&#39;]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[&#39;A&#39;], [&#39;B&#39;]]</span>
+<span class="go">  1: [[&#39;A&#39;, &#39;B&#39;]]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">EPchar</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span><span class="o">=</span><span class="n">s1</span> <span class="o">%</span> <span class="n">s1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span> <span class="p">(</span> <span class="n">T</span> <span class="o">+</span> <span class="n">T</span> <span class="o">+</span> <span class="n">T</span> <span class="p">)</span> <span class="o">*</span> <span class="n">s1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 4:</span>
+<span class="go"> vertices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17], [18], [19], [20], [21], [22], [23]]</span>
+<span class="go">  1: 141 simplices</span>
+<span class="go">  2: 338 simplices</span>
+<span class="go">  3: 375 simplices</span>
+<span class="go">  4: 150 simplices</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dims_c</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">[24, 141, 338, 375, 150]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">betti_numbers</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">****[1, 0, 0, 6, 1]</span>
+</pre></div>
+</div>
+<p>Connected sum.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span><span class="o">=</span><span class="n">s1</span> <span class="o">%</span> <span class="n">s1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">betti_numbers</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="go">**[1, 2, 1]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">T</span><span class="o">+</span><span class="n">T</span><span class="o">+</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">betti_numbers</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">**[1, 6, 1]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span> <span class="p">(</span>  <span class="p">(</span> <span class="n">s1</span> <span class="o">%</span> <span class="n">s1</span> <span class="p">)</span> <span class="o">+</span> <span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span> <span class="o">*</span> <span class="n">s1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">betti_numbers</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">****[1, 0, 0, 2, 1]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span> <span class="n">disjoint_union</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 2:</span>
+<span class="go"> vertices: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2), &#39;(0, 0)+&#39;, &#39;(0, 1)+&#39;, &#39;(0, 2)+&#39;, &#39;(1, 0)+&#39;, &#39;(1, 1)+&#39;, &#39;(1, 2)+&#39;, &#39;(2, 0)+&#39;, &#39;(2, 1)+&#39;, &#39;(2, 2)+&#39;]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: 18 simplices</span>
+<span class="go">  1: 54 simplices</span>
+<span class="go">  2: 36 simplices</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">betti_numbers</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">**[2, 4, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EPchar</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dims_c</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">[18, 54, 36]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="content">
+<h2>CONTENT:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="simplicial.SimplicialComplex">
+<em class="property">class </em><code class="descclassname">simplicial.</code><code class="descname">SimplicialComplex</code><span class="sig-paren">(</span><em>vertices</em>, <em>simplices=None</em>, <em>maximal_simplices=None</em>, <em>must_reindex=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialComplex" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>If just the set of verties: 0-dim simplicial complex.</dt>
+<dd><p class="first">Otherwise, simplices, which is a dictionary of integer indices i.e. simplices.
+Otherwise, just maximal_simplices, and simplices are populated.
+if must_reindex=True, simplices in terms of symbols will be converted
+to simplices in terms of integer indices</p>
+<p class="last">operations:
+connected_sum     +
+join              *
+cartesian_product %</p>
+</dd>
+</dl>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)),</span><span class="n">maximal_simplices</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:[</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">x</span> <span class="o">%</span> <span class="mi">7</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span> <span class="mi">7</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span> <span class="p">}</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">Simplicial Complex of dim 1:</span>
+<span class="go"> vertices: [0, 1, 2, 3, 4, 5, 6]</span>
+<span class="go"> simplices:</span>
+<span class="go">  0: [[0], [1], [2], [3], [4], [5], [6]]</span>
+<span class="go">  1: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [0, 6]]</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="simplicial.SimplicialComplex.check">
+<code class="descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialComplex.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if it is really a simplicial complex</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplicial.SimplicialComplex.rename_vertices">
+<code class="descname">rename_vertices</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialComplex.rename_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>append the string <em>other</em> to the names of the vertices</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.simplicial_sphere">
+<code class="descclassname">simplicial.</code><code class="descname">simplicial_sphere</code><span class="sig-paren">(</span><em>vertici</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.simplicial_sphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>sfera simpliciale: il bordo di un simplesso standard di dimension n con vertici la lista vertici</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.join_of_complexes">
+<code class="descclassname">simplicial.</code><code class="descname">join_of_complexes</code><span class="sig-paren">(</span><em>K</em>, <em>L</em>, <em>change_vertices=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.join_of_complexes" title="Permalink to this definition">¶</a></dt>
+<dd><p>make sure they do not have overlapping names…</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.cartesian_product">
+<code class="descclassname">simplicial.</code><code class="descname">cartesian_product</code><span class="sig-paren">(</span><em>K</em>, <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.cartesian_product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cartesian product of two Simplicial Complexes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.disjoint_union">
+<code class="descclassname">simplicial.</code><code class="descname">disjoint_union</code><span class="sig-paren">(</span><em>K</em>, <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.disjoint_union" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="simplicial.boundary_operators">
+<code class="descclassname">simplicial.</code><code class="descname">boundary_operators</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.boundary_operators" title="Permalink to this definition">¶</a></dt>
+<dd><p>gives the list list of boundary operators partial_k</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.betti_numbers">
+<code class="descclassname">simplicial.</code><code class="descname">betti_numbers</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.betti_numbers" title="Permalink to this definition">¶</a></dt>
+<dd><p>betti numbers: b[k] dim of boundaries; c[k] dim of chains; z[k] dim of cycles</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.homology_groups">
+<code class="descclassname">simplicial.</code><code class="descname">homology_groups</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.homology_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>generators (which form?) - not yet done</p>
+</dd></dl>
+
+<div class="section" id="other">
+<h3>OTHER:<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="simplicial.subsets">
+<code class="descclassname">simplicial.</code><code class="descname">subsets</code><span class="sig-paren">(</span><em>seq</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.subsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>funzione ricorsiva/generatore per restituire i sottoinsiemi di k elementi della lista seq.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.EPchar">
+<code class="descclassname">simplicial.</code><code class="descname">EPchar</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.EPchar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Euler-Poincaré characteristic</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EPchar</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EPchar</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.dim">
+<code class="descclassname">simplicial.</code><code class="descname">dim</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>dimension of the simplicial complex K</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.dims_c">
+<code class="descclassname">simplicial.</code><code class="descname">dims_c</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.dims_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of the numbers of simplices in each dimension</p>
+</dd></dl>
+
+</div>
+<div class="section" id="for-matrices">
+<h3>FOR MATRICES:<a class="headerlink" href="#for-matrices" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="simplicial.row_echelon_form">
+<code class="descclassname">simplicial.</code><code class="descname">row_echelon_form</code><span class="sig-paren">(</span><em>M</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.row_echelon_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="simplicial.LDR">
+<code class="descclassname">simplicial.</code><code class="descname">LDR</code><span class="sig-paren">(</span><em>M</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.LDR" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a diagonal matrix D with 1 on the diagonal, and 0 later,
+such that LMR = D, with L and R invertible</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.shift_Z">
+<code class="descclassname">simplicial.</code><code class="descname">shift_Z</code><span class="sig-paren">(</span><em>c</em>, <em>r</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.shift_Z" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the cxc matrix shifting the first r columns at the end,
+by right matrix multiplication</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="download">
+<h2>DOWNLOAD<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference download internal" href="_downloads/simplicial.py" download=""><code class="xref download docutils literal"><span class="pre">simplicial.py</span></code></a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">simplicial: simplicial complexes and topology</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="casengine.html" title="previous chapter">CASengine</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, -dlf.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/simplicial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

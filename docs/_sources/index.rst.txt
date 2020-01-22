@@ -18,6 +18,7 @@ Various pieces of software for math and teaching
    esse3
    psd2pdf
    casengine
+   simplicial
 
 
 

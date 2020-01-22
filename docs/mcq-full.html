@@ -486,7 +486,7 @@ Determinare in quali punti di <span class="s">$</span><span class="nv">\mathbb</
 </div>
 <p>has can be summarized by the following graph. Full documentation and
 use instructions are shown in the interface itself.</p>
-<img src="_images/graphviz-cc489935d8627383bc7772aeb53a89c8694ed331.png" alt="digraph {
+digraph {
 
 welcome [shape = box, label=&quot;Welcome\n[prompt = ' mcq-&gt;&gt;']&quot; ] ;
 open [shape = oval , label = &quot;Open a XeLaTeX file\n(uiFileNavigator)\n[prompt = '(File)mcq[folder]-&gt;&gt; ']&quot; ] ;
@@ -502,8 +502,7 @@ welcome -&gt; exit   [label = &quot; q &quot; ];
 
 open -&gt; active;
 create -&gt; active;
-         }" />
-<p>After this,  several commands are available, each with their own help (see below,
+         }<p>After this,  several commands are available, each with their own help (see below,
 prepending <code class="docutils literal"><span class="pre">do_</span></code> with the commands: for example, <code class="docutils literal"><span class="pre">do_x</span></code> will
 give the help for the command <code class="docutils literal"><span class="pre">x</span></code> in the CLI.</p>
 <dl class="class">
@@ -534,7 +533,7 @@ home directory. Next time <code class="docutils literal"><span class="pre">mcq.p
 </div>
 <p>Assuming the exam file name is <code class="docutils literal"><span class="pre">f.tex</span></code>, the following hierarchy of files
 will be generated, among others. The commands are on the arrows.</p>
-<img src="_images/graphviz-0a0535e9eb3b280d498a2bdf4ce93c9dab0047b0.png" alt="digraph {
+digraph {
 
 main [label=&quot;Main file: f.tex&quot;];
 xml [label=&quot;f.pos\n f.lbl\n f.pdf&quot;] ;
@@ -575,8 +574,7 @@ marked -&gt; stats  [ label = &quot; makestats &quot; ];
 stats -&gt; main [ label = &quot; check stats\n and fix f.tex &quot; ];
 
 stats -&gt; end [label = &quot; x &quot; ];
-}" />
-</div>
+}</div>
 <div class="section" id="managing-and-using-a-question-bank-with-random-choices">
 <span id="mcq-qb"></span><h2>Managing and using a Question Bank with Random Choices<a class="headerlink" href="#managing-and-using-a-question-bank-with-random-choices" title="Permalink to this headline">¶</a></h2>
 <p>(TODO)</p>
@@ -1213,6 +1211,7 @@ one per line (same syntax as the UI shell)”</p>
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes and topology</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
