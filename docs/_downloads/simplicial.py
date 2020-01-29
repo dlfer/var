@@ -119,18 +119,78 @@ Simplicial Complex of dim 2:
 >>> dims_c(K)
 [18, 54, 36]
 
+
+>>> K=simplicial_sphere([ "A","B","C" ] )
+>>> L=simplicial_sphere([ "a","b","c" ])
+>>> f=SimplicialMap({"A":"a","B":"c","C":"b"},K,L)
+>>> g=SimplicialMap({"a":"A","b":"B","c":"B"},L,K)
+>>> print(f)
+SimplicialMap{'A': 'a', 'B': 'c', 'C': 'b'}
+>>> print("is_simplicial f:", f.is_simplicial())
+is_simplicial f: True
+>>> print("is_simplicial_g:", g.is_simplicial())
+is_simplicial_g: True
+>>> print(f(["A","B"]) )
+['a', 'c']
+>>> print(f["C"] )
+b
+>>> print(f*g)
+SimplicialMap{'a': 'a', 'b': 'c', 'c': 'c'}
+>>> print(f*g*f)
+SimplicialMap{'A': 'a', 'B': 'c', 'C': 'c'}
+>>> print(homology_of_map(f))
+[Matrix([[1]]), Matrix([[-1]])]
+>>> print(homology_of_map(g))
+[Matrix([[1]]), Matrix([[0]])]
+>>> f=SimplicialMap({"A":"b","B":"b","C":"b"},K,L)
+>>> print(f)
+SimplicialMap{'A': 'b', 'B': 'b', 'C': 'b'}
+>>> print(homology_of_map(f))
+[Matrix([[1]]), Matrix([[0]])] 
+>>> K0=SimplicialComplex([0,1,2,3])
+>>> K1=SimplicialComplex([0,1,2,3],maximal_simplices={1:[[0,1]],0:[[2],[3]]} )
+>>> K2=SimplicialComplex([0,1,2,3],maximal_simplices={1:[[0,1],[0,2]],0: [ [3] ] } )
+>>> K3=SimplicialComplex([0,1,2,3], maximal_simplices={1:[[0,1],[0,2],[1,2]], 0:[[3]] } )
+>>> K4=SimplicialComplex([0,1,2,3],maximal_simplices={2:[[0,1,2]],0:[[3]] } )
+>>> K5=K4
+>>> filtration=[K0,K1,K2,K3,K4,K5]
+>>> id_map={0:0,1:1,2:2,3:3}
+>>> list_of_maps=[ SimplicialMap(id_map,filtration[j],filtration[j+1]) for j in range(len(filtration)-1)]
+>>> for f in list_of_maps:
+...     print("H:", homology_of_map(f))
+H: [Matrix([
+[1, 1, 0, 0],
+[0, 0, 1, 0],
+[0, 0, 0, 1]])]
+H: [Matrix([
+[1, 1, 0],
+[0, 0, 1]]), Matrix(0, 0, [])]
+H: [Matrix([
+[1, 0],
+[0, 1]]), Matrix(1, 0, [])]
+H: [Matrix([
+[1, 0],
+[0, 1]]), Matrix(0, 1, [])]
+H: [Matrix([
+[1, 0],
+[0, 1]]), Matrix(0, 0, []), Matrix(0, 0, [])]
+>>> PH=persistent_homology(list_of_maps)
+>>> print("PH:", PH)
+PH: {0: [(0, 5), (0, 1), (0, 2), (0, 5)], 1: [(3, 4)], 2: []}
 """
+
 #------------------------------------------------------------
 import time
 import numpy as np
 import itertools
 from sympy.matrices import * 
 from sympy import pprint
+from sympy import combinatorics
 import sys
 #------------------------------------------------------------
 # just the decoration... 
 MAX_NUMBER=3
-
+MAX_OUTPUT_LENGTH=120
 def timeit(method):
     def timed(*args, **kw):
         ts = time.time()
@@ -155,7 +215,7 @@ def all_subsets(seq):
     for k in range(1,len(seq)+1):
         for x in subsets(seq,k):
             yield x
-   
+
 #------------------------------------------------------------
 def seq_remove(j,seq):
     return seq[:j] + seq[j+1:]
@@ -242,7 +302,7 @@ Simplicial Complex of dim 1:
             self.dimension=max(self.simplices.keys())
         else:
             self.simplices=dict( [ (0, [[x] for x in range(len(vertices))] ) ] ) 
-        
+        self.dims_c=[len(self.simplices[k]) for k in range(self.dimension+1) ] 
     def __repr__(self):
         return str(self)
 
@@ -252,7 +312,7 @@ Simplicial Complex of dim 1:
             tmpstr=("{}: {}".format(k, [ 
             [ self.vertices[j] for j in ind_simplex ] 
             for  ind_simplex in self.simplices[k] ])) 
-            if len(tmpstr)>200:
+            if len(tmpstr)>MAX_OUTPUT_LENGTH:
                 tmpstr="{}: {} simplices".format(k,len(self.simplices[k]))
             str_list += [tmpstr]
         str_simplices="\n  ".join(str_list)
@@ -262,6 +322,10 @@ Simplicial Complex of dim 1:
                                               ]  )   ) for k in self.simplices ] ))
         return "Simplicial Complex of dim {}:\n vertices: {}\n simplices:\n  {}".format(\
                 self.dimension,self.vertices,str_simplices)
+    def simplex_vertices(self,ind_simplex):
+        return [self.vertices[j] for j in ind_simplex]
+    def simplex_indices(self,list_of_vertices):
+        return [self.vertices.index(x) for x in list_of_vertices]
     def check(self):
         "check if it is really a simplicial complex"
         pass
@@ -296,7 +360,75 @@ def EPchar(K):
 
 def dims_c(K):
     "list of the numbers of simplices in each dimension"
-    return [len(K.simplices[k]) for k in range(dim(K)+1) ]
+    return K.dims_c 
+
+#------------------------------------------------------------
+class SimplicialMap:
+    """ simple class to store the data of a simplicial map f : K -> K"""
+    def __init__(self,f,K,L):
+        self.f=f #dict
+        self.K=K #simpl complex
+        self.L=L #simpl complex
+    def __str__(self):
+        tmpstr="SimplicialMap{}".format(self.f)
+        if len(tmpstr)>MAX_OUTPUT_LENGTH:
+            tmpstr=tmpstring[:(MAX_OUTPUT_LENGTH-3)]+"..."
+        return tmpstr
+    def is_simplicial(self):
+        "check if it is simplicial" 
+        for x in self.K.vertices:
+            if x not in self.f: #a vertex does not have image
+                print("{} not a key".format(x))
+                return False
+            if self.f[x] not in self.L.vertices:
+                print("{} not in L.vertices".format(x))
+                return False   #image not defined
+        for k in range(dim(self.K)+1):
+            for s in self.K.simplices[k]:
+                tmps=sorted(list({ self.L.vertices.index(self.f[x]) for x in  self.K.simplex_vertices(s) } ) )
+                if tmps not in self.L.simplices[len(tmps)-1]:
+                    print("{} not in L.simplices".format(tmps))
+                    return False
+        return True
+    def __mul__(self,other):
+        "composition: assume img (other) = dom (self) "
+        return SimplicialMap( { x : self [ other [x] ]  for x in other.K.vertices } , other.K,self.L)
+        return "{} * {}".format(self,other)
+    def __call__(self,other):
+        "f([v1,v2]), applied on simplices"
+        return [ self.f[x] for x in other]
+    def __getitem__(self,other):
+        "f[v] applied on vertices"
+        return self.f[other]
+    def in_chains(self):
+        "chain map induced by f, represented as matrix, for each k = 0... dim K"
+        result={}
+        for k in range(dim(self.K)+1):
+            mat=zeros(self.K.dims_c[k],self.L.dims_c[k])
+            for ind_s in range(len(self.K.simplices[k])):
+                sign,indices= sign_ordered(  self.L.simplex_indices( 
+                 self(self.K.simplex_vertices(self.K.simplices[k][ind_s]))) )
+                if indices is not None: #and sign != 0! 
+                    mat[self.L.simplices[k].index(indices),ind_s] = sign
+            result[k]= mat
+        return  result
+
+#------------------------------------------------------------
+
+def sign_ordered(seq):
+    " 0 if it is not injective, otherwise sign of the permutation of the sequence seq of integers"
+    # seq is a sequence of (not necessarily distinct) integers: first sort it
+    # 1,5,4 -> 1,4 5 => permutation [0,2,1] 
+    n=len(seq)
+    nseq=len(list(set(seq)))
+    if nseq < n :
+        return (0, None)
+    sorted_seq=sorted(seq)
+    p=combinatorics.Permutation([sorted_seq.index(seq[x]) for x in range(len(seq)) ])
+    sign=(-1)**p.parity()
+    # print(seq, ":", p,sign)
+    return (sign,sorted(seq))
+
 
 #------------------------------------------------------------
 def simplicial_sphere(vertici):
@@ -336,6 +468,7 @@ def join_of_complexes(K,L,change_vertices=False):
 
 #--------------------------------------------------------------------------------
 def disjoint_union(K,L):
+    "disjoint union of K and L" 
     offset=len(K.vertices)
     try:
         vertici=K.vertices + [ x+offset for x in L.vertices ]
@@ -381,8 +514,8 @@ def connected_sum(K,L):
     #             [identify(tau) for tau in L.simplices[2] if tau != [0,1,2]  ]
     return SimplicialComplex(vertici,simplices=simplessi)                    
 
-#--------------------------------------------------------------------------------
- 
+# --------------------------------------------------------------------------------
+
 def _cartesian_product(lsts):
     return list(itertools.product(*lsts))
 
@@ -414,7 +547,7 @@ def cartesian_product(K,L):
     return SimplicialComplex(vertici, simplices=new_simplices , must_reindex=True )
 
 
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 def faces_operators(K):
     """K is a simplicial complex. it returns the faces operators 
@@ -425,7 +558,7 @@ def faces_operators(K):
         result[k]=[ [K.simplices[k-1].index(seq_remove(j,sigma)) for sigma in K.simplices[k] ]  for j in range(k+1)]
     return result
 
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 def boundary_operators(K):
     """gives the list list of boundary operators \partial_k"""
@@ -443,7 +576,7 @@ def boundary_operators(K):
         result[k]=dk 
     return result
 
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 def betti_numbers(K):
     """betti numbers: b[k] dim of boundaries; c[k] dim of chains; z[k] dim of cycles"""
@@ -461,25 +594,38 @@ def betti_numbers(K):
     return h 
 
 #--------------------------------------------------------------------------------
-def row_echelon_form(M):
+def row_echelon_form(M,get_pivots=False):
+    "row echelon form of matrix M, with or without pivot list"
     nrows,ncols=M.shape
     tmpM=Matrix.hstack(M.copy(),eye(nrows))
-    _row_echelon_form(tmpM)
-    return (tmpM[:,:ncols] , tmpM[:,ncols:] )
+    pivots=_row_echelon_form(tmpM)
+    if nrows == 0 or ncols==0:
+        pivots=[] #strange...
+    if get_pivots:
+        return (tmpM[:,:ncols] , tmpM[:,ncols:] ,pivots)
+    else:    
+        return (tmpM[:,:ncols] , tmpM[:,ncols:] )
 
-def _row_echelon_form(A,starting_pivot=(0,0)):
+def _row_echelon_form(A,starting_pivots=[(0,0)],do_nothing=False):
     """return the row echelon form E (almost reduced) of matrix A, together with an invertible
 matrix L such that LM=E
 
 >>> K=simplicial_sphere(2)
 >>> print(row_echelon_form(boundary_operators(K)[1] ))
-1
-
+(Matrix([
+[1, 1, 1, 0, 0, 0],
+[0, 1, 1, 1, 1, 0],
+[0, 0, 1, 0, 1, 1],
+[0, 0, 0, 0, 0, 0]]), Matrix([
+[-1,  0,  0, 0],
+[-1, -1,  0, 0],
+[-1, -1, -1, 0],
+[ 1,  1,  1, 1]]))
 """
-    spx,spy=starting_pivot
-    nrows,ncols=A.shape[0], A.shape[1]
-    if spx > nrows or spy > ncols:
-        return "Finished"
+    spx,spy=starting_pivots[-1]
+    nrows,ncols=A.shape
+    if spx >= nrows or spy >= ncols:
+        return starting_pivots[:-1]
     # find the first x for which A[x,0] != 0 
     done=False
     for y in range(spy,ncols):
@@ -492,12 +638,13 @@ matrix L such that LM=E
                     break
     if not done:
         # no pivots found
-        # print("not done:")
-        # pprint(A)
-        return "Finished - no pivots found"
+        return starting_pivots[:-1] 
+    starting_pivots[-1]=(spx,found_y)
     x=found_x
     y=found_y
     # exchange rows
+    if do_nothing:
+        return _row_echelon_form(A,starting_pivots=starting_pivots + [(spx+1, y+1)], do_nothing=True )
     if spx != x:
         A[spx,y:],A[x,y:] = A[x,y:],A[spx,y:]
     # normalize 
@@ -505,16 +652,17 @@ matrix L such that LM=E
     # nullify the elements below (spx,spy)
     for xx in range(spx+1,nrows):
         A[xx,y:] += - A[spx,y:] * A[xx,y] 
-    return _row_echelon_form(A,starting_pivot=(spx+1, y+1))
+    return _row_echelon_form(A,starting_pivots=starting_pivots + [(spx+1, y+1)]  )
 
 
 #--------------------------------------------------------------------------------
 def LDR(M):
     """return a diagonal matrix D with 1 on the diagonal, and 0 later,
     such that LMR = D, with L and R invertible"""
-    row_E,L = row_echelon_form(M) 
+    row_E,L  = row_echelon_form(M) 
     D,R = row_echelon_form(row_E.T)
     return (L, D.T, R.T)
+
 #--------------------------------------------------------------------------------
 def shift_Z(c,r):
     """return the cxc matrix shifting the first r columns at the end, 
@@ -538,14 +686,26 @@ def rank_of_diagonal(D):
     return r
 
 #--------------------------------------------------------------------------------
-def homology_groups(K):
-    """generators (which form?) - not yet done"""
+def is_pivot(j,mat):
+    """ return true if j is a pivot of a row-echelon-form matrix"""
+    return j in [ x[1] for x in all_pivots(mat)]
+
+def all_pivots(mat):
+    """ return all the pivot of a row-echelon-form matrix"""
+    nrows,ncols=mat.shape
+    if nrows == 0 or ncols==0:
+        return [] #strange...
+    return _row_echelon_form(mat,starting_pivots=[(0,0)],do_nothing=True)
+
+#--------------------------------------------------------------------------------
+def homology(K):
+    """generators and projectors of each homology group (all of them) -- see code"""
     d=boundary_operators(K)
     D=[0 for x in range(dim(K)+1)] 
     L=[0 for x in range(dim(K)+2)] 
     R=[0 for x in range(dim(K)+1)] 
     H=[0 for x in range(dim(K)+1)] 
-    r=[0 for x in range(dim(K)+1)] 
+    r=[0 for x in range(dim(K)+2)] 
     # first: k=0:
     c=dims_c(K)
     # then: compute all D,L,R: 
@@ -554,27 +714,117 @@ def homology_groups(K):
     # L[1] ... L[dim(K)]
     R[0]=eye(c[0])
     L[dim(K)+1]=eye(c[dim(K)])
+
     for k in range(1,dim(K)+1):
         ## L d R = D 
+        # print("k=",k)
         L[k], D[k], R[k] = LDR( R[k-1].inv() * d[k] )
-        r[k]=rank_of_diagonal(D[k])
+        r[k]=rank_of_diagonal(D[k]) ## TODO: just take it from the pivot list
         shift_matrix=shift_Z(c[k],r[k]) 
         D[k] = D[k] * shift_matrix  
         R[k] = R[k] * shift_matrix
-    return (L,D,R,r)
+    for k in range(dim(K)+1):    
+        gens_of_H = [(R[k]*L[k+1].inv())[:,x]  for x in range(r[k+1],c[k]-r[k])]
+        hk=len(gens_of_H)
+        homology_class_matrix= Matrix.hstack( zeros(hk,r[k+1]), 
+                eye(hk), zeros(hk,r[k]) ) * L[k+1] * R[k].inv() 
+        H[k]={'gens': gens_of_H,'hcm':homology_class_matrix} #matrix of the projection C_k -> H_k
+    return (L,D,R,r,H)
+# now the c[k] elements of the basis of Q^(c[k]) are in the following order 
+    # b[0] ... b[r[k+1]-1] (image of D[k+1] & \
+            # x[0] .... x[h[k]-1] (generators of Homology H[k])
+    # b'[0]...b'[r[k]-1] (complemento ortogonale di Ker D[k])
 
-    pprint(d[1])
-    L, D, R =  LDR(d[1]) 
-    r=rank_of_diagonal(D)
-    pprint(D)
-    Linv=L.inv()
-    print("rank={}, c0={}".format(r,c[0]))
-    basis_of_H = [Linv[:,x]  for x in range(r,c[0])]
-    H[0] = basis_of_H 
-    for k in range(1,dim(K)+1):
-        sys.stdout.write("*")
-        # L[k], D[k], R[k] =  LDR(d[k]) 
-    return H
+#--------------------------------------------------------------------------------
+def _print_gen_array(K_simplices,M):
+    "K simplicial complex, M is the matrix (vector) representing the chain in K"
+    nrows,ncols=M.shape
+    if ncols != 1:
+        raise Exception("ncols != 1!!!")
+    if nrows != len(K_simplices):
+        raise Exception("nrows != len(K_simplices)!")
+    result=[]
+    for j in range(nrows):
+        if M[j,0] != 0:
+            result += [ ( M[j,0], K_simplices[j] ) ] 
+    return result
+
+#--------------------------------------------------------------------------------
+def homology_of_map(f):
+    """ f is  SimplicialMap: comput the matrix of its homology """
+    LK,DK,RK,rK,HK=homology(f.K)
+    LL,DL,RL,rL,HL=homology(f.L)
+    F=f.in_chains()
+    result=[None for x in range(dim(f.K)+1)]
+    for k in range(dim(f.K)+1):
+        mat=zeros(len(HL[k]['gens']),len(HK[k]['gens']) )
+        for ind_x, x in enumerate(HK[k]['gens']):
+            mat[:, ind_x] =  HL[k]['hcm'] * F[k] * x
+        result[k]=mat
+    return result   
+
+#--------------------------------------------------------------------------------
+
+def persistent_homology(list_of_maps):
+    """**very** simple computation of persistent homology of a sequence of induced chain maps,
+    using a naive row-echelon-form reduction of each homology morphism"""
+    nmaps=len(list_of_maps)
+    mats_arrays =[ homology_of_map(f) for f in list_of_maps ]
+    max_k= max( len(Hs) for Hs in  mats_arrays )
+    result= {}
+    generators={}
+    birth_death_pairs={}
+    for k in range(max_k):
+        result[k] = [None for x in range(nmaps)]
+        generators[k]=[]
+        birth_death_pairs[k]=[]
+        for j in range(nmaps):
+            if k < len( mats_arrays[j]):
+                result[k][j]=mats_arrays[j][k]
+        for j in range(nmaps):
+            if result[k][j] is not None:
+                if j>0 and result[k][j-1] is not None:
+                    Lp=L; rankp=len(pivots); # print(pivots)
+                    M,L,pivots = row_echelon_form(result[k][j] * Lp.inv() ,get_pivots=True)
+                else:
+                    M,L,pivots = row_echelon_form(result[k][j] ,get_pivots=True)
+                result[k][j] = M    
+                # now: generators born at j are the generators of 0-th hom, and those *not*
+                # belonging to the image (given by pivots). 
+                if j==0:
+                    generators[k] += [ (j, x) for x in range( M.shape[1] ) ] 
+                elif result[k][j-1] is not None:
+                    generators[k] += [ (j,x) for x in range(M.shape[1]) if x >= rankp ] 
+                else:
+                    generators[k] += [ (j, x) for x in range( M.shape[1] ) ] 
+        #now get their deaths...
+        # first: array of compositions matrices (fixed k): H_i -> H_j, for i<j.
+        # and i,j = 0 .. nmaps
+        composed=[ [None for i in range(nmaps+1)] for j in range(nmaps+1) ] 
+        for j in range(nmaps):
+            composed[j][j+1] = result[k][j]
+            for i in range(j+2,nmaps+1):
+                if result[k][i-1] is not None and composed[j][i-1] is not None:
+                    composed[j][i] = result[k][i-1] * composed[j][i-1]
+        for j,g in generators[k]:
+            # g is a generator in the domain of f_j, the index of the basis element
+            is_alive=True
+            here=j
+            while is_alive:
+                if here < nmaps: 
+                    here += 1
+                    Hjhere_mat=composed[j][here] 
+                    if Hjhere_mat is None: 
+                        is_alive=False
+                    else:
+                        # if img_of_g is a pivot, it is alive. otherwise, dead. 
+                        if not is_pivot(g,Hjhere_mat):
+                            is_alive=False
+                else:
+                    is_alive=False
+            birth_death_pairs[k] += [ (j,here) ]
+    return birth_death_pairs
+
 #--------------------------------------------------------------------------------
 
 def main():
@@ -679,9 +929,9 @@ def old1_test():
     print("dims_c:", dims_c(K))
     print("betti_numbers of K: ", betti_numbers(K) )
     print("EPchar(K): ", EPchar(K))
-    
+
 #--------------------------------------------------------------------------------
-def test():
+def old2_test():
     K=disjoint_union(simplicial_sphere(2), simplicial_sphere(1))
     T=simplicial_sphere(1) % simplicial_sphere(1)
     K=T
@@ -692,7 +942,7 @@ def test():
     # pprint(M)
     row_E,L = row_echelon_form(M) 
     # pprint(row_E)
-    L,D,R,DD= homology_groups(K)
+    L,D,R,DD= homology(K)
     for k in range(1,dim(K)+1):
         print("k=", k)
         # print( max( D[k] - D[k]*L[k+1].inv() ) ) 
@@ -702,13 +952,29 @@ def test():
         # first the z_k cycles, then the rest.
         # in the z_k cycles_ first b_k, then h_k. 
         # so: 0... r[k]-1, Homology[ r[k] ... z[k-1]]  z[k] ... 
-    
+
+# --------------------------------------------------------------------------------
 
 
+def test():
+    # S1=simplicial_sphere(['A','B','C']) 
+    S1=simplicial_sphere(1)
+    T=S1 % S1 %S1
+    K=S1
+    L,D,R,r,H = homology(K)
+    for k in range(dim(K)+1):
+        # print("k=",k)
+        # print(H[k])
+        gens=H[k]['gens']
+        print("len gens:", len(gens) ) 
+        homology_class_matrix=H[k]['hcm']
+        for x in gens:
+            print(_print_gen_array([K.simplex_vertices(s) for s in K.simplices[k]],x))
+    L=S1
+    f=SimplicialMap({0:0,1:1,2:2}, K, L)
+    print( f * f )
 
-
-
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 if __name__=='__main__':
     test()

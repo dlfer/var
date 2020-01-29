@@ -192,6 +192,65 @@ complexes and alike.</p>
 <span class="go">[18, 54, 36]</span>
 </pre></div>
 </div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">([</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span> <span class="p">]</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">([</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span> <span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">SimplicialMap</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">:</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">:</span><span class="s2">&quot;b&quot;</span><span class="p">},</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">=</span><span class="n">SimplicialMap</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="s2">&quot;B&quot;</span><span class="p">},</span><span class="n">L</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="go">SimplicialMap{&#39;A&#39;: &#39;a&#39;, &#39;B&#39;: &#39;c&#39;, &#39;C&#39;: &#39;b&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is_simplicial f:&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">is_simplicial</span><span class="p">())</span>
+<span class="go">is_simplicial f: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is_simplicial_g:&quot;</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">is_simplicial</span><span class="p">())</span>
+<span class="go">is_simplicial_g: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">])</span> <span class="p">)</span>
+<span class="go">[&#39;a&#39;, &#39;c&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">]</span> <span class="p">)</span>
+<span class="go">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">g</span><span class="p">)</span>
+<span class="go">SimplicialMap{&#39;a&#39;: &#39;a&#39;, &#39;b&#39;: &#39;c&#39;, &#39;c&#39;: &#39;c&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">f</span><span class="p">)</span>
+<span class="go">SimplicialMap{&#39;A&#39;: &#39;a&#39;, &#39;B&#39;: &#39;c&#39;, &#39;C&#39;: &#39;c&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">homology_of_map</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="go">[Matrix([[1]]), Matrix([[-1]])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">homology_of_map</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+<span class="go">[Matrix([[1]]), Matrix([[0]])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="n">SimplicialMap</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">:</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">:</span><span class="s2">&quot;b&quot;</span><span class="p">},</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="go">SimplicialMap{&#39;A&#39;: &#39;b&#39;, &#39;B&#39;: &#39;b&#39;, &#39;C&#39;: &#39;b&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">homology_of_map</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="go">[Matrix([[1]]), Matrix([[0]])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K0</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K1</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">maximal_simplices</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span><span class="mi">0</span><span class="p">:[[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">]]}</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K2</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">maximal_simplices</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span><span class="mi">0</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">]</span> <span class="p">}</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K3</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">maximal_simplices</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span> <span class="mi">0</span><span class="p">:[[</span><span class="mi">3</span><span class="p">]]</span> <span class="p">}</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K4</span><span class="o">=</span><span class="n">SimplicialComplex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">maximal_simplices</span><span class="o">=</span><span class="p">{</span><span class="mi">2</span><span class="p">:[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span><span class="mi">0</span><span class="p">:[[</span><span class="mi">3</span><span class="p">]]</span> <span class="p">}</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K5</span><span class="o">=</span><span class="n">K4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtration</span><span class="o">=</span><span class="p">[</span><span class="n">K0</span><span class="p">,</span><span class="n">K1</span><span class="p">,</span><span class="n">K2</span><span class="p">,</span><span class="n">K3</span><span class="p">,</span><span class="n">K4</span><span class="p">,</span><span class="n">K5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">id_map</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_maps</span><span class="o">=</span><span class="p">[</span> <span class="n">SimplicialMap</span><span class="p">(</span><span class="n">id_map</span><span class="p">,</span><span class="n">filtration</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">filtration</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtration</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">list_of_maps</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H:&quot;</span><span class="p">,</span> <span class="n">homology_of_map</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="go">H: [Matrix([</span>
+<span class="go">[1, 1, 0, 0],</span>
+<span class="go">[0, 0, 1, 0],</span>
+<span class="go">[0, 0, 0, 1]])]</span>
+<span class="go">H: [Matrix([</span>
+<span class="go">[1, 1, 0],</span>
+<span class="go">[0, 0, 1]]), Matrix(0, 0, [])]</span>
+<span class="go">H: [Matrix([</span>
+<span class="go">[1, 0],</span>
+<span class="go">[0, 1]]), Matrix(1, 0, [])]</span>
+<span class="go">H: [Matrix([</span>
+<span class="go">[1, 0],</span>
+<span class="go">[0, 1]]), Matrix(0, 1, [])]</span>
+<span class="go">H: [Matrix([</span>
+<span class="go">[1, 0],</span>
+<span class="go">[0, 1]]), Matrix(0, 0, []), Matrix(0, 0, [])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PH</span><span class="o">=</span><span class="n">persistent_homology</span><span class="p">(</span><span class="n">list_of_maps</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PH:&quot;</span><span class="p">,</span> <span class="n">PH</span><span class="p">)</span>
+<span class="go">PH: {0: [(0, 5), (0, 1), (0, 2), (0, 5)], 1: [(3, 4)], 2: []}</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -235,6 +294,24 @@ cartesian_product %</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="simplicial.SimplicialMap">
+<em class="property">class </em><code class="descclassname">simplicial.</code><code class="descname">SimplicialMap</code><span class="sig-paren">(</span><em>f</em>, <em>K</em>, <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>simple class to store the data of a simplicial map f : K -&gt; K</p>
+<dl class="method">
+<dt id="simplicial.SimplicialMap.is_simplicial">
+<code class="descname">is_simplicial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialMap.is_simplicial" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if it is simplicial</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplicial.SimplicialMap.in_chains">
+<code class="descname">in_chains</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialMap.in_chains" title="Permalink to this definition">¶</a></dt>
+<dd><p>chain map induced by f, represented as matrix, for each k = 0… dim K</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="function">
 <dt id="simplicial.simplicial_sphere">
 <code class="descclassname">simplicial.</code><code class="descname">simplicial_sphere</code><span class="sig-paren">(</span><em>vertici</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.simplicial_sphere" title="Permalink to this definition">¶</a></dt>
@@ -254,9 +331,16 @@ cartesian_product %</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="simplicial.connected_sum">
+<code class="descclassname">simplicial.</code><code class="descname">connected_sum</code><span class="sig-paren">(</span><em>K</em>, <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.connected_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>assume both have dim=2 and indices are ranges 0… n</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="simplicial.disjoint_union">
 <code class="descclassname">simplicial.</code><code class="descname">disjoint_union</code><span class="sig-paren">(</span><em>K</em>, <em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.disjoint_union" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>disjoint union of K and L</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="simplicial.boundary_operators">
@@ -271,9 +355,28 @@ cartesian_product %</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="simplicial.homology_groups">
-<code class="descclassname">simplicial.</code><code class="descname">homology_groups</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.homology_groups" title="Permalink to this definition">¶</a></dt>
-<dd><p>generators (which form?) - not yet done</p>
+<dt id="simplicial.sign_ordered">
+<code class="descclassname">simplicial.</code><code class="descname">sign_ordered</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.sign_ordered" title="Permalink to this definition">¶</a></dt>
+<dd><p>0 if it is not injective, otherwise sign of the permutation of the sequence seq of integers</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.homology">
+<code class="descclassname">simplicial.</code><code class="descname">homology</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.homology" title="Permalink to this definition">¶</a></dt>
+<dd><p>generators and projectors of each homology group (all of them) – see code</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.homology_of_map">
+<code class="descclassname">simplicial.</code><code class="descname">homology_of_map</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.homology_of_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>f is  SimplicialMap: comput the matrix of its homology</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.persistent_homology">
+<code class="descclassname">simplicial.</code><code class="descname">persistent_homology</code><span class="sig-paren">(</span><em>list_of_maps</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.persistent_homology" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>very</strong> simple computation of persistent homology of a sequence of induced chain maps,
+using a naive row-echelon-form reduction of each homology morphism</p>
 </dd></dl>
 
 <div class="section" id="other">
@@ -315,8 +418,9 @@ cartesian_product %</p>
 <h3>FOR MATRICES:<a class="headerlink" href="#for-matrices" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="simplicial.row_echelon_form">
-<code class="descclassname">simplicial.</code><code class="descname">row_echelon_form</code><span class="sig-paren">(</span><em>M</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.row_echelon_form" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descclassname">simplicial.</code><code class="descname">row_echelon_form</code><span class="sig-paren">(</span><em>M</em>, <em>get_pivots=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.row_echelon_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>row echelon form of matrix M, with or without pivot list</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="simplicial.LDR">

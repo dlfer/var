@@ -43,13 +43,16 @@ CONTENT:
 .. autoclass:: simplicial.SimplicialComplex 
    :members: 
 
+.. autoclass:: simplicial.SimplicialMap
+   :members: 
+
 .. autofunction:: simplicial.simplicial_sphere
 
 .. autofunction:: simplicial.join_of_complexes
 
 .. autofunction:: simplicial.cartesian_product
 
-.. .. autofunction:: simplicial.connected_sum
+.. autofunction:: simplicial.connected_sum
 
 .. autofunction:: simplicial.disjoint_union   
 
@@ -57,7 +60,15 @@ CONTENT:
 
 .. autofunction:: simplicial.betti_numbers    
 
-.. autofunction:: simplicial.homology_groups   
+
+.. autofunction:: simplicial.sign_ordered
+
+.. autofunction:: simplicial.homology
+
+.. autofunction:: simplicial.homology_of_map
+
+.. autofunction:: simplicial.persistent_homology
+
 
 OTHER:
 ------
