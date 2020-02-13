@@ -47,7 +47,7 @@ Simplicial Complex of dim 1:
  vertices: [('A', 0), ('A', 1), ('A', 2), ('B', 0), ('B', 1), ('B', 2)]
  simplices:
   0: [[('A', 0)], [('A', 1)], [('A', 2)], [('B', 0)], [('B', 1)], [('B', 2)]]
-  1: [[('A', 0), ('A', 1)], [('A', 0), ('A', 2)], [('A', 1), ('A', 2)], [('B', 0), ('B', 1)], [('B', 0), ('B', 2)], [('B', 1), ('B', 2)]]
+  1: 6 simplices
 
 
 >>> K= simplicial_sphere(1)
@@ -77,7 +77,7 @@ Simplicial Complex of dim 1:
 Simplicial Complex of dim 4:
  vertices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
  simplices:
-  0: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17], [18], [19], [20], [21], [22], [23]]
+  0: 24 simplices
   1: 141 simplices
   2: 338 simplices
   3: 375 simplices
@@ -146,7 +146,7 @@ SimplicialMap{'A': 'a', 'B': 'c', 'C': 'c'}
 >>> print(f)
 SimplicialMap{'A': 'b', 'B': 'b', 'C': 'b'}
 >>> print(homology_of_map(f))
-[Matrix([[1]]), Matrix([[0]])] 
+[Matrix([[1]]), Matrix([[0]])]
 >>> K0=SimplicialComplex([0,1,2,3])
 >>> K1=SimplicialComplex([0,1,2,3],maximal_simplices={1:[[0,1]],0:[[2],[3]]} )
 >>> K2=SimplicialComplex([0,1,2,3],maximal_simplices={1:[[0,1],[0,2]],0: [ [3] ] } )
@@ -240,16 +240,17 @@ def _populate_the_simplices(maximal_simplices):
 #------------------------------------------------------------
 class SimplicialComplex:
     """If just the set of verties: 0-dim simplicial complex. 
-       Otherwise, simplices, which is a dictionary of integer indices i.e. simplices.
-       Otherwise, just maximal_simplices, and simplices are populated.
-       if must_reindex=True, simplices in terms of symbols will be converted
-       to simplices in terms of integer indices
+Otherwise, simplices, which is a dictionary of integer indices i.e. simplices.
+Otherwise, just maximal_simplices, and simplices are populated.
+if must_reindex=True, simplices in terms of symbols will be converted
+to simplices in terms of integer indices
        
-       operations: 
-       connected_sum     +
-       join              *
-       cartesian_product %
+**operations**:
 
+ -  connected_sum     +  
+ -  join              *  
+ -  cartesian_product %  
+ -  disjoint_union   
 
 
 EXAMPLES:
@@ -264,7 +265,7 @@ Simplicial Complex of dim 1:
   1: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [0, 6]]
 """
     def __init__(self,vertices,simplices=None,maximal_simplices=None,must_reindex=False):
-        """ arguments: 
+        """Class init arguments: 
 >>> K=SimplicialComplex([0,1,2],must_reindex=True,maximal_simplices={2: [[0,1,2]] })
 """
         #first a little bit of input checking  
@@ -299,13 +300,15 @@ Simplicial Complex of dim 1:
             else:
                 new_simplessi=maximal_simplices
             self.simplices=_populate_the_simplices(new_simplessi)
+            for iv in range(len(self.vertices)):
+                if [iv] not in self.simplices[0]:
+                    self.simplices[0] += [ [iv] ] ## add the vertices, if not already there
             self.dimension=max(self.simplices.keys())
         else:
             self.simplices=dict( [ (0, [[x] for x in range(len(vertices))] ) ] ) 
         self.dims_c=[len(self.simplices[k]) for k in range(self.dimension+1) ] 
     def __repr__(self):
         return str(self)
-
     def __str__(self):
         str_list=[]
         for k in self.simplices.keys():
@@ -323,19 +326,38 @@ Simplicial Complex of dim 1:
         return "Simplicial Complex of dim {}:\n vertices: {}\n simplices:\n  {}".format(\
                 self.dimension,self.vertices,str_simplices)
     def simplex_vertices(self,ind_simplex):
+        """return the list of vertices of a index_simplex (i.e. a list of indices of vertices)"""
         return [self.vertices[j] for j in ind_simplex]
     def simplex_indices(self,list_of_vertices):
+        """return the list of vertices corresponding to a list of indices"""
         return [self.vertices.index(x) for x in list_of_vertices]
     def check(self):
-        "check if it is really a simplicial complex"
-        pass
+        r"""check if it is really a simplicial complex
+
+>>> K=SimplicialComplex(["a","b",2,3,4],maximal_simplices={1: [[0,1]]})
+>>> print("K:", K)
+K: Simplicial Complex of dim 1:
+ vertices: ['a', 'b', 2, 3, 4]
+ simplices:
+  0: [['a'], ['b'], [2], [3], [4]]
+  1: [['a', 'b']]
+>>> print("check:", K.check() ) 
+check: True
+"""
+        for k in range(self.dimension,0,-1):
+            for simpl in self.simplices[k]:
+                for j in range(k+1):
+                    if seq_remove(j,simpl) not in self.simplices[k-1]:
+                        return False
+        return True            
     def __mul__(self,other):
-        "cartesian product of simplicial complexes"
+        "join of two simplicial complexes: K * L"
         return join_of_complexes(self,other,change_vertices=True)
     def __add__(self,other):
+        "K + L : connected sum of two triangulated surfaces K and L"
         return connected_sum(self,other)
     def __mod__(self,other):
-        """ K % L is the cartesian product K x L$"""
+        """ K % L is the cartesian product K x L"""
         return cartesian_product(self,other)
     def rename_vertices(self,other):
         "append the string *other* to the names of the vertices"  
@@ -364,8 +386,11 @@ def dims_c(K):
 
 #------------------------------------------------------------
 class SimplicialMap:
-    """ simple class to store the data of a simplicial map f : K -> K"""
+    """ simple class to store the data of a simplicial map f : K -> L"""
     def __init__(self,f,K,L):
+        """ f is a dict { x : f(x) } for x in vertices of K, 
+K is the domain,
+L is the codomain"""
         self.f=f #dict
         self.K=K #simpl complex
         self.L=L #simpl complex
@@ -375,7 +400,7 @@ class SimplicialMap:
             tmpstr=tmpstring[:(MAX_OUTPUT_LENGTH-3)]+"..."
         return tmpstr
     def is_simplicial(self):
-        "check if it is simplicial" 
+        "check if it is really a simplicial map" 
         for x in self.K.vertices:
             if x not in self.f: #a vertex does not have image
                 print("{} not a key".format(x))
@@ -391,14 +416,13 @@ class SimplicialMap:
                     return False
         return True
     def __mul__(self,other):
-        "composition: assume img (other) = dom (self) "
+        "f * g : composition: assume img (g) = dom (f) "
         return SimplicialMap( { x : self [ other [x] ]  for x in other.K.vertices } , other.K,self.L)
-        return "{} * {}".format(self,other)
     def __call__(self,other):
-        "f([v1,v2]), applied on simplices"
+        "evaluate the function on simplices: f([v1,v2]), applied on simplices"
         return [ self.f[x] for x in other]
     def __getitem__(self,other):
-        "f[v] applied on vertices"
+        "evaluate the function on vertices: f[v] applied on vertices"
         return self.f[other]
     def in_chains(self):
         "chain map induced by f, represented as matrix, for each k = 0... dim K"
@@ -416,7 +440,7 @@ class SimplicialMap:
 #------------------------------------------------------------
 
 def sign_ordered(seq):
-    " 0 if it is not injective, otherwise sign of the permutation of the sequence seq of integers"
+    "0 (zero) if it is not injective, otherwise sign of the permutation of the sequence seq of integers"
     # seq is a sequence of (not necessarily distinct) integers: first sort it
     # 1,5,4 -> 1,4 5 => permutation [0,2,1] 
     n=len(seq)
@@ -426,7 +450,6 @@ def sign_ordered(seq):
     sorted_seq=sorted(seq)
     p=combinatorics.Permutation([sorted_seq.index(seq[x]) for x in range(len(seq)) ])
     sign=(-1)**p.parity()
-    # print(seq, ":", p,sign)
     return (sign,sorted(seq))
 
 
@@ -485,7 +508,7 @@ def disjoint_union(K,L):
 
 #--------------------------------------------------------------------------------
 def connected_sum(K,L):
-    """assume both have dim=2 and indices are ranges 0... n """
+    """Connected sum of K and L : assume both have dim=2 and indices are ranges 0... n """
     K_vertices=list(range(len(K.vertices)))
     L_vertices=list(range(len(L.vertices)))
     if dim(K) !=2 or dim(L) != 2:
@@ -579,7 +602,7 @@ def boundary_operators(K):
 # --------------------------------------------------------------------------------
 
 def betti_numbers(K):
-    """betti numbers: b[k] dim of boundaries; c[k] dim of chains; z[k] dim of cycles"""
+    """Betti numbers: b[k] dim of boundaries; c[k] dim of chains; z[k] dim of cycles"""
     # c[k] = b[k-1] +z[k]  
     # h[k] = z[k] - b[k] 
     c=dims_c(K) # [len(K.simplices[k]) for k in range(dim(K)+1) ]
@@ -595,7 +618,7 @@ def betti_numbers(K):
 
 #--------------------------------------------------------------------------------
 def row_echelon_form(M,get_pivots=False):
-    "row echelon form of matrix M, with or without pivot list"
+    "Row echelon form of matrix M, with or without pivot list"
     nrows,ncols=M.shape
     tmpM=Matrix.hstack(M.copy(),eye(nrows))
     pivots=_row_echelon_form(tmpM)
@@ -699,12 +722,53 @@ def all_pivots(mat):
 
 #--------------------------------------------------------------------------------
 def homology(K):
-    """generators and projectors of each homology group (all of them) -- see code"""
+    r"""generators and projectors of each homology group
+it returns the 5-tuple L,D,R,r,H  where
+
+L,D,R are sequences of matrices, for k=0 .. dim(K),
+such that such that for each k the matrix D[k] is diagonal and
+
+    L[k] * boundary_operator[k] * R[k] = D[k] 
+
+r is the list of ranks of boundary_operator[:] 
+
+H is a list of `dicts`  
+Each H[k] is a `dict` with two keys: `gens` and `hcm`. 
+
+    H[k]['gens'] is the list of generators of the k-th homology
+    H[k]['hcm'] is the homology class matrix. It is the
+    projection from cycles to homology in base given by generators. 
+
+>>> S=simplicial_sphere(2)
+>>> L,D,R,r,H = homology(S)
+>>> for k in range(dim(S)+1):
+...     print("k=", k, "\nL,D,R = ", L[k],D[k],R[k],"\nrank: ", r[k],"\n", H[k])
+k= 0 
+L,D,R =  None None Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]) 
+rank:  0 
+ {'gens': [Matrix([
+[0],
+[0],
+[0],
+[1]])], 'hcm': Matrix([[1, 1, 1, 1]])}
+k= 1 
+L,D,R =  Matrix([[-1, 0, 0, 0], [-1, -1, 0, 0], [-1, -1, -1, 0], [1, 1, 1, 1]]) Matrix([[0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0]]) Matrix([[1, 0, 0, 1, -1, 0], [-1, 1, 0, 0, 1, -1], [0, -1, 0, 0, 0, 1], [1, -1, 1, 0, 0, 0], [0, 1, -1, 0, 0, 0], [0, 0, 1, 0, 0, 0]]) 
+rank:  3 
+ {'gens': [], 'hcm': Matrix(0, 6, [])}
+k= 2 
+L,D,R =  Matrix([[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1]]) Matrix([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) Matrix([[1, 1, -1, 1], [-1, 0, 1, -1], [1, 0, 0, 1], [-1, 0, 0, 0]]) 
+rank:  3 
+ {'gens': [Matrix([
+[ 1],
+[-1],
+[ 1],
+[-1]])], 'hcm': Matrix([[0, 0, 0, -1]])}
+"""
     d=boundary_operators(K)
-    D=[0 for x in range(dim(K)+1)] 
-    L=[0 for x in range(dim(K)+2)] 
-    R=[0 for x in range(dim(K)+1)] 
-    H=[0 for x in range(dim(K)+1)] 
+    D=[None for x in range(dim(K)+1)] 
+    L=[None for x in range(dim(K)+2)] 
+    R=[None for x in range(dim(K)+1)] 
+    H=[None for x in range(dim(K)+1)] 
     r=[0 for x in range(dim(K)+2)] 
     # first: k=0:
     c=dims_c(K)
@@ -717,7 +781,6 @@ def homology(K):
 
     for k in range(1,dim(K)+1):
         ## L d R = D 
-        # print("k=",k)
         L[k], D[k], R[k] = LDR( R[k-1].inv() * d[k] )
         r[k]=rank_of_diagonal(D[k]) ## TODO: just take it from the pivot list
         shift_matrix=shift_Z(c[k],r[k]) 
@@ -751,7 +814,14 @@ def _print_gen_array(K_simplices,M):
 
 #--------------------------------------------------------------------------------
 def homology_of_map(f):
-    """ f is  SimplicialMap: comput the matrix of its homology """
+    """ f is  SimplicialMap: comput the matrix of its homology
+
+>>> K=simplicial_sphere([ "A","B","C" ] )
+>>> L=simplicial_sphere([ "a","b","c" ])
+>>> f=SimplicialMap({"A":"a","B":"c","C":"b"},K,L)
+>>> print(homology_of_map(f))
+[Matrix([[1]]), Matrix([[-1]])]
+"""
     LK,DK,RK,rK,HK=homology(f.K)
     LL,DL,RL,rL,HL=homology(f.L)
     F=f.in_chains()
@@ -767,7 +837,28 @@ def homology_of_map(f):
 
 def persistent_homology(list_of_maps):
     """**very** simple computation of persistent homology of a sequence of induced chain maps,
-    using a naive row-echelon-form reduction of each homology morphism"""
+using a naive row-echelon-form reduction of each homology morphism. It returns a list of pairs
+corresponding to time-of-birth and time-of-death, one for each generator of the homology.
+
+>>> filtration=[
+... SimplicialComplex([0,1,2]),
+... SimplicialComplex([0,1,2],maximal_simplices={1:[[0,1]] } ),
+... SimplicialComplex([0,1,2],maximal_simplices={1:[[0,1],[0,2]] } ) ,
+... simplicial_sphere([0,1,2]) ,
+... SimplicialComplex([0,1,2], maximal_simplices={2:[[0,1,2]] }) ,
+... ]
+>>> id_map={0:0,1:1,2:2}
+>>> list_of_maps=[ SimplicialMap(id_map,filtration[j],filtration[j+1]) for j in
+... range(len(filtration)-1)]
+>>> PH=persistent_homology(list_of_maps)
+>>> print("PH:", PH)
+PH: {0: [(0, 4), (0, 1), (0, 2)], 1: [(3, 4)]}
+
+
+It means that for the 0-th homology there are 3 generators, one survives all times,
+one dies soon, the other after two steps. 
+In degree 1, there is just one generator, born at k=3 and dead in k=4.
+"""
     nmaps=len(list_of_maps)
     mats_arrays =[ homology_of_map(f) for f in list_of_maps ]
     max_k= max( len(Hs) for Hs in  mats_arrays )

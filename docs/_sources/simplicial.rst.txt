@@ -1,6 +1,6 @@
-=============================================
-simplicial: simplicial complexes and topology
-=============================================
+============================================================================
+simplicial: simplicial complexes, homology, topology and persistent homology
+============================================================================
 
 :Date:   2020-01-22
 
@@ -96,11 +96,4 @@ DOWNLOAD
 ========
 
  - :download:`simplicial.py <soft/simplicial.py>`
-
-
-  
-
-
-
-
 
