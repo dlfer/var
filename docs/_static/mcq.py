@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # LICENZA:
@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2019-05-20
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-03-27
 
 USAGE:
 ------
@@ -47,14 +47,14 @@ To generate a printable PDF with 200 permuted copies of the exam::
 
     ->> exam 200
 
-The output will be ``file_exam.pdf``.  Check that everything is ok, 
-modify ``file.tex`` accordingly, and go back to ``make``. 
+The output will be ``file_exam.pdf``.  Check that everything is ok,
+modify ``file.tex`` accordingly, and go back to ``make``.
 After printing and delivering it, one can use an OMR service (Optical Mark
-Recognition) or not. 
+Recognition) or not.
 
-.. warning:: 
-    The scanned images of the bubblesheed should be at least 200DPI, grayscale 
-    (better than BW). In PDF format is easier. 
+.. warning::
+    The scanned images of the bubblesheed should be at least 200DPI, grayscale
+    (better than BW). In PDF format is easier.
 
 Assuming you have a properly configured OMR remote
 service (via ``OMARSERVICE`` environment variabile, see below), to import the
@@ -72,30 +72,30 @@ of the format::
 
 It is important to understand the format of this file:
 
-    1. The first field ``FXZH`` is the permutation code of the sheet, 
-    2. the second `` `` is the (empty) field where later the student name will appear, 
+    1. The first field ``FXZH`` is the permutation code of the sheet,
+    2. the second `` `` is the (empty) field where later the student name will appear,
     3. the third ``193146`` is the student UID number,
-    4. the fourth ``AB0*AAAD0`` is the string with the answers. Each question, a character:  
+    4. the fourth ``AB0*AAAD0`` is the string with the answers. Each question, a character:
 
-        - ``0`` means there is no answer, 
+        - ``0`` means there is no answer,
         - ``*`` means there is more than one answers (and hence not a valid answer),
         - ``A`` means the answer is ``A`` (and the same for ``B``, ``C``, ...).
 
     5. The fifth column is empty here, after the last colon, but can be used later.
 
-OMR outputs uppercase letters by default. Lowercase letters can be used when 
+OMR outputs uppercase letters by default. Lowercase letters can be used when
 correcting (manually) the OMR or human errors, just to keep the sets of symbols
-disjoint.  Upper and lower case letters are considered equivalent, later. 
+disjoint.  Upper and lower case letters are considered equivalent, later.
 
-In order to proceed, check and remove all the asterisks, and compare 
-the data file with  ``file_answers.pdf`` until all errors are removed. 
+In order to proceed, check and remove all the asterisks, and compare
+the data file with  ``file_answers.pdf`` until all errors are removed.
 
 If ESSE3 is in your hands, then you can use https://www.dlfer.xyz/var/esse3.html to
 generate a ``uid`` file and align students uid-numbers with their names::
 
     ->> uid sc1.uid
 
-(``? uid`` in the CLI if needed). 
+(``? uid`` in the CLI if needed).
 After this, each line will be completed with the student name::
 
     FXZH:FamilyName, venName:193146:AB0aAAAD0:
@@ -107,7 +107,7 @@ After this, each line will be completed with the student name::
 
 If one **does not** have a OMR service, then this file can be also typed
 without OMR, simply reading the data fields from the exam papers filled by
-students and typing them in a text file with the CSV format described above. 
+students and typing them in a text file with the CSV format described above.
 
 If the exam consists in a multiple-choice questions part and in an open-questions
 part, the score for the second part can be written as the last column of
@@ -150,10 +150,10 @@ and get help::
 
 
 .. important::
-    The pseudo-random sequences used to randomize the order of questions and the 
-    order of the answers is exactly the same, each time one runs the script. 
+    The pseudo-random sequences used to randomize the order of questions and the
+    order of the answers is exactly the same, each time one runs the script.
     So, **when things go wrong**, just re-trace all the steps, fix the error
-    and nothing is lost. 
+    and nothing is lost.
 
     Many things can (and usually do) go wrong. The software was built with a few
     failsafe mechanisms, to prevent error propagation and to allow error corrections,
@@ -167,7 +167,7 @@ The first time ``mcq.py`` is executed it will assist the user in generating a La
 exam file, ready to be modified. This step is not necessary, but useful.
 
 Otherwise the format of the file is very simple. Let ``file.tex`` be the name
-of the file. It **has** to be encoded as ``utf8``. The style file mcq.sty_ has 
+of the file. It **has** to be encoded as ``utf8``. The style file mcq.sty_ has
 to be in the ``XeLaTeX`` path.
 
 The file ``file.tex`` **must** be compiled with XeLaTeX and it **must** contain
@@ -273,26 +273,56 @@ non-homogeneous::
     \end{varianti}
     \end{exerm}
 
+There is a simple open-answer exercise, that will be translated to an ``essay`` GIFT/MOODLE
+question::
+
+    \usepackage[sol,doexe]{mcq}
+
+    \begin{esercizi}{}
+
+    [...]
+
+    \begin{exe}[Just a comment]
+    \begin{varianti}
+    \varitem
+    \qtitle{Title of the exercise (can be used as question-id 1: it does not appear in TeX}
+    ... 1 ... 
+    \blank{solution 1}
+    \varitem
+    \qtitle{Title of the exercise (can be used as question-id 2: it does not appear in TeX}
+    ... 2 ...
+    \blank{solution 2}
+    \end{varianti}
+    \end{exe}
+
+    [...]
+
+    \end{esercizi}
+
+
+In order to choose variants in ``exe`` question types, the option ``doexe`` must be 
+set when loading ``mcq.sty``. 
+
+
 
 OPTIONS:
 --------
 
 There are a few options that might be useful, but please use them only
-for debugging purposes.
+for debugging purposes::
 
-
-	--help|-h               this help
-	-v|--verbose            verbose output
-	--gift|-g               GIFT output
-	--xhtml|-x              XHTML output
-	--output=|-o [FILENAME] explicit output=[FILENAME]
-	--number=|-n [N]        number of copies = [n]
-	--db= [FILENAME]        data for the marking
-	--stats= [FILENAME]     make a stats tex file
-	--omr= [BASENAME] [SCANFILES]   OMR scan of [BASENAME].tex and [SCANFILES]
-	--uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
-	--join  [FILE1_exam.csv] [FILE2_exam.csv] join two csv tables
-	--choose= [N] [files*.tex] random choose N from files*.tex
+        --help|-h               this help
+        -v|--verbose            verbose output
+        --gift|-g               GIFT output
+        --xhtml|-x              XHTML output
+        --output=|-o [FILENAME] explicit output=[FILENAME]
+        --number=|-n [N]        number of copies = [n]
+        --db= [FILENAME]        data for the marking
+        --stats= [FILENAME]     make a stats tex file
+        --omr= [BASENAME] [SCANFILES]   OMR scan of [BASENAME].tex and [SCANFILES]
+        --uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
+        --join  [FILE1_exam.csv] [FILE2_exam.csv] join two csv tables
+        --choose= [N] [files*.tex] random choose N from files*.tex
 
 
 Some aspect of the script are controlled by the following
@@ -319,6 +349,8 @@ so many people read them::
 .. _mcq.sty: https://www.dlfer.xyz/var/_downloads/mcq.sty
 """
 # ----------------------------------------------------------------------
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 import re
@@ -335,9 +367,11 @@ import datetime
 import time
 # ----------------------------------------------------------------------
 import xml.etree.ElementTree as ET
-import re
+import six
+from six.moves import range
+from six.moves import input
 # ----------------------------------------------------------------------
-if 'MCQRANDOMSEED' in os.environ.keys():
+if 'MCQRANDOMSEED' in os.environ:
     MCQRANDOMSEED = os.environ['MCQRANDOMSEED']
     sys.stderr.write(
         "Warning: Local MCQRANDOMSEED found! `%s'\n" % MCQRANDOMSEED)
@@ -373,23 +407,23 @@ aalogo = r""" OMaRScan @%s
 
 # ----------------------------------------------------------------------
 translate_math = {
-    r"([<])": u"\\\lt ",
-    r"([>])": u"\\\gt ",
-    r"(\\implies)": u"\Longrightarrow",
-    r"(\\from)": u"\colon",
-    r"(\\textellipsis)": u"...",
-    r"(\\AA)": u"\mathbb{A}",
-    r"(\\CC)": u"\mathbb{C}",
-    r"(\\RR)": u"\mathbb{R}",
-    r"(\\ZZ)": u"\mathbb{Z}",
-    r"(\\QQ)": u"\mathbb{Q}",
-    r"(\\EE)": u"\mathbb{E}",
-    r"(\\PP)": u"\mathbb{P}",
-    r"(\\FF)": u"\mathbb{F}",
-    r"(\\KK)": u"\mathbb{K}",
-    r"(\\HH)": u"\mathbb{H}",
-    r"(\\NN)": u"\mathbb{N}",
-    r"(\\smallsetminus)": u"-"
+    r"([<])": r"\\lt ",
+    r"([>])": r"\\gt ",
+    r"(\\implies)": r"\\Longrightarrow",
+    r"(\\from)": r"\\colon",
+    r"(\\textellipsis)": r"...",
+    r"(\\AA)": r"\\mathbb{A}",
+    r"(\\CC)": r"\\mathbb{C}",
+    r"(\\RR)": r"\\mathbb{R}",
+    r"(\\ZZ)": r"\\mathbb{Z}",
+    r"(\\QQ)": r"\\mathbb{Q}",
+    r"(\\EE)": r"\\mathbb{E}",
+    r"(\\PP)": r"\\mathbb{P}",
+    r"(\\FF)": r"\\mathbb{F}",
+    r"(\\KK)": r"\\mathbb{K}",
+    r"(\\HH)": r"\\mathbb{H}",
+    r"(\\NN)": r"\\mathbb{N}",
+    r"(\\smallsetminus)": r"-"
 }
 
 # ----------------------------------------------------------------------
@@ -431,7 +465,7 @@ XHTML = False
 MAKE_STATS = False
 BASENAMEFILE = None
 MERGEFILES = False
-ZIPPASSWORD = 'SECRET'
+ZIPPASSWORD = b'SECRET'
 OMARSERVICE = 'https://peano.matapp.unimib.it/omar/cgi-bin/omrgw.cgi'
 # OMARSERVICE='https://failsafe.matapp.unimib.it/cgi-bin/omrgw.cgi'
 ISUI = False
@@ -462,20 +496,20 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
     import hashlib
     import hmac
     import time
-    import xmlrpclib
+    import six.moves.xmlrpc_client
     import ssl  # __HERE__  : for version>= 2.7.9 needs _create_unverified_context()
     import tempfile
     fdtmp, TMPZIP = tempfile.mkstemp(suffix='zip')
     start_time = time.time()
-    if 'OMARSERVICE' in os.environ.keys():
+    if 'OMARSERVICE' in os.environ:
         OMARSERVICE = os.environ['OMARSERVICE']
         sys.stderr.write(
             "Environment variable OMARSERVICE='%s' found!\nTrying...\n" % OMARSERVICE)
     if sys.version_info >= (2, 7, 9):
-        my_service = xmlrpclib.ServerProxy(
+        my_service = six.moves.xmlrpc_client.ServerProxy(
             OMARSERVICE, context=ssl._create_unverified_context())
     else:
-        my_service = xmlrpclib.ServerProxy(OMARSERVICE)
+        my_service = six.moves.xmlrpc_client.ServerProxy(OMARSERVICE)
     files = [basetexfile + '.xml', basetexfile + '.pdf'] + \
         [x for x in scanfiles]
     zip = zipfile.ZipFile(TMPZIP, 'w')
@@ -487,16 +521,15 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
     fd.close()
     os.close(fdtmp)
     os.remove(TMPZIP)
-    # data=file(TMPZIP).read()
     hm = hmac.new(ZIPPASSWORD, data, digestmod=hashlib.sha256)
     digest = hm.hexdigest()
     sys.stderr.write(aalogo % OMARSERVICE)
     sys.stderr.write("Sending data... ")
     if outputtype == 'XML':
         job_id = my_service.add_to_queue(
-            xmlrpclib.Binary(data), [digest, 'XML'])
+            six.moves.xmlrpc_client.Binary(data), [digest, 'XML'])
     else:
-        job_id = my_service.add_to_queue(xmlrpclib.Binary(data), digest)
+        job_id = my_service.add_to_queue(six.moves.xmlrpc_client.Binary(data), digest)
     sys.stderr.write("Done!\n")
     if job_id[:4] != 'FAIL':
         sys.stderr.write("Working... \n")
@@ -533,7 +566,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yLCBlcnI6CiAgICAgICAgcHJpbnQgc3RyKGVycikKICAgICAgICBwcmludCAiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIgogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50IF9fZG9jX18KICAgICAgICAgICAgc3lzLmV4aXQoKQogICAgICAgIGVsaWYgbyBpbiAoIi1nIiwgIi0tZ2lmdCIpOgogICAgICAgICAgICBHSUZUID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi14IiwgIi0teGh0bWwiKToKICAgICAgICAgICAgWEhUTUwgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW8iLCAiLS1vdXRwdXQiKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgb3V0cHV0ID0gZmlsZShhLCAndycpCiAgICAgICAgICAgIFNPTFVUSU9OU19GSUxFID0gZmlsZShiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgICAgIERCX0ZJTEUgPSBmaWxlKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgICAgICAgICBleHBsaWNpdF9vdXRwdXQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1kYiIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX0ZJTEUgPSBmaWxlKGEsICdyYicpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBmaWxlKGIgKyAiX3N0YXRzLmRiIiwgJ3diJykKICAgICAgICAgICAgb3V0cHV0ID0gZmlsZShiICsgIi5jc3YiLCAndycpCiAgICAgICAgICAgIEVWQUxVQVRFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tdWlkIiwgKToKICAgICAgICAgICAgVUlERklMRSA9IGEKICAgICAgICAgICAgTUVSR0VGSUxFUyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWNob29zZSIsICk6CiAgICAgICAgICAgIENIT09TRU5VTUJFUiA9IGludChhKQogICAgICAgICAgICBSQU5ET01DSE9PU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1vbXIiLCApOgogICAgICAgICAgICBPTUFSQkFTRSwgXyA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgT01BUlNDQU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1qb2luIiwgKToKICAgICAgICAgICAgQ1NWSk9JTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXN0YXRzIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IGZpbGUoYSwgJ3JiJykKICAgICAgICAgICAgIyBvdXRwdXQgPSBmaWxlKGIrIi50ZXgiLCd3JykKICAgICAgICAgICAgTUFLRV9TVEFUUyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbiIsICItLW51bWJlciIpOgogICAgICAgICAgICBOVU1CRVJfT0ZfQ09QSUVTID0gaW50KGEpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAoZmlsZShhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMoZmlsZShhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IGZpbGUoYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBmaWxlKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gZmlsZShiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAoZmlsZShhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSc4NjNhMTBhMmU2MDc0ZTFkMjNkODViYjQyMDJjM2VhZTM1MTgzMTg3NTRlYzI2ZjZiY2NkODUyNScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yIGFzIGVycjoKICAgICAgICBwcmludChzdHIoZXJyKSkKICAgICAgICBwcmludCgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIikKICAgICAgICBzeXMuZXhpdCgyKQogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgSVNVSSA9IFRydWUKICAgIGZvciBvLCBhIGluIG9wdHM6CiAgICAgICAgaWYgbyBpbiAoIi12IiwgIi0tdmVyYm9zZSIpOgogICAgICAgICAgICBWRVJCT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICAgICAgICAgICBwcmludChfX2RvY19fKQogICAgICAgICAgICBzeXMuZXhpdCgpCiAgICAgICAgZWxpZiBvIGluICgiLWciLCAiLS1naWZ0Iik6CiAgICAgICAgICAgIEdJRlQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLXgiLCAiLS14aHRtbCIpOgogICAgICAgICAgICBYSFRNTCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbyIsICItLW91dHB1dCIpOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGEsICd3JykKICAgICAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICAgICAgICAgIGV4cGxpY2l0X291dHB1dCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWRiIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYSwgJ3JiJykKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IG9wZW4oYiArICJfc3RhdHMuZGIiLCAnd2InKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiLmNzdiIsICd3JykKICAgICAgICAgICAgRVZBTFVBVEUgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS11aWQiLCApOgogICAgICAgICAgICBVSURGSUxFID0gYQogICAgICAgICAgICBNRVJHRUZJTEVTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tY2hvb3NlIiwgKToKICAgICAgICAgICAgQ0hPT1NFTlVNQkVSID0gaW50KGEpCiAgICAgICAgICAgIFJBTkRPTUNIT09TRSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLW9tciIsICk6CiAgICAgICAgICAgIE9NQVJCQVNFLCBfID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBPTUFSU0NBTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWpvaW4iLCApOgogICAgICAgICAgICBDU1ZKT0lOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3RhdHMiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICAjIG91dHB1dCA9IGZpbGUoYisiLnRleCIsJ3cnKQogICAgICAgICAgICBNQUtFX1NUQVRTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1uIiwgIi0tbnVtYmVyIik6CiAgICAgICAgICAgIE5VTUJFUl9PRl9DT1BJRVMgPSBpbnQoYSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBhc3NlcnQgRmFsc2UsICJ1bmhhbmRsZWQgb3B0aW9uIgogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgdWlsb29wKCkKICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgIHJldHVybiAoc3lzLnN0ZGluLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgRVZBTFVBVEUgb3IgR0lGVCBvciBYSFRNTCBvciBNQUtFX1NUQVRTOgogICAgICAgIFZBTEZJTEUgPSBhcmdzWzBdCiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBNRVJHRUZJTEVTOgogICAgICAgIG91dHB1dC53cml0ZShtZXJnZV9maWxlcyhvcGVuKGFyZ3NbMF0sICdyJykucmVhZGxpbmVzKCksIFVJREZJTEUpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBPTUFSU0NBTjoKICAgICAgICBvdXRwdXQud3JpdGUoc3NjbGllbnQoT01BUkJBU0UsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBDU1ZKT0lOOgogICAgICAgIG91dHB1dC53cml0ZShjc3Zqb2luKGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBSQU5ET01DSE9PU0U6CiAgICAgICAgb3V0cHV0LndyaXRlKHJhbmRvbV9jaG9vc2UoQ0hPT1NFTlVNQkVSLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSkgYW5kIG5vdCBleHBsaWNpdF9vdXRwdXQ6CiAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYXJnc1swXSkKICAgICAgICBCQVNFTkFNRUZJTEUgPSBiCiAgICAgICAgb3V0cHV0ID0gb3BlbihiICsgIl9leGFtLnRleCIsICd3JykKICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgIERCX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSk6CiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIEV4Y2VwdGlvbigiZmlsZSAlcyBkb2VzIG5vdCBleGlzdCEiICUgYXJnc1swXSkKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPWxlbihib2R5X2ZpcnN0LnN0cmlwKCkpK2xlbihib2R5X2xhc3Quc3RyaXAoKSkKIGw9aGFzaGxpYi5zaGEyMjQoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKS5lbmNvZGUoKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSdlZjA1YWRkZTEyNmE2M2IwMDA4ZjY2NGNkM2ZiZmFhMmRlMGU2NTdhYTljN2M2ODFmZmUwYTliNCcKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -542,7 +575,7 @@ def random_choose(n, files):
     random.seed()
     eserlist = []
     for f in files:
-        data = file(f, 'r').read()
+        data = open(f, 'r').read()
         data = strip_latex_comments(data)
         if input_enc(data) == 'latin1':
             data = convert_to_utf(data)
@@ -695,7 +728,7 @@ def merge_files(s, uidfile):
             if matr in matr_db:
                 raise Exception("duplicate uid %s!!!!\n" % matr)
             matr_db[matr] = name
-        except Exception, v:
+        except Exception as v:
             if VERBOSE:
                 sys.stderr.write(
                     "UID line `%s' skipped....with error: %s\n" % (str(x).strip(), v))
@@ -712,7 +745,7 @@ def merge_files(s, uidfile):
                     codice, matr_db[matr], matr, risposte, voto)
             else:
                 res += x
-        except Exception, v:
+        except Exception as v:
             if VERBOSE:
                 sys.stderr.write(
                     "line `%s' skipped.... with error: %s\n" % (x.strip(), v))
@@ -841,15 +874,17 @@ def xml2db(xmlfile):
 # ----------------------------------------------------------------------
 
 def transform_tex_entities(s):
-    for k in translate_dictionary.keys():
+    for k in translate_dictionary:
         s = re.sub(
-            k.encode('utf-8'), translate_dictionary[k].encode('utf-8'), s)
+            # k.encode('utf-8'), translate_dictionary[k].encode('utf-8'), s)
+            k, translate_dictionary[k], s)
     return s
 
 
 def translate_math_chars(s):
-    for k in translate_math.keys():
-        s = re.sub(k.encode('utf-8'), translate_math[k].encode('utf-8'), s)
+    for k in translate_math:
+        # s = re.sub(k.encode('utf-8'), translate_math[k].encode('utf-8'), s)
+        s = re.sub(k, translate_math[k], s)
     return s
 
 
@@ -871,12 +906,10 @@ def remove_empty_lines(s):
 
 
 class Esercizio:
-
     """
     Base class for exercises
     """
-
-    def __init__(self, testo, type='EXERM', numero_colonne=1, risposte=None, src='', fb=None,coda=''):
+    def __init__(self, testo, type='EXERM', numero_colonne=1, risposte=None, src='', fb=None, coda=''):
         self.qtitle, self.testo = get_qtitle(testo)
         self.type = type  # vero|falso,exerm
         self.numero_colonne = numero_colonne
@@ -897,7 +930,7 @@ class Esercizio:
             risposte = "\n".join([str(x) for x in self.risposte])
         return """%% type: %s fbbegin--%s--fbend
 %s
-%s""" % (self.type, fb, self.testo, risposte )
+%s""" % (self.type, fb, self.testo, risposte)
 
     def numero_risposte(self):
         if self.risposte:
@@ -1018,6 +1051,10 @@ class Esercizio:
             return """%s%s
 {%s%s}
 """ % (self.qtitle, escape_control_characters(remove_empty_lines(self.testo)), ans, fb)
+        elif self.type in ("EXE",):
+            return """%s%s
+{}
+""" % (self.qtitle,escape_control_characters(remove_empty_lines(remove_blanks(self.testo))))
 # ----------------------------------------------------------------------
 
     def xhtml(self):
@@ -1037,7 +1074,7 @@ class Esercizio:
                 newrisposte = [
                     Risposta("Vero", giusta=False, fb=self.fb), Risposta("Falso", giusta=True)]
             else:
-                raise Exception("big problem")
+                raise Exception("big problem for xhtml...")
             newself = Esercizio(self.testo, risposte=newrisposte)
             return newself.xhtml()
 
@@ -1055,6 +1092,68 @@ def get_qtitle(s):
     return qtitle, s
 # ----------------------------------------------------------------------
 
+def has_variants(s):
+    s = s.strip()
+    reg = re.compile(
+        r"\\begin{varianti}(?P<x>.+?)\\end{varianti}", re.M and re.DOTALL)
+    return reg.search(s.strip()) 
+# ----------------------------------------------------------------------
+
+def remove_blanks(s):
+    # first remove the option...
+    reg_option=re.compile(r"^\s*\[.+?\]")
+    s=reg_option.sub("",s)
+    for cmd in ('blank','blankarea'):
+        s=src_remove_blanks(s,command=cmd)
+    return s    
+
+# ----------------------------------------------------------------------
+def src_remove_blanks(s,command='blank'):
+    # try:
+    #    import regex as re
+    # except:
+    #     raise Exception("Sorry: install first regex module: pip install regex")
+    ESCAPE_PAIRS=[ 
+            ( r"\\{" , "__LEFT__REMOVED__BRACKET__" ) , 
+            ( r"\\}", "__RIGHT__REMOVED__BRACKET__" ) ] 
+    ## thanks to http://www.regular-expressions.info/recurse.html#balanced
+    ## for \((?>[^()]|(?R))*\) 
+    ## or b(?:m|(?R))*e , but unfortunately re. does not provide recursion.
+    ## So I need to make it recursive by a trick. Bummer!
+    # reg_blank=re.compile(r"\\blank\{[^{}]*\}",re.M and re.DOTALL )
+    # reg_blankarea=re.compile(r"\\blankarea(\[[0-9]+?\]|)\s*{.*}", re.M and re.DOTALL)
+    # first: protect escaped brackets
+    for x,y in ESCAPE_PAIRS:
+        reg=re.compile(x,re.M)
+        s=reg.sub(y,s) 
+    # then: make it non-greedy search    
+    reg_command=re.compile(r"(?P<command>\\%s(\[[0-9]+?\]|)\s*?)\{(?P<argument>.*?)\}"\
+            % command, re.M and re.DOTALL)
+    reg_open_paren=re.compile(r"\{",re.M and re.DOTALL)
+    reg_closed_paren=re.compile(r"\}",re.M and re.DOTALL)
+    while reg_command.search(s):
+        my_match=reg_command.search(s)
+        removed_string=my_match.group()
+        open_parens=len(reg_open_paren.findall(removed_string))
+        closed_parens=len(reg_closed_paren.findall(removed_string))
+        unmatched_parens=open_parens-closed_parens
+        head=s[:my_match.start()]
+        tail=s[my_match.end():]
+        leftover_string=''
+        for i in range(len(tail)):
+            if tail[i]=="{":
+                unmatched_parens += 1
+            elif tail[i]=="}":
+                unmatched_parens += -1
+                if unmatched_parens == 0:
+                    leftover_string=tail[i+1:]
+                    break
+        s=head + leftover_string
+    for x,y in ESCAPE_PAIRS:
+        reg=re.compile(y,re.M)
+        s=reg.sub(x,s) 
+    return s
+# ----------------------------------------------------------------------
 
 def split_variants(s):
     s = s.strip()
@@ -1209,8 +1308,8 @@ def strip_latex_comments(s):
 # ----------------------------------------------------------------------
 
 
-def extract_esercizi(s):
-    reg = re.compile(r"\\begin{exerm}(.+?)\\end{exerm}", re.M and re.DOTALL)
+def extract_esercizi(s,exe_type='exerm'):
+    reg = re.compile(r"\\begin{%s}(.+?)\\end{%s}" % (exe_type,exe_type), re.M and re.DOTALL)
     return [x.strip() for x in reg.findall(s)]
 # ----------------------------------------------------------------------
 
@@ -1220,7 +1319,7 @@ def make_template(s):
     s = reg.sub("%%__EXERM_REMOVED__%%", s)
     reg = re.compile(
         r"^(?P<header>.+?)\\begin{document}(?P<body>.+?)\\end{document}", re.M and re.DOTALL)
-    body = "\\setcounter{subsection}{0}\setcounter{page}{1}\n" + \
+    body = "\\setcounter{subsection}{0}\\setcounter{page}{1}\n" + \
         reg.search(s).group('body')
     header = reg.search(s).group('header')
     return (header, body)
@@ -1235,7 +1334,7 @@ def parse_risposta(s):
     reg = re.compile(r"^(?P<punti>\[.+?\])", re.M)
     if reg.match(s):
         punti = reg.match(s).group('punti')[1:-1]
-        s = reg.sub("", s,1).strip() 
+        s = reg.sub("", s, 1).strip()
         # fixed 2019-05-20 thanks to Ultano Kindelan
         if punti == '=':
             giusta = True
@@ -1256,11 +1355,13 @@ def parse_esercizio(s):
         sys.stderr.write("DEBUG: parse_esercizio\n")
     # reg=re.compile(r"(.+?)\\begin{rispm}(.+?)\\end{rispm}", re.M and
     # re.DOTALL) # IT IS OK TO BE EMPTY...
+    if has_variants(s): #len(strings_found)>1 or has_variants(s):
+        return MultiEsercizio(s)
     reg = re.compile(
-        r"(.*?)\\begin{rispm}(.+?)\\end{rispm}(.*?)(\\varitem|$)", re.M and re.DOTALL) #testo+rispm+coda (.*?)
+        r"(.*?)\\begin{rispm}(.+?)\\end{rispm}(.*?)(\\varitem|$)", re.M and re.DOTALL)  # testo+rispm+coda (.*?)
     strings_found = [x for x in reg.findall(s)]
     if strings_found == []:
-        # allora e' vero-falso:
+        # allora e' vero-falso ? 
         reg = re.compile(
             r"(?P<verofalso>\\vero|\\falso)(?P<fb>\[.+\])*", re.M and re.DOTALL)
         if reg.search(s):
@@ -1272,26 +1373,25 @@ def parse_esercizio(s):
                 # result = ("VERO", reg.sub("",s) )
             else:
                 result = Esercizio(reg.sub("", s).strip(), type="FALSO", fb=fb)
-                # result = ("FALSO", reg.sub("",s) )
+                # result = ("FALSO", reg.sub("",s) )a
+        else:
+            ## it is an exercise with no rispm nor vero/falso: just plain {exe}
+            return Esercizio(s, type="EXE")
         # else:
         # result = Esercizio(reg.sub("",s).strip()) #__HERE__
         # TODO RAISE EXCEPTION __TODO__
         raise Exception(
             "ERROR: the following is not a proper exer!\n<<<<<<\n%s\n>>>>>>\n" % s)
         return None
-    elif len(strings_found) > 1:
-        # si tratta di un esercizio con varianti.
-        return MultiEsercizio(s)
-        for x in strings_found:
-            sys.stderr.write("ITEM:\n%s\n" % str(x))
-        raise Exception("Errore strano")
-        sys.exit(2)
+    elif len(strings_found)>1:
+        raise Exception(
+            "ERROR: a MultiEsercizio cannot be here!!!\n<<<<<<\n%s\n>>>>>>>\n" % s)
     # quindi supponiamo che sia a risposta multipla:
     # per prima cosa il numero di colonne.
     reg = re.compile(r"^(?P<numcols>\[[0-9]+?\])", re.M)
-    # testo, rispm  = strings_found[0] 
+    # testo, rispm  = strings_found[0]
     # sys.stderr.write("strings_found: <<<%s>>>" % strings_found)
-    testo, rispm , coda, _ = strings_found[0] 
+    testo, rispm, coda, _ = strings_found[0]
     if reg.match(rispm):
         numero_colonne = int(reg.match(rispm).group('numcols')[1:-1])
         rispm = reg.sub("", rispm).strip()
@@ -1300,20 +1400,23 @@ def parse_esercizio(s):
     reg = re.compile(r"\\risp", re.M)
     tokens = [parse_risposta(x) for x in reg.split(rispm)[1:]]
     result = Esercizio(
-        testo, type="EXERM", numero_colonne=numero_colonne, risposte=tokens,coda=coda)
+        testo, type="EXERM", numero_colonne=numero_colonne, risposte=tokens, coda=coda)
     return result
+
 
 # ----------------------------------------------------------------------
 RG = random.Random(MCQRANDOMSEED)
-
+RGC = random.Random(MCQRANDOMSEED)
+CRNG = random.Random(MCQRANDOMSEED)
 
 def random_permutation(n):
-    tmplist = range(n)
+    tmplist = list(range(n))
     # random.shuffle(tmplist)
     RG.shuffle(tmplist)
     return tmplist
+
+
 # ----------------------------------------------------------------------
-RGC = random.Random(MCQRANDOMSEED)
 
 
 def genera_codice(vl):
@@ -1405,14 +1508,29 @@ def extract_mcq_options(s):
     else:
         return None
 # ----------------------------------------------------------------------
+def choose_variants(s,exe_type='exe'):
+    """Choose variants of exercises of type exe_type"""
+    TEMP_STRING="%%__TEMP__EXE__REMOVED__%%"
+    reg_exe = re.compile(r"\\begin\{%s\}(.+?)\\end\{%s\}" % (exe_type,exe_type), re.M and re.DOTALL)
+    esercizi = [parse_esercizio(es) for es in extract_esercizi(s,exe_type=exe_type)]
+    s = reg_exe.sub(TEMP_STRING, s)
+    splitted_page = re.compile(TEMP_STRING).split(s)
+    result=splitted_page[0]
+    for i in range(len(esercizi)):
+        ese = esercizi[i]
+        if isinstance(ese, MultiEsercizio):
+            ese = CRNG.choice(ese.esercizi)
+        result += ("\\begin{%s}\n"%exe_type)+ese.testo+("\n\\end{%s}" % exe_type )
+        result += splitted_page[i+1]
+    return result 
 
-
-def extract_variant(s):
-    variant = None
-    reg_variant = re.compile(r"\\variantlabel{(?P<p>.+?)}", re.M)
-    if reg_variant.search(s):
-        variant = reg_variant.search(s).group('p').strip()
-    return variant
+# ----------------------------------------------------------------------
+# def extract_variant(s):
+#     variant = None
+#     reg_variant = re.compile(r"\\variantlabel{(?P<p>.+?)}", re.M)
+#     if reg_variant.search(s):
+#         variant = reg_variant.search(s).group('p').strip()
+#     return variant
 # ----------------------------------------------------------------------
 
 
@@ -1449,7 +1567,6 @@ def generate_copies(s, num_copies):
         if ese.numero_risposte() == 0:
             DB_LIST['__stats__'][i]['A'] = 0
             DB_LIST['__stats__'][i]['B'] = 0
-    reg = re.compile(r"%%__EXERM_REMOVED__%%", re.M)
     sys.stderr.write("# max number of answers:  %i\n" % numero_maxrisposte)
     bubble_data = extract_bubblesheet_numbers(s)
     if bubble_data:
@@ -1465,23 +1582,30 @@ def generate_copies(s, num_copies):
         if 'sol' in mcq_options:
             sys.stderr.write(
                 "\n  *** WARNING *** : mcq option `sol' !!! IT IS YOUR RESPONSIBILITY TO REMOVE IT !!!\n\n")
+            if 'doexe' in mcq_options:
+                sys.stderr.write(
+                "\n  *** WARNING *** : mcq option `doexe' !!! Experimental !!!\n\n")
+                DOEXE=True
+            else:
+                DOEXE=False
+    reg = re.compile(r"%%__EXERM_REMOVED__%%", re.M)
     splitted_body = reg.split(body)
     res = header + "\\checkhassol\\writelblfilefalse\n\\begin{document}\n"
     gc = genera_codice(VARIANT_LABEL)
     for nperm in range(num_copies):
-        codice = gc.next()
+        this_res=''
+        codice = next(gc)
         solutionline = "%s: \t" % codice
         solutionarray = []
         DB_solutions = []
         if num_copies > 1:
             perm = random_permutation(numero_esercizi)
         else:
-            perm = range(numero_esercizi)
+            perm = list(range(numero_esercizi))
         DB_LIST['__permutations__'][codice.upper()] = {
             'perm_esercizi': perm, 'ese_perm': []}
-        res += "\\setcodice{%s}\n" % codice
-        res += splitted_body[0]
-        # res += "\\rhead{{\\tt [%s]-p\\thepage/\\pageref{LastPage}}}\n" %
+        this_res += "\\setcodice{%s}\n" % codice
+        this_res += splitted_body[0]
         # codice
         for i in range(numero_esercizi):
             ese = esercizi[perm[i]]
@@ -1490,9 +1614,9 @@ def generate_copies(s, num_copies):
             if num_copies > 1:
                 eseperm = random_permutation(ese.numero_risposte())
             else:
-                eseperm = range(ese.numero_risposte())
-            res += ese.latex_perm(eseperm)
-            res += splitted_body[i + 1]
+                eseperm = list(range(ese.numero_risposte()))
+            this_res += ese.latex_perm(eseperm)
+            this_res += splitted_body[i + 1]
             solutionarray += [("(%i) " % (i + 1)) + ese.solution_perm(eseperm)]
             DB_solutions += [ese.solution_db_perm(eseperm)]
             DB_LIST['__permutations__'][
@@ -1503,7 +1627,11 @@ def generate_copies(s, num_copies):
                              (solutionline, SOLUTIONS_FILE.name))
         SOLUTIONS_FILE.write(solutionline + "\n")
         DB_LIST[codice.upper()] = DB_solutions
-        res += "\\cleardoublepage\n"
+        this_res += "\\cleardoublepage\n"
+        # now check if doexe? 
+        if DOEXE:
+            this_res=choose_variants(this_res)
+        res += this_res 
     res += "\\end{document}\n"
     pickle.dump(DB_LIST, DB_FILE)
     DB_FILE.close()
@@ -1534,7 +1662,7 @@ def permutazione_inversa(p):
 
 
 def number_of_items(dbl):
-    for x in dbl.keys():
+    for x in dbl:
         if x[0] == '_':
             continue
         return len(dbl[x])
@@ -1568,17 +1696,18 @@ def correggi(dbl, data):
                     voto = float(voto)
                 else:
                     voto = 0
-            except Exception, v:
-                sys.stderr.write("** riga %s : Errore %s (voto=%s)\n" % (l, v,voto))
+            except Exception as v:
+                sys.stderr.write(
+                    "** riga %s : Errore %s (voto=%s)\n" % (l, v, voto))
                 exit_on_error('ERROR')  # sys.exit(1)
-            if codice not in dbl.keys():
+            if codice not in dbl:
                 if dbl['__variantlabel__']:
                     if VERBOSE:
                         sys.stderr.write(
                             "WARNING! Codice %s not found!\n" % codice)
                     continue  # __HERE__
                 else:
-                    nono = [x for x in dbl.keys() if not x.startswith('__')]
+                    nono = [x for x in dbl if not x.startswith('__')]
                     nono.sort()
                     sys.stderr.write("Exam Code `%s` not found!\n" % codice)
                     sys.stderr.write(
@@ -1618,9 +1747,9 @@ def correggi(dbl, data):
                     try:
                         dbl['__stats__'][(reversepermdb['perm_esercizi'])[i]][
                             lettere[origA]] += 1
-                    except:
+                    except Exception:
                         sys.stderr.write("stats are not working!\n")
-                if cer in dbsols[i].keys():
+                if cer in dbsols[i]:
                     if dbsols[i][cer] == 'giusta':
                         votoparziale += ptg
                         corrette += [ptg]
@@ -1819,7 +1948,8 @@ def extract_target(data):
 
 
 def generate_gift(data):
-    esercizi = [parse_esercizio(es).gift() for es in extract_esercizi(data)]
+    esercizi = [parse_esercizio(es).gift() for es in extract_esercizi(data)]\
+     + [parse_esercizio(es).gift() for es in extract_esercizi(data,exe_type='exe')]
     return "\n\n".join(esercizi)
 
 # ----------------------------------------------------------------------
@@ -1848,13 +1978,13 @@ def replace_url(data):
     if reg.search(data):
         sys.stderr.write("url found! %s\n" % reg.search(data).group('url'))
     return reg.sub(lambda x: """<a href="%s">%s</a>""" % (purify(x.group('url')),
-                   purify(x.group('url'))),
+                                                          purify(x.group('url'))),
                    data)
 # ----------------------------------------------------------------------
 
 
 def input_enc(data):
-    reg = re.compile(r"\usepackage\[(?P<enc>.+?)\]{inputenc}", re.M)
+    reg = re.compile(r"\\usepackage\[(?P<enc>.+?)\]{inputenc}", re.M)
     if reg.search(data):
         enc = reg.search(data).group('enc').strip()
     else:
@@ -1869,7 +1999,7 @@ def input_enc(data):
 
 def convert_to_utf(data):
     sys.stderr.write("converting to UTF-8...\n")
-    udata = unicode(data, 'latin1')
+    udata = six.text_type(data, 'latin1')
     return udata.encode('utf-8')
 
 # ----------------------------------------------------------------------
@@ -1910,15 +2040,15 @@ def riordina_somme(li):
 def produce_stats(db):
     STATFILE = 'rispostamultipla.csv'
     xx = db[0]
-    kk = xx.keys()
+    kk = list(xx.keys())
     kk.sort()
     res = ",".join([str(k) for k in kk] + ["tot."]) + "\n"
     for xx in db:
-        kk = xx.keys()
+        kk = list(xx.keys())
         kk.sort()
         res += ",".join([str(xx[k])
-                        for k in kk] + [str(sum([xx[k] for k in kk]))]) + "\n"
-    fd = file(STATFILE, 'w')
+                         for k in kk] + [str(sum([xx[k] for k in kk]))]) + "\n"
+    fd = open(STATFILE, 'w')
     fd.write(res)
     fd.close()
     sys.stderr.write("Stats table saved in %s.\n" % STATFILE)
@@ -1928,7 +2058,7 @@ def produce_stats(db):
 
 
 def produce_stats_string(xx, indici):
-    kk = xx.keys()
+    kk = list(xx.keys())
     kk.sort()
     zero = kk[0]
     lettere = kk[1:]
@@ -1963,7 +2093,7 @@ def generate_stats_summary(db):
         dbt['NumberOfStudents'] += dbs[0][k]
     dbt['MeanScore'] = 0
     for q in range(dbt['NumberOfQuestions']):
-        for k in dbs[q].keys():
+        for k in dbs[q]:
             dbt['MeanScore'] += dbs[q][k] * dbs_punti[q][k]
     dbt['MeanScore'] = dbt['MeanScore'] / float(dbt['NumberOfStudents'])
     lista_voti = sorted([x[2] for x in db['__stats_lista__']])
@@ -2059,7 +2189,7 @@ def generate_stats_texfile(s, db):
     res += "\\rhead{{\\tt [%s]-p\\thepage/\\pageref{LastPage}}}\n" % "--STATS--"
     for i in range(numero_esercizi):
         ese = esercizi[i]
-        eseperm = range(ese.numero_risposte())
+        eseperm = list(range(ese.numero_risposte()))
         res += ese.latex_withstats(
             produce_stats_string(dbstats[i], dbindici[i]))
         res += splitted_body[i + 1]
@@ -2081,6 +2211,7 @@ def exit_on_error(s):
 # ----------------------------------------------------------------------
 # import sys
 # import os
+
 
 # import pickle
 #
@@ -2144,10 +2275,10 @@ class myTerm:
         elif os.name == 'nt':
             try:
                 import pyreadline
-            except:
+            except Exception:
                 self.msg(
                     "Try to install `pyreadline`!\nOtherwise you will not have TAB-completion support!")
-                s = raw_input('Press <Return> to continue...')
+                s = input('Press <Return> to continue...')
             import rlcompleter
             self.platform = "win"
         elif os.name == 'posix':
@@ -2170,14 +2301,14 @@ class myTerm:
                 t_rows, t_columns = subprocess.check_output(
                     ['stty', 'size']).split()
                 self.number_of_columns = int(t_columns)
-            except:
+            except Exception:
                 pass
         self.home = os.path.expanduser("~")
-        self.persistdb_path = os.path.join(self.home, '.mcqdb.pkl')
+        self.persistdb_path = os.path.join(self.home, '.mcq3db.pkl')
         self.histfile = os.path.join(self.home, '.mcq_history')
         self.logfile = os.path.join(self.home, '.mcq_log')
         self.lockfile = os.path.join(self.home, '.mcq_lock')
-        self.logfile_fd = file(self.logfile, 'a')
+        self.logfile_fd = open(self.logfile, 'a')
         #
         import atexit
         atexit.register(self.del_lockfile)
@@ -2190,7 +2321,7 @@ class myTerm:
 !!!!!!!!!! DANGER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 => If you continue, you will risk losing all your work!
 """)
-            s = raw_input('Press <Return> to continue...')
+            s = input('Press <Return> to continue...')
             self.lockfile = os.path.join(self.home, '.mcq_lock_danger')
         else:
             self.touch_lockfile()
@@ -2207,7 +2338,7 @@ class myTerm:
         try:
             import getpass
             self.username = getpass.getuser().capitalize()
-        except:
+        except Exception:
             self.username = 'User'
         self.check_requirements()
 
@@ -2235,7 +2366,8 @@ class myTerm:
         return self.ANSIesc.join(cmd)
 
     def boxed_message(self, msg):
-        l = self.number_of_columns
+        numcols = self.number_of_columns
+        # l = self.number_of_columns
         U_UL = u"\u250f"
         U_UR = u"\u2513"
         U_LL = u"\u2517"
@@ -2249,12 +2381,12 @@ class myTerm:
             U_LR = "+"
             U_HLINE = "-"
             U_VLINE = "|"
-        res = U_UL + U_HLINE * (l - 2) + U_UR + "\n"
+        res = U_UL + U_HLINE * (numcols - 2) + U_UR + "\n"
         for x in msg.splitlines():
-            x = x[:l - 3]
+            x = x[:numcols - 3]
             res += U_VLINE + " " + x + \
-                (" " * (l - len(x) - 3)) + U_VLINE + "\n"
-        res += U_LL + U_HLINE * (l - 2) + U_LR + "\n"
+                (" " * (numcols - len(x) - 3)) + U_VLINE + "\n"
+        res += U_LL + U_HLINE * (numcols - 2) + U_LR + "\n"
         return res
 
     def say(self, msg):
@@ -2268,7 +2400,8 @@ class myTerm:
         # on linux ?
 
     def write(self, msg):
-        self.output.write(msg.encode('utf-8'))
+        # self.output.write(msg.encode('utf-8'))
+        self.output.write(msg)
 
     def msg(self, msg):
         for x in msg.splitlines():
@@ -2280,11 +2413,11 @@ class myTerm:
             'yellow red bold') + "!!" + msg + self.termcmd() + "\n")
         try:
             self.output.flush()
-        except:
+        except Exception:
             pass
 
     def input(self):
-        s = raw_input(self.prompt)
+        s = input(self.prompt)
         return s
 
     def open(self, filepath):
@@ -2311,7 +2444,7 @@ class myTerm:
                 fd = open(persistdb_path, 'rb')
                 result = pickle.load(fd)
                 fd.close()
-            except Exception, v:
+            except Exception as v:
                 sys.stderr.write(
                     "Something wrong with pickle db %s (error %s)\n" % (persistdb_path, v))
         return result
@@ -2352,7 +2485,7 @@ class myTerm:
                     self.write(
                         self.termcmd("green black") + "[OK]\n" + self.termcmd())
                 self.req_db[p[0]] = True
-            except Exception, v:
+            except Exception as v:
                 if VERBOSE:
                     self.write(
                         self.termcmd("red") + "[FAIL]\n" + self.termcmd())
@@ -2376,7 +2509,7 @@ class myTerm:
                         self.write(
                             self.termcmd("red") + "[FAIL]\n" + self.termcmd())
                     self.req_db[p[0]] = False
-            except Exception, v:
+            except Exception as v:
                 if VERBOSE:
                     self.write(
                         self.termcmd("red") + "[FAIL]\n" + self.termcmd())
@@ -2398,7 +2531,7 @@ class myTerm:
                         self.write(
                             self.termcmd("red") + "[NO]\n" + self.termcmd())
                     self.req_db['has_linuxlibertinettf'] = False
-            except Exception, v:
+            except Exception as v:
                 if VERBOSE:
                     self.write(
                         self.termcmd("red") + "[FAIL]\n" + self.termcmd())
@@ -2408,7 +2541,7 @@ class myTerm:
             self.write("DONE!\n\n")
 
     def touch_lockfile(self):
-        fd = file(self.lockfile, 'w')
+        fd = open(self.lockfile, 'w')
         fd.write(".")
         fd.close()
         return
@@ -2419,7 +2552,7 @@ class myTerm:
     def del_lockfile(self):
         try:
             os.remove(self.lockfile)
-        except Exception, v:
+        except Exception as v:
             sys.stderr.write(
                 "WARNING: lock file %s is missing.\nThis is bad.\n" % self.lockfile)
 
@@ -2450,7 +2583,7 @@ class ExamFile:
         self.status = {}
 
     def refresh(self):
-        data = file(self.abspath).read()
+        data = open(self.abspath).read()
         if input_enc(data) == 'latin1':
             data = convert_to_utf(data)
         self.data = strip_latex_comments(data)
@@ -2458,7 +2591,7 @@ class ExamFile:
     def get_n(self):
         reg = re.compile(r"\\setcodice{(?P<p>.+?)}", re.M)
         if os.path.exists(self.exam_tex):
-            examdata = file(self.exam_tex).read()
+            examdata = open(self.exam_tex).read()
             return len(reg.findall(examdata))
         else:
             return None
@@ -2479,7 +2612,7 @@ class ExamFile:
     def number_of_lines(self, f):
         target = os.path.join(self.dir, f)
         if os.path.exists(target) and os.path.isfile(target):
-            return len([x for x in file(f, 'r').read().splitlines() if len(x) > 2 and not x.startswith('#')])
+            return len([x for x in open(f, 'r').read().splitlines() if len(x) > 2 and not x.startswith('#')])
         else:
             return None
 
@@ -2662,7 +2795,7 @@ class uiShell(cmd.Cmd):
             if self.term.open(args):
                 self.term.error(
                     "ERROR: `open %s` did not work...\nCheck your input." % args)
-        except:
+        except Exception:
             self.term.error(
                 "I could not open file `%s`...\nCheck your input." % args)
 
@@ -2748,6 +2881,7 @@ class uiShell(cmd.Cmd):
         result_files.sort()
         return (result_dir, result_files)
 
+
 uiFileNavigator_firstinfo = """Welcome. This is the MCQ-XeLaTeX File Navigator.
 You can use the commands listed below to navigate in the filesystem,
 and to load the MCQ-XeLaTeX main TeX file you want to use for the exam.
@@ -2803,7 +2937,7 @@ class uiFileNavigator(uiShell):
         if os.path.exists(arg) and os.path.isdir(arg):
             try:
                 os.chdir(arg)
-            except Exception, v:
+            except Exception as v:
                 self.term.error("Error: %s" % v)
             self.lsdir, self.lsfiles = self.thisdir_ls('')
         else:
@@ -2941,7 +3075,7 @@ class uiMasterFile(uiShell):
     def do_export(self, args):
         """
         USAGE::
-        
+
             ->> export <outputfile>
 
 
@@ -2973,7 +3107,7 @@ class uiMasterFile(uiShell):
                       MCQXELATEXURL, "today": time.strftime(DATETIME_FORMAT)}
             html_page = ((generate_html_header % dbvars) +
                          output + (generate_html_footer % dbvars))
-            fd.write(unicode(html_page, 'utf-8').encode('utf-8'))  # __HERE__
+            fd.write(six.text_type(html_page, 'utf-8').encode('utf-8'))  # __HERE__
             fd.close()
             self.term.msg("File %s written" % args)
         return
@@ -2989,13 +3123,13 @@ class uiMasterFile(uiShell):
 
     def do_exam(self, args, DOLATEX=True):
         """
-        USAGE:: 
-        
+        USAGE::
+
             exam <n>
 
         Generate <n> exam copies of ``<main>.tex``, permuting the questions
         and the anwsers if <n> is at least 2. It will save the output in
-        file ``<main>_exam.tex`` and then compile it to obtain 
+        file ``<main>_exam.tex`` and then compile it to obtain
         ``<main>_exam.pdf``, where <main>.tex is the name of the main TeX file.
         If <n>=1, then it will not permute questions and answers.
         If <n> >= 2, the permutations will be pseudo-random, with a constant
@@ -3022,16 +3156,17 @@ class uiMasterFile(uiShell):
         # first, initialize the random generators
         RG = random.Random(MCQRANDOMSEED)
         RGC = random.Random(MCQRANDOMSEED)
+        CRNG = random.Random(MCQRANDOMSEED)
         random.seed(MCQRANDOMSEED)
-        SOLUTIONS_FILE = file(self.EF.exam_sols, 'w')
-        DB_FILE = file(self.EF.exam_db, 'wb')
-        DB_STATS_FILE = file(self.EF.exam_stats_db, 'wb')
-        output = file(self.EF.exam_tex, 'w')
+        SOLUTIONS_FILE = open(self.EF.exam_sols, 'w')
+        DB_FILE = open(self.EF.exam_db, 'wb')
+        DB_STATS_FILE = open(self.EF.exam_stats_db, 'wb')
+        output = open(self.EF.exam_tex, 'w')
         NUMBER_OF_COPIES = int(args.strip())
         try:
             output.write(generate_copies(self.EF.data, NUMBER_OF_COPIES))
             output.close()
-        except:
+        except Exception:
             self.term.error(
                 "ERROR: Failed exam... check logs above and fix-it!")
             return
@@ -3052,7 +3187,7 @@ class uiMasterFile(uiShell):
             db2xml(lbldb, self.EF.xmlfile)
             self.term.msg(
                 "DEBUG: XML Output written to file: %s" % (self.EF.xmlfile,))
-        except:
+        except Exception:
             self.term.error(
                 "XML Output failed for file: %s\n => try `xelatex` first..." % (self.EF.xmlfile,))
         if os.path.exists(self.EF.exam_pdf):
@@ -3137,8 +3272,8 @@ class uiMasterFile(uiShell):
                     if has_BW_image(pdf_file):
                         self.term.error(
                             "WARNING!! Some scanned images are MONOCHROME! OMR results can be terribly wrong!\n")
-                        _ = raw_input('Press <Return> to continue...')
-                except Exception, v:
+                        _ = input('Press <Return> to continue...')
+                except Exception as v:
                     self.term.error("%s" % v)
         else:
             self.term.msg(
@@ -3146,7 +3281,7 @@ class uiMasterFile(uiShell):
         try:
             result = ssclient(
                 self.EF.basename, glob_args, outputfile=omr_output)
-        except Exception, v:
+        except Exception as v:
             self.term.error(
                 "OMR failed with error message:%s\nCannot contact OMARSERVICE %s\nPlease refer to some network guru for help.\n" % (v, OMARSERVICE))
             fd.close()
@@ -3164,7 +3299,7 @@ class uiMasterFile(uiShell):
 
     def get_answers_fd(self):
         if not os.path.exists(self.EF.answers):
-            return (file(self.EF.answers, 'w'), False)
+            return (open(self.EF.answers, 'w'), False)
         else:
             thisfile = self.EF.answers
             bn, _ = os.path.splitext(thisfile)
@@ -3175,7 +3310,7 @@ class uiMasterFile(uiShell):
                 self.term.msg("Warning: file `%s` already exists...\n  I will try to to save the output to `%s` instead.\n  Please check, then merge it with `%s`" %
                               (thisfile, newfile, self.EF.answers))
                 thisfile = newfile
-            return (file(thisfile, 'w'), True)
+            return (open(thisfile, 'w'), True)
 
     def do_uid(self, args):
         r"""
@@ -3221,14 +3356,14 @@ class uiMasterFile(uiShell):
         where <main>.tex is the main MCQ-XeLaTeX file.
 
         OUTPUT::
-       
+
             none; the file <main>_answers.txt is modified in-place.
         """
         if not os.path.exists(self.EF.answers):
             self.term.error(
                 "Error: answers file `%s` does not exist\nCreate one, or run `omr` first." % self.EF.answers)
             return
-        fd = file(self.EF.answers, 'r')
+        fd = open(self.EF.answers, 'r')
         answers_list = fd.readlines()
         fd.close()
         args = args.strip()
@@ -3241,11 +3376,11 @@ class uiMasterFile(uiShell):
         UIDFILE = args
         try:
             result = merge_files(answers_list, UIDFILE)
-        except:
+        except Exception:
             self.term.error("ERROR: updating answers on `%s` from uid file `%s` failed" %
-                            self.EF.answers, UIDfile)
+                            self.EF.answers, UIDFILE)
             return
-        output = file(self.EF.answers, 'w')
+        output = open(self.EF.answers, 'w')
         output.write(result)
         output.close()
         self.term.msg("Answers file %s updated." % self.EF.answers)
@@ -3254,12 +3389,12 @@ class uiMasterFile(uiShell):
     def do_mark(self, args):
         r"""
         USAGE::
-        
+
             mark [<answersfile>]
 
         Take the optional argument <answersfile>, and give marks according to
         the answer keys generated by ``exam``.
-        
+
         Default answersfile: ``<main>_answers.txt``.
         The general format of the answers lines is the following::
 
@@ -3312,14 +3447,14 @@ class uiMasterFile(uiShell):
                 "ERROR: the internal answer keys file `%s` does not exist!\nTry to (re-)run `exam`\nAborting..." % self.EF.exam_db)
             return
         global DB_FILE, DB_STATS_FILE
-        DB_FILE = file(self.EF.exam_db, 'rb')
-        DB_STATS_FILE = file(self.EF.exam_stats_db, 'wb')
-        output = file(self.EF.exam_csv, 'w')
+        DB_FILE = open(self.EF.exam_db, 'rb')
+        DB_STATS_FILE = open(self.EF.exam_stats_db, 'wb')
+        output = open(self.EF.exam_csv, 'w')
         if args.strip() == '':
             args = self.EF.answers
         try:
-            data = file(args).read()
-        except:
+            data = open(args).read()
+        except Exception:
             self.term.error("ERROR: failed to load answersfile `%s`" % args)
             return
         DB_LIST = pickle.load(DB_FILE)
@@ -3328,7 +3463,7 @@ class uiMasterFile(uiShell):
         max_points = DB_LIST['__punti__'][0] * num_exerm
         try:
             li = correggi(DB_LIST, data)
-        except:
+        except Exception:
             self.term.error(
                 "ERROR: marking failed... check logs... and re-try.")
             return
@@ -3336,7 +3471,7 @@ class uiMasterFile(uiShell):
         riordina(li)
         output.write(display(li))
         output.close()
-        output_pub = file(self.EF.exam_pub, 'w')
+        output_pub = open(self.EF.exam_pub, 'w')
         output_pub.write(display_pub(li, max_points))
         output_pub.close()
         pickle.dump(DB_LIST, DB_STATS_FILE)
@@ -3372,14 +3507,14 @@ class uiMasterFile(uiShell):
             <main>_stats.pdf
             """
         # check marks are already there...
-        DB_STATS_FILE = file(self.EF.exam_stats_db, 'rb')
+        DB_STATS_FILE = open(self.EF.exam_stats_db, 'rb')
         db = pickle.load(DB_STATS_FILE)
         DB_STATS_FILE.close()
         self.EF.refresh()
         data = self.EF.data
         if input_enc(data) == 'latin1':
             data = convert_to_utf(data)
-        fd = file(self.EF.exam_stats_tex, 'w')
+        fd = open(self.EF.exam_stats_tex, 'w')
         fd.write(generate_stats_texfile(data, db))
         fd.close()
         for i in range(2):
@@ -3397,7 +3532,7 @@ class uiMasterFile(uiShell):
         USAGE::
 
             ->> pdfx
-        
+
         Attempt to convert the ``<main>_exam.pdf`` PDF file to a PDFX version,
         more suitable for error-free printing, using ghostscript, if installed.
         It tries to set a proper GS_FONTPATH.
@@ -3427,6 +3562,7 @@ class uiMasterFile(uiShell):
             else:
                 self.term.error("ERROR: File `%s` was not generated. Unknown reason." %
                                 (self.EF.basename + "_exam_pdfx.pdf",))
+
 
 # -----------------------------------------------------------------------------
 xelatex_template = r"""%%===================================================================
@@ -3730,6 +3866,8 @@ def my_glob(s, basedir="."):
     for chunk in list_s:
         files += glob.glob(os.path.join(basedir, chunk))
     return files
+
+
 # ---------------------------------------------------------------------------
 uiChooser_firstinfo = """Welcome. This is the MCQ-XeLaTeX Questions random chooser.
 You can use the commands listed below to choose random questions
@@ -3752,6 +3890,8 @@ next                 : Accept the random choice and proceed.
 x                    : Exit (without accepting)
 """
 # ---------------------------------------------------------------------------
+
+
 class uiChooser(uiShell):
     global persistdb
 
@@ -3771,13 +3911,13 @@ class uiChooser(uiShell):
     def do_make(self, args):
         """
         USAGE::
-        
+
             ->> make
 
         Compile (XeLaTeX-ing) the TeX file generated file.
 
         OUTPUT::
-        
+
             <file>.pdf
         """
         for i in range(2):
@@ -3793,7 +3933,7 @@ class uiChooser(uiShell):
 
     def do_add(self, args):
         """USAGE::
-        
+
             ->> add <n> from file1.tex f2.tex ... f2*.tex
         """
         toks = args.split()
@@ -3803,9 +3943,9 @@ class uiChooser(uiShell):
         try:
             num = int(toks[0])
             globstring = " ".join(toks[2:])
-        except:
+        except Exception:
             self.term.error("Syntax Error")
-            return do_help("add")
+            return self.do_help("add")
         if 'todolist' in persistdb:
             for iinum in range(num):
                 persistdb['todolist'] += [[globstring, None]]
@@ -3817,7 +3957,7 @@ class uiChooser(uiShell):
     def get_exer(self, file, number):
         try:
             result = self.allquestions_db[file][number]
-        except Exception, v:
+        except Exception as v:
             self.term.error(
                 "FAILED for filename `%s` and index `%s`" % (file, number))
             self.term.error("FAILED with error: `%s`" % v)
@@ -3853,7 +3993,7 @@ class uiChooser(uiShell):
         decorated_files = []
         if files:
             for x in files:
-                data = file(
+                data = open(
                     os.path.join(persistdb.get('qbank'), x), 'r').read()
                 data = strip_latex_comments(data)
                 if input_enc(data) == 'latin1':
@@ -3900,8 +4040,8 @@ class uiChooser(uiShell):
 
     def do_cd(self, arg):
         """
-        USAGE:: 
-        
+        USAGE::
+
             ->> cd [<dir>]
 
         Change working directory to directory <arg>. With no <dir> argument,
@@ -3913,7 +4053,7 @@ class uiChooser(uiShell):
         if os.path.exists(arg) and os.path.isdir(arg):
             try:
                 os.chdir(arg)
-            except Exception, v:
+            except Exception as v:
                 self.term.error("Error: %s" % v)
         else:
             self.term.error("Error: `%s` is not a directory!" % arg)
@@ -3930,7 +4070,7 @@ class uiChooser(uiShell):
                 if chosen:
                     try:
                         description = "(%s : #%s)" % (chosen[0], chosen[1] + 1)
-                    except Exception, v:
+                    except Exception as v:
                         description = "[%s]" % v
                 else:
                     description = "(Not yet choosen)"
@@ -3964,7 +4104,7 @@ Added list:
             for x in files:
                 if x not in self.allquestions_db:
                     eserlist = []
-                    data = file(x, 'r').read()
+                    data = open(x, 'r').read()
                     data = strip_latex_comments(data)
                     if input_enc(data) == 'latin1':
                         data = convert_to_utf(data)
@@ -3978,7 +4118,7 @@ Added list:
             if pair:
                 try:
                     ese = self.allquestions_db.get(pair[0])[pair[1]]
-                except Exception, v:
+                except Exception as v:
                     ese = "FAILED"
                     self.term.error("ERROR (update_questions): %s" % v)
             else:
@@ -4016,9 +4156,9 @@ Added list:
     def do_random(self, args):
         """
         USAGE::
-        
+
             ->> random [all]|[<n>] [n_2] ...
-        
+
         Random choose either all questions (if no argument or `all` is given).
         Otherwise random choose just the n-th question.
 
@@ -4057,7 +4197,7 @@ Added list:
                 if qfile:
                     persistdb['todolist'][ii][1] = (qfile, qnumber)
             self.update_questions()
-        except Exception, v:
+        except Exception as v:
             self.term.error("FAILED: `%s`" % v)
 
     def do_del(self, args):
@@ -4068,7 +4208,7 @@ Added list:
         try:
             n = int(args) - 1
             del persistdb['todolist'][n]
-        except Exception, v:
+        except Exception as v:
             self.term.error("Error %s: del failed..." % v)
             return
 
@@ -4084,12 +4224,12 @@ Added list:
     def do_load(self, args):
         """
         USAGE::
-        
+
             ->> load <commandsfile>
-            
+
         Load a file with add|del|random|qbank|... commands,
         one per line (same syntax as the UI shell)"
-        
+
         EQUIVALENT EXAMPLES::
 
                 ->> load commandsfile.txt
@@ -4104,73 +4244,74 @@ Added list:
             self.term.msg("Commands File '%s' loaded" % args)
         else:
             self.term.error('Error: `%s` is not a proper file!' % args)
-        for r in file(args).readlines():
+        for r in open(args).readlines():
             self.term.msg("Executing command: '%s'" % r.strip())
             self.onecmd(r.strip())
         return
 
+
 # ---------------------------------------------------------------------------
 newfileloop_vars = [
-        ('examname', "Name of the Course", "Example Course",
-         """Name of the course. For example `History of Marxism`."""),
-        ('examdate', "Date of the Exam", "No Date",
-         "Date of the exam. For example, `2014-04-23`"),
-        ('examtime', "Time of the Exam", "16:00",
-         "Time of the exam. For example, `16:00`"),
-        ('examroom', "Room where the Exam will be", "U1-09",
-         "The room, a description, an address. Short."),
-        ('language', "What is your language", "italian",
-         "Language, in the format \\setdefaultlanguage{language} polyglossia understands."),
-        ('puntigiusta', "Pts for the correct answer", "3",
-         """How many points a correct answer counts. A good candidate for
+    ('examname', "Name of the Course", "Example Course",
+     """Name of the course. For example `History of Marxism`."""),
+    ('examdate', "Date of the Exam", "No Date",
+     "Date of the exam. For example, `2014-04-23`"),
+    ('examtime', "Time of the Exam", "16:00",
+     "Time of the exam. For example, `16:00`"),
+    ('examroom', "Room where the Exam will be", "U1-09",
+     "The room, a description, an address. Short."),
+    ('language', "What is your language", "italian",
+     "Language, in the format \\setdefaultlanguage{language} polyglossia understands."),
+    ('puntigiusta', "Pts for the correct answer", "3",
+     """How many points a correct answer counts. A good candidate for
 a question with $n$ answers, is $n-1$."""),
-        ('puntisbagliata', "Pts for the wrong answer", "-1",
-         """How many points a wrong answer counts. A good value could be -1."""),
-        ('puntiempty', "Pts for a non-response", "0",
-         """How many points a question without any answer (a non-response).
+    ('puntisbagliata', "Pts for the wrong answer", "-1",
+     """How many points a wrong answer counts. A good value could be -1."""),
+    ('puntiempty', "Pts for a non-response", "0",
+     """How many points a question without any answer (a non-response).
 A common choice is 0 pts."""),
-        ('number_of_questions', "Number of questions you plan to add", 10,
-         """Simply the number of Multiple Choice questions. You can change it later.
+    ('number_of_questions', "Number of questions you plan to add", 10,
+     """Simply the number of Multiple Choice questions. You can change it later.
 Recall that for mathematics each question should take 2-3 minutes at most."""),
-        ('maxanswers', "Number of answers each question will have", 4,
-         """Each question will have this number of answers. Please keep it constant."""),
-        ('hassol', "Do you want to show an asterisk to mark the correct answers, and do you want to show the feedback text? (Do not use for real exam) [Yes/No]", "Yes", """This option will show the correct answers in the PDF file.
+    ('maxanswers', "Number of answers each question will have", 4,
+     """Each question will have this number of answers. Please keep it constant."""),
+    ('hassol', "Do you want to show an asterisk to mark the correct answers, and do you want to show the feedback text? (Do not use for real exam) [Yes/No]", "Yes", """This option will show the correct answers in the PDF file.
 Review carefully the PDF before generating the permutation copies, and
 remove the `sol` option when finished."""),
-        ('hasbubblesheet', "Do you plan to use bubblesheet and OMR? [Yes/No]", "Yes",
-         """The bubblesheet is the sheet where students fill bubbles to indicate
+    ('hasbubblesheet', "Do you plan to use bubblesheet and OMR? [Yes/No]", "Yes",
+     """The bubblesheet is the sheet where students fill bubbles to indicate
 their UID and the chosen answer, for each question.
 With a scanner (and an auto-feeder) you can grade hundreds of sheets in minutes."""),
-        ('advanced', "Do you need to set advanced options", "No",
-         "Advanced options are, so to say, advanced, and not for beginngers."),
-        ('formulavoto', "Formula to aggregate <MCQ_MARK> and <OPTIONAL_MARK>", "x",
-         """The exam might consist of a Multiple-Choice part, followed by some
+    ('advanced', "Do you need to set advanced options", "No",
+     "Advanced options are, so to say, advanced, and not for beginngers."),
+    ('formulavoto', "Formula to aggregate x=<MCQ_MARK> and y=<OPTIONAL_MARK>", "x",
+     """The exam might consist of a Multiple-Choice part, followed by some
 open-ended questions or exercises. The mark of the MCQ part will be
 computed automatically, and denoted by <MCQ_MARK>. The mark of the
 open-ended part needs to be given by your grading.
-This formula is simply the way to sum the two parts, in python syntax.""" ),
-        ('hasvariants', "Do you want to have questions with multiple variants? [Yes/No]", "No", """Instead of just permuting the questions and the answers, you can
+This formula is simply the way to sum the two parts, in python syntax."""),
+    ('hasvariants', "Do you want to have questions with multiple variants? [Yes/No]", "No", """Instead of just permuting the questions and the answers, you can
 randomly choose variants (with different numerical values, or different
 questions and different answers) of the questions."""),
-        ('hasvariantlabel', "Do you need a variantlabel, to allow multiple versions of the main MCQ-XeLaTeX file? [Yes/No]", "No",
-         """If you set a VariantLabel, the code identifying each permuted copy
+    ('hasvariantlabel', "Do you need a variantlabel, to allow multiple versions of the main MCQ-XeLaTeX file? [Yes/No]", "No",
+     """If you set a VariantLabel, the code identifying each permuted copy
 will have it as prefix. This allows to manually author different versions
 of the same main TeX file, and distribute them randomly in class, but
 still be able to use OMR and the automatical marking."""),
-        ('hasblankpage', "Do you need a blank page after the bubblesheet? [Yes/No]", "Yes",
-         """If you use a duplex printer, you might want to leave a blank page after the bubblesheet."""),
-        ('hasextrasheet', "Do you need to print two copies of the bubblesheet for each student? [Yes/No]", "No", """Some students are worse than others in filling bubbles.
+    ('hasblankpage', "Do you need a blank page after the bubblesheet? [Yes/No]", "Yes",
+     """If you use a duplex printer, you might want to leave a blank page after the bubblesheet."""),
+    ('hasextrasheet', "Do you need to print two copies of the bubblesheet for each student? [Yes/No]", "No", """Some students are worse than others in filling bubbles.
 Sometimes it is better to give them two identical copies of the bubblesheet,
 so they can avoid impossible corrections."""),
-        ('UIDdigits', "How many digits does the UID have", 6,
-         """The User IDentification number is necessary, if you do want to
+    ('UIDdigits', "How many digits does the UID have", 6,
+     """The User IDentification number is necessary, if you do want to
 associate the sheet to a student. You should check the identity of the
 student, and check that the marked UID corresponds with eir UID."""),
-        ('dochooser', 'Do you want to randomly import questions from a Question Bank?',
-         'Yes', """By setting a question bank, ...."""),
-        ('filename', "Name of the file on which to save", "firstexample.tex",
-         """Choose a filename. Warning: the file will be over-written!""")
-    ]
+    ('dochooser', 'Do you want to randomly import questions from a Question Bank?',
+     'Yes', """By setting a question bank, ...."""),
+    ('filename', "Name of the file on which to save", "firstexample.tex",
+     """Choose a filename. Warning: the file will be over-written!""")
+]
 
 
 def newfileloop(term):
@@ -4191,12 +4332,12 @@ Type `!x` if you want to quit.
     needed_commands = ['advanced', 'UIDdigits', 'formulavoto',
                        'hasvariants', 'hasvariantlabel', 'hasblankpage', 'hasextrasheet']
     db_deps = {}
-    for k in db_deps_src.keys():
+    for k in db_deps_src:
         kv, values = db_deps_src[k]
         for v in values:
             db_deps[v] = (k, kv)
     db = {}
-    if 'saved_db' in persistdb.keys():
+    if 'saved_db' in persistdb:
         saved_db = persistdb['saved_db']
     else:
         saved_db = {}
@@ -4205,7 +4346,7 @@ Type `!x` if you want to quit.
             deft = saved_db[k]
         # deft is the last used
         # check if deps are ok...
-        if k in db_deps.keys() and db_deps[k][0] in db.keys() and not db[db_deps[k][0]].lower().startswith(db_deps[k][1]):
+        if k in db_deps and db_deps[k][0] in db and not db[db_deps[k][0]].lower().startswith(db_deps[k][1]):
             if k in needed_commands:
                 db[k] = deft
             continue
@@ -4242,9 +4383,9 @@ Type `!x` if you want to quit.
         'noblankpage': ('hasblankpage', 'n'),
         'extrasheet': ('hasextrasheet', 'y'),
         'sol': ('hassol', 'y')}
-    for o in options_map.keys():
+    for o in options_map:
         k, v = options_map[o]
-        if k in db.keys() and db[k].lower().startswith(v):
+        if k in db and db[k].lower().startswith(v):
             p_options += [o]
     if p_options:
         db['mcqpackage'] = r"\usepackage[%s]{mcq}" % (",".join(p_options))
@@ -4299,7 +4440,7 @@ text
     else:
         esercizi = esercizio * (number_of_questions)
     db['list_of_exers'] = esercizi
-    if 'dochooser' in db.keys() and db['dochooser'].lower().startswith('y'):
+    if 'dochooser' in db and db['dochooser'].lower().startswith('y'):
         uiChooser(term=term, dbvars=db).cmdloop(uiChooser_firstinfo)
         # hopefully db['list_of_exers'] is correctly updated.
     else:
@@ -4310,7 +4451,7 @@ text
         fd.close()
         term.msg("File %s generated! Please edit it and come back when finished!" %
                  fd.name)
-    s = raw_input('Press <Return> to continue...')
+    s = input('Press <Return> to continue...')
     return db.get('filename')
 
 # -----------------------------------------------------------------------------
@@ -4326,8 +4467,8 @@ def uiloop():
     persistdb = term.read_persistdb()
     term.write(mcqlogo)
     if not persistdb['activefile']:
-        welcome_msg = """Welcome to the MCQ-XeLaTeX majestic CLI, comrade %(username)s.
-I'm a very primitive and fragile interface, so please read the messages.
+        welcome_msg = """Welcome to the MCQ-XeLaTeX 3 majestic CLI, comrade %(username)s.
+I'm a very primitive and fragile interface, so please read **all** the messages.
 You can choose to be guided in authoring a new MCQ-XeLaTeX main file,
 reviewing all its commands, or to work on an existing one.
 After this menu, you will be using just Command Line Interfaces, no
@@ -4360,11 +4501,11 @@ Your Python version apparently is %(pythonversion)s.
             if VERBOSE:
                 sys.stderr.write(
                     "DEBUG: parsing file %s\n" % persistdb['activefile'])
-            file_content = file(persistdb['activefile']).read()
+            file_content = open(persistdb['activefile']).read()
             try:
                 esercizi = [parse_esercizio(es)
                             for es in extract_esercizi(file_content)]
-            except Exception, v:
+            except Exception as v:
                 term.error("ERROR: file `%s` is not valid!\nPlease check and re-try..." %
                            persistdb['activefile'])
                 sys.stderr.write("Exception: %s\n" % v)
@@ -4405,7 +4546,7 @@ q : [Q]uit
         term.msg("Command?")
         try:
             s = term.input()
-        except:
+        except Exception:
             term.msg("Quitting (for unknown reason)...")
             break
         if s.lower() == 'q':
@@ -4424,7 +4565,7 @@ q : [Q]uit
             term.msg("Trying to launch a Graphical [U]ser Interface...")
             term.msg(
                 "(Are you sure you need a GUI? Confirm: are your really a pendejo?)")
-            nopes = raw_input(
+            nopes = input(
                 'Enter the answer and <Return> to continue... > ')
             if len(nopes) > 0 and nopes[0].lower() == 'y':
                 term.msg(
@@ -4455,7 +4596,7 @@ def main():
         li = riarrangia(li, extract_target(data))
         riordina(li)
         output.write(display(li))
-        print display_pub(li, max_points)
+        print(display_pub(li, max_points))
         # produce_stats(DB_LIST['__stats__'])
         pickle.dump(DB_LIST, DB_STATS_FILE)
         DB_STATS_FILE.close()
@@ -4486,9 +4627,10 @@ def main():
         db2xml(lbldb, BASENAMEFILE + '.xml')
         sys.stderr.write("XML Output written to file: %s\n" %
                          (BASENAMEFILE + '.xml'))
-    except:
+    except Exception:
         sys.stderr.write("XML Output failed for file: %s\n => try `xelatex %s` first...\n" %
                          (BASENAMEFILE + '.xml', BASENAMEFILE + '.tex'))
+
 
 if __name__ == '__main__':
     main()

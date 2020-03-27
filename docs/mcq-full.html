@@ -91,6 +91,9 @@ the real production document.</dd>
 <dt><code class="docutils literal"><span class="pre">ttf</span></code></dt>
 <dd>Use the TTF version of <a class="reference external" href="http://libertine-fonts.org/">Linux Libertine</a> instead of the
 default OTF version.</dd>
+<dt><code class="docutils literal"><span class="pre">doexe</span></code></dt>
+<dd>when generating copies for the individual sheets, include not only <code class="docutils literal"><span class="pre">exerm</span></code> style questions,
+but also open-answer questions <code class="docutils literal"><span class="pre">\begin{exe}...\end{exe}</span></code></dd>
 </dl>
 </div>
 <div class="section" id="preamble-commands">
@@ -223,6 +226,21 @@ Solution
 <span class="k">\end</span><span class="nb">{</span>sol<span class="nb">}</span>
 </pre></div>
 </div>
+<p>Open answer questions can be used also to generate essay questions for MOODLE, with textarea
+solutions (visible with the <code class="docutils literal"><span class="pre">sol</span></code> mcq option and removed in the moodle exported version):</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[comment]
+<span class="k">\qtitle</span><span class="nb">{</span>Eventual tag of the question, it is only for MOODLE<span class="nb">}</span>
+How much is <span class="s">$</span><span class="m">1</span><span class="o">+</span><span class="m">1</span><span class="s">$</span>?
+<span class="k">\blank</span><span class="nb">{</span><span class="s">$</span><span class="m">2</span><span class="s">$</span><span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exe<span class="nb">}</span>
+</pre></div>
+</div>
+<p>The GIFT output will be:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span>::Eventual tag of the question, it is only for MOODLE::
+How much is <span class="s">$</span><span class="m">1</span><span class="o">+</span><span class="m">1</span><span class="s">$</span>?
+<span class="nb">{}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="questions-with-variants">
 <h3>Questions with variants:<a class="headerlink" href="#questions-with-variants" title="Permalink to this headline">¶</a></h3>
@@ -257,6 +275,8 @@ questions and different answers) of the questions.</p>
 <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
 </pre></div>
 </div>
+<p>The same can be done with <code class="docutils literal"><span class="pre">\begin{exe}</span> <span class="pre">...</span> <span class="pre">\end{exe}</span></code> type exercises.</p>
+<p>When exportin in moodle GIFT format, all the variants will be sequentially exported.</p>
 </div>
 <div class="section" id="other-commands">
 <h3>Other commands:<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h3>
@@ -486,7 +506,7 @@ Determinare in quali punti di <span class="s">$</span><span class="nv">\mathbb</
 </div>
 <p>has can be summarized by the following graph. Full documentation and
 use instructions are shown in the interface itself.</p>
-digraph {
+<img src="_images/graphviz-cc489935d8627383bc7772aeb53a89c8694ed331.png" alt="digraph {
 
 welcome [shape = box, label=&quot;Welcome\n[prompt = ' mcq-&gt;&gt;']&quot; ] ;
 open [shape = oval , label = &quot;Open a XeLaTeX file\n(uiFileNavigator)\n[prompt = '(File)mcq[folder]-&gt;&gt; ']&quot; ] ;
@@ -502,7 +522,8 @@ welcome -&gt; exit   [label = &quot; q &quot; ];
 
 open -&gt; active;
 create -&gt; active;
-         }<p>After this,  several commands are available, each with their own help (see below,
+         }" />
+<p>After this,  several commands are available, each with their own help (see below,
 prepending <code class="docutils literal"><span class="pre">do_</span></code> with the commands: for example, <code class="docutils literal"><span class="pre">do_x</span></code> will
 give the help for the command <code class="docutils literal"><span class="pre">x</span></code> in the CLI.</p>
 <dl class="class">
@@ -533,7 +554,7 @@ home directory. Next time <code class="docutils literal"><span class="pre">mcq.p
 </div>
 <p>Assuming the exam file name is <code class="docutils literal"><span class="pre">f.tex</span></code>, the following hierarchy of files
 will be generated, among others. The commands are on the arrows.</p>
-digraph {
+<img src="_images/graphviz-0a0535e9eb3b280d498a2bdf4ce93c9dab0047b0.png" alt="digraph {
 
 main [label=&quot;Main file: f.tex&quot;];
 xml [label=&quot;f.pos\n f.lbl\n f.pdf&quot;] ;
@@ -574,14 +595,60 @@ marked -&gt; stats  [ label = &quot; makestats &quot; ];
 stats -&gt; main [ label = &quot; check stats\n and fix f.tex &quot; ];
 
 stats -&gt; end [label = &quot; x &quot; ];
-}</div>
+}" />
+</div>
 <div class="section" id="managing-and-using-a-question-bank-with-random-choices">
 <span id="mcq-qb"></span><h2>Managing and using a Question Bank with Random Choices<a class="headerlink" href="#managing-and-using-a-question-bank-with-random-choices" title="Permalink to this headline">¶</a></h2>
-<p>(TODO)</p>
+<p>A <code class="docutils literal"><span class="pre">question</span> <span class="pre">bank</span></code> is simply a folder where there are TeX files with
+mcq.sty questions in them. Operating on question banks allows to
+generate random questions for a test:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span>You can use the commands listed below to choose random questions
+from the Question Bank.
+
+Main Commands (type `? &lt;command&gt;` for help):
+qbank [&lt;directory&gt;]  : show or set the Question Bank Directory
+load &lt;commandsfile&gt;  : load a commandsfile
+lsbank               : list files in the Question Bank Directory
+ls  &lt;arg&gt;            : list files
+add &lt;n&gt; from &lt;files&gt; : add &lt;n&gt; questions from the list of files
+                        (separated by space, wildcard `*` acceptable).
+del &lt;n&gt; | all        : remove n-th question, or all the quesitons
+make                 : generate `&lt;main&gt;.pdf`
+open                 : open the file (e.g. for viewing, open main.pdf)
+random all|&lt;n&gt;       : draw all or just exercise &lt;n&gt;, and create &lt;main&gt;.tex
+status               : show status of the chosen questions
+rehash               : reload the full set of questions from the qbank
+next                 : Accept the random choice and proceed.
+x                    : Exit (without accepting)
+</pre></div>
+</div>
+<p>A typical session, which can be saved in a <code class="docutils literal"><span class="pre">txt</span></code> file and loaded with the command <code class="docutils literal"><span class="pre">load</span></code>
+is as follows:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span>add 1 from c*-2018.tex
+add 3 from c*-2019.tex
+add 1 from richiami.tex
+add 1 from derivate.tex
+add 1 from integrali.tex
+add 1 from successioni.tex
+add 1 from fourier.tex
+add 1 from curvesup.tex
+add 1 from forme.tex
+add 1 from eqdiff.tex
+add 1 from lebes.tex
+add 1 from lebes2.tex
+add 1 from hilbert.tex
+</pre></div>
+</div>
 </div>
 <div class="section" id="exporting-to-other-formats-html-and-gift">
 <span id="mcq-export"></span><h2>Exporting to other formats: HTML and GIFT<a class="headerlink" href="#exporting-to-other-formats-html-and-gift" title="Permalink to this headline">¶</a></h2>
-<p>(TODO)</p>
+<p>The commandline:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py </span><span class="o">--</span><span class="nb">gift filename.tex &gt; questions.gift</span>
+</pre></div>
+</div>
+<p>will convert <strong>all</strong> the questions in <code class="docutils literal"><span class="pre">filename.tex</span></code> to the GIFT moodle format, ready
+to be imported in MOODLE as questions. The two mani types (<code class="docutils literal"><span class="pre">exerm</span></code> and <code class="docutils literal"><span class="pre">exe</span></code>) correspond
+to multiple choice questions or essays, in moodle.</p>
 </div>
 <div class="section" id="when-things-go-wrong">
 <span id="mcq-errors"></span><h2>When things go wrong<a class="headerlink" href="#when-things-go-wrong" title="Permalink to this headline">¶</a></h2>
@@ -1211,7 +1278,7 @@ one per line (same syntax as the UI shell)”</p>
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes and topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

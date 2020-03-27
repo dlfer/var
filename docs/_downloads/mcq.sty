@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{1.00}
+\def\fileversion{1.01}
 \def\filedate{%
-2019-03-15
+2020-03-27
 }
 \def\Copyright{****************************************************************
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
@@ -47,6 +47,13 @@ Francisco, California, 94105, USA.
 \DeclareOption{sol}{%
 \soltrue
 }
+
+\newif\ifdoexe%
+\doexefalse
+\DeclareOption{doexe}{%
+\doexetrue
+}
+
 
 \newif\ifnoblankpage%
 \noblankpagefalse

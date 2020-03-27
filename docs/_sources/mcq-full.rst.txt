@@ -64,6 +64,9 @@ Package options:
   Use the TTF version of `Linux Libertine <http://libertine-fonts.org/>`__ instead of the 
   default OTF version. 
 
+``doexe``
+  when generating copies for the individual sheets, include not only ``exerm`` style questions,
+  but also open-answer questions ``\begin{exe}...\end{exe}``
 
 Preamble commands:
 ~~~~~~~~~~~~~~~~~~
@@ -209,6 +212,23 @@ The other exercise type is a simple environment, that can be also used as follow
   \end{sol}
 
 
+Open answer questions can be used also to generate essay questions for MOODLE, with textarea 
+solutions (visible with the ``sol`` mcq option and removed in the moodle exported version)::
+
+    \begin{exe}[comment]
+    \qtitle{Eventual tag of the question, it is only for MOODLE}
+    How much is $1+1$?
+    \blank{$2$}
+    \end{exe}
+
+
+The GIFT output will be::
+
+    ::Eventual tag of the question, it is only for MOODLE::
+    How much is $1+1$?
+    {}
+
+
 Questions with variants:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -245,7 +265,9 @@ The syntax is as in the following example::
   \end{exerm}
 
 
+The same can be done with ``\begin{exe} ... \end{exe}`` type exercises. 
 
+When exportin in moodle GIFT format, all the variants will be sequentially exported. 
 
 
 Other commands: 
@@ -589,7 +611,47 @@ will be generated, among others. The commands are on the arrows.
 Managing and using a Question Bank with Random Choices
 ======================================================
 
-(TODO)
+A ``question bank`` is simply a folder where there are TeX files with 
+mcq.sty questions in them. Operating on question banks allows to 
+generate random questions for a test::
+        
+    You can use the commands listed below to choose random questions
+    from the Question Bank.
+    
+    Main Commands (type `? <command>` for help):
+    qbank [<directory>]  : show or set the Question Bank Directory
+    load <commandsfile>  : load a commandsfile
+    lsbank               : list files in the Question Bank Directory
+    ls  <arg>            : list files
+    add <n> from <files> : add <n> questions from the list of files
+                            (separated by space, wildcard `*` acceptable).
+    del <n> | all        : remove n-th question, or all the quesitons
+    make                 : generate `<main>.pdf`
+    open                 : open the file (e.g. for viewing, open main.pdf)
+    random all|<n>       : draw all or just exercise <n>, and create <main>.tex
+    status               : show status of the chosen questions
+    rehash               : reload the full set of questions from the qbank
+    next                 : Accept the random choice and proceed.
+    x                    : Exit (without accepting)
+
+
+A typical session, which can be saved in a ``txt`` file and loaded with the command ``load``
+is as follows::
+
+    add 1 from c*-2018.tex
+    add 3 from c*-2019.tex
+    add 1 from richiami.tex
+    add 1 from derivate.tex
+    add 1 from integrali.tex
+    add 1 from successioni.tex
+    add 1 from fourier.tex
+    add 1 from curvesup.tex
+    add 1 from forme.tex
+    add 1 from eqdiff.tex
+    add 1 from lebes.tex 
+    add 1 from lebes2.tex 
+    add 1 from hilbert.tex 
+
 
 
 .. _MCQ-export:
@@ -597,7 +659,15 @@ Managing and using a Question Bank with Random Choices
 Exporting to other formats: HTML and GIFT
 =========================================
 
-(TODO)
+The commandline::
+
+    $ mcq.py --gift filename.tex > questions.gift
+
+will convert **all** the questions in ``filename.tex`` to the GIFT moodle format, ready 
+to be imported in MOODLE as questions. The two mani types (``exerm`` and ``exe``) correspond
+to multiple choice questions or essays, in moodle. 
+
+
 
 .. _MCQ-errors:
 

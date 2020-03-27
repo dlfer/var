@@ -26,7 +26,7 @@
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="simplicial: simplicial complexes and topology" href="simplicial.html" />
+    <link rel="next" title="simplicial: simplicial complexes, homology, topology and persistent homology" href="simplicial.html" />
     <link rel="prev" title="psd2pdf: drawing and presentation" href="psd2pdf.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -44,8 +44,128 @@
             
   <div class="section" id="casengine">
 <h1>CASengine<a class="headerlink" href="#casengine" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div>(toappear)</div></blockquote>
+<p>The program, together with a larva of documentation, is at
+<a class="reference external" href="https://github.com/dlfer/casengine">https://github.com/dlfer/casengine</a></p>
+<p>It is worth considering it for authoring <a class="reference external" href="https://www.moodle.org">MOODLE</a>  questions.
+For authoring multiple choice questions in LaTeX, I suggest using just <code class="docutils literal"><span class="pre">mcq.py</span></code>.
+For open questions, on the other hand, <code class="docutils literal"><span class="pre">casengine.py</span></code> may more not that unuseful.</p>
+<p>For example, consider the following example file:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="c">%===================================================================</span>
+<span class="k">\documentclass</span><span class="na">[twoside,a4paper,leqno]</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="c">%===================================================================</span>
+<span class="k">\usepackage</span><span class="nb">{</span>mathpazo<span class="nb">}</span> <span class="c">% I like it.</span>
+<span class="k">\usepackage</span><span class="na">[sol,doexe]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>polyglossia<span class="nb">}</span>
+<span class="k">\setdefaultlanguage</span><span class="nb">{</span>english<span class="nb">}</span> <span class="c">%% it needs to be *after* mcq.</span>
+
+<span class="k">\usepackage</span><span class="nb">{</span>casengine<span class="nb">}</span>
+
+<span class="c">%===================================================================</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>esercizi*<span class="nb">}{}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>symfor<span class="nb">}{</span>q<span class="nb">}{</span>range(2,6)<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>symfor<span class="nb">}{</span>x<span class="nb">}{</span>cos(t); sin(t); exp(t); t**2 - 2 * t<span class="nb">}</span>
+<span class="k">\symexec</span><span class="nb">{</span>g=x+q*t<span class="nb">}</span>
+<span class="k">\symexec</span><span class="nb">{</span>gp=Derivative(expand(g))<span class="nb">}</span>
+<span class="k">\varitem</span>
+Compute <span class="s">$</span><span class="nv">\displaystyle</span><span class="nb"> </span><span class="nv">\sym</span><span class="nb">{gp}</span><span class="s">$</span>.
+<span class="k">\blank</span><span class="nb">{</span><span class="s">$</span><span class="nv">\sym</span><span class="nb">{simplify</span><span class="o">(</span><span class="nb">gp.doit</span><span class="o">())</span><span class="nb">}</span><span class="s">$</span><span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>symfor<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>symfor<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exe<span class="nb">}</span>
+
+
+<span class="k">\end</span><span class="nb">{</span>esercizi*<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Using the <code class="docutils literal"><span class="pre">casengine.py</span></code> one obtains an expanded file, with all exercises (and solutions), as in
+the <a class="reference download internal" href="_downloads/exam_out.pdf" download=""><code class="xref download docutils literal"><span class="pre">output</span> <span class="pre">file</span></code></a>. How to produce the 16 related
+There are two nested for cycles, with 4 iterations each: hence 16 varied questions.</p>
+<p>The GIFT output, produced by <code class="docutils literal"><span class="pre">mcq.py</span></code> is the following:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span>// [Var. 1]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">2</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">cos</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 2]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">2</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">sin</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 3]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">2</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> e^</span><span class="nv">\{</span><span class="nb">t</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 4]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}</span><span class="nb"> t^</span><span class="nv">\{</span><span class="m">2</span><span class="nv">\}</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 5]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">3</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">cos</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 6]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">3</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">sin</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 7]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">3</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> e^</span><span class="nv">\{</span><span class="nb">t</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 8]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="nb">t^</span><span class="nv">\{</span><span class="m">2</span><span class="nv">\}</span><span class="nb"> </span><span class="o">+</span><span class="nb"> t</span><span class="nv">\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 9]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">4</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">cos</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 10]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">4</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">sin</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 11]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">4</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> e^</span><span class="nv">\{</span><span class="nb">t</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 12]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="nb">t^</span><span class="nv">\{</span><span class="m">2</span><span class="nv">\}</span><span class="nb"> </span><span class="o">+</span><span class="nb"> </span><span class="m">2</span><span class="nb"> t</span><span class="nv">\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 13]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">5</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">cos</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 14]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">5</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">sin</span><span class="nv">\{\\</span><span class="nb">left </span><span class="o">(</span><span class="nb">t </span><span class="nv">\\</span><span class="nb">right </span><span class="o">)</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 15]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="m">5</span><span class="nb"> t </span><span class="o">+</span><span class="nb"> e^</span><span class="nv">\{</span><span class="nb">t</span><span class="nv">\}\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+
+// [Var. 16]
+Compute <span class="s">$</span><span class="nv">\\</span><span class="nb">displaystyle </span><span class="nv">\\</span><span class="nb">frac</span><span class="nv">\{</span><span class="nb">d</span><span class="nv">\}\{</span><span class="nb">d t</span><span class="nv">\}\\</span><span class="nb">left</span><span class="o">(</span><span class="nb">t^</span><span class="nv">\{</span><span class="m">2</span><span class="nv">\}</span><span class="nb"> </span><span class="o">+</span><span class="nb"> </span><span class="m">3</span><span class="nb"> t</span><span class="nv">\\</span><span class="nb">right</span><span class="o">)</span><span class="s">$</span>.
+<span class="nb">{}</span>
+</pre></div>
+</div>
+<p>If one does not have a moodle installation with mathjax, or just prefers to handle PDF files,
+do as follows.</p>
+<p>First generate all permutations with <code class="docutils literal"><span class="pre">mcq.py</span></code> (and the <code class="docutils literal"><span class="pre">doexe</span></code> option). This will produce
+a nice <code class="docutils literal"><span class="pre">exam_out_exam.pdf</span></code>. Use then <code class="docutils literal"><span class="pre">qpdf</span></code> to split the file (renaming it if necessary)
+and shuffle the result as needed:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> qpdf </span><span class="o">--</span><span class="nb">split</span><span class="o">-</span><span class="nb">pages</span><span class="o">=</span><span class="m">4</span><span class="nb"> exam_out_exam.pdf output.pdf</span>
+</pre></div>
+</div>
+<p>It is not really a stable piece of software, but can leverage all Computer
+Algebra Systems to author question banks. It is similar to a static site generator (such as
+hugo, jeckyll, …) compared to a dynamic CMS (which in moodle assessments might be
+for example the  <a class="reference external" href="https://moodle.org/plugins/qtype_stack">STACK system</a>.</p>
 </div>
 
 
@@ -62,14 +182,14 @@
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CASengine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes and topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="psd2pdf.html" title="previous chapter">psd2pdf: drawing and presentation</a></li>
-      <li>Next: <a href="simplicial.html" title="next chapter">simplicial: simplicial complexes and topology</a></li>
+      <li>Next: <a href="simplicial.html" title="next chapter">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
   </ul></li>
 </ul>
 </div>

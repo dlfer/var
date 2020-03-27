@@ -48,7 +48,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (updated 2020-03-27)</td>
 </tr>
 </tbody>
 </table>
@@ -66,7 +66,7 @@ $ chmod +x mcq.py
 </div>
 <p>Of course you can move both files in more appropriate places (<code class="docutils literal"><span class="pre">/usr/loca/bin/mcq.py</span></code>,
 and <code class="docutils literal"><span class="pre">mcq.sty</span></code> somewhere in  <code class="docutils literal"><span class="pre">$TEXINPUTS</span></code>).</p>
-<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2019-05-20</p>
+<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-03-27</p>
 <div class="section" id="usage">
 <h3>USAGE:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>Just put <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.py">mcq.py</a> in your PATH and run:</p>
@@ -326,24 +326,53 @@ non-homogeneous:</p>
 <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
 </pre></div>
 </div>
+<p>There is a simple open-answer exercise, that will be translated to an <code class="docutils literal"><span class="pre">essay</span></code> GIFT/MOODLE
+question:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol,doexe]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{}</span>
+
+[...]
+
+<span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[Just a comment]
+<span class="k">\begin</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\varitem</span>
+<span class="k">\qtitle</span><span class="nb">{</span>Title of the exercise (can be used as question-id 1: it does not appear in TeX<span class="nb">}</span>
+... 1 ...
+<span class="k">\blank</span><span class="nb">{</span>solution 1<span class="nb">}</span>
+<span class="k">\varitem</span>
+<span class="k">\qtitle</span><span class="nb">{</span>Title of the exercise (can be used as question-id 2: it does not appear in TeX<span class="nb">}</span>
+... 2 ...
+<span class="k">\blank</span><span class="nb">{</span>solution 2<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exe<span class="nb">}</span>
+
+[...]
+
+<span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
+</pre></div>
+</div>
+<p>In order to choose variants in <code class="docutils literal"><span class="pre">exe</span></code> question types, the option <code class="docutils literal"><span class="pre">doexe</span></code> must be
+set when loading <code class="docutils literal"><span class="pre">mcq.sty</span></code>.</p>
 </div>
 <div class="section" id="options">
 <h3>OPTIONS:<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>There are a few options that might be useful, but please use them only
-for debugging purposes.</p>
-<blockquote>
-<div>–help|-h               this help
--v|–verbose            verbose output
-–gift|-g               GIFT output
-–xhtml|-x              XHTML output
-–output=|-o [FILENAME] explicit output=[FILENAME]
-–number=|-n [N]        number of copies = [n]
-–db= [FILENAME]        data for the marking
-–stats= [FILENAME]     make a stats tex file
-–omr= [BASENAME] [SCANFILES]   OMR scan of [BASENAME].tex and [SCANFILES]
-–uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
-–join  [FILE1_exam.csv] [FILE2_exam.csv] join two csv tables
-–choose= [N] [files*.tex] random choose N from files*.tex</div></blockquote>
+for debugging purposes:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span>--help|-h               this help
+-v|--verbose            verbose output
+--gift|-g               GIFT output
+--xhtml|-x              XHTML output
+--output=|-o [FILENAME] explicit output=[FILENAME]
+--number=|-n [N]        number of copies = [n]
+--db= [FILENAME]        data for the marking
+--stats= [FILENAME]     make a stats tex file
+--omr= [BASENAME] [SCANFILES]   OMR scan of [BASENAME].tex and [SCANFILES]
+--uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
+--join  [FILE1<span class="nb">_</span>exam.csv] [FILE2<span class="nb">_</span>exam.csv] join two csv tables
+--choose= [N] [files*.tex] random choose N from files*.tex
+</pre></div>
+</div>
 <p>Some aspect of the script are controlled by the following
 <strong>ENVIRONMENT VARIABLES</strong>:</p>
 <div class="highlight-latex"><div class="highlight"><pre><span></span>MCQRANDOMSEED [alternative random seed]
@@ -382,7 +411,7 @@ San Francisco, California, 94105, USA.]
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes and topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

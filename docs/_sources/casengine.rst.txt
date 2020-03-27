@@ -2,6 +2,140 @@
 CASengine
 ========================
 
+.. highlight:: latex
 
 
-  (toappear)
+
+The program, together with a larva of documentation, is at 
+https://github.com/dlfer/casengine
+
+
+It is worth considering it for authoring `MOODLE <https://www.moodle.org>`_  questions.  
+For authoring multiple choice questions in LaTeX, I suggest using just ``mcq.py``. 
+For open questions, on the other hand, ``casengine.py`` may more not that unuseful.
+
+For example, consider the following example file::
+
+
+    %===================================================================
+    \documentclass[twoside,a4paper,leqno]{article}
+    %===================================================================
+    \usepackage{mathpazo} % I like it.
+    \usepackage[sol,doexe]{mcq} 
+    \usepackage{polyglossia}
+    \setdefaultlanguage{english} %% it needs to be *after* mcq.
+    
+    \usepackage{casengine}
+    
+    %===================================================================
+    \begin{document}
+    
+    \begin{esercizi*}{}
+    
+    \begin{exe}
+    \begin{varianti}
+    \begin{symfor}{q}{range(2,6)}
+    \begin{symfor}{x}{cos(t); sin(t); exp(t); t**2 - 2 * t}
+    \symexec{g=x+q*t}
+    \symexec{gp=Derivative(expand(g))}
+    \varitem 
+    Compute $\displaystyle \sym{gp}$.
+    \blank{$\sym{simplify(gp.doit())}$}
+    \end{symfor}
+    \end{symfor}
+    \end{varianti}
+    \end{exe}
+    
+    
+    \end{esercizi*}
+    
+    \end{document}
+
+
+Using the ``casengine.py`` one obtains an expanded file, with all exercises (and solutions), as in 
+the :download:`output file <soft/exam_out.pdf>`. How to produce the 16 related 
+There are two nested for cycles, with 4 iterations each: hence 16 varied questions. 
+
+The GIFT output, produced by ``mcq.py`` is the following::
+
+
+    // [Var. 1]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + \\cos\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 2]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + \\sin\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 3]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + e^\{t\}\\right)$.
+    {}
+    
+    // [Var. 4]
+    Compute $\\displaystyle \\frac\{d\}\{d t\} t^\{2\}$.
+    {}
+    
+    // [Var. 5]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + \\cos\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 6]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + \\sin\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 7]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + e^\{t\}\\right)$.
+    {}
+    
+    // [Var. 8]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + t\\right)$.
+    {}
+    
+    // [Var. 9]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + \\cos\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 10]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + \\sin\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 11]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + e^\{t\}\\right)$.
+    {}
+    
+    // [Var. 12]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + 2 t\\right)$.
+    {}
+    
+    // [Var. 13]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + \\cos\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 14]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + \\sin\{\\left (t \\right )\}\\right)$.
+    {}
+    
+    // [Var. 15]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + e^\{t\}\\right)$.
+    {}
+    
+    // [Var. 16]
+    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + 3 t\\right)$.
+    {}
+
+
+If one does not have a moodle installation with mathjax, or just prefers to handle PDF files,
+do as follows.
+
+First generate all permutations with ``mcq.py`` (and the ``doexe`` option). This will produce 
+a nice ``exam_out_exam.pdf``. Use then ``qpdf`` to split the file (renaming it if necessary)
+and shuffle the result as needed:: 
+
+    $ qpdf --split-pages=4 exam_out_exam.pdf output.pdf
+
+
+It is not really a stable piece of software, but can leverage all Computer
+Algebra Systems to author question banks. It is similar to a static site generator (such as
+hugo, jeckyll, ...) compared to a dynamic CMS (which in moodle assessments might be 
+for example the  `STACK system <https://moodle.org/plugins/qtype_stack>`_.
+
