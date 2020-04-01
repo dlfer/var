@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-03-31
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-01
 
 USAGE:
 ------
@@ -574,7 +574,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yIGFzIGVycjoKICAgICAgICBwcmludChzdHIoZXJyKSkKICAgICAgICBwcmludCgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIikKICAgICAgICBzeXMuZXhpdCgyKQogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgSVNVSSA9IFRydWUKICAgIGZvciBvLCBhIGluIG9wdHM6CiAgICAgICAgaWYgbyBpbiAoIi12IiwgIi0tdmVyYm9zZSIpOgogICAgICAgICAgICBWRVJCT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICAgICAgICAgICBwcmludChfX2RvY19fKQogICAgICAgICAgICBzeXMuZXhpdCgpCiAgICAgICAgZWxpZiBvIGluICgiLWciLCAiLS1naWZ0Iik6CiAgICAgICAgICAgIEdJRlQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLXgiLCAiLS14aHRtbCIpOgogICAgICAgICAgICBYSFRNTCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbyIsICItLW91dHB1dCIpOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGEsICd3JykKICAgICAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICAgICAgICAgIGV4cGxpY2l0X291dHB1dCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWRiIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYSwgJ3JiJykKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IG9wZW4oYiArICJfc3RhdHMuZGIiLCAnd2InKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiLmNzdiIsICd3JykKICAgICAgICAgICAgRVZBTFVBVEUgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS11aWQiLCApOgogICAgICAgICAgICBVSURGSUxFID0gYQogICAgICAgICAgICBNRVJHRUZJTEVTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tY2hvb3NlIiwgKToKICAgICAgICAgICAgQ0hPT1NFTlVNQkVSID0gaW50KGEpCiAgICAgICAgICAgIFJBTkRPTUNIT09TRSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLW9tciIsICk6CiAgICAgICAgICAgIE9NQVJCQVNFLCBfID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBPTUFSU0NBTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWpvaW4iLCApOgogICAgICAgICAgICBDU1ZKT0lOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3RhdHMiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICAjIG91dHB1dCA9IGZpbGUoYisiLnRleCIsJ3cnKQogICAgICAgICAgICBNQUtFX1NUQVRTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1uIiwgIi0tbnVtYmVyIik6CiAgICAgICAgICAgIE5VTUJFUl9PRl9DT1BJRVMgPSBpbnQoYSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBhc3NlcnQgRmFsc2UsICJ1bmhhbmRsZWQgb3B0aW9uIgogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgdWlsb29wKCkKICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgIHJldHVybiAoc3lzLnN0ZGluLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgRVZBTFVBVEUgb3IgR0lGVCBvciBYSFRNTCBvciBNQUtFX1NUQVRTOgogICAgICAgIFZBTEZJTEUgPSBhcmdzWzBdCiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBNRVJHRUZJTEVTOgogICAgICAgIG91dHB1dC53cml0ZShtZXJnZV9maWxlcyhvcGVuKGFyZ3NbMF0sICdyJykucmVhZGxpbmVzKCksIFVJREZJTEUpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBPTUFSU0NBTjoKICAgICAgICBvdXRwdXQud3JpdGUoc3NjbGllbnQoT01BUkJBU0UsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBDU1ZKT0lOOgogICAgICAgIG91dHB1dC53cml0ZShjc3Zqb2luKGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBSQU5ET01DSE9PU0U6CiAgICAgICAgb3V0cHV0LndyaXRlKHJhbmRvbV9jaG9vc2UoQ0hPT1NFTlVNQkVSLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSkgYW5kIG5vdCBleHBsaWNpdF9vdXRwdXQ6CiAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYXJnc1swXSkKICAgICAgICBCQVNFTkFNRUZJTEUgPSBiCiAgICAgICAgb3V0cHV0ID0gb3BlbihiICsgIl9leGFtLnRleCIsICd3JykKICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgIERCX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSk6CiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIEV4Y2VwdGlvbigiZmlsZSAlcyBkb2VzIG5vdCBleGlzdCEiICUgYXJnc1swXSkKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPWxlbihib2R5X2ZpcnN0LnN0cmlwKCkpK2xlbihib2R5X2xhc3Quc3RyaXAoKSkKIGw9aGFzaGxpYi5zaGEyMjQoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKS5lbmNvZGUoKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPScxZDdmYTBkNWQzNzViYzU5ODJiNDE2YmJkNWFhNWU4MjRmZDY5YTg4YmM2MmM5MTZjMDJkMGNmMicKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yIGFzIGVycjoKICAgICAgICBwcmludChzdHIoZXJyKSkKICAgICAgICBwcmludCgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIikKICAgICAgICBzeXMuZXhpdCgyKQogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgSVNVSSA9IFRydWUKICAgIGZvciBvLCBhIGluIG9wdHM6CiAgICAgICAgaWYgbyBpbiAoIi12IiwgIi0tdmVyYm9zZSIpOgogICAgICAgICAgICBWRVJCT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICAgICAgICAgICBwcmludChfX2RvY19fKQogICAgICAgICAgICBzeXMuZXhpdCgpCiAgICAgICAgZWxpZiBvIGluICgiLWciLCAiLS1naWZ0Iik6CiAgICAgICAgICAgIEdJRlQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLXgiLCAiLS14aHRtbCIpOgogICAgICAgICAgICBYSFRNTCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbyIsICItLW91dHB1dCIpOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGEsICd3JykKICAgICAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICAgICAgICAgIGV4cGxpY2l0X291dHB1dCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWRiIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYSwgJ3JiJykKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IG9wZW4oYiArICJfc3RhdHMuZGIiLCAnd2InKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiLmNzdiIsICd3JykKICAgICAgICAgICAgRVZBTFVBVEUgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS11aWQiLCApOgogICAgICAgICAgICBVSURGSUxFID0gYQogICAgICAgICAgICBNRVJHRUZJTEVTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tY2hvb3NlIiwgKToKICAgICAgICAgICAgQ0hPT1NFTlVNQkVSID0gaW50KGEpCiAgICAgICAgICAgIFJBTkRPTUNIT09TRSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLW9tciIsICk6CiAgICAgICAgICAgIE9NQVJCQVNFLCBfID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBPTUFSU0NBTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWpvaW4iLCApOgogICAgICAgICAgICBDU1ZKT0lOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3RhdHMiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICAjIG91dHB1dCA9IGZpbGUoYisiLnRleCIsJ3cnKQogICAgICAgICAgICBNQUtFX1NUQVRTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1uIiwgIi0tbnVtYmVyIik6CiAgICAgICAgICAgIE5VTUJFUl9PRl9DT1BJRVMgPSBpbnQoYSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBhc3NlcnQgRmFsc2UsICJ1bmhhbmRsZWQgb3B0aW9uIgogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgdWlsb29wKCkKICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgIHJldHVybiAoc3lzLnN0ZGluLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgRVZBTFVBVEUgb3IgR0lGVCBvciBYSFRNTCBvciBNQUtFX1NUQVRTOgogICAgICAgIFZBTEZJTEUgPSBhcmdzWzBdCiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBNRVJHRUZJTEVTOgogICAgICAgIG91dHB1dC53cml0ZShtZXJnZV9maWxlcyhvcGVuKGFyZ3NbMF0sICdyJykucmVhZGxpbmVzKCksIFVJREZJTEUpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBPTUFSU0NBTjoKICAgICAgICBvdXRwdXQud3JpdGUoc3NjbGllbnQoT01BUkJBU0UsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBDU1ZKT0lOOgogICAgICAgIG91dHB1dC53cml0ZShjc3Zqb2luKGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBSQU5ET01DSE9PU0U6CiAgICAgICAgb3V0cHV0LndyaXRlKHJhbmRvbV9jaG9vc2UoQ0hPT1NFTlVNQkVSLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSkgYW5kIG5vdCBleHBsaWNpdF9vdXRwdXQ6CiAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYXJnc1swXSkKICAgICAgICBCQVNFTkFNRUZJTEUgPSBiCiAgICAgICAgb3V0cHV0ID0gb3BlbihiICsgIl9leGFtLnRleCIsICd3JykKICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgIERCX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSk6CiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIEV4Y2VwdGlvbigiZmlsZSAlcyBkb2VzIG5vdCBleGlzdCEiICUgYXJnc1swXSkKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPWxlbihib2R5X2ZpcnN0LnN0cmlwKCkpK2xlbihib2R5X2xhc3Quc3RyaXAoKSkKIGw9aGFzaGxpYi5zaGEyMjQoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKS5lbmNvZGUoKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSdmMzU0MWJmOWRkZDFhYjZjMzBmYzhjNmZmOTBhYzk0NWE1MzQ2MTk5MDNkMDZlNzQ1MGU5NThiMCcKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -1035,7 +1035,7 @@ class Esercizio:
                 raise Exception("boh")
         return res
 
-    def gift(self):
+    def gift(self,default_punti=None):
         if self.type == 'EXERM':
             return """%s%s
 {
@@ -1043,7 +1043,7 @@ class Esercizio:
 }
 """ % (self.qtitle,
                 escape_control_characters(remove_empty_lines(self.testo)),
-                "\n".join([ris.gift() for ris in self.risposte]))
+                "\n".join([ris.gift(default_punti=default_punti) for ris in self.risposte]))
         elif self.type in ("VERO", "FALSO"):
             if self.type == "VERO":
                 ans = "TRUE"
@@ -1215,12 +1215,12 @@ class MultiEsercizio:
             r"MultiEsercizio \begin{varianti}\end{varianti}: variant 1 chosen." + "\n  => Answers count might be wrong!\n")
         return ese.latex_withstats(stats)
 
-    def gift(self):
+    def gift(self,default_punti=None):
         res = ''
         ii = 0
         for x in self.esercizi:
             ii += 1
-            res += ("\n// [Var. %i]\n" % ii) + x.gift()
+            res += ("\n// [Var. %i]\n" % ii) + x.gift(default_punti=default_punti)
         sys.stderr.write(
             (r"MultiEsercizio \begin{varianti}\end{varianti}: %i variants." % ii) + "\n")
         return res
@@ -1274,13 +1274,15 @@ class Risposta:
             res += "[%s]\n" % self.punti
         return res + " " + self.testo + "\n"
 
-    def gift(self):
+    def gift(self,default_punti=None):
         if self.giusta:
             risp = "="
         else:
             risp = "~"
         if self.punti is not None:
-            risp += "%%%i%% " % int(self.punti * 100.0)
+            risp += "%{:2.4f}% ".format( self.punti * 100.0 / default_punti[0] )  ## no: just percentage of punti_giusta...
+        elif not self.giusta:
+            risp += "%{:2.4f}% ".format( default_punti[1] * 100.0 / default_punti[0] )  
         risp += " " + escape_control_characters(remove_empty_lines(self.testo))
         if self.fb:
             risp += "\n#%s" % escape_control_characters(
@@ -1770,18 +1772,12 @@ def correggi(dbl, data):
                 else:
                     votoparziale += pte
                     corrette += [pte]
-            # votototale=combina_voti(votoparziale/len(dbsols) , voto )
             votototale = combina_voti(votoparziale, voto)
-            # result += "%s;%s;%s;%0.2f;%0.2f;%0.2f\n" %
-            # (codice,name,matr,votoparziale,voto,votototale )
             result += [(codice, name, matr, votoparziale, voto, votototale)]
             dbl['__stats_lista__'] += [(votoparziale, voto, votototale)]
             lista_corrette += [[corrette[i]
                                 for i in permutazione_inversa(reversepermdb['perm_esercizi'])]]
-            # print "TMP: ", sum(corrette), votoparziale
     riordina_somme(lista_corrette)
-    # print "TOT=",  sum([sum([x for x in xx]) for xx in lista_corrette])
-    # print "TOT2=",  sum([xx[-1] for xx in result ])
     dbl['__indici__'] = calcola_indici(lista_corrette, ptg)
     return result
 # ----------------------------------------------------------------------
@@ -1956,8 +1952,9 @@ def extract_target(data):
 
 
 def generate_gift(data):
-    esercizi = [parse_esercizio(es).gift() for es in extract_esercizi(data)]\
-     + [parse_esercizio(es).gift() for es in extract_esercizi(data,exe_type='exe')]
+    extracted_punti=extract_punti(data) #never None... 
+    esercizi = [parse_esercizio(es).gift(default_punti=extracted_punti) for es in extract_esercizi(data)]\
+     + [parse_esercizio(es).gift(default_punti=extracted_punti) for es in extract_esercizi(data,exe_type='exe')]
     return "\n\n".join(esercizi)
 
 # ----------------------------------------------------------------------
