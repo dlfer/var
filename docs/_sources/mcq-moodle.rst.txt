@@ -1,7 +1,7 @@
 .. _mcq-moodle:
 
 ================================================================
-MCQ-XeLaTeX: How to use with Moodle and for online exams
+MCQ-XeLaTeX: How to use it with Moodle and for online exams
 ================================================================
 
 :Date:   2020-04-01 
@@ -37,7 +37,6 @@ to a Moodle quiz (permuted answers and questions, duration, ...).
 
 Essay Questions
 ---------------
-
 
    
 Being mathematics, you need to give a PDF document as exam, and expect the student to upload 
@@ -80,7 +79,7 @@ Remove the ``sol`` option to remove the warning.
 Now, how to split the output ``filename_exam.pdf`` into 50 single PDF documents, and assign
 one to each to the students? 
 
-Just use the ``--split_for_moodle=`` option in mcq:: 
+Just use the ``--split-for-moodle=`` option in mcq:: 
 
         $ mcq.py --split-for-moodle=https://www.example.com/mdl/ filename_exam.pdf
 
@@ -94,7 +93,7 @@ Create a **category** in moodle. Import the XML questions file in the catogory.
 Then create a moodle quiz with just one random question taken from the category. 
 
 
-  The files are supposed to be hosted in an external web site (until I will understand 
-  how to predict uploaded file URLs in moodle). 
+  The files are supposed to be hosted in an **external web site** (until I will understand 
+  how to predict uploaded file URLs, in moodle). 
 
 

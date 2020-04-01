@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>MCQ-XeLaTeX: How to use with Moodle and for online exams &#8212; var  documentation</title>
+    <title>MCQ-XeLaTeX: How to use it with Moodle and for online exams &#8212; var  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -42,8 +42,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mcq-xelatex-how-to-use-with-moodle-and-for-online-exams">
-<span id="mcq-moodle"></span><h1>MCQ-XeLaTeX: How to use with Moodle and for online exams<a class="headerlink" href="#mcq-xelatex-how-to-use-with-moodle-and-for-online-exams" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="mcq-xelatex-how-to-use-it-with-moodle-and-for-online-exams">
+<span id="mcq-moodle"></span><h1>MCQ-XeLaTeX: How to use it with Moodle and for online exams<a class="headerlink" href="#mcq-xelatex-how-to-use-it-with-moodle-and-for-online-exams" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -105,7 +105,7 @@ $ xelatex filename_exam.tex
 <p>Remove the <code class="docutils literal"><span class="pre">sol</span></code> option to remove the warning.</p>
 <p>Now, how to split the output <code class="docutils literal"><span class="pre">filename_exam.pdf</span></code> into 50 single PDF documents, and assign
 one to each to the students?</p>
-<p>Just use the <code class="docutils literal"><span class="pre">--split_for_moodle=</span></code> option in mcq:</p>
+<p>Just use the <code class="docutils literal"><span class="pre">--split-for-moodle=</span></code> option in mcq:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --split-for-moodle<span class="o">=</span>https://www.example.com/mdl/ filename_exam.pdf
 </pre></div>
 </div>
@@ -116,8 +116,8 @@ each linking to the proper PDF in the external URL.</p>
 <p>Create a <strong>category</strong> in moodle. Import the XML questions file in the catogory.
 Then create a moodle quiz with just one random question taken from the category.</p>
 <blockquote>
-<div>The files are supposed to be hosted in an external web site (until I will understand
-how to predict uploaded file URLs in moodle).</div></blockquote>
+<div>The files are supposed to be hosted in an <strong>external web site</strong> (until I will understand
+how to predict uploaded file URLs, in moodle).</div></blockquote>
 </div>
 </div>
 </div>
@@ -133,7 +133,7 @@ how to predict uploaded file URLs in moodle).</div></blockquote>
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MCQ-XeLaTeX: How to use with Moodle and for online exams</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MCQ-XeLaTeX: How to use it with Moodle and for online exams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
