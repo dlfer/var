@@ -1,9 +1,10 @@
+.. _casengine:
+
 ========================
 CASengine
 ========================
 
 .. highlight:: latex
-
 
 
 The program, together with a larva of documentation, is at 

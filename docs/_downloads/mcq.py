@@ -303,6 +303,7 @@ question::
 In order to choose variants in ``exe`` question types, the option ``doexe`` must be 
 set when loading ``mcq.sty``. 
 
+    This part is a little bit experimental (see the full documentation).
 
 
 OPTIONS:
@@ -323,6 +324,7 @@ for debugging purposes::
         --uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
         --join  [FILE1_exam.csv] [FILE2_exam.csv] join two csv tables
         --choose= [N] [files*.tex] random choose N from files*.tex
+        --split-for-moodle=|-s [URL/] [file_exam.pdf] slit for moodle essay
 
 
 Some aspect of the script are controlled by the following
@@ -574,7 +576,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2IiwgWwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJoZWxwIiwgIm91dHB1dD0iLCAibnVtYmVyPSIsICJkYj0iLCAiZ2lmdCIsICJ4aHRtbCIsICJzdGF0cz0iLCAidWlkPSIsICJvbXI9IiwgImpvaW4iLCAiY2hvb3NlPSIsICJ2ZXJib3NlIl0pCiAgICBleGNlcHQgZ2V0b3B0LkdldG9wdEVycm9yIGFzIGVycjoKICAgICAgICBwcmludChzdHIoZXJyKSkKICAgICAgICBwcmludCgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdIikKICAgICAgICBzeXMuZXhpdCgyKQogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgSVNVSSA9IFRydWUKICAgIGZvciBvLCBhIGluIG9wdHM6CiAgICAgICAgaWYgbyBpbiAoIi12IiwgIi0tdmVyYm9zZSIpOgogICAgICAgICAgICBWRVJCT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICAgICAgICAgICBwcmludChfX2RvY19fKQogICAgICAgICAgICBzeXMuZXhpdCgpCiAgICAgICAgZWxpZiBvIGluICgiLWciLCAiLS1naWZ0Iik6CiAgICAgICAgICAgIEdJRlQgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLXgiLCAiLS14aHRtbCIpOgogICAgICAgICAgICBYSFRNTCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbyIsICItLW91dHB1dCIpOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGEsICd3JykKICAgICAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICAgICAgICAgIGV4cGxpY2l0X291dHB1dCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWRiIiwgKToKICAgICAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYSkKICAgICAgICAgICAgREJfRklMRSA9IG9wZW4oYSwgJ3JiJykKICAgICAgICAgICAgREJfU1RBVFNfRklMRSA9IG9wZW4oYiArICJfc3RhdHMuZGIiLCAnd2InKQogICAgICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiLmNzdiIsICd3JykKICAgICAgICAgICAgRVZBTFVBVEUgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS11aWQiLCApOgogICAgICAgICAgICBVSURGSUxFID0gYQogICAgICAgICAgICBNRVJHRUZJTEVTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tY2hvb3NlIiwgKToKICAgICAgICAgICAgQ0hPT1NFTlVNQkVSID0gaW50KGEpCiAgICAgICAgICAgIFJBTkRPTUNIT09TRSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLW9tciIsICk6CiAgICAgICAgICAgIE9NQVJCQVNFLCBfID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBPTUFSU0NBTiA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLWpvaW4iLCApOgogICAgICAgICAgICBDU1ZKT0lOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3RhdHMiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICAjIG91dHB1dCA9IGZpbGUoYisiLnRleCIsJ3cnKQogICAgICAgICAgICBNQUtFX1NUQVRTID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1uIiwgIi0tbnVtYmVyIik6CiAgICAgICAgICAgIE5VTUJFUl9PRl9DT1BJRVMgPSBpbnQoYSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBhc3NlcnQgRmFsc2UsICJ1bmhhbmRsZWQgb3B0aW9uIgogICAgaWYgbGVuKGFyZ3MpID09IDA6CiAgICAgICAgdWlsb29wKCkKICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgIHJldHVybiAoc3lzLnN0ZGluLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgRVZBTFVBVEUgb3IgR0lGVCBvciBYSFRNTCBvciBNQUtFX1NUQVRTOgogICAgICAgIFZBTEZJTEUgPSBhcmdzWzBdCiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBNRVJHRUZJTEVTOgogICAgICAgIG91dHB1dC53cml0ZShtZXJnZV9maWxlcyhvcGVuKGFyZ3NbMF0sICdyJykucmVhZGxpbmVzKCksIFVJREZJTEUpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBPTUFSU0NBTjoKICAgICAgICBvdXRwdXQud3JpdGUoc3NjbGllbnQoT01BUkJBU0UsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBDU1ZKT0lOOgogICAgICAgIG91dHB1dC53cml0ZShjc3Zqb2luKGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBSQU5ET01DSE9PU0U6CiAgICAgICAgb3V0cHV0LndyaXRlKHJhbmRvbV9jaG9vc2UoQ0hPT1NFTlVNQkVSLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSkgYW5kIG5vdCBleHBsaWNpdF9vdXRwdXQ6CiAgICAgICAgYiwgZSA9IG9zLnBhdGguc3BsaXRleHQoYXJnc1swXSkKICAgICAgICBCQVNFTkFNRUZJTEUgPSBiCiAgICAgICAgb3V0cHV0ID0gb3BlbihiICsgIl9leGFtLnRleCIsICd3JykKICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgIERCX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uZGIiLCAnd2InKQogICAgaWYgb3MucGF0aC5leGlzdHMoYXJnc1swXSk6CiAgICAgICAgcmV0dXJuIChvcGVuKGFyZ3NbMF0sICdyJykucmVhZCgpLCBvdXRwdXQpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIEV4Y2VwdGlvbigiZmlsZSAlcyBkb2VzIG5vdCBleGlzdCEiICUgYXJnc1swXSkKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPWxlbihib2R5X2ZpcnN0LnN0cmlwKCkpK2xlbihib2R5X2xhc3Quc3RyaXAoKSkKIGw9aGFzaGxpYi5zaGEyMjQoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKS5lbmNvZGUoKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSdmMzU0MWJmOWRkZDFhYjZjMzBmYzhjNmZmOTBhYzk0NWE1MzQ2MTk5MDNkMDZlNzQ1MGU5NThiMCcKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHJlbWZvbGRlcj1hKQogICAgICAgICAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInNwbGl0X2Zvcl9tb29kbGUgbmVlZHMgYW5kIGFyZ3VtZW50IgogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInVuaGFuZGxlZCBvcHRpb24iCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICB1aWxvb3AoKQogICAgICAgIHN5cy5leGl0KDApCiAgICAgICAgcmV0dXJuIChzeXMuc3RkaW4ucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBFVkFMVUFURSBvciBHSUZUIG9yIFhIVE1MIG9yIE1BS0VfU1RBVFM6CiAgICAgICAgVkFMRklMRSA9IGFyZ3NbMF0KICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGlmIE1FUkdFRklMRVM6CiAgICAgICAgb3V0cHV0LndyaXRlKG1lcmdlX2ZpbGVzKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkbGluZXMoKSwgVUlERklMRSkpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIE9NQVJTQ0FOOgogICAgICAgIG91dHB1dC53cml0ZShzc2NsaWVudChPTUFSQkFTRSwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIENTVkpPSU46CiAgICAgICAgb3V0cHV0LndyaXRlKGNzdmpvaW4oYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIFJBTkRPTUNIT09TRToKICAgICAgICBvdXRwdXQud3JpdGUocmFuZG9tX2Nob29zZShDSE9PU0VOVU1CRVIsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKSBhbmQgbm90IGV4cGxpY2l0X291dHB1dDoKICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhcmdzWzBdKQogICAgICAgIEJBU0VOQU1FRklMRSA9IGIKICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiX2V4YW0udGV4IiwgJ3cnKQogICAgICAgIFNPTFVUSU9OU19GSUxFID0gb3BlbihiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKToKICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGVsc2U6CiAgICAgICAgcmFpc2UgRXhjZXB0aW9uKCJmaWxlICVzIGRvZXMgbm90IGV4aXN0ISIgJSBhcmdzWzBdKQoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZQogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogYWxsPW9wZW4oTUUsJ3InKS5yZWFkKCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgpKS5oZXhkaWdlc3QoKQogZXhwZWN0X2w9JzQyZTdmYWM4OWJkOGJhMzdiODM0NWJlMzgyNjI4NzkyOWU5NjZiYzExZTJiMGRlODViYjA5N2QxJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK'),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -1280,9 +1282,9 @@ class Risposta:
         else:
             risp = "~"
         if self.punti is not None:
-            risp += "%{:2.4f}% ".format( self.punti * 100.0 / default_punti[0] )  ## no: just percentage of punti_giusta...
+            risp += "%{:2.5f}% ".format( self.punti * 100.0 / default_punti[0] )  ## no: just percentage of punti_giusta...
         elif not self.giusta:
-            risp += "%{:2.4f}% ".format( default_punti[1] * 100.0 / default_punti[0] )  
+            risp += "%{:2.5f}% ".format( default_punti[1] * 100.0 / default_punti[0] )  
         risp += " " + escape_control_characters(remove_empty_lines(self.testo))
         if self.fb:
             risp += "\n#%s" % escape_control_characters(
@@ -4535,13 +4537,8 @@ Your Python version apparently is %(pythonversion)s.
                 last_xelatexed = datetime.datetime.fromtimestamp(
                     os.path.getmtime(os.path.join(workdir, pdffile)))
             os.chdir(workdir)
-#    term.write(term.boxed_message(""">Current Main File: %s (%s)
-# Number of exercises: %i --  Number of (max) answers: %i
-# Last edited on: %s      --  Last XeLaTeX'ed on: %s
-# """ % (filename,headline,numero_esercizi,numero_maxrisposte,last_edited,last_xelatexed)  ))
             term.write(
                 term.boxed_message(ExamFile(persistdb['activefile']).show_status()))
-            # uiMasterFile(term=term).cmdloop(uiMasterFile_firstinfo)
             uiMasterFile(term=term).cmdloop(uiMasterFile.__doc__)
             continue
         if not persistdb['activefile']:
@@ -4563,12 +4560,9 @@ q : [Q]uit
         elif s.lower() == 'o':
             uiFileNavigator(term=term).cmdloop(uiFileNavigator_firstinfo)
         elif s.lower() == 'c':
-            # uiMarks().cmdloop(" Create a MCQ-LaTeX main file " )
-            # term.msg("Not yet functional (bye)...")
             filename = newfileloop(term)
             if filename:
                 persistdb['activefile'] = os.path.abspath(filename)
-            # break
         elif s.lower() == 'u':
             term.msg("Trying to launch a Graphical [U]ser Interface...")
             term.msg(
@@ -4590,6 +4584,101 @@ q : [Q]uit
 
 # ----------------------------------------------------------------------
 
+xml_question_template="""<question type="essay">
+    <name>
+      <text>Question: {}</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><a href="{}">Scaricare qui il testo in PDF ({})</a><br></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editorfilepicker</responseformat>
+    <responserequired>0</responserequired>
+    <responsefieldlines>5</responsefieldlines>
+    <attachments>1</attachments>
+    <attachmentsrequired>1</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text><![CDATA[<p><b>(ALLEGARE IL FILE PDF DEL COMPITO SVOLTO)</b></p>]]></text>
+    </responsetemplate>
+  </question>
+"""
+
+xml_quiz_template="""<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- Quiz generated by mcq.py https://www.dlfer.xyz/var/mcq-moodle.html -->
+{}</quiz>
+"""
+
+def pdf_pages(f):
+    result=subprocess.run(['pdfinfo', f], stdout=subprocess.PIPE )
+    for r in result.stdout.decode().split("\n"):
+        if r.split(":")[0] == 'Pages':
+            return int(r.split(":")[1].strip())
+    return None
+
+def split_file(base_name,block=1):
+    result=subprocess.run(['qpdf', 
+        "--split-pages={}".format(block),
+        "{}.pdf".format(base_name),
+        "{}_s.pdf".format(base_name)], stdout=subprocess.PIPE )
+    return result.stdout.decode()
+
+
+def generate_moodle_xml(base_name, list_of_files,remfolder=None):
+    xml_data=""
+    for f in list_of_files:
+        xml_data += xml_question_template.format(f,remfolder+f,f)
+    fd=open(base_name+"_moodle.xml",'w')
+    fd.write(xml_quiz_template.format(xml_data))
+    fd.close()
+    print("\nFile {} generated!".format(base_name + "_moodle.xml"))
+
+
+def split_for_moodle(todofile,remfolder=None):
+        print("Trying to: {}".format(todofile))
+        basename,ext=os.path.splitext(todofile)
+        sols_file=basename+".sols"
+        pdf_file=basename+".pdf"
+        codici=[]
+        fd=open(sols_file,'r')
+        for line in fd.readlines():
+            codice = line.split(":")[0]
+            codici += [codice]
+        fd.close()    
+        print("Found {} codici...".format(len(codici))) 
+        number_of_pages=pdf_pages(pdf_file)
+        print("PDF with {} pages... ".format( number_of_pages) )
+        if number_of_pages % len(codici) !=  0:
+            print("THEY DO NOT MATCH! finishing here...")
+            return 
+        pages_per_block = number_of_pages // len(codici) 
+        print("Blocks of {} pages...".format(pages_per_block))
+        print(split_file(basename,block=pages_per_block))
+        # now rename all the files... 
+        list_of_files = [] 
+        for j in range(len(codici)):
+            origin= "{}_s-{:02d}-{:02d}.pdf".format(basename,j*pages_per_block+1, (j+1)*pages_per_block) 
+            target= "{}_s-{}.pdf".format(basename,codici[j])
+            try:
+                print("Extracting {}...".format(target))
+                os.rename(origin,target)
+                list_of_files += [target]
+            except Exception as v:
+                sys.stderr.write("ERROR: {}".format(v) )
+                return 
+        generate_moodle_xml(basename, list_of_files,remfolder=remfolder)
+
+# ----------------------------------------------------------------------
+
 def main():
     global NUMBER_OF_COPIES, EVALUATE, GIFT, XHTML, BASENAMEFILE
     data, output = get_opt()
@@ -4605,7 +4694,6 @@ def main():
         riordina(li)
         output.write(display(li))
         print(display_pub(li, max_points))
-        # produce_stats(DB_LIST['__stats__'])
         pickle.dump(DB_LIST, DB_STATS_FILE)
         DB_STATS_FILE.close()
         sys.stderr.write("done! File %s created!\n" % output.name)

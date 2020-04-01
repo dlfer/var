@@ -1,0 +1,181 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MCQ-XeLaTeX: How to use with Moodle and for online exams &#8212; var  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ESSE3: nei meandri della burocrazia" href="esse3.html" />
+    <link rel="prev" title="MCQ-XeLaTeX Full Documentation" href="mcq-full.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mcq-xelatex-how-to-use-with-moodle-and-for-online-exams">
+<span id="mcq-moodle"></span><h1>MCQ-XeLaTeX: How to use with Moodle and for online exams<a class="headerlink" href="#mcq-xelatex-how-to-use-with-moodle-and-for-online-exams" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2020-04-01</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="online-exams-multiple-choice-questions-in-xelatex-and-moodle">
+<h2>Online exams, Multiple Choice Questions in XeLaTeX, and Moodle<a class="headerlink" href="#online-exams-multiple-choice-questions-in-xelatex-and-moodle" title="Permalink to this headline">¶</a></h2>
+<p>Two type of assessment: multiple choice quiz, and mathematics essay.</p>
+<div class="section" id="multiple-choice-questions">
+<h3>Multiple Choice Questions<a class="headerlink" href="#multiple-choice-questions" title="Permalink to this headline">¶</a></h3>
+<p>As in the <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a> documentation, create a XeLaTeX file with questions,
+default marking values, and answers.
+Then simply generate a <code class="docutils literal"><span class="pre">.gift</span></code> file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --gift filename.tex
+</pre></div>
+</div>
+<p>The output can be imported in <a class="reference external" href="https://www.moodle.org">MOODLE</a> as plain/text file.
+The newlines will be converted in brealines, so just edit the GIFT file with
+a text editor to modify as needed.</p>
+<p>Then, in MOODLE, import the questions (format: GIFT; in a self-contained <strong>category</strong> entry – create it first;
+fix the latex and other things if necessary).</p>
+<p>The quiz can be generated: each question score is normalized to <strong>1</strong>. Just add all necessary questions
+to a Moodle quiz (permuted answers and questions, duration, …).</p>
+</div>
+<div class="section" id="essay-questions">
+<h3>Essay Questions<a class="headerlink" href="#essay-questions" title="Permalink to this headline">¶</a></h3>
+<p>Being mathematics, you need to give a PDF document as exam, and expect the student to upload
+a PDF document at the end of the exam duration.</p>
+<p>So, write a tex file as described in <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a>, full of exercises
+with variants and solutions:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[bubblesheet,doexe,sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+...
+<span class="k">\begin</span><span class="nb">{</span>esercizi*<span class="nb">}{}</span>
+...
+<span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\varitem</span>
+Question 1 <span class="k">\blank</span><span class="nb">{</span>Answer 1<span class="nb">}</span>
+<span class="k">\varitem</span>
+Question 2 <span class="k">\blank</span><span class="nb">{</span>Answer 2<span class="nb">}</span>
+<span class="k">\varitem</span>
+Question 3 <span class="k">\blank</span><span class="nb">{</span>Answer 3<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>varianti<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exe<span class="nb">}</span>
+...
+<span class="k">\end</span><span class="nb">{</span>esercizi*<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Variants can be automatically generated by <a class="reference internal" href="casengine.html#casengine"><span class="std std-ref">CASengine</span></a>, if necessary.
+Now, generate a number of copies (either with mcq CLI, or with the command):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py -n <span class="m">50</span> filename.tex
+$ xelatex filename_exam.tex
+$ xelatex filename_exam.tex
+</pre></div>
+</div>
+<p>Remove the <code class="docutils literal"><span class="pre">sol</span></code> option to remove the warning.</p>
+<p>Now, how to split the output <code class="docutils literal"><span class="pre">filename_exam.pdf</span></code> into 50 single PDF documents, and assign
+one to each to the students?</p>
+<p>Just use the <code class="docutils literal"><span class="pre">--split_for_moodle=</span></code> option in mcq:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --split-for-moodle<span class="o">=</span>https://www.example.com/mdl/ filename_exam.pdf
+</pre></div>
+</div>
+<p>It will split the <code class="docutils literal"><span class="pre">PDF</span></code> document into 50 documents, each tagged with the unique four-characters
+code of the variant, and generate a <strong>moodle XML</strong> archive of 50 essay questions
+each linking to the proper PDF in the external URL.</p>
+<p>Upload all the single PDF documents to the suitable public website, given as argument.</p>
+<p>Create a <strong>category</strong> in moodle. Import the XML questions file in the catogory.
+Then create a moodle quiz with just one random question taken from the category.</p>
+<blockquote>
+<div>The files are supposed to be hosted in an external web site (until I will understand
+how to predict uploaded file URLs in moodle).</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MCQ-XeLaTeX: How to use with Moodle and for online exams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="mcq-full.html" title="previous chapter">MCQ-XeLaTeX Full Documentation</a></li>
+      <li>Next: <a href="esse3.html" title="next chapter">ESSE3: nei meandri della burocrazia</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, -dlf.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/mcq-moodle.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
