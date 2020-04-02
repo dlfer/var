@@ -88,6 +88,7 @@ code of the variant, and generate a **moodle XML** archive of 50 essay questions
 each linking to the proper PDF in the external URL. 
 
 Upload all the single PDF documents to the suitable public website, given as argument.  
+They are contained in a folder (with scrambled name), to be uploaded to the remote folder.
 
 Create a **category** in moodle. Import the XML questions file in the catogory.
 Then create a moodle quiz with just one random question taken from the category. 
