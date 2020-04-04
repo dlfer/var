@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{1.01}
+\def\fileversion{1.02}
 \def\filedate{%
-2020-03-27
+2020-04-04
 }
 \def\Copyright{****************************************************************
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
@@ -365,10 +365,10 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 \ifoddpage
 \blankpage
 \fi
-\ifsol{
+\ifsol\ifdoexe\else{
   
 \WarningSign%
-}\fi
+}\fi\fi
 }
 
 \newenvironment{esercizi*}[1]{%
@@ -385,10 +385,10 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 \blankpage
 % DP ODD PAGE AFTER : \thepage  
 \fi
-\ifsol{
+\ifsol\ifdoexe\else{
   
 \WarningSign%
-}\fi
+}\fi\fi
 }
 
 %===================================================================
@@ -753,13 +753,13 @@ node  [text width=\blankareawidth, text depth=\blankareaheightinside, anchor=nor
 \writelblfiletrue
 
 \newcommand{\checkhassol}{%
-\ifsol
+\ifsol\ifdoexe\else
 \@latexerr{Do not deliver exams with SOL option!!! Has-Sol option detected!
 Please remove the option 'sol' from  usepackage[...,sol,...]{mcq} 
 }{Do not produce exam sheets with SOL options. Load the package without it.
 Use usepackage{mcq} instead. 
 }
-\fi
+\fi\fi
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % taken from: http://www.tug.org/TUGboat/tb30-1/tb94zyka.pdf
