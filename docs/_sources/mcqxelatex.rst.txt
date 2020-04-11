@@ -2,7 +2,7 @@
 MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
 ==================================================================
 
-:Date:   2019-02-07
+:Date:   2019-02-07 (update 2020-04-08)
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
 ========================================================================
@@ -97,7 +97,7 @@ A typical list of actions might be:
       any spreadsheet software, or text editor. 
     - ``makestats`` : make a PDF versione of the exam, with annotations
       about some statistical indices. 
-    - ``export main.gift`` : export the questions in GIFT format.
+    - ``export main.gift`` : export the questions in GIFT format (and add .txt ext)
     - ``export main.html`` : export the questions in HTML format. 
 
 Since a session usually takes several days, the status is kept
@@ -134,14 +134,13 @@ Requirements
 Requirements are very minimal, and the program has been tested on a
 variety of platforms.
 
--  `Python <http://www.python.org>`__. Any version 2.\* should work
+-  `Python <http://www.python.org>`__. Any version 2.\* or 3.\* should work
 
-but it's safer to stay with 2.7 (warning: 2.7.5 might show 
-`this bug <http://bugs.python.org/issue17998>`__). Unfortunately, **not** 3.\*
-because on most macs it is not yet readily available. If you have a
-default python3, just edit the script file :download:`mcq.py <soft/mcq.py>` and
+but it's safer to stay with 3 (warning: 2.7.5 might show 
+`this bug <http://bugs.python.org/issue17998>`__). To switch bewteen 2 and 3, 
+just edit the script file :download:`mcq.py <soft/mcq.py>` and
 in the first line replace the word ``'python'`` with the word
-``'python2.7'`` (or the 2.\* version available).
+``'python3'`` (or the 2.\* version available).
 
 -  The (free) OTF font `Linux Libertine <http://www.linuxlibertine.org>`__, 
    or the TTF version (but

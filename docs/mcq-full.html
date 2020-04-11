@@ -538,7 +538,7 @@ open &lt;file&gt;            : open and view/edit &lt;file&gt; with appropriate 
 uid [&lt;file&gt;][:&lt;specs&gt;] : align UIDs with names, following specs  (in-place)
 mark [&lt;file&gt;]          : evaluate and mark, via answers file (default given)
 makestats              : generate a STATS file &lt;main&gt;<span class="nb">_</span>stats.pdf
-export &lt;filename.gift&gt; : export to filename.gift, in GIFT moodle format
+export &lt;filename.gift&gt; : export to filename.gift, in GIFT moodle format (.txt ext appended)
 export &lt;filename.html&gt; : export to filename.html, in HTML format
 ! &lt;shell commands&gt;     : execute directly shell commands
 x                      : clear the status and go to main menu
@@ -830,7 +830,7 @@ Use ls, cd and tab-completion to locate the file, first.</p>
 <span class="n">uid</span> <span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;][:&lt;</span><span class="n">specs</span><span class="o">&gt;]</span> <span class="o">:</span> <span class="n">align</span> <span class="n">UIDs</span> <span class="k">with</span> <span class="n">names</span><span class="o">,</span> <span class="n">following</span> <span class="n">specs</span>  <span class="o">(</span><span class="k">in</span><span class="o">-</span><span class="n">place</span><span class="o">)</span>
 <span class="n">mark</span> <span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;]</span>          <span class="o">:</span> <span class="n">evaluate</span> <span class="n">and</span> <span class="n">mark</span><span class="o">,</span> <span class="n">via</span> <span class="n">answers</span> <span class="n">file</span> <span class="o">(</span><span class="k">default</span> <span class="n">given</span><span class="o">)</span>
 <span class="n">makestats</span>              <span class="o">:</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">STATS</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_stats</span><span class="o">.</span><span class="na">pdf</span>
-<span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">,</span> <span class="k">in</span> <span class="n">GIFT</span> <span class="n">moodle</span> <span class="n">format</span>
+<span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">,</span> <span class="k">in</span> <span class="n">GIFT</span> <span class="n">moodle</span> <span class="n">format</span> <span class="o">(.</span><span class="n">txt</span> <span class="n">ext</span> <span class="n">appended</span><span class="o">)</span>
 <span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">,</span> <span class="k">in</span> <span class="n">HTML</span> <span class="n">format</span>
 <span class="o">!</span> <span class="o">&lt;</span><span class="n">shell</span> <span class="n">commands</span><span class="o">&gt;</span>     <span class="o">:</span> <span class="n">execute</span> <span class="n">directly</span> <span class="n">shell</span> <span class="n">commands</span>
 <span class="n">x</span>                      <span class="o">:</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">status</span> <span class="n">and</span> <span class="n">go</span> <span class="n">to</span> <span class="n">main</span> <span class="n">menu</span>
@@ -883,7 +883,7 @@ INTERNAL: &lt;main&gt;.lbl, &lt;main&gt;.pos</div></blockquote>
 </div>
 <p>It exports all the questions in the main TeX to &lt;outputfile&gt;,
 in a format depending on the &lt;outputfile&gt; extension.
-If the extension is <code class="docutils literal"><span class="pre">.gift</span></code>, the format is MOODLE GIFT.
+If the extension is <code class="docutils literal"><span class="pre">.gift</span></code>, the format is MOODLE GIFT. (.txt ext appended)
 If the extension is <code class="docutils literal"><span class="pre">.html</span></code> or <code class="docutils literal"><span class="pre">.htm</span></code>, the format is HTML.</p>
 <p>EXAMPLES:</p>
 <div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; export file.gift

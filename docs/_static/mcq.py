@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-07
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-11
 
 USAGE:
 ------
@@ -577,7 +577,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHJlbWZvbGRlcj1hKQogICAgICAgICAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInNwbGl0X2Zvcl9tb29kbGUgbmVlZHMgYW5kIGFyZ3VtZW50IgogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInVuaGFuZGxlZCBvcHRpb24iCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICB1aWxvb3AoKQogICAgICAgIHN5cy5leGl0KDApCiAgICAgICAgcmV0dXJuIChzeXMuc3RkaW4ucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBFVkFMVUFURSBvciBHSUZUIG9yIFhIVE1MIG9yIE1BS0VfU1RBVFM6CiAgICAgICAgVkFMRklMRSA9IGFyZ3NbMF0KICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGlmIE1FUkdFRklMRVM6CiAgICAgICAgb3V0cHV0LndyaXRlKG1lcmdlX2ZpbGVzKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkbGluZXMoKSwgVUlERklMRSkpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIE9NQVJTQ0FOOgogICAgICAgIG91dHB1dC53cml0ZShzc2NsaWVudChPTUFSQkFTRSwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIENTVkpPSU46CiAgICAgICAgb3V0cHV0LndyaXRlKGNzdmpvaW4oYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIFJBTkRPTUNIT09TRToKICAgICAgICBvdXRwdXQud3JpdGUocmFuZG9tX2Nob29zZShDSE9PU0VOVU1CRVIsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKSBhbmQgbm90IGV4cGxpY2l0X291dHB1dDoKICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhcmdzWzBdKQogICAgICAgIEJBU0VOQU1FRklMRSA9IGIKICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiX2V4YW0udGV4IiwgJ3cnKQogICAgICAgIFNPTFVUSU9OU19GSUxFID0gb3BlbihiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKToKICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGVsc2U6CiAgICAgICAgcmFpc2UgRXhjZXB0aW9uKCJmaWxlICVzIGRvZXMgbm90IGV4aXN0ISIgJSBhcmdzWzBdKQoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSc0NzJhOWYyNjE1ZTRhYTNjZjkyYmQ4NzRjOWI4ZTYzZTA4MzY4NGE2NDdjYWYyNDJmZTk4OGQ0OScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHJlbWZvbGRlcj1hKQogICAgICAgICAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInNwbGl0X2Zvcl9tb29kbGUgbmVlZHMgYW5kIGFyZ3VtZW50IgogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInVuaGFuZGxlZCBvcHRpb24iCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICB1aWxvb3AoKQogICAgICAgIHN5cy5leGl0KDApCiAgICAgICAgcmV0dXJuIChzeXMuc3RkaW4ucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBFVkFMVUFURSBvciBHSUZUIG9yIFhIVE1MIG9yIE1BS0VfU1RBVFM6CiAgICAgICAgVkFMRklMRSA9IGFyZ3NbMF0KICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGlmIE1FUkdFRklMRVM6CiAgICAgICAgb3V0cHV0LndyaXRlKG1lcmdlX2ZpbGVzKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkbGluZXMoKSwgVUlERklMRSkpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIE9NQVJTQ0FOOgogICAgICAgIG91dHB1dC53cml0ZShzc2NsaWVudChPTUFSQkFTRSwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIENTVkpPSU46CiAgICAgICAgb3V0cHV0LndyaXRlKGNzdmpvaW4oYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIFJBTkRPTUNIT09TRToKICAgICAgICBvdXRwdXQud3JpdGUocmFuZG9tX2Nob29zZShDSE9PU0VOVU1CRVIsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKSBhbmQgbm90IGV4cGxpY2l0X291dHB1dDoKICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhcmdzWzBdKQogICAgICAgIEJBU0VOQU1FRklMRSA9IGIKICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiX2V4YW0udGV4IiwgJ3cnKQogICAgICAgIFNPTFVUSU9OU19GSUxFID0gb3BlbihiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKToKICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGVsc2U6CiAgICAgICAgcmFpc2UgRXhjZXB0aW9uKCJmaWxlICVzIGRvZXMgbm90IGV4aXN0ISIgJSBhcmdzWzBdKQoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSdhYzJhNWJmNTRkY2IzNGEzNjkxYmNmYTA5MDFkM2RjMjE2NjEwYjQ2MjZhY2QyZGUwYTk3MGFiNycKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -899,8 +899,10 @@ def translate_math_chars(s):
     return s
 
 
-def escape_control_characters(s):
+def escape_control_characters(s,html=False):
     s = transform_tex_entities(translate_math_chars(s))
+    if html:
+        s=replace_url(s)
     return re.sub(r"[\\~=#{}:]", lambda x: "\\" + x.group(), s)
 
 
@@ -1040,12 +1042,12 @@ class Esercizio:
 
     def gift(self,default_punti=None):
         if self.type == 'EXERM':
-            return """%s%s
+            return """%s[html]%s
 {
 %s
 }
 """ % (self.qtitle,
-                escape_control_characters(remove_empty_lines(self.testo)),
+                escape_control_characters(remove_empty_lines(self.testo),html=True),
                 "\n".join([ris.gift(default_punti=default_punti) for ris in self.risposte]))
         elif self.type in ("VERO", "FALSO"):
             if self.type == "VERO":
@@ -2999,7 +3001,7 @@ open <file>            : open and view/edit <file> with appropriate program
 uid [<file>][:<specs>] : align UIDs with names, following specs  (in-place)
 mark [<file>]          : evaluate and mark, using answers file (default given)
 makestats              : generate a STATS file <main>_stats.pdf
-export <filename.gift> : export to filename.gift, in GIFT moodle format
+export <filename.gift> : export to filename.gift, in GIFT moodle format (.txt ext appended)
 export <filename.html> : export to filename.html, in HTML format
 ! <shell commands>     : execute directly shell commands
 x                      : clear the status and go to main menu
@@ -3020,7 +3022,7 @@ class uiMasterFile(uiShell):
      uid [<file>][:<specs>] : align UIDs with names, following specs  (in-place)
      mark [<file>]          : evaluate and mark, via answers file (default given)
      makestats              : generate a STATS file <main>_stats.pdf
-     export <filename.gift> : export to filename.gift, in GIFT moodle format
+     export <filename.gift> : export to filename.gift, in GIFT moodle format (.txt ext appended)
      export <filename.html> : export to filename.html, in HTML format
      ! <shell commands>     : execute directly shell commands
      x                      : clear the status and go to main menu
@@ -3092,7 +3094,7 @@ class uiMasterFile(uiShell):
 
         It exports all the questions in the main TeX to <outputfile>,
         in a format depending on the <outputfile> extension.
-        If the extension is ``.gift``, the format is MOODLE GIFT.
+        If the extension is ``.gift``, the format is MOODLE GIFT. (.txt ext appended)
         If the extension is ``.html`` or ``.htm``, the format is HTML.
 
         EXAMPLES::
@@ -3107,10 +3109,10 @@ class uiMasterFile(uiShell):
         headline = extract_headline(file_content)
         if ext.lower() == '.gift':
             output = generate_gift(self.EF.data)
-            fd = open(args, 'w')
+            fd = open(args+'.txt', 'w')
             fd.write(output)
             fd.close()
-            self.term.msg("File %s written" % args)
+            self.term.msg("File %s written" % (args+'.txt'))
         elif ext.lower() == '.html' or ext.lower() == '.htm':
             output = generate_xhtml(self.EF.data)
             fd = open(args, 'w')

@@ -48,7 +48,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (update 2020-04-08)</td>
 </tr>
 </tbody>
 </table>
@@ -132,7 +132,7 @@ taken from the file <code class="docutils literal"><span class="pre">uidlist.csv
 any spreadsheet software, or text editor.</li>
 <li><code class="docutils literal"><span class="pre">makestats</span></code> : make a PDF versione of the exam, with annotations
 about some statistical indices.</li>
-<li><code class="docutils literal"><span class="pre">export</span> <span class="pre">main.gift</span></code> : export the questions in GIFT format.</li>
+<li><code class="docutils literal"><span class="pre">export</span> <span class="pre">main.gift</span></code> : export the questions in GIFT format (and add .txt ext)</li>
 <li><code class="docutils literal"><span class="pre">export</span> <span class="pre">main.html</span></code> : export the questions in HTML format.</li>
 </ul>
 </div></blockquote>
@@ -165,14 +165,13 @@ marking.</p>
 <p>Requirements are very minimal, and the program has been tested on a
 variety of platforms.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.python.org">Python</a>. Any version 2.* should work</li>
+<li><a class="reference external" href="http://www.python.org">Python</a>. Any version 2.* or 3.* should work</li>
 </ul>
-<p>but it’s safer to stay with 2.7 (warning: 2.7.5 might show
-<a class="reference external" href="http://bugs.python.org/issue17998">this bug</a>). Unfortunately, <strong>not</strong> 3.*
-because on most macs it is not yet readily available. If you have a
-default python3, just edit the script file <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> and
+<p>but it’s safer to stay with 3 (warning: 2.7.5 might show
+<a class="reference external" href="http://bugs.python.org/issue17998">this bug</a>). To switch bewteen 2 and 3,
+just edit the script file <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> and
 in the first line replace the word <code class="docutils literal"><span class="pre">'python'</span></code> with the word
-<code class="docutils literal"><span class="pre">'python2.7'</span></code> (or the 2.* version available).</p>
+<code class="docutils literal"><span class="pre">'python3'</span></code> (or the 2.* version available).</p>
 <ul>
 <li><p class="first">The (free) OTF font <a class="reference external" href="http://www.linuxlibertine.org">Linux Libertine</a>,
 or the TTF version (but

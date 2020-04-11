@@ -61,67 +61,67 @@ The GIFT output, produced by ``mcq.py`` is the following::
 
 
     // [Var. 1]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + \\cos\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + \\cos\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 2]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + \\sin\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + \\sin\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 3]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + e^\{t\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(2 t + e^\{t\}\\right)$.
     {}
     
     // [Var. 4]
-    Compute $\\displaystyle \\frac\{d\}\{d t\} t^\{2\}$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\} t^\{2\}$.
     {}
     
     // [Var. 5]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + \\cos\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + \\cos\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 6]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + \\sin\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + \\sin\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 7]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + e^\{t\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(3 t + e^\{t\}\\right)$.
     {}
     
     // [Var. 8]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + t\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + t\\right)$.
     {}
     
     // [Var. 9]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + \\cos\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + \\cos\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 10]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + \\sin\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + \\sin\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 11]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + e^\{t\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(4 t + e^\{t\}\\right)$.
     {}
     
     // [Var. 12]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + 2 t\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + 2 t\\right)$.
     {}
     
     // [Var. 13]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + \\cos\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + \\cos\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 14]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + \\sin\{\\left (t \\right )\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + \\sin\{\\left (t \\right )\}\\right)$.
     {}
     
     // [Var. 15]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + e^\{t\}\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(5 t + e^\{t\}\\right)$.
     {}
     
     // [Var. 16]
-    Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + 3 t\\right)$.
+    [html]Compute $\\displaystyle \\frac\{d\}\{d t\}\\left(t^\{2\} + 3 t\\right)$.
     {}
 
 

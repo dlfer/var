@@ -20,9 +20,9 @@ Multiple Choice Questions
 
 As in the :ref:`MCQ-Latex` documentation, create a XeLaTeX file with questions,
 default marking values, and answers. 
-Then simply generate a ``.gift`` file::
+Then simply generate a ``.gift.txt`` file::
 
-        $ mcq.py --gift filename.tex
+        $ mcq.py --gift filename.tex  > filename.gift.txt
 
 The output can be imported in `MOODLE <https://www.moodle.org>`_ as plain/text file. 
 The newlines will be converted in brealines, so just edit the GIFT file with
