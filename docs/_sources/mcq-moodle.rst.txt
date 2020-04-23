@@ -4,13 +4,22 @@
 MCQ-XeLaTeX: How to use it with Moodle and for online exams
 ================================================================
 
-:Date:   2020-04-01  (updated 2020-04-22)
+:Date:   2020-04-01  (updated 2020-04-23)
 
  
 Online exams, Multiple Choice Questions in XeLaTeX, and Moodle
 ==============================================================
 
-Two type of assessment: multiple choice quiz, and mathematics essay.
+Two types of assessment: **multiple choice question**, and **mathematics essay**.
+
+The first: on-screen selection of answer from a set of possible choices.
+The second: a PDF with some exercises/open questions is given via moodle, 
+then the student writes solutions/answers on a sheet of paper, document-scans them
+to a PDF file before the end of the exam, and uploads it as essay to moodle. 
+
+Needed files: last versions of 
+:download:`mcq.py <soft/mcq.py>` and 
+:download:`mcq.sty <soft/mcq.sty>` .
 
 
 Multiple Choice Questions
