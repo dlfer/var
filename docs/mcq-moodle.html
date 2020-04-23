@@ -48,7 +48,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2020-04-01</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2020-04-01  (updated 2020-04-22)</td>
 </tr>
 </tbody>
 </table>
@@ -58,18 +58,66 @@
 <div class="section" id="multiple-choice-questions">
 <h3>Multiple Choice Questions<a class="headerlink" href="#multiple-choice-questions" title="Permalink to this headline">¶</a></h3>
 <p>As in the <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a> documentation, create a XeLaTeX file with questions,
-default marking values, and answers.
-Then simply generate a <code class="docutils literal"><span class="pre">.gift.txt</span></code> file:</p>
+default marking values, and answers. An example:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<span class="k">\moodlecategory</span><span class="nb">{</span>2020-04-21 test quiz<span class="nb">}</span>
+<span class="c">%===================================================================</span>
+<span class="k">\headline</span><span class="nb">{</span>Example Course, No Date (16:00, U1-09)<span class="nb">}</span>
+
+<span class="k">\puntigiusta</span><span class="nb">{</span>3<span class="nb">}</span> <span class="c">% points for a correct answer</span>
+<span class="k">\puntisbagliata</span><span class="nb">{</span>-1<span class="nb">}</span> <span class="c">% points for a wrong answer</span>
+<span class="k">\puntiempty</span><span class="nb">{</span>0<span class="nb">}</span>  <span class="c">% points for non-response.</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+What is the color of Mars?
+<span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\risp</span><span class="na">[=]</span> red  <span class="c">%This is the correct answer</span>
+<span class="k">\risp</span> green
+<span class="k">\risp</span> blue
+<span class="k">\risp</span> white
+<span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+<span class="s">$</span><span class="m">1</span><span class="o">+</span><span class="m">3</span><span class="o">=</span><span class="s">$</span> ...
+<span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\risp</span><span class="na">[=]</span> 4 <span class="c">%This is the correct answer</span>
+<span class="k">\risp</span> 3
+<span class="k">\risp</span> 2
+<span class="k">\risp</span> 5
+<span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Then simply generate a <code class="docutils literal"><span class="pre">.gift.txt</span></code> file:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --gift filename.tex  &gt; filename.gift.txt
 </pre></div>
 </div>
 <p>The output can be imported in <a class="reference external" href="https://www.moodle.org">MOODLE</a> as plain/text file.
-The newlines will be converted in brealines, so just edit the GIFT file with
-a text editor to modify as needed.</p>
-<p>Then, in MOODLE, import the questions (format: GIFT; in a self-contained <strong>category</strong> entry – create it first;
-fix the latex and other things if necessary).</p>
-<p>The quiz can be generated: each question score is normalized to <strong>1</strong>. Just add all necessary questions
-to a Moodle quiz (permuted answers and questions, duration, …).</p>
+Select format: GIFT.</p>
+<p>If the command <code class="docutils literal"><span class="pre">\moodlecategory{categoryname}</span></code> is used in the tex preamble, the questions
+will be imported in the category <strong>categoryname</strong>
+(if the names of the esercizi sections are empty) or <strong>categoryname/sectionname</strong> for each section name of groups of questions:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>sectionmame<span class="nb">}</span>
+...
+<span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>esercizi*<span class="nb">}{</span>sectionname2<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
+</pre></div>
+</div>
+<p>The quiz can then easily
+be generated: each question score is normalized to <strong>1</strong>. Just add all necessary questions
+to a Moodle quiz (permuted answers and questions, duration, …).
+Check <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a> for full details.</p>
 </div>
 <div class="section" id="essay-questions">
 <h3>Essay Questions<a class="headerlink" href="#essay-questions" title="Permalink to this headline">¶</a></h3>
@@ -106,19 +154,57 @@ $ xelatex filename_exam.tex
 <p>Now, how to split the output <code class="docutils literal"><span class="pre">filename_exam.pdf</span></code> into 50 single PDF documents, and assign
 one to each to the students?</p>
 <p>Just use the <code class="docutils literal"><span class="pre">--split-for-moodle=</span></code> option in mcq:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --split-for-moodle<span class="o">=</span>https://www.example.com/mdl/ filename_exam.pdf
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --split-for-moodle<span class="o">=</span>templatefile.html filename_exam.pdf
+</pre></div>
+</div>
+<p>The file <code class="docutils literal"><span class="pre">templatefile.html</span></code> must exist, and its content is the HTML part of the essay
+question given to moodle, with the following <strong>important</strong> two template variables:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">{</span>SecretFolder<span class="o">}</span> <span class="o">=</span> the <span class="s2">&quot;secret&quot;</span> folder were all the files
+                 will be stored <span class="o">(</span><span class="nb">local</span> and remote<span class="o">)</span>
+<span class="o">{</span>PDF<span class="o">}</span>          <span class="o">=</span> the PDF of the exam
+</pre></div>
+</div>
+<p>The syntax is the <a class="reference external" href="https://docs.python.org/3/library/string.html#formatspec">python strings format</a>
+mini-language: the only two variables are <code class="docutils literal"><span class="pre">{SecretFolder}</span></code> and <code class="docutils literal"><span class="pre">{PDF}</span></code>. If
+one needs to include a brace character in the literal text, it can be escaped by doubling:
+<code class="docutils literal"><span class="pre">{{</span></code> and <code class="docutils literal"><span class="pre">}}</span></code>.</p>
+<p>Example of <code class="docutils literal"><span class="pre">templatefile.html</span></code> content (the first line is <strong>necessary</strong>):</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.example.com/subdir/{SecretFolder}/{PDF}&quot;</span><span class="p">&gt;</span>
+  »Download the PDF document: ({PDF})«
+  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The file I would use:</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.dlfer.xyz/var/{SecretFolder}/{PDF}&quot;</span><span class="p">&gt;</span>
+ »Scaricare qui il testo in PDF: ({PDF})«
+ <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>[PRIMA DELLA FINE <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>CARICARE IL FILE PDF<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span> (document-scan)
+   DEL COMPITO SVOLTO QUA SOTTO]<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+   [Controllare di avere caricato correttamente il file
+   prima di inviare tutto e terminare la prova]
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>It will split the <code class="docutils literal"><span class="pre">PDF</span></code> document into 50 documents, each tagged with the unique four-characters
 code of the variant, and generate a <strong>moodle XML</strong> archive of 50 essay questions
-each linking to the proper PDF in the external URL.</p>
-<p>Upload all the single PDF documents to the suitable public website, given as argument.
-They are contained in a folder (with scrambled name), to be uploaded to the remote folder.</p>
-<p>Create a <strong>category</strong> in moodle. Import the XML questions file in the catogory.
-Then create a moodle quiz with just one random question taken from the category.</p>
-<blockquote>
-<div>The files are supposed to be hosted in an <strong>external web site</strong> (until I will understand
-how to predict uploaded file URLs, in moodle).</div></blockquote>
+each linking to the proper PDF in the external URL. The files are in a <code class="docutils literal"><span class="pre">SecretFolder</span></code>,
+which means are created and stored in a folder with a hashed name, such as <code class="docutils literal"><span class="pre">7Rse-RseH-seHD</span></code>.</p>
+<p>Upload the folder with the PDF documents to a suitable public website,
+the one set in the template.</p>
+<p>Create a <strong>category</strong> in moodle, or have it defined in tex by <code class="docutils literal"><span class="pre">\moodlecategory{cat}</span></code>.
+Import the XML questions file in the catogory, or get it taken from the moodle XML file.
+Then create a moodle quiz with just one random question taken from the given category.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The files are supposed to be hosted in an <strong>external web site</strong> (until I will understand
+how to predict uploaded file URLs, in moodle), if you want to use the generated moodle_xml.
+Otherwise, just manually create essay questions in moodle and attach each one of
+the PDF files to each one of manually created questions.</p>
+</div>
 </div>
 </div>
 </div>

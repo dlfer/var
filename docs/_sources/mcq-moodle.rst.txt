@@ -4,9 +4,9 @@
 MCQ-XeLaTeX: How to use it with Moodle and for online exams
 ================================================================
 
-:Date:   2020-04-01 
+:Date:   2020-04-01  (updated 2020-04-22)
 
-
+ 
 Online exams, Multiple Choice Questions in XeLaTeX, and Moodle
 ==============================================================
 
@@ -16,23 +16,76 @@ Two type of assessment: multiple choice quiz, and mathematics essay.
 Multiple Choice Questions
 -------------------------
 
-.. highlight:: bash
+.. highlight:: latex
 
 As in the :ref:`MCQ-Latex` documentation, create a XeLaTeX file with questions,
-default marking values, and answers. 
+default marking values, and answers. An example::
+
+    \documentclass{article}
+    \usepackage{mcq}
+    \moodlecategory{2020-04-21 test quiz}
+    %===================================================================
+    \headline{Example Course, No Date (16:00, U1-09)}
+    
+    \puntigiusta{3} % points for a correct answer
+    \puntisbagliata{-1} % points for a wrong answer 
+    \puntiempty{0}  % points for non-response.
+
+    \begin{document}
+    \begin{esercizi}{}
+    
+    \begin{exerm}
+    What is the color of Mars? 
+    \begin{rispm}
+    \risp[=] red  %This is the correct answer
+    \risp green
+    \risp blue
+    \risp white
+    \end{rispm}
+    \end{exerm}
+    
+    \begin{exerm}
+    $1+3=$ ...
+    \begin{rispm}
+    \risp[=] 4 %This is the correct answer
+    \risp 3
+    \risp 2
+    \risp 5
+    \end{rispm}
+    \end{exerm}
+    
+    \end{esercizi}
+    \end{document}
+
+
+.. highlight:: bash
+
 Then simply generate a ``.gift.txt`` file::
 
         $ mcq.py --gift filename.tex  > filename.gift.txt
 
 The output can be imported in `MOODLE <https://www.moodle.org>`_ as plain/text file. 
-The newlines will be converted in brealines, so just edit the GIFT file with
-a text editor to modify as needed. 
+Select format: GIFT. 
 
-Then, in MOODLE, import the questions (format: GIFT; in a self-contained **category** entry -- create it first; 
-fix the latex and other things if necessary). 
+.. highlight:: latex
 
-The quiz can be generated: each question score is normalized to **1**. Just add all necessary questions
+If the command ``\moodlecategory{categoryname}`` is used in the tex preamble, the questions
+will be imported in the category **categoryname** 
+(if the names of the esercizi sections are empty) or **categoryname/sectionname** for each section name of groups of questions::
+
+        \begin{esercizi}{sectionmame}
+        ...
+        \end{esercizi}
+
+        \begin{esercizi*}{sectionname2}
+
+        \end{esercizi}
+
+
+The quiz can then easily 
+be generated: each question score is normalized to **1**. Just add all necessary questions
 to a Moodle quiz (permuted answers and questions, duration, ...). 
+Check :ref:`MCQ-Latex` for full details. 
 
 
 Essay Questions
@@ -81,20 +134,59 @@ one to each to the students?
 
 Just use the ``--split-for-moodle=`` option in mcq:: 
 
-        $ mcq.py --split-for-moodle=https://www.example.com/mdl/ filename_exam.pdf
+        $ mcq.py --split-for-moodle=templatefile.html filename_exam.pdf
+
+The file ``templatefile.html`` must exist, and its content is the HTML part of the essay
+question given to moodle, with the following **important** two template variables::
+
+        {SecretFolder} = the "secret" folder were all the files 
+                         will be stored (local and remote)
+        {PDF}          = the PDF of the exam
+
+The syntax is the `python strings format <https://docs.python.org/3/library/string.html#formatspec>`_
+mini-language: the only two variables are ``{SecretFolder}`` and ``{PDF}``. If 
+one needs to include a brace character in the literal text, it can be escaped by doubling: 
+``{{`` and ``}}``.
+
+.. highlight:: html
+
+Example of ``templatefile.html`` content (the first line is **necessary**)::
+
+        <p>
+          <a href="https://www.example.com/subdir/{SecretFolder}/{PDF}">
+          »Download the PDF document: ({PDF})«
+          </a>
+        </p>
+
+The file I would use::
+
+        <p>
+         <a href="https://www.dlfer.xyz/var/{SecretFolder}/{PDF}">
+         »Scaricare qui il testo in PDF: ({PDF})«
+         </a>
+        </p>
+        <p>[PRIMA DELLA FINE <b>CARICARE IL FILE PDF</b> (document-scan) 
+           DEL COMPITO SVOLTO QUA SOTTO]<br>
+           [Controllare di avere caricato correttamente il file 
+           prima di inviare tutto e terminare la prova]
+        </p>
 
 It will split the ``PDF`` document into 50 documents, each tagged with the unique four-characters 
 code of the variant, and generate a **moodle XML** archive of 50 essay questions  
-each linking to the proper PDF in the external URL. 
+each linking to the proper PDF in the external URL. The files are in a ``SecretFolder``, 
+which means are created and stored in a folder with a hashed name, such as ``7Rse-RseH-seHD``. 
 
-Upload all the single PDF documents to the suitable public website, given as argument.  
-They are contained in a folder (with scrambled name), to be uploaded to the remote folder.
+Upload the folder with the PDF documents to a suitable public website, 
+the one set in the template.
 
-Create a **category** in moodle. Import the XML questions file in the catogory.
-Then create a moodle quiz with just one random question taken from the category. 
+Create a **category** in moodle, or have it defined in tex by ``\moodlecategory{cat}``. 
+Import the XML questions file in the catogory, or get it taken from the moodle XML file.
+Then create a moodle quiz with just one random question taken from the given category. 
 
-
+.. important::
   The files are supposed to be hosted in an **external web site** (until I will understand 
-  how to predict uploaded file URLs, in moodle). 
+  how to predict uploaded file URLs, in moodle), if you want to use the generated moodle_xml. 
+  Otherwise, just manually create essay questions in moodle and attach each one of
+  the PDF files to each one of manually created questions. 
 
 

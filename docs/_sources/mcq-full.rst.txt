@@ -103,6 +103,10 @@ Preamble commands:
 ``\variantlabel{ABC}``
   Optional label to prepend to the permutation code of each sheet. 
 
+``\moodlecategory{categoryname/subcategory}``
+  Optional category name, in case a GIFT export is planned. 
+
+
 Environments and list of questions:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -198,7 +202,7 @@ can be formatted as in the following full example::
             % This feedback is very important, for questions 
             % converted to GIFT or HTML (interactive).
     \end{rispm}
-  
+    \fb{General Feedback}
   \end{exerm}
 
 
@@ -664,10 +668,25 @@ The commandline::
     $ mcq.py --gift filename.tex > questions.gift
 
 will convert **all** the questions in ``filename.tex`` to the GIFT moodle format, ready 
-to be imported in MOODLE as questions. The two mani types (``exerm`` and ``exe``) correspond
+to be imported in MOODLE as questions. The two main types (``exerm`` and ``exe``) correspond
 to multiple choice questions or essays, in moodle. 
 
+The preamble command ``\moodlecategory{categoryname}`` will trigger the following behavour:
+for each group of questions, 
+all the questions in a single environment ``\begin{esercizi}{sectioname}..`` or 
+``\begin{esercizi*}{sectionname}`` 
+will be categorized under the moodle GIFT category::
 
+        $CATEGORY: categoryname/sectionname
+
+or, if the sectionname is empty,::
+
+        $CATEGORY: category
+
+to facilitate categorized GIFT importing into MOODLE question banks. 
+
+Exactly the same function is provided by the ``export filename.gift`` in the command
+line user interface. 
 
 .. _MCQ-errors:
 

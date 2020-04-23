@@ -66,7 +66,7 @@ $ chmod +x mcq.py
 </div>
 <p>Of course you can move both files in more appropriate places (<code class="docutils literal"><span class="pre">/usr/loca/bin/mcq.py</span></code>,
 and <code class="docutils literal"><span class="pre">mcq.sty</span></code> somewhere in  <code class="docutils literal"><span class="pre">$TEXINPUTS</span></code>).</p>
-<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-17</p>
+<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-22</p>
 <div class="section" id="usage">
 <h3>USAGE:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>Just put <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.py">mcq.py</a> in your PATH and run:</p>
@@ -282,6 +282,7 @@ Body of the question.
 <span class="k">\risp</span><span class="na">[-2]</span> Wrong answer worth  -2 points.
 <span class="k">\risp</span><span class="na">[0.01]</span> Half-wrong answer worth  0.01 points.
 <span class="k">\end</span><span class="nb">{</span>rispm<span class="nb">}</span>
+<span class="k">\fb</span><span class="nb">{</span>General feedback<span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
 </pre></div>
 </div>
@@ -355,7 +356,8 @@ question:</p>
 <p>In order to choose variants in <code class="docutils literal"><span class="pre">exe</span></code> question types, the option <code class="docutils literal"><span class="pre">doexe</span></code> must be
 set when loading <code class="docutils literal"><span class="pre">mcq.sty</span></code>.</p>
 <blockquote>
-<div>This part is a little bit experimental (see the full documentation).</div></blockquote>
+<div>This part is a little bit experimental (see the full documentation for the
+<code class="docutils literal"><span class="pre">--split-for-moodle</span></code> option).</div></blockquote>
 </div>
 <div class="section" id="options">
 <h3>OPTIONS:<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
@@ -373,7 +375,7 @@ for debugging purposes:</p>
 --uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
 --join  [FILE1<span class="nb">_</span>exam.csv] [FILE2<span class="nb">_</span>exam.csv] join two csv tables
 --choose= [N] [files*.tex] random choose N from files*.tex
---split-for-moodle=|-s [URL/] [file<span class="nb">_</span>exam.pdf] slit for moodle essay
+--split-for-moodle=|-s [template.html] [file<span class="nb">_</span>exam.pdf] split for moodle essay
 </pre></div>
 </div>
 <p>Some aspect of the script are controlled by the following

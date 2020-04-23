@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-17
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-04-22
 
 USAGE:
 ------
@@ -230,6 +230,7 @@ multiple choice question::
     \risp[-2] Wrong answer worth  -2 points.
     \risp[0.01] Half-wrong answer worth  0.01 points.
     \end{rispm}
+    \fb{General feedback}
     \end{exerm}
 
 A simple true/false question::
@@ -303,7 +304,8 @@ question::
 In order to choose variants in ``exe`` question types, the option ``doexe`` must be 
 set when loading ``mcq.sty``. 
 
-    This part is a little bit experimental (see the full documentation).
+    This part is a little bit experimental (see the full documentation for the 
+    ``--split-for-moodle`` option).
 
 
 OPTIONS:
@@ -324,7 +326,7 @@ for debugging purposes::
         --uid= [FILENAME][:3:2] [FILE]  get names from uid file [FILENAME]
         --join  [FILE1_exam.csv] [FILE2_exam.csv] join two csv tables
         --choose= [N] [files*.tex] random choose N from files*.tex
-        --split-for-moodle=|-s [URL/] [file_exam.pdf] slit for moodle essay
+        --split-for-moodle=|-s [template.html] [file_exam.pdf] split for moodle essay
 
 
 Some aspect of the script are controlled by the following
@@ -577,7 +579,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHJlbWZvbGRlcj1hKQogICAgICAgICAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInNwbGl0X2Zvcl9tb29kbGUgbmVlZHMgYW5kIGFyZ3VtZW50IgogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGFzc2VydCBGYWxzZSwgInVuaGFuZGxlZCBvcHRpb24iCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICB1aWxvb3AoKQogICAgICAgIHN5cy5leGl0KDApCiAgICAgICAgcmV0dXJuIChzeXMuc3RkaW4ucmVhZCgpLCBvdXRwdXQpCiAgICBpZiBFVkFMVUFURSBvciBHSUZUIG9yIFhIVE1MIG9yIE1BS0VfU1RBVFM6CiAgICAgICAgVkFMRklMRSA9IGFyZ3NbMF0KICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGlmIE1FUkdFRklMRVM6CiAgICAgICAgb3V0cHV0LndyaXRlKG1lcmdlX2ZpbGVzKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkbGluZXMoKSwgVUlERklMRSkpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIE9NQVJTQ0FOOgogICAgICAgIG91dHB1dC53cml0ZShzc2NsaWVudChPTUFSQkFTRSwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIENTVkpPSU46CiAgICAgICAgb3V0cHV0LndyaXRlKGNzdmpvaW4oYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIFJBTkRPTUNIT09TRToKICAgICAgICBvdXRwdXQud3JpdGUocmFuZG9tX2Nob29zZShDSE9PU0VOVU1CRVIsIGFyZ3MpKQogICAgICAgIHN5cy5leGl0KDApCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKSBhbmQgbm90IGV4cGxpY2l0X291dHB1dDoKICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhcmdzWzBdKQogICAgICAgIEJBU0VOQU1FRklMRSA9IGIKICAgICAgICBvdXRwdXQgPSBvcGVuKGIgKyAiX2V4YW0udGV4IiwgJ3cnKQogICAgICAgIFNPTFVUSU9OU19GSUxFID0gb3BlbihiICsgIl9leGFtLnNvbHMiLCAndycpCiAgICAgICAgREJfRklMRSA9IG9wZW4oYiArICJfZXhhbS5kYiIsICd3YicpCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhhcmdzWzBdKToKICAgICAgICByZXR1cm4gKG9wZW4oYXJnc1swXSwgJ3InKS5yZWFkKCksIG91dHB1dCkKICAgIGVsc2U6CiAgICAgICAgcmFpc2UgRXhjZXB0aW9uKCJmaWxlICVzIGRvZXMgbm90IGV4aXN0ISIgJSBhcmdzWzBdKQoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSc2ZTEzNjdmZWNiZWE2OTZiZWQ3YzFkODYzNjE2ZDZmYWQzNGM3MTU1ZWViMzBkZWRjOWFkZTY3ZCcKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHF1ZXN0aW9udGV4dF9maWxlPWEpCiAgICAgICAgICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAic3BsaXRfZm9yX21vb2RsZSBuZWVkcyBhbmQgYXJndW1lbnQiCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMob3BlbihhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IG9wZW4oYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9J2IwYzQ0OWNmNGE4NTllMjQxNjA0ZTMzOTI3MjMxOGVjOGY0YTBlMjU1ZWQ1OTMxZjRjMmNiYzNkJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -911,9 +913,12 @@ def prepare_xhtml(s):
     return replace_url(transform_tex_entities(translate_math_chars(s)))
 
 
-def remove_empty_lines(s):
+def remove_empty_lines(s,also_newlines=False):
     newlist = [x for x in s.split("\n") if len(x.strip()) > 0]
-    return "\n".join(newlist)
+    if also_newlines:
+        return " ".join(newlist)
+    else:
+        return "\n".join(newlist)
 
 # ----------------------------------------------------------------------
 
@@ -930,6 +935,7 @@ class Esercizio:
         self.src = src
         self.fb = fb
         self.coda = coda
+        self.general_feedback=extract_feedback(coda)
 
     def __repr__(self):
         return self.__str__()
@@ -1042,13 +1048,20 @@ class Esercizio:
 
     def gift(self,default_punti=None):
         if self.type == 'EXERM':
+            if self.general_feedback is not None: 
+                gift_general_feedback="####{}\n".format(
+                escape_control_characters(remove_empty_lines(self.general_feedback,also_newlines=True)))
+            else:
+                gift_general_feedback=""
             return """%s[html]%s
 {
 %s
-}
+%s}
 """ % (self.qtitle,
                 escape_control_characters(remove_empty_lines(self.testo),html=True),
-                "\n".join([ris.gift(default_punti=default_punti) for ris in self.risposte]))
+                "\n".join([ris.gift(default_punti=default_punti) for ris in self.risposte]),
+                gift_general_feedback
+                )
         elif self.type in ("VERO", "FALSO"):
             if self.type == "VERO":
                 ans = "TRUE"
@@ -1320,12 +1333,22 @@ def strip_latex_comments(s):
     reg = re.compile(r"( +)", re.M)
     s = reg.sub(" ", s)
     return s
+
 # ----------------------------------------------------------------------
+
+def extract_esercizi_groups(s):
+    """output is a list of pairs "SectionName" and LaTeX data"""
+    result = []
+    for group_type in (r"esercizi\*", "esercizi"):
+      reg = re.compile(r"\\begin{%s}{(?P<SectionName>.*?)}(?P<content>.+?)\\end{%s}" % (group_type,group_type), re.M and re.DOTALL)
+      result +=  [( x.group('SectionName'), x.group('content') )  for x in reg.finditer(s)] 
+    return result 
 
 
 def extract_esercizi(s,exe_type='exerm'):
     reg = re.compile(r"\\begin{%s}(.+?)\\end{%s}" % (exe_type,exe_type), re.M and re.DOTALL)
     return [x.strip() for x in reg.findall(s)]
+
 # ----------------------------------------------------------------------
 
 
@@ -1361,6 +1384,15 @@ def parse_risposta(s):
         fb = reg.search(s).group('fb')[4:-1]
         s = reg.sub("", s).strip()
     return Risposta(s, punti=punti, giusta=giusta, fb=fb)
+
+# ----------------------------------------------------------------------
+
+def extract_feedback(s):
+    reg = re.compile(r"(?P<fb>\\fb{.+})", re.M and re.DOTALL)   # greedy
+    if reg.search(s):
+        return reg.search(s).group('fb')[4:-1]
+    else:
+        return None
 
 # ----------------------------------------------------------------------
 
@@ -1451,6 +1483,13 @@ def genera_codice(vl):
             generati += [tmpc]
             yield tmpc
     raise Exception("genera_codice: troppi tentativi")
+# ----------------------------------------------------------------------
+def extract_moodle_category(s):
+    reg_category = re.compile(r"\\moodlecategory{(?P<category>.*?)}", re.M)
+    if reg_category.search(s):
+        return reg_category.search(s).group('category').strip()
+    else:
+        return None
 # ----------------------------------------------------------------------
 
 
@@ -1955,12 +1994,40 @@ def extract_target(data):
         return None
 # ----------------------------------------------------------------------
 
-
 def generate_gift(data):
+    if extract_moodle_category(data):
+        return generate_gift_categorized(data)
     extracted_punti=extract_punti(data) #never None... 
-    esercizi = [parse_esercizio(es).gift(default_punti=extracted_punti) for es in extract_esercizi(data)]\
-     + [parse_esercizio(es).gift(default_punti=extracted_punti) for es in extract_esercizi(data,exe_type='exe')]
+    esercizi = [parse_esercizio(es).gift(default_punti=extracted_punti) \
+            for es in extract_esercizi(data)]\
+     + [parse_esercizio(es).gift(default_punti=extracted_punti) \
+     for es in extract_esercizi(data,exe_type='exe')]
     return "\n\n".join(esercizi)
+
+# ----------------------------------------------------------------------
+def generate_gift_categorized(data):
+    # assume extract_moodle_category is not none! 
+    extracted_moodle_category=extract_moodle_category(data)
+    if extracted_moodle_category is None:
+        sys.stderr.write("WARNING: moodle_category is None... Strange...\n")
+    extracted_punti=extract_punti(data) #never None... 
+    result=""
+    for SectionName, content in extract_esercizi_groups(data):
+        if SectionName:
+            category_name = "{}/{}".format(extracted_moodle_category,SectionName)
+        else:
+            category_name = extracted_moodle_category
+        result += """
+
+$CATEGORY: {}
+
+""".format(category_name)
+        esercizi = [parse_esercizio(es).gift(default_punti=extracted_punti) \
+                for es in extract_esercizi(content)]\
+     + [parse_esercizio(es).gift(default_punti=extracted_punti) \
+     for es in extract_esercizi(content,exe_type='exe')]
+        result += "\n\n".join(esercizi)
+    return result
 
 # ----------------------------------------------------------------------
 
@@ -4428,6 +4495,7 @@ Text of the question.
 \begin{rispm}
 %s
 \end{rispm}
+\fb{This is the general feedback (if needed)}
 \end{exerm}
 """ % "\n".join([
         r"\risp[=]  %This is the correct answer: use \fb{} for feedback!"] +
@@ -4590,16 +4658,19 @@ q : [Q]uit
 
 # ----------------------------------------------------------------------
 
+xml_cdata_template="""<p><a href="https://www.example.com/{SecretFolder}/{PDF}">»Scaricare qui il testo in PDF ({PDF})«</a></p>
+<p>[PRIMA DELLA FINE <b>CARICARE IL FILE PDF</b> (document-scan) DEL COMPITO SVOLTO QUA SOTTO]<br>
+[Controllare di avere caricato correttamente il file prima di inviare tutto e terminare la prova] 
+</p>
+"""
+
 xml_question_template="""<question type="essay">
     <name>
-      <text>Question: {}</text>
+      <text>Question: {question_name}</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[
-      <p><a href="{}">»Scaricare qui il testo in PDF ({})«</a></p>
-      <p>[PRIMA DELLA FINE <b>CARICARE IL FILE PDF</b> (document-scan) DEL COMPITO SVOLTO QUA SOTTO]<br>
-      [Controllare di avere caricato correttamente il file prima di inviare tutto e terminare la prova] 
-      </p>
+{question_cdata}      
 ]]></text>
     </questiontext>
     <generalfeedback format="html">
@@ -4621,6 +4692,13 @@ xml_question_template="""<question type="essay">
       <text></text>
     </responsetemplate>
   </question>
+"""
+
+xml_category_template="""<question type="category">
+    <category>
+        <text>{}</text>
+    </category>
+</question>
 """
 
 xml_quiz_template="""<?xml version="1.0" encoding="UTF-8"?>
@@ -4645,15 +4723,24 @@ def split_file(base_name,block=1):
     return result.stdout.decode()
 
 
-def generate_moodle_xml(base_name, list_of_files,remfolder=None,short_code='0'):
+def generate_moodle_xml(base_name, list_of_files,\
+        questiontext_file=None,short_code='0',moodle_category=None):
     from urllib.parse import urljoin
     import time, datetime
+    if not os.path.exists(questiontext_file):
+        raise Exception("File `{}` does not exist!".format(questiontext_file))
+    xml_cdata_template=open(questiontext_file,'r').read().strip()
     dt=datetime.datetime.fromtimestamp(int(time.time()))
     quiz_info="Creation date: {} from {}".format(dt.isoformat(" "), base_name )
-    xml_data=""
+    if moodle_category is not None:
+        xml_data=xml_category_template.format(moodle_category)
+    else:
+        xml_data=""
     for f in list_of_files:
-        xml_data += xml_question_template.format(f,urljoin(\
-                remfolder+"/","{}/{}".format(short_code,f) ),f)
+        question_cdata=xml_cdata_template.format(SecretFolder=short_code, PDF=f) 
+        # xml_data += xml_question_template.format(question_name=f,urljoin(\
+        #         remfolder+"/","{}/{}".format(short_code,f) ),f)
+        xml_data += xml_question_template.format(question_name=f, question_cdata=question_cdata )
     fd=open(base_name+"_moodle.xml",'w')
     fd.write(xml_quiz_template.format(quiz_info,xml_data))
     fd.close()
@@ -4684,11 +4771,20 @@ def get_short_code(s,num_of_chars=12,block_length=4):
     return sep_char.join(result)    
 
 
-def split_for_moodle(todofile,remfolder=None):
+def split_for_moodle(todofile,questiontext_file=None):
         print("Trying to: {}".format(todofile))
         basename,ext=os.path.splitext(todofile)
         sols_file=basename+".sols"
         pdf_file=basename+".pdf"
+        # first check if moodlecategory is there...
+        tex_file=basename+".tex"
+        fd_tex=open(tex_file,'r')
+        moodle_category=extract_moodle_category(fd_tex.read())
+        fd_tex.close()
+        if moodle_category is not None:
+            print("moodle category `{}` found!".format(moodle_category) )
+        else:    
+            print("No moodle category found..." )
         codici=[]
         fd=open(sols_file,'r')
         for line in fd.readlines():
@@ -4725,7 +4821,8 @@ def split_for_moodle(todofile,remfolder=None):
             except Exception as v:
                 sys.stderr.write("ERROR: {}".format(v) )
                 return 
-        generate_moodle_xml(basename, list_of_files,remfolder=remfolder,short_code=short_code)
+        generate_moodle_xml(basename, list_of_files,questiontext_file=questiontext_file,\
+                short_code=short_code,moodle_category=moodle_category)
 
 # ----------------------------------------------------------------------
 
