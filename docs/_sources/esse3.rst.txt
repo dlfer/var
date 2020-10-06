@@ -2,7 +2,7 @@
 ESSE3: nei meandri della burocrazia
 ===================================
 
-:Date: 2019-03-06
+:Date: 2019-03-06 (aggiornato 2020-10-06)
 
 esse3.py: A cosa serve
 ======================
@@ -15,7 +15,7 @@ compilare il registro delle lezioni, verbalizzare gli esami.
 .. pip install sphinxcontrib-programoutput
 .. but also apt
 
-.. program-output:: python2.7 ./soft/esse3.py -h
+.. program-output:: python3 ./soft/esse3.py -h
 
 
 
@@ -83,10 +83,11 @@ Dettaglio delle opzioni:
  gio: 16:30-18:30
  ven: 13:30-15:30
   
- anno: 2018
+ anno: 2020
  type: '0001'
  # cfr. file excel scaricato dal sito delle segreterie 
  # (lezioni='0001', esercitazioni=... )
+ target: L 
  
  ---
  OTT:
@@ -109,6 +110,38 @@ registro).
 
 Una volta prodotto il file CSV, occorre copia-e-incollarlo nel file XLS delle
 segreterie online, per il registro delle lezioni.
+
+
+``--blankyml ymlfile.yml``
+ Crea un registro delle lezioni vuoto, con date del calendario indicate. 
+ Verranno elencati tutti i giorni (in cui sono previste lezioni da orario) 
+ comprese tra le due ISO date di inizio e fine semestre ``sem-start`` e ``sem-end``. 
+ Il formato corretto del file ``ymlfile`` è il preambolo di un file yml, come segue:
+
+.. code-block:: yaml
+
+ # commenti
+ #
+ # Importante le tree dash tra il preambolo e al cambio di anno)
+ 
+ orario:
+ lun: 14:30-16:30
+ mar: 17:30-18:30
+ mer: 16:30-19:30
+ gio: 16:30-18:30
+ ven: 13:30-15:30
+ 
+ target: L
+ 
+ sem-start: 2020-10-05
+ sem-end: 2021-01-25
+ anno: 2020
+ 
+ type: '0001'
+ # cfr. file excel scaricato dal sito delle segreterie 
+ # (lezioni='0001', esercitazioni=... )
+
+
 
 .. .. automodule:: esse3
 

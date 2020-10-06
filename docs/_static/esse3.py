@@ -4,13 +4,17 @@
 # get data from ~/.esse3rc
 
 
-__version__='2019-09-12'
+from __future__ import absolute_import
+from __future__ import print_function
+from six.moves import range
+from six.moves import input
+__version__='2020-09-30'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2019-09-12
+# Version: 2020-09-30
 
 OPTIONS:
 	--help|-h
@@ -19,6 +23,7 @@ OPTIONS:
 	--call 			# chiama per firma digitale
 	--yml 			# genera il file csv del registro delle 
                                   lezioni da yml
+        --blankyml 		# genera il un file blank yml: sem-start e sem-end formato ISO
 	--baseoutput|-b=[base]
 
 FILES:
@@ -76,10 +81,10 @@ import string,os
 import time,sys
 import getopt
 import tempfile, shutil
-import StringIO
-import ConfigParser
+import io
+import six.moves.configparser
 import re
-import datetime
+import datetime 
 
 #-------------------------------------------------------------------
 ESSE3FILENAME='.esse3rc'
@@ -91,11 +96,11 @@ def getesse3values():
    db[k]=None
  filename=os.path.expanduser('~/'+ESSE3FILENAME)
  if os.path.exists(filename):
-  config = StringIO.StringIO()
+  config = io.StringIO()
   config.write("[dummysection]\n\n")
   config.write(open(filename, 'r').read())
   config.seek(0, os.SEEK_SET)
-  cp = ConfigParser.SafeConfigParser()
+  cp = six.moves.configparser.SafeConfigParser()
   cp.readfp(config)
   for k in ESSE3KEYS:
     if cp.has_option('dummysection',k):
@@ -103,21 +108,21 @@ def getesse3values():
     else:
       sys.stdout.write("Option '%s' missing in options file %s...\n" % (k,filename))
       sys.stdout.write("Enter value of '%s'" % k)
-      db[k]=raw_input(" >> ")
+      db[k]=input(" >> ")
  else:
   sys.stdout.write("Options file %s missing... creating one...\n" % (filename,))
   fd=open(filename,'w')
   fd.write("## File generato automaticamente....\n" )
   for k in ESSE3KEYS:
     sys.stdout.write("Enter value of '%s'" % k)
-    db[k]=raw_input(" >> ")
+    db[k]=input(" >> ")
     fd.write("%s = %s\n" % (k,db[k]))
   fd.close()
   sys.stdout.write(" => File %s generated!\n" % filename)
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode('CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IsIGVycjoKICBzeXMuc3RkZXJyLndyaXRlKCIlc1xuIiAlIHN0cihlcnIpICkKICBzeXMuc3RkZXJyLndyaXRlKCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF1cbiIpCiAgc3lzLmV4aXQoMSkKIGZvciBvLGEgaW4gb3B0czoKICBpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgIHByaW50IF9fZG9jX18KICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50ICJQcm92aWFtbyBpbCBnc20uLi4iCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKCiBpZiBsZW4oYXJncyk9PTAgb3IgRE9OT1RISU5HOgogIHByaW50ICJbZXNzZTMucHkgLS1oZWxwIGZvciBoZWxwXSIKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQpCiAgZWxzZToKICAgRVMubWFrZXVpZChmaWxlKEJBU0VPVVRQVVQrJy51aWQnLCd3JykpCiAgIHByaW50ICJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBhbGw9b3BlbihNRSwncicpLnJlYWQoKS5kZWNvZGUoJ3V0Zi04JykKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bGVuKGJvZHlfZmlyc3Quc3RyaXAoKSkrbGVuKGJvZHlfbGFzdC5zdHJpcCgpKQogbD1oYXNobGliLnNoYTIyNCgoYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpLmVuY29kZSgndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGV4cGVjdF9sPSc5OWFhYWRkYjQ4MzM0NTE4OTAwNGZhYjE4NDM0NzYyOTNkMDNiMmQ2ODcyNjFkMTYxZjUyM2EzNicKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg=='),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQpCiAgZWxzZToKICAgRVMubWFrZXVpZChvcGVuKEJBU0VPVVRQVVQrJy51aWQnLCd3JykpCiAgIHByaW50KCJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iKQogaWYgRE9QREY6CiAgRVMubWFrZXBkZihCQVNFT1VUUFVUKQogIAoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSc2YzQwZGRhNjllNTQzNmJiMjQ3N2ZiOTI3OTYxMzc0MGUyOTk3YTViOWI0MWM3MTRjMGNhMTFiMScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -222,7 +227,7 @@ class Esse3:
   os.system('xelatex %s.tex' % baseoutput )
   shutil.copy('%s.pdf' % baseoutput ,os.path.join(curdir,baseoutput+'.pdf'))
   shutil.rmtree(tmpdir)
-  print "\n  ==>file ", baseoutput + '.pdf', "generato"
+  print("\n  ==>file ", baseoutput + '.pdf', "generato")
   return 
 
 #-----------------------------------------------------------------------
@@ -269,7 +274,7 @@ def partial_string(i,n):
 
 def callgsm(serial_port,telenumber,pin):
  ser = getgsm(serial_port)
- print 'Calling...'
+ print('Calling...')
  ser.write('ATD ' + telenumber + ';' + '\r\n')
  exp=expectprompt(ser)
  if VERBOSE: 
@@ -277,13 +282,13 @@ def callgsm(serial_port,telenumber,pin):
  else:
   sys.stderr.write("\n"+("-"*80)+"\n")
  sys.stdout.write("Input 4 cifre + <Return>: ")
- cifre=raw_input(">> ")
+ cifre=input(">> ")
  cifre=cifre.strip()
  numcifre=len(cifre);
  tmpii=0
  for x in cifre:
   if not x in ALLOWEDCHARS:
-   print "Cifre Sbagliate: ", x, " not in ", ALLOWEDCHARS
+   print("Cifre Sbagliate: ", x, " not in ", ALLOWEDCHARS)
   else:
    tmpii += 1
    ser.write('AT+VTS=' + x + '\r\n')
@@ -293,7 +298,7 @@ def callgsm(serial_port,telenumber,pin):
    else:
     sys.stderr.write(partial_string(tmpii,numcifre))
  sys.stdout.write("\nPress <Return> per inviare il PIN di otto cifre...")
- ret=raw_input(">> ")
+ ret=input(">> ")
  lenpin=len(pin)
  tmpii=0
  for x in pin:
@@ -305,10 +310,10 @@ def callgsm(serial_port,telenumber,pin):
   else:
    sys.stderr.write(partial_string(tmpii,lenpin))
  sys.stdout.write("\nPress <Return> per riagganciare..." )
- ret=raw_input(">> ")
+ ret=input(">> ")
  ser.write('AT+CHUP\r\n')
  sys.stderr.write(expectprompt(ser))
- print "\n...closing...."
+ print("\n...closing....")
  ser.close()
 
 
@@ -323,20 +328,20 @@ TYPE_NAMES=['type','tipo']
 
 def parse_header(db):
     result = {} 
-    if db.has_key('target'):
+    if 'target' in db:
         result['target_letter']=db['target']
     else:
         result['target_letter']=''
     for x in ANNO_NAMES:
-        if db.has_key(x):
+        if x in db:
             result['anno']=int(db[x])
             break
     for x in TYPE_NAMES:
-        if db.has_key(x):
+        if x in db:
             result['type']=db[x]
             break
     for x in ORARIO_NAMES:    
-        if db.has_key(x):
+        if x in db:
             orario={}
             for giorno in db[x].keys():
                 if not giorno in GIORNI_NAMES:
@@ -344,6 +349,9 @@ def parse_header(db):
                 orario[giorno]=(db[x][giorno]).split('-')
             result['orario']=orario
             break
+    for tok in ['sem-start','sem-end']:
+        if tok in db:
+            result[tok]=db[tok]
     return result
 
 def parse_body_parts(body_parts,header_db):
@@ -370,10 +378,10 @@ def parse_body(body_db,header_db,year_offset=0):
             day_tokens=day_string.split()
             day_date=datetime.date(header_db['anno']+year_offset,month_number,int(day_tokens[0]))
             week_day=GIORNI_NAMES[day_date.weekday()]
-            orario=header_db['orario'][week_day]
-            act_type=header_db['type']
             if not week_day in header_db['orario']:
                 raise Exception("Problem: week_day '{}' not in orario!".format(week_day))
+            orario=header_db['orario'][week_day]
+            act_type=header_db['type']
             if day_tokens[1][0]=='*':
                 desc= " ".join(day_tokens[2:]) 
             else:
@@ -397,44 +405,77 @@ def numero_ore(a,b):
     return (datetime.datetime.strptime(b, time_FMT) - datetime.datetime.strptime(a, time_FMT)).total_seconds() / (60*60.0)
     
 
-def ymltocsv(yamlfile,csvfile):
+def ymltocsv(yamlfile,outfile,blankyml=False):
     # import oyaml as yaml to have it ordered?
     import yaml
     import csv
-    import StringIO
+    # import StringIO
     import re
     reg_itemline=re.compile(r"(?P<blank>\s*?)- (?P<content>.*?)$")
     yaml_content=''
-    for raw_line in file(yamlfile).readlines():
+    for raw_line in open(yamlfile).readlines():
         reg_search=reg_itemline.search(raw_line)
         if reg_search:
             yaml_content += "%s- %s\n" % (reg_search.group('blank'), dirty_trick( reg_search.group('content') ) ) 
         else:
             yaml_content += raw_line
-    yaml_stream=StringIO.StringIO()
-    yaml_stream.write(yaml_content)
-    yaml_stream.seek(0)
+    # yaml_stream=StringIO.StringIO()
+    # yaml_stream.write(yaml_content)
+    # yaml_stream.seek(0)
+    # try here
+    yaml_stream = yaml_content
     tokens=list(yaml.safe_load_all(yaml_stream))
 
     # tokens=list(yaml.safe_load_all(file(yamlfile)))
     header=tokens[0]
-    body_parts=tokens[1:]
     hdb=parse_header(header)
+    if blankyml: 
+        # generate the blank
+        if not 'sem-start' in hdb and 'sem-end' in hdb:
+            raise Exception("sem-start and sem-end missing!")
+        other_data=''
+        thismonth=hdb['sem-start'].month
+        thisyear=hdb['sem-start'].year
+        other_data += ("\n{}:\n\n".format( MESE_NAMES[thismonth-1]) ) 
+        for x in range( (hdb['sem-end'] - hdb['sem-start']).days +1 ):
+            thisday= hdb['sem-start'] + datetime.timedelta(x) 
+            if thisday.year != thisyear:
+                thisyear=thisday.year
+                other_data += ("\n---\n") 
+            if thisday.month != thismonth:
+                # changed the month...
+                thismonth=thisday.month
+                other_data += ("\n{}:\n\n".format( MESE_NAMES[thismonth-1]) ) 
+            if GIORNI_NAMES[thisday.weekday()] in hdb['orario']:
+                other_data += (" - {} *{}\n".format( thisday.day ,GIORNI_NAMES[thisday.weekday()]) )
+            if thisday.weekday() == 6:
+                other_data += "\n" 
+        with open(outfile, 'wb') as outf:
+            outf.write(yaml_content + other_data )
+            outf.close()        
+            sys.stderr.write("""File {} created\n""".format(outf.name))
+        return 
+    body_parts=tokens[1:]
     all_data= parse_body_parts(body_parts,hdb) 
     total_time=0 
-    with open(csvfile, 'wb') as csvfile:
-        csvwriter = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
+    with open(outfile, 'wb') as outf:
+        csvwriter = csv.writer(outf, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
         for row in all_data:
             total_time += numero_ore(row[1],row[2])
             csvwriter.writerow(row)
-    csvfile.close()        
+    outf.close()        
     sys.stderr.write(
 """
 Number of hours: {}
 File {} created
 Open with options:   Unicode, Italia, separated by semicolon, text_delimiter=\", Quoted field as text.
-""".format(total_time, csvfile.name))
+""".format(total_time, outf.name))
     return 
+
+#-----------------------------------------------------------------------
+
+def ymltoblankyml(yamlfile,blankymlfile):
+    return ymltocsv(yamlfile,blankymlfile,blankyml=True)
 
 #-----------------------------------------------------------------------
 

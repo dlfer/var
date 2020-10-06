@@ -27,7 +27,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="psd2pdf: drawing and presentation" href="psd2pdf.html" />
-    <link rel="prev" title="MCQ-XeLaTeX Full Documentation" href="mcq-full.html" />
+    <link rel="prev" title="MCQ-XeLaTeX: How to use it with Moodle and for online exams" href="mcq-moodle.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,7 +48,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-03-06</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-03-06 (aggiornato 2020-10-06)</td>
 </tr>
 </tbody>
 </table>
@@ -59,7 +59,7 @@ compilare il registro delle lezioni, verbalizzare gli esami.</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>USAGE: esse3.py [options] [argument]
 
 
-# Version: 2019-09-12
+# Version: 2020-09-30
 
 OPTIONS:
 	--help|-h
@@ -68,6 +68,7 @@ OPTIONS:
 	--call 			# chiama per firma digitale
 	--yml 			# genera il file csv del registro delle 
                                   lezioni da yml
+        --blankyml 		# genera il un file blank yml: sem-start e sem-end formato ISO
 	--baseoutput|-b=[base]
 
 FILES:
@@ -137,10 +138,11 @@ Il formato corretto del file <code class="docutils literal"><span class="pre">ym
 <span class="l l-Scalar l-Scalar-Plain">gio</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span>
 <span class="l l-Scalar l-Scalar-Plain">ven</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span>
 
-<span class="l l-Scalar l-Scalar-Plain">anno</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2018</span>
+<span class="l l-Scalar l-Scalar-Plain">anno</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2020</span>
 <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="s">&#39;0001&#39;</span>
 <span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span>
 <span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">L</span>
 
 <span class="nn">---</span>
 <span class="l l-Scalar l-Scalar-Plain">OTT</span><span class="p p-Indicator">:</span>
@@ -161,6 +163,35 @@ ignorata (in modo che l’annotazione sul numero di lezioni non compaia nel
 registro).</p>
 <p>Una volta prodotto il file CSV, occorre copia-e-incollarlo nel file XLS delle
 segreterie online, per il registro delle lezioni.</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">--blankyml</span> <span class="pre">ymlfile.yml</span></code></dt>
+<dd>Crea un registro delle lezioni vuoto, con date del calendario indicate.
+Verranno elencati tutti i giorni (in cui sono previste lezioni da orario)
+comprese tra le due ISO date di inizio e fine semestre <code class="docutils literal"><span class="pre">sem-start</span></code> e <code class="docutils literal"><span class="pre">sem-end</span></code>.
+Il formato corretto del file <code class="docutils literal"><span class="pre">ymlfile</span></code> è il preambolo di un file yml, come segue:</dd>
+</dl>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># commenti</span>
+<span class="c1">#</span>
+<span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span>
+
+<span class="l l-Scalar l-Scalar-Plain">orario</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">lun</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">14:30-16:30</span>
+<span class="l l-Scalar l-Scalar-Plain">mar</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">17:30-18:30</span>
+<span class="l l-Scalar l-Scalar-Plain">mer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-19:30</span>
+<span class="l l-Scalar l-Scalar-Plain">gio</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span>
+<span class="l l-Scalar l-Scalar-Plain">ven</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span>
+
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">L</span>
+
+<span class="l l-Scalar l-Scalar-Plain">sem-start</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2020-10-05</span>
+<span class="l l-Scalar l-Scalar-Plain">sem-end</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2021-01-25</span>
+<span class="l l-Scalar l-Scalar-Plain">anno</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2020</span>
+
+<span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="s">&#39;0001&#39;</span>
+<span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span>
+<span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span>
+</pre></div>
+</div>
 </div>
 </div>
 <hr class="docutils" />
@@ -181,16 +212,17 @@ segreterie online, per il registro delle lezioni.</p>
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcq-moodle.html">MCQ-XeLaTeX: How to use it with Moodle and for online exams</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psd2pdf.html">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes and topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="mcq-full.html" title="previous chapter">MCQ-XeLaTeX Full Documentation</a></li>
+      <li>Previous: <a href="mcq-moodle.html" title="previous chapter">MCQ-XeLaTeX: How to use it with Moodle and for online exams</a></li>
       <li>Next: <a href="psd2pdf.html" title="next chapter">psd2pdf: drawing and presentation</a></li>
   </ul></li>
 </ul>
