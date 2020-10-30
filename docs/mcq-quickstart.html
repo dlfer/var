@@ -4,25 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>MCQ-XeLaTeX: Quickstart &#8212; var  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -33,8 +26,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -56,50 +48,50 @@
 <h2>Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)<a class="headerlink" href="#multiple-choice-questions-in-xelatex-and-omr-optical-mark-recognition" title="Permalink to this headline">¶</a></h2>
 <p>Before anything: a full <strong>TeX Distribution</strong> (such as <a class="reference external" href="http://www.tug.org/texlive/">texlive</a>).
 Check the <a class="reference internal" href="mcqxelatex.html#requirements"><span class="std std-ref">Requirements</span></a>, then download and install both the
-script <a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> and the syle file
-<a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a> (e.g. in linux):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install fonts-linuxlibertine
+script <a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a> and the syle file
+<a class="reference download internal" download="" href="_downloads/a7a670f40b50b15891accdb8ccfb2d2a/mcq.sty"><code class="xref download docutils literal notranslate"><span class="pre">mcq.sty</span></code></a> (e.g. in linux):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install fonts-linuxlibertine
 $ wget https://www.dlfer.xyz/var/_downloads/mcq.py
 $ wget https://www.dlfer.xyz/var/_downloads/mcq.sty
 $ chmod +x mcq.py
 </pre></div>
 </div>
-<p>Of course you can move both files in more appropriate places (<code class="docutils literal"><span class="pre">/usr/loca/bin/mcq.py</span></code>,
-and <code class="docutils literal"><span class="pre">mcq.sty</span></code> somewhere in  <code class="docutils literal"><span class="pre">$TEXINPUTS</span></code>).</p>
+<p>Of course you can move both files in more appropriate places (<code class="docutils literal notranslate"><span class="pre">/usr/loca/bin/mcq.py</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">mcq.sty</span></code> somewhere in  <code class="docutils literal notranslate"><span class="pre">$TEXINPUTS</span></code>).</p>
 <span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-10-06</p>
 <div class="section" id="usage">
 <h3>USAGE:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>Just put <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.py">mcq.py</a> in your PATH and run:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
 </pre></div>
 </div>
 <p>the instructions and the in-line help are meant to be working (at any point, follow the instructions
-and enter a question mark <code class="docutils literal"><span class="pre">?</span></code> for help):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>-&gt;&gt; ?
+and enter a question mark <code class="docutils literal notranslate"><span class="pre">?</span></code> for help):</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ?
 </pre></div>
 </div>
-<p>to get some help. The <code class="docutils literal"><span class="pre">prompt</span></code> is meant to give informations on the <strong>current directory</strong> and
+<p>to get some help. The <code class="docutils literal notranslate"><span class="pre">prompt</span></code> is meant to give informations on the <strong>current directory</strong> and
 the phase of the program. For example, if the working directory is
-<code class="docutils literal"><span class="pre">/home/user/tex/myexam</span></code> the prompt will be:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>(Work)mcq[/home/user/tex/myexam]-&gt;&gt;
+<code class="docutils literal notranslate"><span class="pre">/home/user/tex/myexam</span></code> the prompt will be:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>(Work)mcq[/home/user/tex/myexam]-&gt;&gt;
 </pre></div>
 </div>
-<p>The LaTeX engine to be used is <code class="docutils literal"><span class="pre">XeLaTeX</span></code>, and the style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has to be
+<p>The LaTeX engine to be used is <code class="docutils literal notranslate"><span class="pre">XeLaTeX</span></code>, and the style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has to be
 found by XeLaTeX when compiling.</p>
 </div>
 <div class="section" id="examples">
 <h3>EXAMPLES:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<p>The MCQ CLI prompt is here summarized as <code class="docutils literal"><span class="pre">-&gt;&gt;</span></code>.
-After loading or generating a XeLaTeX exam file <code class="docutils literal"><span class="pre">file.tex</span></code>, to compile  it:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>-&gt;&gt; make
+<p>The MCQ CLI prompt is here summarized as <code class="docutils literal notranslate"><span class="pre">-&gt;&gt;</span></code>.
+After loading or generating a XeLaTeX exam file <code class="docutils literal notranslate"><span class="pre">file.tex</span></code>, to compile  it:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; make
 </pre></div>
 </div>
 <p>To generate a printable PDF with 200 permuted copies of the exam:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>-&gt;&gt; exam 200
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; exam 200
 </pre></div>
 </div>
-<p>The output will be <code class="docutils literal"><span class="pre">file_exam.pdf</span></code>.  Check that everything is ok,
-modify <code class="docutils literal"><span class="pre">file.tex</span></code> accordingly, and go back to <code class="docutils literal"><span class="pre">make</span></code>.
+<p>The output will be <code class="docutils literal notranslate"><span class="pre">file_exam.pdf</span></code>.  Check that everything is ok,
+modify <code class="docutils literal notranslate"><span class="pre">file.tex</span></code> accordingly, and go back to <code class="docutils literal notranslate"><span class="pre">make</span></code>.
 After printing and delivering it, one can use an OMR service (Optical Mark
 Recognition) or not.</p>
 <div class="admonition warning">
@@ -108,34 +100,34 @@ Recognition) or not.</p>
 (better than BW). In PDF format is easier.</p>
 </div>
 <p>Assuming you have a properly configured OMR remote
-service (via <code class="docutils literal"><span class="pre">OMARSERVICE</span></code> environment variabile, see below), to import the
+service (via <code class="docutils literal notranslate"><span class="pre">OMARSERVICE</span></code> environment variabile, see below), to import the
 scanned bubblesheets archived in the
 scandir folder:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>-&gt;&gt; omr scandir/scanfiles*.pdf
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; omr scandir/scanfiles*.pdf
 </pre></div>
 </div>
-<p>The output will be a PDF with visual annotations <code class="docutils literal"><span class="pre">file_answers.pdf</span></code> (to
+<p>The output will be a PDF with visual annotations <code class="docutils literal notranslate"><span class="pre">file_answers.pdf</span></code> (to
 be visually analysed to check for OMR or human errors) and a text file with the exam
-data, in CSV (Colon Separated Variables) format, usually named <code class="docutils literal"><span class="pre">file_answers.txt</span></code>. Each line will be
+data, in CSV (Colon Separated Variables) format, usually named <code class="docutils literal notranslate"><span class="pre">file_answers.txt</span></code>. Each line will be
 of the format:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>FXZH: :193146:AB0*AAAD0:
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>FXZH: :193146:AB0*AAAD0:
 </pre></div>
 </div>
 <p>It is important to understand the format of this file:</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">The first field <code class="docutils literal"><span class="pre">FXZH</span></code> is the permutation code of the sheet,</p>
+<li><p class="first">The first field <code class="docutils literal notranslate"><span class="pre">FXZH</span></code> is the permutation code of the sheet,</p>
 </li>
 <li><p class="first">the second `` `` is the (empty) field where later the student name will appear,</p>
 </li>
-<li><p class="first">the third <code class="docutils literal"><span class="pre">193146</span></code> is the student UID number,</p>
+<li><p class="first">the third <code class="docutils literal notranslate"><span class="pre">193146</span></code> is the student UID number,</p>
 </li>
-<li><p class="first">the fourth <code class="docutils literal"><span class="pre">AB0*AAAD0</span></code> is the string with the answers. Each question, a character:</p>
+<li><p class="first">the fourth <code class="docutils literal notranslate"><span class="pre">AB0*AAAD0</span></code> is the string with the answers. Each question, a character:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">0</span></code> means there is no answer,</li>
-<li><code class="docutils literal"><span class="pre">*</span></code> means there is more than one answers (and hence not a valid answer),</li>
-<li><code class="docutils literal"><span class="pre">A</span></code> means the answer is <code class="docutils literal"><span class="pre">A</span></code> (and the same for <code class="docutils literal"><span class="pre">B</span></code>, <code class="docutils literal"><span class="pre">C</span></code>, …).</li>
+<li><code class="docutils literal notranslate"><span class="pre">0</span></code> means there is no answer,</li>
+<li><code class="docutils literal notranslate"><span class="pre">*</span></code> means there is more than one answers (and hence not a valid answer),</li>
+<li><code class="docutils literal notranslate"><span class="pre">A</span></code> means the answer is <code class="docutils literal notranslate"><span class="pre">A</span></code> (and the same for <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, …).</li>
 </ul>
 </div></blockquote>
 </li>
@@ -147,15 +139,15 @@ of the format:</p>
 correcting (manually) the OMR or human errors, just to keep the sets of symbols
 disjoint.  Upper and lower case letters are considered equivalent, later.</p>
 <p>In order to proceed, check and remove all the asterisks, and compare
-the data file with  <code class="docutils literal"><span class="pre">file_answers.pdf</span></code> until all errors are removed.</p>
+the data file with  <code class="docutils literal notranslate"><span class="pre">file_answers.pdf</span></code> until all errors are removed.</p>
 <p>If ESSE3 is in your hands, then you can use <a class="reference external" href="https://www.dlfer.xyz/var/esse3.html">https://www.dlfer.xyz/var/esse3.html</a> to
-generate a <code class="docutils literal"><span class="pre">uid</span></code> file and align students uid-numbers with their names:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>-&gt;&gt; uid sc1.uid
+generate a <code class="docutils literal notranslate"><span class="pre">uid</span></code> file and align students uid-numbers with their names:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; uid sc1.uid
 </pre></div>
 </div>
-<p>(<code class="docutils literal"><span class="pre">?</span> <span class="pre">uid</span></code> in the CLI if needed).
+<p>(<code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">uid</span></code> in the CLI if needed).
 After this, each line will be completed with the student name:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>FXZH:FamilyName, venName:193146:AB0aAAAD0:
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>FXZH:FamilyName, venName:193146:AB0aAAAD0:
 7yFH:Verdi, Giuseppe    :736220:D0ABC0ACD:
 xE72:Rossi, Paolo       :735221:DA0CBBA0C:
 6FB2:Bianchi, Michele   :739223:0AADC00C0:
@@ -167,42 +159,42 @@ without OMR, simply reading the data fields from the exam papers filled by
 students and typing them in a text file with the CSV format described above.</p>
 <p>If the exam consists in a multiple-choice questions part and in an open-questions
 part, the score for the second part can be written as the last column of
-<code class="docutils literal"><span class="pre">file_answers.txt</span></code>:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>FXZH:FamilyName, GivenName:193146:AB0*AAAD0:21
+<code class="docutils literal notranslate"><span class="pre">file_answers.txt</span></code>:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>FXZH:FamilyName, GivenName:193146:AB0*AAAD0:21
 </pre></div>
 </div>
 <p>After the file with the students answers is filled, to mark the exam simply type:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>-&gt;&gt; mark
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; mark
 </pre></div>
 </div>
 <p>Two files will be generated, if everything goes right:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">file_exam.csv</span></code> with the full list of students and scores.</li>
-<li><code class="docutils literal"><span class="pre">file_exam.txt</span></code> with an anonymized list of UID’s and scores.</li>
+<li><code class="docutils literal notranslate"><span class="pre">file_exam.csv</span></code> with the full list of students and scores.</li>
+<li><code class="docutils literal notranslate"><span class="pre">file_exam.txt</span></code> with an anonymized list of UID’s and scores.</li>
 </ul>
 </div></blockquote>
-<p>Afterwards, <strong>very important</strong>: generate a stats PDF, <code class="docutils literal"><span class="pre">file_stats.pdf</span></code> where
+<p>Afterwards, <strong>very important</strong>: generate a stats PDF, <code class="docutils literal notranslate"><span class="pre">file_stats.pdf</span></code> where
 for each question one can read the number of students for each possible answer,
 and two indicators of each question: the
 <strong>facility index</strong> and the <strong>discrimination index</strong>:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>--&gt; makestats
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>--&gt; makestats
 </pre></div>
 </div>
 <p>Also, generate an HTML output:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>--&gt; export outputname.html
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>--&gt; export outputname.html
 </pre></div>
 </div>
 <p>And generate a GIFT (for MOODLE) format to be imported in any <a class="reference external" href="www.moodle.org">MOODLE</a> instance:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>--&gt; export outputname.gift
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>--&gt; export outputname.gift
 </pre></div>
 </div>
 <p>At any point, check status:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>--&gt; status
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>--&gt; status
 </pre></div>
 </div>
 <p>and get help:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>--&gt; ?
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>--&gt; ?
 --&gt; help
 </pre></div>
 </div>
@@ -219,45 +211,45 @@ since there are not irreveversible steps.</p>
 </div>
 <div class="section" id="latex">
 <h3>LATEX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h3>
-<p>The first time <code class="docutils literal"><span class="pre">mcq.py</span></code> is executed it will assist the user in generating a LaTeX
+<p>The first time <code class="docutils literal notranslate"><span class="pre">mcq.py</span></code> is executed it will assist the user in generating a LaTeX
 exam file, ready to be modified. This step is not necessary, but useful.</p>
-<p>Otherwise the format of the file is very simple. Let <code class="docutils literal"><span class="pre">file.tex</span></code> be the name
-of the file. It <strong>has</strong> to be encoded as <code class="docutils literal"><span class="pre">utf8</span></code>. The style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has
-to be in the <code class="docutils literal"><span class="pre">XeLaTeX</span></code> path.</p>
-<p>The file <code class="docutils literal"><span class="pre">file.tex</span></code> <strong>must</strong> be compiled with XeLaTeX and it <strong>must</strong> contain
+<p>Otherwise the format of the file is very simple. Let <code class="docutils literal notranslate"><span class="pre">file.tex</span></code> be the name
+of the file. It <strong>has</strong> to be encoded as <code class="docutils literal notranslate"><span class="pre">utf8</span></code>. The style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has
+to be in the <code class="docutils literal notranslate"><span class="pre">XeLaTeX</span></code> path.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">file.tex</span></code> <strong>must</strong> be compiled with XeLaTeX and it <strong>must</strong> contain
 in the preamble the LaTeX command:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>mcq<span class="nb">}</span>
 </pre></div>
 </div>
 <p>with (optional) some options such as:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[bubblesheet]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[bubblesheet]</span><span class="nb">{</span>mcq<span class="nb">}</span>
 </pre></div>
 </div>
 <p>All options are described in the full LaTeX documentation.
 Possible commands in the preamble:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\headline</span><span class="nb">{</span>Geometry I - 24 jun 2009 (14:30 - U1-01)<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\headline</span><span class="nb">{</span>Geometry I - 24 jun 2009 (14:30 - U1-01)<span class="nb">}</span>
 <span class="k">\puntigiusta</span><span class="nb">{</span>3<span class="nb">}</span>
 <span class="k">\puntisbagliata</span><span class="nb">{</span>-1<span class="nb">}</span>
 <span class="k">\puntiempty</span><span class="nb">{</span>0<span class="nb">}</span>
 <span class="k">\formulavoto</span><span class="nb">{</span>(2*x+y)/3.0<span class="nb">}</span> <span class="c">%% python syntax</span>
 </pre></div>
 </div>
-<p>The two variables <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> here mean, respectively, the score of the
+<p>The two variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> here mean, respectively, the score of the
 multiple-choice part of the test, and a manually-marked score for an optional
 second part of the test, with open questions.</p>
 <p>In the body of the LaTeX document, one of the following (if OMR or not OMR is
 to be used) will print the front matter of the exam sheet:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\bubblesheet</span><span class="na">[2]</span><span class="nb">{</span>4<span class="nb">}{</span>20<span class="nb">}</span> <span class="c">%  OMR</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\bubblesheet</span><span class="na">[2]</span><span class="nb">{</span>4<span class="nb">}{</span>20<span class="nb">}</span> <span class="c">%  OMR</span>
 <span class="k">\nomeesame</span> <span class="c">% not OMR: name and uid</span>
 </pre></div>
 </div>
 <p>After that, the list of exercises has to be inside one of the
 following environemts (the starred version has a different numbering scheme):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>Group A of exercises<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>Group A of exercises<span class="nb">}</span>
 <span class="c">% here exercises</span>
 <span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
 
@@ -272,7 +264,7 @@ following environemts (the starred version has a different numbering scheme):</p
 </div>
 <p>There are not that many types of questions/exercises. The basic type is the
 multiple choice question:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[Just a comment]
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[Just a comment]
 <span class="k">\qtitle</span><span class="nb">{</span>Title of the exercise (can be used as question-id: it does not appear in TeX<span class="nb">}</span>
 Body of the question.
 <span class="k">\begin</span><span class="nb">{</span>rispm<span class="nb">}</span>[3] <span class="c">% The optional &#39;3&#39; argument means answers in 3 columns.</span>
@@ -287,7 +279,7 @@ Body of the question.
 </pre></div>
 </div>
 <p>A simple true/false question:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span><span class="k">\qtitle</span><span class="nb">{</span>Quetion title or question id<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span><span class="k">\qtitle</span><span class="nb">{</span>Quetion title or question id<span class="nb">}</span>
 Questo è un esercizio vero/falso.
 <span class="k">\vero</span>[
 Feedback
@@ -295,13 +287,13 @@ Feedback
 <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
 </pre></div>
 </div>
-<p>Some questions can come in <code class="docutils literal"><span class="pre">varianti</span></code>, for each shuffle
+<p>Some questions can come in <code class="docutils literal notranslate"><span class="pre">varianti</span></code>, for each shuffle
 (permutation) of questions, one of the variants is
 chosen for that particular question. Questions with variants
 are supposed to be very similar (only some numerical parameters
 should change), otherwise the difficulty of the test can be
 non-homogeneous:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>varianti<span class="nb">}</span>
 <span class="c">%% Variants should have all the same number of answers.</span>
 <span class="c">%% Such a format cannot be converted 100% to GIFT or HTML,</span>
@@ -327,9 +319,9 @@ non-homogeneous:</p>
 <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
 </pre></div>
 </div>
-<p>There is a simple open-answer exercise, that will be translated to an <code class="docutils literal"><span class="pre">essay</span></code> GIFT/MOODLE
+<p>There is a simple open-answer exercise, that will be translated to an <code class="docutils literal notranslate"><span class="pre">essay</span></code> GIFT/MOODLE
 question:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol,doexe]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol,doexe]</span><span class="nb">{</span>mcq<span class="nb">}</span>
 
 <span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{}</span>
 
@@ -353,17 +345,17 @@ question:</p>
 <span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
 </pre></div>
 </div>
-<p>In order to choose variants in <code class="docutils literal"><span class="pre">exe</span></code> question types, the option <code class="docutils literal"><span class="pre">doexe</span></code> must be
-set when loading <code class="docutils literal"><span class="pre">mcq.sty</span></code>.</p>
+<p>In order to choose variants in <code class="docutils literal notranslate"><span class="pre">exe</span></code> question types, the option <code class="docutils literal notranslate"><span class="pre">doexe</span></code> must be
+set when loading <code class="docutils literal notranslate"><span class="pre">mcq.sty</span></code>.</p>
 <blockquote>
 <div>This part is a little bit experimental (see the full documentation for the
-<code class="docutils literal"><span class="pre">--split-for-moodle</span></code> option).</div></blockquote>
+<code class="docutils literal notranslate"><span class="pre">--split-for-moodle</span></code> option).</div></blockquote>
 </div>
 <div class="section" id="options">
 <h3>OPTIONS:<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>There are a few options that might be useful, but please use them only
 for debugging purposes:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>--help|-h               this help
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>--help|-h               this help
 -v|--verbose            verbose output
 --gift|-g               GIFT output
 --xhtml|-x              XHTML output
@@ -380,7 +372,7 @@ for debugging purposes:</p>
 </div>
 <p>Some aspect of the script are controlled by the following
 <strong>ENVIRONMENT VARIABLES</strong>:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>MCQRANDOMSEED [alternative random seed]
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>MCQRANDOMSEED [alternative random seed]
 OMARSERVICE   [alternative Optical Mark Recognition remote service URL]
 ANSI<span class="nb">_</span>COLORS<span class="nb">_</span>DISABLED [disable ANSI colors in some terminals]
 </pre></div>
@@ -388,7 +380,7 @@ ANSI<span class="nb">_</span>COLORS<span class="nb">_</span>DISABLED [disable AN
 <p>Unless you know what you are doing, you do not need to set them.
 The following copyright notice is written in Italian, since anyhow not
 so many people read them:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>[Quest&#39;opera e&#39; stata rilasciata con licenza Creative Commons Attribuzione
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>[Quest&#39;opera e&#39; stata rilasciata con licenza Creative Commons Attribuzione
 - Non commerciale - Non opere derivate 3.0 Unported. Per leggere una copia
 della licenza visita il sito web
 http://creativecommons.org/licenses/by-nc-nd/3.0/
@@ -408,7 +400,7 @@ San Francisco, California, 94105, USA.]
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">Table Of Contents</a></h3>
+<h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
@@ -430,12 +422,14 @@ San Francisco, California, 94105, USA.]
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -446,7 +440,7 @@ San Francisco, California, 94105, USA.]
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

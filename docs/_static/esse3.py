@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # get data from ~/.esse3rc
@@ -8,13 +8,13 @@ from __future__ import absolute_import
 from __future__ import print_function
 from six.moves import range
 from six.moves import input
-__version__='2020-09-30'
+__version__='2020-10-30'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2020-09-30
+# Version: 2020-10-30
 
 OPTIONS:
 	--help|-h
@@ -122,7 +122,7 @@ def getesse3values():
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQpCiAgZWxzZToKICAgRVMubWFrZXVpZChvcGVuKEJBU0VPVVRQVVQrJy51aWQnLCd3JykpCiAgIHByaW50KCJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iKQogaWYgRE9QREY6CiAgRVMubWFrZXBkZihCQVNFT1VUUFVUKQogIAoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSc2YzQwZGRhNjllNTQzNmJiMjQ3N2ZiOTI3OTYxMzc0MGUyOTk3YTViOWI0MWM3MTRjMGNhMTFiMScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQpCiAgZWxzZToKICAgRVMubWFrZXVpZChvcGVuKEJBU0VPVVRQVVQrJy51aWQnLCd3JykpCiAgIHByaW50KCJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iKQogaWYgRE9QREY6CiAgRVMubWFrZXBkZihCQVNFT1VUUFVUKQogIAoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSdlOGY2ZGE2YTU5NzQ5ZGFlYjU5ZDlhNGE2ZWNhODM2MzEwOWQ0NWEwNjNlMzgwNTdiYzBhMWJmZicKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -450,7 +450,7 @@ def ymltocsv(yamlfile,outfile,blankyml=False):
                 other_data += (" - {} *{}\n".format( thisday.day ,GIORNI_NAMES[thisday.weekday()]) )
             if thisday.weekday() == 6:
                 other_data += "\n" 
-        with open(outfile, 'wb') as outf:
+        with open(outfile, 'w') as outf:
             outf.write(yaml_content + other_data )
             outf.close()        
             sys.stderr.write("""File {} created\n""".format(outf.name))
@@ -458,7 +458,7 @@ def ymltocsv(yamlfile,outfile,blankyml=False):
     body_parts=tokens[1:]
     all_data= parse_body_parts(body_parts,hdb) 
     total_time=0 
-    with open(outfile, 'wb') as outf:
+    with open(outfile, 'w') as outf:
         csvwriter = csv.writer(outf, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
         for row in all_data:
             total_time += numero_ore(row[1],row[2])

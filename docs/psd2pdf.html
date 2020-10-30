@@ -4,25 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>psd2pdf: drawing and presentation &#8212; var  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -33,8 +26,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -52,7 +44,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-text"><div class="highlight"><pre><span></span>usage: psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
 
 psd2pdf.py: A tool for converting PSD graphics files
 
@@ -81,14 +73,14 @@ optional arguments:
 </div>
 <div class="section" id="make-a-presentation-latex-beamer-and-pdf">
 <h2>Make a presentation (latex beamer and PDF)<a class="headerlink" href="#make-a-presentation-latex-beamer-and-pdf" title="Permalink to this headline">¶</a></h2>
-<p>Assume <code class="docutils literal"><span class="pre">image.psd</span></code> is a multi-layer image (made with photoshop or sketchbook or whatever).</p>
+<p>Assume <code class="docutils literal notranslate"><span class="pre">image.psd</span></code> is a multi-layer image (made with photoshop or sketchbook or whatever).</p>
 <p>Then:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ psd2pdf.py image.psd
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psd2pdf.py image.psd
 </pre></div>
 </div>
-<p>will produce <code class="docutils literal"><span class="pre">image.pdf</span></code> which is a multi-page incremental file.</p>
+<p>will produce <code class="docutils literal notranslate"><span class="pre">image.pdf</span></code> which is a multi-page incremental file.</p>
 <p>To use it in a beamer presentation:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="c">% in preamble</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% in preamble</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 
 <span class="c">% in  document</span>
@@ -98,26 +90,26 @@ optional arguments:
 </div>
 <div class="section" id="make-vector-image-to-be-includegraphics-ed-by-latex">
 <h2>Make vector image (to be includegraphics’ed by LaTeX)<a class="headerlink" href="#make-vector-image-to-be-includegraphics-ed-by-latex" title="Permalink to this headline">¶</a></h2>
-<p>Assume <code class="docutils literal"><span class="pre">image.psd</span></code> is a bitmap image (made with photoshop or sketchbook or whatever).</p>
+<p>Assume <code class="docutils literal notranslate"><span class="pre">image.psd</span></code> is a bitmap image (made with photoshop or sketchbook or whatever).</p>
 <p>Then:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ psd2pdf.py -a image.psd
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psd2pdf.py -a image.psd
 $ psd2pdf.py --autotrace image.psd
 </pre></div>
 </div>
 <p>will make a vector graphics version (PDF) with autotrace.</p>
 <p>Otherwise:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ psd2pdf.py -p image.psd
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psd2pdf.py -p image.psd
 $ psd2pdf.py --potrace image.psd
 </pre></div>
 </div>
 <p>will make a vector graphics versione (PDF) with potrace.</p>
-<p>For both cases, adding the option <code class="docutils literal"><span class="pre">--crop</span></code> or <code class="docutils literal"><span class="pre">-c</span></code> will crop the final image.</p>
+<p>For both cases, adding the option <code class="docutils literal notranslate"><span class="pre">--crop</span></code> or <code class="docutils literal notranslate"><span class="pre">-c</span></code> will crop the final image.</p>
 <p>If, instead of PDF, one wants a PNG image, then:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ psd2pdf.py --png image.psd
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psd2pdf.py --png image.psd
 </pre></div>
 </div>
 <p>If, instead of a PSD file, one has a PNG (or JPEG, or whatever) file, just do it like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ psd2pdf.py -a image.png
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psd2pdf.py -a image.png
 $ psd2pdf.py -p image.png
 </pre></div>
 </div>
@@ -130,22 +122,22 @@ To install it, just download and copy it somewhere in your path.</p>
 <p><strong>Requirements</strong>: first install the following things</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">mkbitmap</span></code> and <code class="docutils literal"><span class="pre">potrace</span></code> from <a class="reference external" href="http://potrace.sourceforge.net/">http://potrace.sourceforge.net/</a></li>
-<li><code class="docutils literal"><span class="pre">autotrace</span></code> from <a class="reference external" href="http://autotrace.sourceforge.net/">http://autotrace.sourceforge.net/</a></li>
-<li><code class="docutils literal"><span class="pre">convert</span></code> and <code class="docutils literal"><span class="pre">identify</span></code> from <a class="reference external" href="https://imagemagick.org/index.php">ImageMagick</a></li>
-<li><code class="docutils literal"><span class="pre">pngtopnm</span></code> from <a class="reference external" href="http://netpbm.sourceforge.net/">netpbm</a></li>
-<li><code class="docutils literal"><span class="pre">pdfcrop</span></code> from <a class="reference external" href="https://ctan.org/pkg/pdfcrop?lang=en">CTAN page</a></li>
-<li><code class="docutils literal"><span class="pre">qpdf</span></code> from <a class="reference external" href="http://qpdf.sourceforge.net/">http://qpdf.sourceforge.net/</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">mkbitmap</span></code> and <code class="docutils literal notranslate"><span class="pre">potrace</span></code> from <a class="reference external" href="http://potrace.sourceforge.net/">http://potrace.sourceforge.net/</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">autotrace</span></code> from <a class="reference external" href="http://autotrace.sourceforge.net/">http://autotrace.sourceforge.net/</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">convert</span></code> and <code class="docutils literal notranslate"><span class="pre">identify</span></code> from <a class="reference external" href="https://imagemagick.org/index.php">ImageMagick</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">pngtopnm</span></code> from <a class="reference external" href="http://netpbm.sourceforge.net/">netpbm</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">pdfcrop</span></code> from <a class="reference external" href="https://ctan.org/pkg/pdfcrop?lang=en">CTAN page</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">qpdf</span></code> from <a class="reference external" href="http://qpdf.sourceforge.net/">http://qpdf.sourceforge.net/</a></li>
 </ul>
 </div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>In imagemagick policy.xml, found maybe in:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ImageMagick</span><span class="o">-</span><span class="mi">6</span><span class="o">/</span><span class="n">policy</span><span class="o">.</span><span class="n">xml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ImageMagick</span><span class="o">-</span><span class="mi">6</span><span class="o">/</span><span class="n">policy</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
 </div>
 <p>comment out the line:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;!-- &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt; --&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt; --&gt;
 </pre></div>
 </div>
 <p class="last">otherwise it will not work.</p>
@@ -155,7 +147,7 @@ To install it, just download and copy it somewhere in your path.</p>
 <h2>DOWNLOAD<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference download internal" href="_downloads/psd2pdf.py" download=""><code class="xref download docutils literal"><span class="pre">psd2pdf.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/39fb2197ef5c21c8202a1652b5c35d15/psd2pdf.py"><code class="xref download docutils literal notranslate"><span class="pre">psd2pdf.py</span></code></a></li>
 </ul>
 </div></blockquote>
 </div>
@@ -167,15 +159,16 @@ To install it, just download and copy it somewhere in your path.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">Table Of Contents</a></h3>
+<h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcq-full.html">MCQ-XeLaTeX Full Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcq-moodle.html">MCQ-XeLaTeX: How to use it with Moodle and for online exams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="esse3.html">ESSE3: nei meandri della burocrazia</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">psd2pdf: drawing and presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casengine.html">CASengine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes and topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplicial.html">simplicial: simplicial complexes, homology, topology and persistent homology</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
@@ -188,12 +181,14 @@ To install it, just download and copy it somewhere in your path.</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -204,7 +199,7 @@ To install it, just download and copy it somewhere in your path.</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
