@@ -2,7 +2,7 @@
 simplicial: simplicial complexes, homology, topology and persistent homology
 ============================================================================
 
-:Date:   2020-01-22
+:Date:   2021-01-13
 
 
 
@@ -22,7 +22,7 @@ INSTALL:
 --------
 
 
-First install (download, or exec 
+First install (download, or exec)
 
 .. code-block:: guess
 
@@ -46,6 +46,7 @@ CONTENT:
 .. autoclass:: simplicial.SimplicialMap
    :members: 
 
+
 .. autofunction:: simplicial.simplicial_sphere
 
 .. autofunction:: simplicial.join_of_complexes
@@ -55,6 +56,12 @@ CONTENT:
 .. autofunction:: simplicial.connected_sum
 
 .. autofunction:: simplicial.disjoint_union   
+
+.. autofunction:: simplicial.display_2d
+
+.. autofunction:: simplicial.display_3d
+
+.. autofunction:: simplicial.view
 
 .. autofunction:: simplicial.boundary_operators   
 
@@ -68,6 +75,12 @@ CONTENT:
 .. autofunction:: simplicial.homology_of_map
 
 .. autofunction:: simplicial.persistent_homology
+
+.. autoclass:: Point
+   :members:   
+
+.. autoclass:: Embed
+   :members:
 
 
 OTHER:

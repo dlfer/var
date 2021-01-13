@@ -39,7 +39,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2020-01-22</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2021-01-13</td>
 </tr>
 </tbody>
 </table>
@@ -54,7 +54,7 @@ complexes and alike.</p>
 </div>
 <div class="section" id="install">
 <h3>INSTALL:<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
-<p>First install (download, or exec</p>
+<p>First install (download, or exec)</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$ wget https://www.dlfer.xyz/var/_downloads/simplicial.py
 </pre></div>
 </div>
@@ -250,7 +250,7 @@ complexes and alike.</p>
 <h2>CONTENT:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="simplicial.SimplicialComplex">
-<em class="property">class </em><code class="descclassname">simplicial.</code><code class="descname">SimplicialComplex</code><span class="sig-paren">(</span><em>vertices</em>, <em>simplices=None</em>, <em>maximal_simplices=None</em>, <em>must_reindex=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialComplex" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">simplicial.</code><code class="descname">SimplicialComplex</code><span class="sig-paren">(</span><em>vertices</em>, <em>simplices=None</em>, <em>maximal_simplices=None</em>, <em>must_reindex=False</em>, <em>must_sort=True</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.SimplicialComplex" title="Permalink to this definition">¶</a></dt>
 <dd><p>If just the set of verties: 0-dim simplicial complex.
 Otherwise, simplices, which is a dictionary of integer indices i.e. simplices.
 Otherwise, just maximal_simplices, and simplices are populated.
@@ -360,6 +360,29 @@ to simplices in terms of integer indices</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="simplicial.display_2d">
+<code class="descclassname">simplicial.</code><code class="descname">display_2d</code><span class="sig-paren">(</span><em>K</em>, <em>show_labels=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.display_2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>display_2d a 1-dimensional simplicial complex (in the plane).
+if vertices are points. Better in jupyter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.display_3d">
+<code class="descclassname">simplicial.</code><code class="descname">display_3d</code><span class="sig-paren">(</span><em>K</em>, <em>show_labels=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.display_3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>display a 3d simplicial complex using k3d, in jupyter</p>
+<p>to install it:
+sudo pip install k3d
+sudo jupyter nbextension install –py k3d
+sudo jupyter nbextension enable –py k3d</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplicial.view">
+<code class="descclassname">simplicial.</code><code class="descname">view</code><span class="sig-paren">(</span><em>K</em>, <em>show_labels=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display a euclidean simplicial complex</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="simplicial.boundary_operators">
 <code class="descclassname">simplicial.</code><code class="descname">boundary_operators</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.boundary_operators" title="Permalink to this definition">¶</a></dt>
 <dd><p>gives the list list of boundary operators partial_k</p>
@@ -381,7 +404,7 @@ to simplices in terms of integer indices</p>
 <dt id="simplicial.homology">
 <code class="descclassname">simplicial.</code><code class="descname">homology</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.homology" title="Permalink to this definition">¶</a></dt>
 <dd><p>generators and projectors of each homology group
-it returns the 5-tuple L,D,R,r,H  where</p>
+it returns the 5-tuple L,shifted(D),R,r,H  where</p>
 <p>L,D,R are sequences of matrices, for k=0 .. dim(K),
 such that such that for each k the matrix D[k] is diagonal and</p>
 <blockquote>
@@ -460,6 +483,57 @@ one dies soon, the other after two steps.
 In degree 1, there is just one generator, born at k=3 and dead in k=4.</p>
 </dd></dl>
 
+<dl class="class">
+<dt id="simplicial.Point">
+<em class="property">class </em><code class="descclassname">simplicial.</code><code class="descname">Point</code><span class="sig-paren">(</span><em>coords</em>, <em>label=None</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.Point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Just a point of a euclidean space of dimension 2 or 3 or more.</dt>
+<dd>It may have a label.</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="o">=</span><span class="n">Point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="go">A=(1, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span><span class="o">=</span><span class="n">Point</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="go">Q=(2, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span><span class="o">=</span><span class="n">Point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="go">(1, 13, 3)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="simplicial.Embed">
+<em class="property">class </em><code class="descclassname">simplicial.</code><code class="descname">Embed</code><span class="sig-paren">(</span><em>elastic_constant=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.Embed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for finding a suitable euclidean embedding of simplicial complexes</p>
+<dl class="method">
+<dt id="simplicial.Embed.Uij">
+<code class="descname">Uij</code><span class="sig-paren">(</span><em>P</em>, <em>Q</em>, <em>are_endpoints=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.Embed.Uij" title="Permalink to this definition">¶</a></dt>
+<dd><p>interaction of P and Q: edges elastic attract, all repulsive</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplicial.Embed.grad_Uij">
+<code class="descname">grad_Uij</code><span class="sig-paren">(</span><em>P</em>, <em>Q</em>, <em>are_endpoints=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.Embed.grad_Uij" title="Permalink to this definition">¶</a></dt>
+<dd><p>grad of interaction of P and Q, wrt P</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simplicial.Embed.optimize">
+<code class="descname">optimize</code><em class="property"> = &lt;module 'scipy.optimize' from '/usr/lib/python3/dist-packages/scipy/optimize/__init__.py'&gt;</em><a class="headerlink" href="#simplicial.Embed.optimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="simplicial.Embed.euclidean_embedding">
+<code class="descname">euclidean_embedding</code><span class="sig-paren">(</span><em>K</em>, <em>dim=2</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.Embed.euclidean_embedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the Euclidean Embedding of the abstract complex K,
+using suitable interaction potentials (vertices and edges).
+it needs to import scipy.optimize.</p>
+</dd></dl>
+
+</dd></dl>
+
 <div class="section" id="other">
 <h3>OTHER:<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -500,7 +574,24 @@ In degree 1, there is just one generator, born at k=3 and dead in k=4.</p>
 <dl class="function">
 <dt id="simplicial.row_echelon_form">
 <code class="descclassname">simplicial.</code><code class="descname">row_echelon_form</code><span class="sig-paren">(</span><em>M</em>, <em>get_pivots=False</em><span class="sig-paren">)</span><a class="headerlink" href="#simplicial.row_echelon_form" title="Permalink to this definition">¶</a></dt>
-<dd><p>Row echelon form of matrix M, with or without pivot list</p>
+<dd><dl class="docutils">
+<dt>return the row echelon form E (almost reduced) of matrix A, together</dt>
+<dd>with an invertible matrix L such that LM=E; if get_spivots is True,
+output the list of pivots as well.</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">simplicial_sphere</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">row_echelon_form</span><span class="p">(</span><span class="n">boundary_operators</span><span class="p">(</span><span class="n">K</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="p">))</span>
+<span class="go">(Matrix([</span>
+<span class="go">[1, 1, 1, 0, 0, 0],</span>
+<span class="go">[0, 1, 1, 1, 1, 0],</span>
+<span class="go">[0, 0, 1, 0, 1, 1],</span>
+<span class="go">[0, 0, 0, 0, 0, 0]]), Matrix([</span>
+<span class="go">[-1,  0,  0, 0],</span>
+<span class="go">[-1, -1,  0, 0],</span>
+<span class="go">[-1, -1, -1, 0],</span>
+<span class="go">[ 1,  1,  1, 1]]))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">

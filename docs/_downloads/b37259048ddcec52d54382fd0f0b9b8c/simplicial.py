@@ -238,6 +238,132 @@ def _populate_the_simplices(maximal_simplices):
     return result 
 
 #------------------------------------------------------------
+class Point:
+    """Just a point of a euclidean space of dimension 2 or 3 or more. 
+    It may have a label.
+
+EXAMPLES:
+---------
+
+>>> P=Point((1,0),label="A")
+>>> print(P)
+A=(1, 0)
+>>> Q=Point((2,3),label="Q")
+>>> print(Q)
+Q=(2, 3)
+>>> Z=Point((1,13,3))
+>>> print(Z)
+(1, 13, 3)
+"""
+    def __init__(self,coords, label=None):
+        self.label=label
+        self.coords=coords
+        self.dim=len(coords)
+        if not isinstance (coords,tuple):
+            raise Exception("Missing coordinates tuple!")
+        return
+    def __str__(self):
+        if self.label:
+            return "%s=%s" % (self.label,self.coords)
+        else:
+            return "%s" % (self.coords,)
+    def __repr__(self):
+        if self.label:
+            return self.label
+        else:
+            return "%s" % (self.coords,)
+
+
+#------------------------------------------------------------
+
+def display_2d(K,show_labels=False):
+  """
+  display_2d a 1-dimensional simplicial complex (in the plane). 
+  if vertices are points. Better in jupyter. 
+  """
+  import matplotlib.pyplot as plt
+  from matplotlib.collections import LineCollection
+  if not isinstance(K.vertices[0] ,Point):
+    raise Exception("Can display only Point-class vertices of dim 2!!!")
+  dim=K.vertices[0].dim
+  if dim != 2:
+    sys.stderr.write("Not yet implemented display in dim = %s\n" % dim ) 
+    return None
+  vertices =  K.vertices
+  if 1 in K.simplices:
+      edges = [ [vertices[i].coords,vertices[j].coords] for (i,j) in K.simplices[1] ]
+  else:
+      edges = []
+
+  fig = plt.figure(figsize=(10.0,10.0))
+  ax = fig.gca()
+  ax.set_aspect('equal', adjustable='datalim')
+  ax.set_axis_off()
+  fig.set_facecolor('white')
+
+  lc = LineCollection(edges, color="black", lw=2)
+  ax.add_collection(lc)
+
+  for P in vertices:
+      ax.add_patch(plt.Circle(P.coords, 0.005, edgecolor='black',
+                        linewidth=2, rasterized=False, antialiased=True,facecolor='w',
+                        zorder=1000) )
+      if show_labels and P.label is not None:
+          Px,Py = P.coords
+          ax.annotate("$%s$" % repr(P), P.coords , (Px+0.03,Py+0.01),fontsize=24, color='blue')
+
+  ax.plot()   #autoscale update.
+  plt.show()
+
+#------------------------------------------------------------
+
+def display_3d(K,show_labels=False):
+    """display a 3d simplicial complex using k3d, in jupyter
+
+    to install it: 
+    sudo pip install k3d
+    sudo jupyter nbextension install --py k3d
+    sudo jupyter nbextension enable --py k3d
+    """
+    import k3d
+    if not isinstance(K.vertices[0] ,Point):
+        raise Exception("Can display only Point-class vertices of dim 3!!!")
+    dim=K.vertices[0].dim
+    if dim != 3:
+        sys.stderr.write("Not yet implemented display in dim = %s\n" % dim ) 
+        return None
+    vertices =  [v.coords for v in K.vertices] 
+    edges = [ s for s in K.simplices[1] ]
+    faces = []
+    if 2 in K.simplices:
+        faces = [ s for s in K.simplices[2] ]
+    plt=k3d.plot(name='points')
+    plt_points = k3d.points( positions=vertices , point_size=0.05)
+    plt_points.shader ='3dSpecular'
+    plt_points.color = 14
+    plt += plt_points
+
+    # now lines:
+    for s in edges:
+        plt_line = k3d.line([vertices[s[0]],vertices[s[1]] ],shader='mesh', width=0.01, 
+                            color=0xff0000)
+        plt += plt_line 
+
+    # now convert all faces to a mesh
+    plt_mesh = k3d.mesh(vertices,faces,color=0xff, wireframe=False, opacity=0.7, name="Simplicial Complex")
+    plt += plt_mesh
+
+    # now add the text
+    for P in K.vertices:
+        if show_labels and P.label is not None:
+            plt_text = k3d.text("%s" % repr(P), position = P.coords, color=0x7700,size=1)
+            plt += plt_text 
+      
+    #finally display
+    plt.display()
+   
+
+#------------------------------------------------------------
 class SimplicialComplex:
     """If just the set of verties: 0-dim simplicial complex. 
 Otherwise, simplices, which is a dictionary of integer indices i.e. simplices.
@@ -264,14 +390,20 @@ Simplicial Complex of dim 1:
   0: [[0], [1], [2], [3], [4], [5], [6]]
   1: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [0, 6]]
 """
-    def __init__(self,vertices,simplices=None,maximal_simplices=None,must_reindex=False):
+    def __init__(self,vertices,simplices=None,maximal_simplices=None,must_reindex=False,must_sort=True):
         """Class init arguments: 
 >>> K=SimplicialComplex([0,1,2],must_reindex=True,maximal_simplices={2: [[0,1,2]] })
 """
-        #first a little bit of input checking  
-        self.is_euclidean=False #__TODO__  
         if not isinstance(vertices,list) or len(vertices)==0:
             raise Exception("vertices should be a non-empty list!")
+        #first a little bit of input checking 
+        if isinstance(vertices[0],Point):
+            self.is_euclidean=True
+            self.euclidean_dim=vertices[0].dim
+            self.str_is_euclidean="%s-Euclidean " % self.euclidean_dim
+        else:
+            self.is_euclidean=False 
+            self.str_is_euclidean=""
         self.vertices=vertices
         self.number_of_vertices=len(vertices)
         if simplices is not None and not isinstance(simplices,dict):
@@ -287,7 +419,7 @@ Simplicial Complex of dim 1:
         if simplices is not None and must_reindex:
             new_simplessi={}
             for k in range(self.dimension+1):
-                new_simplessi[k]=[ [vertices.index(x) for x in s]  for s in simplices[k] ]
+                new_simplessi[k]=[ sorted( [vertices.index(x) for x in s] )  for s in simplices[k] ]
             self.simplices=new_simplessi
         elif simplices is not None:
             self.simplices=simplices
@@ -296,7 +428,7 @@ Simplicial Complex of dim 1:
                 new_simplessi={}
                 for k in maximal_simplices.keys():
                     # print("k=",k,"maximal_simplices[k]=",maximal_simplices[k])
-                    new_simplessi[k]=[ [vertices.index(x) for x in s]  for s in maximal_simplices[k] ]
+                    new_simplessi[k]=[ sorted( [vertices.index(x) for x in s]  ) for s in maximal_simplices[k] ]
             else:
                 new_simplessi=maximal_simplices
             self.simplices=_populate_the_simplices(new_simplessi)
@@ -313,18 +445,14 @@ Simplicial Complex of dim 1:
         str_list=[]
         for k in self.simplices.keys():
             tmpstr=("{}: {}".format(k, [ 
-            [ self.vertices[j] for j in ind_simplex ] 
+            [ (self.vertices[j]) for j in ind_simplex ] 
             for  ind_simplex in self.simplices[k] ])) 
             if len(tmpstr)>MAX_OUTPUT_LENGTH:
                 tmpstr="{}: {} simplices".format(k,len(self.simplices[k]))
             str_list += [tmpstr]
         str_simplices="\n  ".join(str_list)
-        str_simplices_old=("\n  ".join( [("{}: {}".format(k, [ 
-            [ self.vertices[j] for j in ind_simplex ] 
-            for  ind_simplex in self.simplices[k] 
-                                              ]  )   ) for k in self.simplices ] ))
-        return "Simplicial Complex of dim {}:\n vertices: {}\n simplices:\n  {}".format(\
-                self.dimension,self.vertices,str_simplices)
+        return "{}Simplicial Complex of dim {}:\n vertices: {}\n simplices:\n  {}".format(\
+                self.str_is_euclidean, self.dimension, self.vertices,str_simplices)
     def simplex_vertices(self,ind_simplex):
         """return the list of vertices of a index_simplex (i.e. a list of indices of vertices)"""
         return [self.vertices[j] for j in ind_simplex]
@@ -468,7 +596,10 @@ def simplicial_sphere(vertici):
 #------------------------------------------------------------
 def join_of_complexes(K,L,change_vertices=False):
     """make sure they do not have overlapping names..."""
-    if change_vertices:
+    if K.is_euclidean and L.is_euclidean:
+        vertici= [ Point( v.coords + ((0,)*L.euclidean_dim), label=v.label ) for v in K.vertices ] + \
+                 [ Point( ( (0,) * K.euclidean_dim )  + w.coords, label=w.label)   for w in L.vertices ] 
+    elif change_vertices:
         vertici=list(range(len(K.vertices) + len(L.vertices)))
     else:    
         vertici=K.vertices + L.vertices
@@ -539,13 +670,22 @@ def connected_sum(K,L):
 
 # --------------------------------------------------------------------------------
 
-def _cartesian_product(lsts):
+def _cartesian_product(lsts,both_euclidean=False):
+    if len(lsts)==2 and both_euclidean:
+        vertici= [ Point( (v.coords + w.coords ), label="(%s,%s)" % (v.label,w.label) )
+                for v,w in itertools.product(*lsts) ]
+        return vertici
     return list(itertools.product(*lsts))
 
 # @timeit
 def cartesian_product(K,L):
     """Cartesian product of two Simplicial Complexes"""
-    vertici=_cartesian_product([K.vertices , L.vertices ] )
+    if K.is_euclidean and L.is_euclidean:
+        both_euclidean=True
+    else:
+        both_euclidean=False
+    eucl_vertici=_cartesian_product([K.vertices , L.vertices ] ,both_euclidean=both_euclidean)
+    vertici=_cartesian_product([K.vertices , L.vertices ] ,both_euclidean=False)
     dim_K=K.dimension
     dim_L=L.dimension
     simplices={}
@@ -567,7 +707,8 @@ def cartesian_product(K,L):
     new_simplices={}
     for k in range(dim_K+dim_L+1):
         new_simplices[k]=[[ (K.vertices[x],L.vertices[y]) for x,y in simpl ] for simpl in simplices[k] ] 
-    return SimplicialComplex(vertici, simplices=new_simplices , must_reindex=True )
+    tmp_result =  SimplicialComplex(vertici, simplices=new_simplices , must_reindex=True)
+    return SimplicialComplex(eucl_vertici,simplices=tmp_result.simplices, must_reindex=False)
 
 
 # --------------------------------------------------------------------------------
@@ -618,20 +759,9 @@ def betti_numbers(K):
 
 #--------------------------------------------------------------------------------
 def row_echelon_form(M,get_pivots=False):
-    "Row echelon form of matrix M, with or without pivot list"
-    nrows,ncols=M.shape
-    tmpM=Matrix.hstack(M.copy(),eye(nrows))
-    pivots=_row_echelon_form(tmpM)
-    if nrows == 0 or ncols==0:
-        pivots=[] #strange...
-    if get_pivots:
-        return (tmpM[:,:ncols] , tmpM[:,ncols:] ,pivots)
-    else:    
-        return (tmpM[:,:ncols] , tmpM[:,ncols:] )
-
-def _row_echelon_form(A,starting_pivots=[(0,0)],do_nothing=False):
-    """return the row echelon form E (almost reduced) of matrix A, together with an invertible
-matrix L such that LM=E
+    """return the row echelon form E (almost reduced) of matrix A, together
+    with an invertible matrix L such that LM=E; if get_spivots is True, 
+    output the list of pivots as well.
 
 >>> K=simplicial_sphere(2)
 >>> print(row_echelon_form(boundary_operators(K)[1] ))
@@ -645,6 +775,20 @@ matrix L such that LM=E
 [-1, -1, -1, 0],
 [ 1,  1,  1, 1]]))
 """
+    nrows,ncols=M.shape
+    tmpM=Matrix.hstack(M.copy(),eye(nrows))
+    pivots=_row_echelon_form(tmpM)
+    if nrows == 0 or ncols==0:
+        pivots=[] #strange...
+    if get_pivots:
+        return (tmpM[:,:ncols] , tmpM[:,ncols:] ,pivots)
+    else:    
+        return (tmpM[:,:ncols] , tmpM[:,ncols:] )
+
+def _row_echelon_form(A,starting_pivots=[(0,0)],do_nothing=False):
+    """In-place Row Echelon Form of matrix M, with the list of pivots. If
+    do_nothing is True (for example, if A is already echelon) it just returns
+    the pivots"""
     spx,spy=starting_pivots[-1]
     nrows,ncols=A.shape
     if spx >= nrows or spy >= ncols:
@@ -666,10 +810,10 @@ matrix L such that LM=E
     x=found_x
     y=found_y
     # exchange rows
-    if do_nothing:
+    if do_nothing: #it means that A is already in row echelon form
         return _row_echelon_form(A,starting_pivots=starting_pivots + [(spx+1, y+1)], do_nothing=True )
-    if spx != x:
-        A[spx,y:],A[x,y:] = A[x,y:],A[spx,y:]
+    if spx != x: 
+        A[spx,y:],A[x,y:] = A[x,y:],A[spx,y:] # swap the rows
     # normalize 
     A[spx,y:] = A[spx,y:] / A[spx,y] 
     # nullify the elements below (spx,spy)
@@ -723,7 +867,7 @@ def all_pivots(mat):
 #--------------------------------------------------------------------------------
 def homology(K):
     r"""generators and projectors of each homology group
-it returns the 5-tuple L,D,R,r,H  where
+it returns the 5-tuple L,shifted(D),R,r,H  where
 
 L,D,R are sequences of matrices, for k=0 .. dim(K),
 such that such that for each k the matrix D[k] is diagonal and
@@ -918,6 +1062,129 @@ In degree 1, there is just one generator, born at k=3 and dead in k=4.
 
 #--------------------------------------------------------------------------------
 
+def sq_euc_norm(P):
+    result=0.0
+    for j in range(len(P)):
+        result += P[j] * P[j]
+    return result
+
+def euc_norm(P):
+    sq_result = sq_euc_norm(P)
+    return sq_result ** (0.5)
+
+def distance(P, Q):
+    result = euc_norm(P-Q)
+    return result
+
+def vector_product(P,Q):
+    vector_product=np.zeros(3)
+    vector_product[0] = P[1] * Q[2] - Q[1] * P[2]
+    vector_product[1] = Q[0] * P[2] - P[0] * Q[2]
+    vector_product[2] = P[0] * Q[1] - Q[0] * P[1]
+    return vector_product
+
+def dot_product(P,Q):
+    return np.dot(P,Q)
+
+# Try to embed a simplicial complex... 
+class Embed:
+    """ Class for finding a suitable euclidean embedding of simplicial complexes"""
+    import scipy.optimize as optimize
+    def __init__(self,elastic_constant=1.0):
+        self.elastic_constant=elastic_constant
+        return
+
+    def Uij(self,P,Q,are_endpoints=False):
+        """interaction of P and Q: edges elastic attract, all repulsive"""
+        if are_endpoints:
+            return self.elastic_constant * sq_euc_norm(P-Q) + 1. / euc_norm(P-Q)
+        else:
+            return 1. / euc_norm(P-Q)
+
+    def grad_Uij(self,P,Q,are_endpoints=False):
+        """grad of interaction of P and Q, wrt P"""
+        if are_endpoints:
+            return 2.0 * self.elastic_constant * (P-Q) - (P-Q) * euc_norm(P-Q)**(-3.)
+        else:
+            return - (P-Q) * euc_norm(P-Q)**(-3.)
+
+    def potential(self,conf,is_edge):
+        energy = 0.0
+        number_of_vertices,eucl_dim=conf.shape
+        for i in range(number_of_vertices-1):
+            for j in range(i + 1, number_of_vertices ):
+                if is_edge[i,j]:
+                    energy += self.Uij( conf[i,:],conf[j,:], are_endpoints=True )
+                else:
+                    energy += self.Uij( conf[i,:],conf[j,:], are_endpoints=False)
+        return energy
+
+    def grad_potential(self,conf,is_edge):
+        number_of_vertices,eucl_dim=conf.shape
+        grad = np.zeros((number_of_vertices,eucl_dim))
+        for i in range(number_of_vertices-1):
+            for j in range(i + 1, number_of_vertices ):
+                if is_edge[i,j]:
+                    grad[i,:] += self.grad_Uij( conf[i,:],conf[j,:], are_endpoints=True )
+                    grad[j,:] += self.grad_Uij( conf[j,:],conf[i,:], are_endpoints=True )
+                else:
+                    grad[i,:] += self.grad_Uij( conf[i,:],conf[j,:], are_endpoints=False )
+                    grad[j,:] += self.grad_Uij( conf[j,:],conf[i,:], are_endpoints=False )
+        return grad
+
+    def euclidean_embedding(self,K, dim=2):
+        """return the Euclidean Embedding of the abstract complex K, 
+        using suitable interaction potentials (vertices and edges).
+        it needs to import scipy.optimize. 
+        """
+        vertices = K.vertices
+        edges = []
+        if 1 in K.simplices:
+            edges = K.simplices[1]
+        number_of_vertices=len(vertices)
+        eucl_dim=dim
+
+        is_edge=np.zeros( (number_of_vertices,)*2 , dtype=bool)
+        for (i,j) in edges:
+            is_edge[i,j]=True
+
+        def opt_fun(x):
+            conf=x.reshape(number_of_vertices,eucl_dim)
+            result = self.potential(conf,is_edge)
+            return result
+        
+        def opt_jac(x):
+            conf=x.reshape(number_of_vertices,eucl_dim)
+            result = self.grad_potential(conf,is_edge)
+            return result.reshape(number_of_vertices*eucl_dim)
+
+        X0=np.random.rand( number_of_vertices,eucl_dim )
+        result = self.optimize.minimize(opt_fun,X0,method='CG',jac=opt_jac)
+        
+        outconf=result.x.reshape(number_of_vertices,eucl_dim)
+        howsol=euc_norm(result.jac)
+        print("howsol: {}".format(howsol))
+        eucl_vertices= [ Point( tuple( outconf[i,:] ), label=str(i) )  
+                for i in range(number_of_vertices) ]
+        return SimplicialComplex(eucl_vertices,simplices=K.simplices)
+
+#--------------------------------------------------------------------------------
+
+def view(K,show_labels=False):
+    """Display a euclidean simplicial complex"""
+    if not K.is_euclidean:
+        print("Sorry: cannot view a non-euclidean complex:\n {}".format(str(K)))
+        return 
+    if K.euclidean_dim==2:
+        display_2d(K,show_labels=show_labels)
+    elif K.euclidean_dim==3:
+        display_3d(K,show_labels=show_labels)
+    else:
+        print("Sorry: cannot view a euclidean complex of dim {}".format(K.euclidean.dim) )
+    return     
+
+#--------------------------------------------------------------------------------
+
 def main():
     pass
 
@@ -1064,6 +1331,12 @@ def test():
     L=S1
     f=SimplicialMap({0:0,1:1,2:2}, K, L)
     print( f * f )
+    S=simplicial_sphere(1)
+    print(S)
+    Emb=Embed()
+    ES=Emb.euclidean_embedding(S,dim=3)
+    print(ES)
+    view(ES,show_labels=True)
 
 # --------------------------------------------------------------------------------
 
