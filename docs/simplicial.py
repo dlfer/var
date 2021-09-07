@@ -1180,7 +1180,7 @@ def view(K,show_labels=False):
     elif K.euclidean_dim==3:
         display_3d(K,show_labels=show_labels)
     else:
-        print("Sorry: cannot view a euclidean complex of dim {}".format(K.euclidean.dim) )
+        print("Sorry: cannot view a euclidean complex of dim {}".format(K.euclidean_dim) )
     return     
 
 #--------------------------------------------------------------------------------

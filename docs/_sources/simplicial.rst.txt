@@ -26,11 +26,11 @@ First install (download, or exec)
 
 .. code-block:: guess
 
-  $ wget https://www.dlfer.xyz/var/_downloads/simplicial.py
+  $ wget https://www.dlfer.xyz/var/simplicial.py
 
 from a shell, or
 
-  >>> !wget https://www.dlfer.xyz/var/_downloads/simplicial.py
+  >>> !wget https://www.dlfer.xyz/var/simplicial.py
 
 from a jupyter notebook cell). Check it first if it is safe. 
 
