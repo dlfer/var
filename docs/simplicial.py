@@ -1164,7 +1164,12 @@ class Embed:
         outconf=result.x.reshape(number_of_vertices,eucl_dim)
         howsol=euc_norm(result.jac)
         print("howsol: {}".format(howsol))
-        eucl_vertices= [ Point( tuple( outconf[i,:] ), label=str(i) )  
+        def label_string(i):
+            if isinstance( vertices[i], str ):
+                return vertices[i]
+            else:
+                return str(i)
+        eucl_vertices= [ Point( tuple( outconf[i,:] ), label=label_string(i) )  
                 for i in range(number_of_vertices) ]
         return SimplicialComplex(eucl_vertices,simplices=K.simplices)
 
