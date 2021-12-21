@@ -8,13 +8,13 @@ from __future__ import absolute_import
 from __future__ import print_function
 from six.moves import range
 from six.moves import input
-__version__='2021-11-15'
+__version__='2021-12-21'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2021-11-15
+# Version: 2021-12-21
 
 OPTIONS:
 	--help|-h
@@ -122,7 +122,7 @@ def getesse3values():
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQuYnVmZmVyKQogIGVsc2U6CiAgIEVTLm1ha2V1aWQob3BlbihCQVNFT1VUUFVUKycudWlkJywnd2InKSkKICAgcHJpbnQoIlxuID09PiBmaWxlICIsIEJBU0VPVVRQVVQrJy51aWQnLCAiIGdlbmVyYXRvLiIpCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9JzE2NTY3ZDk3Y2UyMzFkMzU2ZGQwMDc4MjYzZjc3NGJkNDAzZTJmZGNhMWJiZDRmNThlZmVjMTkzJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQuYnVmZmVyKQogIGVsc2U6CiAgIEVTLm1ha2V1aWQob3BlbihCQVNFT1VUUFVUKycudWlkJywnd2InKSkKICAgcHJpbnQoIlxuID09PiBmaWxlICIsIEJBU0VPVVRQVVQrJy51aWQnLCAiIGdlbmVyYXRvLiIpCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9J2I3YWExZGM3MDljODkzMDE5Zjk1NjY4ZDhkMGUwNzk2Zjg4MGIyNzU5Yjc3NThjZmQzMDg3Zjg2JwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -395,7 +395,8 @@ def parse_body(body_db,header_db,year_offset=0):
                 continue
             desc=dirty_trick(desc,back=True)
             sys.stderr.write("  -> ore= {}\n".format(numero_ore(orario[0],orario[1])))
-            result += [(day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , "{}".format(act_type).encode('utf-8'), "", desc.encode('utf-8'),desc.encode('utf-8')  ) ]
+            ## result += [(day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , "{}".format(act_type).encode('utf-8'), "", desc.encode('utf-8'),desc  ) ]
+            result += [[day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , act_type, "", desc,desc ] ]
     return result
 
 def dirty_trick(s, back=False):
@@ -476,11 +477,16 @@ def ymltocsv(yamlfile,outfile,blankyml=False):
     body_parts=tokens[1:]
     all_data= parse_body_parts(body_parts,hdb) 
     total_time=0 
-    with open(outfile, 'w') as outf:
+    with open(outfile, 'w' ) as outf:
         csvwriter = csv.writer(outf, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
         for row in all_data:
-            total_time += numero_ore(row[1],row[2])
-            csvwriter.writerow(row)
+            ore_da_aggiungere=numero_ore(row[1],row[2])
+            lecture_numbers=[str( int( total_time ) + 1 + x ) for x in range(int(ore_da_aggiungere)) ]
+            lecture_title="Lez. N° " + (", ".join(lecture_numbers) )
+            row[6] = lecture_title
+            total_time += ore_da_aggiungere
+            # replace column 
+            csvwriter.writerow( row )
     outf.close()        
     sys.stderr.write(
 """
