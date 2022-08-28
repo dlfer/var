@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{1.03}
+\def\fileversion{1.04}
 \def\filedate{%
-2020-04-21
+2022-08-28
 }
 \def\Copyright{****************************************************************
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
@@ -979,6 +979,10 @@ Use usepackage{mcq} instead.
 }
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\InputIfFileExists{mcq_commands.tex}%
+{\typeout{COMMANDS mcq_commands.tex found!}}%
+{\typeout{COMMANDS mcq_commands.tex NOT found! IGNORING...}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

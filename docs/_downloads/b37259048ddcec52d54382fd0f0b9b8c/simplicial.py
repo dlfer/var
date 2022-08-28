@@ -1164,7 +1164,12 @@ class Embed:
         outconf=result.x.reshape(number_of_vertices,eucl_dim)
         howsol=euc_norm(result.jac)
         print("howsol: {}".format(howsol))
-        eucl_vertices= [ Point( tuple( outconf[i,:] ), label=str(i) )  
+        def label_string(i):
+            if isinstance( vertices[i], str ):
+                return vertices[i]
+            else:
+                return str(i)
+        eucl_vertices= [ Point( tuple( outconf[i,:] ), label=label_string(i) )  
                 for i in range(number_of_vertices) ]
         return SimplicialComplex(eucl_vertices,simplices=K.simplices)
 
@@ -1180,7 +1185,7 @@ def view(K,show_labels=False):
     elif K.euclidean_dim==3:
         display_3d(K,show_labels=show_labels)
     else:
-        print("Sorry: cannot view a euclidean complex of dim {}".format(K.euclidean.dim) )
+        print("Sorry: cannot view a euclidean complex of dim {}".format(K.euclidean_dim) )
     return     
 
 #--------------------------------------------------------------------------------

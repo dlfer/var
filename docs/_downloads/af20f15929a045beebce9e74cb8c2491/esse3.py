@@ -8,13 +8,13 @@ from __future__ import absolute_import
 from __future__ import print_function
 from six.moves import range
 from six.moves import input
-__version__='2020-11-03'
+__version__='2022-02-24'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2020-11-03
+# Version: 2022-02-24
 
 OPTIONS:
 	--help|-h
@@ -122,7 +122,7 @@ def getesse3values():
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQuYnVmZmVyKQogIGVsc2U6CiAgIEVTLm1ha2V1aWQob3BlbihCQVNFT1VUUFVUKycudWlkJywnd2InKSkKICAgcHJpbnQoIlxuID09PiBmaWxlICIsIEJBU0VPVVRQVVQrJy51aWQnLCAiIGdlbmVyYXRvLiIpCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9J2I5MWQyMDY4NmM0OTE4OTA2NmRkYmI3ZDdhMGJjZmJkZDhlMGNlYjI4ZjdjNWUzNmI0YmQ2ZGQ3JwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJ5bWwiLCJibGFua3ltbCJdKQogZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciBhcyBlcnI6CiAgc3lzLnN0ZGVyci53cml0ZSgiJXNcbiIgJSBzdHIoZXJyKSApCiAgc3lzLnN0ZGVyci53cml0ZSgiW29wdGlvbiAtLWhlbHAgZm9yIGhlbHBdXG4iKQogIHN5cy5leGl0KDEpCiBmb3IgbyxhIGluIG9wdHM6CiAgaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICBwcmludChfX2RvY19fKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLWIiLCAiLS1iYXNlb3V0cHV0Iik6CiAgIEJBU0VPVVRQVVQgPSBhCiAgIFVTRVNURE9VVD1GYWxzZQogIGVsaWYgbyBpbiAoIi0tY2FsbCIsKToKICAgcHJpbnQoIlByb3ZpYW1vIGlsIGdzbS4uLiIpCiAgIFNFUklBTF9QT1JULFRFTEVOVU1CRVIsUElOPWdldGVzc2UzdmFsdWVzKCkKICAgY2FsbGdzbShTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTikKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi0tdWlkIiwpOgogICBET1VJRD1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0tcGRmIiwpOgogICBET1BERj1UcnVlCiAgIERPTk9USElORz1GYWxzZQogIGVsaWYgbyBpbiAoIi0teW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2NzdihhcmdzWzBdLGIgKyAiLmNzdiIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWJsYW5reW1sIiwpOgogICB0b2RvZmlsZT1hcmdzWzBdCiAgIGIsXz1vcy5wYXRoLnNwbGl0ZXh0KHRvZG9maWxlKQogICB5bWx0b2JsYW5reW1sKGFyZ3NbMF0sYiArICJfYmxhbmsueW1sIikKICAgcmV0dXJuIAoKIGlmIGxlbihhcmdzKT09MCBvciBET05PVEhJTkc6CiAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICBzeXMuZXhpdCgxKQogeGxzZmlsZT1hcmdzWzBdCiBFUz1Fc3NlMyh4bHNmaWxlKQogaWYgRE9VSUQ6CiAgaWYgVVNFU1RET1VUOgogICBFUy5tYWtldWlkKHN5cy5zdGRvdXQuYnVmZmVyKQogIGVsc2U6CiAgIEVTLm1ha2V1aWQob3BlbihCQVNFT1VUUFVUKycudWlkJywnd2InKSkKICAgcHJpbnQoIlxuID09PiBmaWxlICIsIEJBU0VPVVRQVVQrJy51aWQnLCAiIGdlbmVyYXRvLiIpCiBpZiBET1BERjoKICBFUy5tYWtlcGRmKEJBU0VPVVRQVVQpCiAgCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9JzJhNmZiZDg2M2NlMmM2NzNjYzYzOTJkNzliZDdlODFlMjBmZjA0YzgwZDk0ZDE3NTA5MWFhMGY1JwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -141,8 +141,13 @@ class Esse3:
   if self.sheet.row_values(4)[1]=='FIRST_DYN_COL':
       sys.stderr.write("WTF! It's 2019 and Wrong Format Again...\n")
       self.FIRST_ROW=self.sheet.col_values(0).index('#')+1
-  else:    
-      self.FIRST_ROW=int(self.sheet.row_values(4)[1])
+  else:
+      DECLARED_FIRST_ROW=int(self.sheet.row_values(4)[1])
+      COMPUTED_FIRST_ROW=self.sheet.col_values(0).index('#')+1
+      if COMPUTED_FIRST_ROW != DECLARED_FIRST_ROW:
+          sys.stderr.write("WTF! Its 2021 and Wrong Format Again...\nPlease check....\n")
+      # TMP_CONTENT=int( self.sheet.row_values(DECLARED_FIRST_ROW-1)[0] ) #contenuto della prima cella della DECLARED_FIRST_ROW 
+      self.FIRST_ROW=COMPUTED_FIRST_ROW
   ## self.FIRST_DYN_COL=int(self.sheet.row_values(4)[3]) # NEVER USED ANYWAY...
   cellcontent=self.sheet.row_values(self.FIRST_ROW-1)[0]
   if cellcontent != '#':
@@ -250,22 +255,22 @@ def getgsm(serial_port):
 )
  if not ser.isOpen() :
   raise Exception("Serial Line Down")
- ser.write('ATI\r\n')
+ ser.write(b'ATI\r\n')
  sys.stdout.write(expectprompt(ser))
- ser.write('ATM2\r\n')
+ ser.write(b'ATM2\r\n')
  sys.stdout.write(expectprompt(ser))
- ser.write('ATL3\r\n')
+ ser.write(b'ATL3\r\n')
  sys.stdout.write(expectprompt(ser))
  return ser
 
 
 def expectprompt(ser):
  time.sleep(1)
- out=''
+ out=b''
  while ser.inWaiting() > 0:
   buf=ser.read(1)
   out += buf
- return out
+ return out.decode('ascii')
  
 ALLOWEDCHARS='0123456789'
 
@@ -275,7 +280,7 @@ def partial_string(i,n):
 def callgsm(serial_port,telenumber,pin):
  ser = getgsm(serial_port)
  print('Calling...')
- ser.write('ATD ' + telenumber + ';' + '\r\n')
+ ser.write( ('ATD ' + telenumber + ';' + '\r\n').encode() )
  exp=expectprompt(ser)
  if VERBOSE: 
   sys.stderr.write(exp)
@@ -291,7 +296,7 @@ def callgsm(serial_port,telenumber,pin):
    print("Cifre Sbagliate: ", x, " not in ", ALLOWEDCHARS)
   else:
    tmpii += 1
-   ser.write('AT+VTS=' + x + '\r\n')
+   ser.write(( 'AT+VTS=' + x + '\r\n').encode() )
    exp=expectprompt(ser)
    if VERBOSE: 
     sys.stderr.write(exp)
@@ -303,7 +308,7 @@ def callgsm(serial_port,telenumber,pin):
  tmpii=0
  for x in pin:
   tmpii += 1
-  ser.write('AT+VTS=' + x + '\r\n')
+  ser.write(( 'AT+VTS=' + x + '\r\n').encode() )
   exp=expectprompt(ser)
   if VERBOSE: 
    sys.stderr.write(exp)
@@ -311,7 +316,7 @@ def callgsm(serial_port,telenumber,pin):
    sys.stderr.write(partial_string(tmpii,lenpin))
  sys.stdout.write("\nPress <Return> per riagganciare..." )
  ret=input(">> ")
- ser.write('AT+CHUP\r\n')
+ ser.write(b'AT+CHUP\r\n')
  sys.stderr.write(expectprompt(ser))
  print("\n...closing....")
  ser.close()
@@ -349,7 +354,7 @@ def parse_header(db):
                 orario[giorno]=(db[x][giorno]).split('-')
             result['orario']=orario
             break
-    for tok in ['sem-start','sem-end']:
+    for tok in ['sem-start','sem-end','vac']:
         if tok in db:
             result[tok]=db[tok]
     return result
@@ -358,6 +363,7 @@ def parse_body_parts(body_parts,header_db):
     j=0
     result=[]
     for body_db in body_parts:
+        sys.stderr.write("PARSING body part #{}\n".format(j+1) )
         result += parse_body(body_db,header_db,year_offset=j)
         j += 1
     return result     
@@ -379,7 +385,7 @@ def parse_body(body_db,header_db,year_offset=0):
             day_date=datetime.date(header_db['anno']+year_offset,month_number,int(day_tokens[0]))
             week_day=GIORNI_NAMES[day_date.weekday()]
             if not week_day in header_db['orario']:
-                raise Exception("Problem: week_day '{}' not in orario!".format(week_day))
+                raise Exception("Problem: week_day '{} {}' not in orario!".format(week_day,day_date))
             orario=header_db['orario'][week_day]
             act_type=header_db['type']
             if day_tokens[1][0]=='*':
@@ -390,7 +396,8 @@ def parse_body(body_db,header_db,year_offset=0):
                 continue
             desc=dirty_trick(desc,back=True)
             sys.stderr.write("  -> ore= {}\n".format(numero_ore(orario[0],orario[1])))
-            result += [(day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , "{}".format(act_type).encode('utf-8'), "", desc.encode('utf-8'),desc.encode('utf-8')  ) ]
+            ## result += [(day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , "{}".format(act_type).encode('utf-8'), "", desc.encode('utf-8'),desc  ) ]
+            result += [[day_date.strftime("%d/%m/%Y"), orario[0],orario[1], "" , act_type, "", desc,desc ] ]
     return result
 
 def dirty_trick(s, back=False):
@@ -431,11 +438,16 @@ def ymltocsv(yamlfile,outfile,blankyml=False):
     hdb=parse_header(header)
     if blankyml: 
         # generate the blank
-        if not 'sem-start' in hdb and 'sem-end' in hdb:
+        if not ( 'sem-start' in hdb and 'sem-end' in hdb ):
             raise Exception("sem-start and sem-end missing!")
         other_data=''
+        tot_ore = 0
         thismonth=hdb['sem-start'].month
         thisyear=hdb['sem-start'].year
+        if 'vac' in hdb:
+            vac=hdb['vac'] 
+        else:
+            vac=[]
         other_data += ("\n{}:\n\n".format( MESE_NAMES[thismonth-1]) ) 
         for x in range( (hdb['sem-end'] - hdb['sem-start']).days +1 ):
             thisday= hdb['sem-start'] + datetime.timedelta(x) 
@@ -447,7 +459,15 @@ def ymltocsv(yamlfile,outfile,blankyml=False):
                 thismonth=thisday.month
                 other_data += ("\n{}:\n\n".format( MESE_NAMES[thismonth-1]) ) 
             if GIORNI_NAMES[thisday.weekday()] in hdb['orario']:
-                other_data += (" - {} *{}\n".format( thisday.day ,GIORNI_NAMES[thisday.weekday()]) )
+                # how many hours? 
+                if thisday in vac:
+                    sys.stderr.write("GROOVY: VACATION DAY {}\n".format(thisday,) )
+                    continue
+                orario=hdb['orario'][GIORNI_NAMES[thisday.weekday()]]
+                n_ore=numero_ore(*orario)  
+                tot_ore += n_ore
+                other_data += (" - {} *{} {}/{}\n".format( thisday.day ,GIORNI_NAMES[thisday.weekday()],
+                    n_ore, tot_ore) )
             if thisday.weekday() == 6:
                 other_data += "\n" 
         with open(outfile, 'w') as outf:
@@ -458,11 +478,16 @@ def ymltocsv(yamlfile,outfile,blankyml=False):
     body_parts=tokens[1:]
     all_data= parse_body_parts(body_parts,hdb) 
     total_time=0 
-    with open(outfile, 'w') as outf:
+    with open(outfile, 'w' ) as outf:
         csvwriter = csv.writer(outf, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
         for row in all_data:
-            total_time += numero_ore(row[1],row[2])
-            csvwriter.writerow(row)
+            ore_da_aggiungere=numero_ore(row[1],row[2])
+            lecture_numbers=[str( int( total_time ) + 1 + x ) for x in range(int(ore_da_aggiungere)) ]
+            lecture_title="Lez. N° " + (", ".join(lecture_numbers) )
+            row[6] = lecture_title
+            total_time += ore_da_aggiungere
+            # replace column 
+            csvwriter.writerow( row )
     outf.close()        
     sys.stderr.write(
 """

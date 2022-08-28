@@ -337,6 +337,12 @@ can be redefined with ``\renewcommand``, and are meant for internal use):
   A label (possibly empty) to prepend to each permutation code. 
 
 
+Further commands:
+~~~~~~~~~~~~~~~~~
+
+Other commands can be included in the [optional] file `mcq_commands.tex`. If it
+exists, it is included and processed automatically. If it does not exists,
+nothing is done (read the logs to see what happended). 
 
 
 MCQ w/Bubblesheet example:

@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2020-10-06
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2021-09-17
 
 USAGE:
 ------
@@ -363,6 +363,7 @@ import random
 import pickle
 import math
 import csv
+import functools
 # ----------------------------------------------------------------------
 import subprocess
 import glob
@@ -579,7 +580,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHF1ZXN0aW9udGV4dF9maWxlPWEpCiAgICAgICAgICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAic3BsaXRfZm9yX21vb2RsZSBuZWVkcyBhbmQgYXJndW1lbnQiCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMob3BlbihhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IG9wZW4oYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9JzJlMjIyNjdlZGRkMWU3YTBjZWYwZjlmZTdmNTY5YWVmMGMzOWFjMzFiOWY2NjcyZDkzZTAyMjI4JwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHF1ZXN0aW9udGV4dF9maWxlPWEpCiAgICAgICAgICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAic3BsaXRfZm9yX21vb2RsZSBuZWVkcyBhbmQgYXJndW1lbnQiCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMob3BlbihhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IG9wZW4oYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9JzEzYTc1ZTExYjdlMGJjM2ZhMTIzMWI2MmIzNGI4OTk5NDFiMjI3NWQyMThhMWJlODFkN2ZhMGMzJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -731,7 +732,7 @@ def merge_files(s, uidfile):
         raise Exception("Bad UID filename %s!\n" % uidfile)
     sys.stderr.write("Reading UID data from file %s with columns %s %s, delimiter=%s\n" %
                      (uidfile_name, name_pos, matr_pos, csv_sep))
-    csvReader = csv.reader(open(uidfile_name, 'rb'), delimiter=csv_sep)
+    csvReader = csv.reader(open(uidfile_name, 'r'), delimiter=csv_sep)
     for x in csvReader:
         try:
             name = x[name_pos]
@@ -1699,12 +1700,15 @@ def make_combina_voti(s):
     if not s:
         return default_combina_voti
     else:
-        ss = """def ff(x,y):
+        g=dict(); l=dict()
+        ss = """global ff;
+def ff(x,y):
   x=float(x)
   y=float(y)
   return """ + s
-        exec(ss)
-        return ff
+        exec(ss,g,l)
+        return g['ff']
+
 # ----------------------------------------------------------------------
 
 
@@ -1959,7 +1963,7 @@ def riarrangia(li, target):
         r[-1] = ((a * r[-1] + b))
         nli.append(tuple(r))
         sys.stderr.write("%s: \t%s => %s\n" % (r[1], origr[-1], r[-1]))
-    nli.sort(compare_matr)
+    nli.sort( key=functools.cmp_to_key(compare_matr))
     if target:
         comment += ("-" * 60) + "\noriginal: \n"
         comment += "ins, medi, bene= %02.1f%%\t%02.1f%%\t%02.1f%%\n" % percent(
@@ -2093,7 +2097,7 @@ def riordina_cmp(x, y):
 
 
 def riordina(li):
-    li.sort(riordina_cmp)
+    li.sort(key=functools.cmp_to_key(riordina_cmp))
 # ----------------------------------------------------------------------
 
 
@@ -2108,9 +2112,9 @@ def riordina_somme_cmp(x, y):
         return 0
 # ----------------------------------------------------------------------
 
-
+# __HERE__ TO CHECK sort
 def riordina_somme(li):
-    li.sort(riordina_somme_cmp)
+    li.sort(key=functools.cmp_to_key(riordina_somme_cmp))
 # ----------------------------------------------------------------------
 
 
@@ -2150,11 +2154,11 @@ def median(data_list):
     n = len(data_list)
     # Test whether the n is odd
     if n & 1:
-        index = n / 2
+        index = n // 2
         return data_list[index]
     else:
-        low_index = n / 2 - 1
-        high_index = n / 2
+        low_index = n // 2 - 1
+        high_index = n // 2
         average = (data_list[low_index] + data_list[high_index]) / 2.0
         return average
 
@@ -2189,7 +2193,7 @@ def generate_stats_summary(db):
         dbt['MeanScoreSuff'] = sum(
             lista_voti_suff) * 1.0 / len(lista_voti_suff)
     else:
-        dbt['MeanScoreSuff'] = 'None'
+        dbt['MeanScoreSuff'] = None
     dbt['PercOfSuff'] = len([x for x in lista_voti if x >= dbt['SuffScore']]) / float(
         dbt['NumberOfStudents']) * 100.0
     dbt['PercOfHalf'] = len([x for x in lista_voti if x >= dbt['HalfScore']]) / float(
@@ -2199,6 +2203,8 @@ def generate_stats_summary(db):
     dbt['ReliabilityKR21'] = 0
     dbt['hist_bins'] = (dbt['Maximum'] - dbt['Minimum']) // 2
     dbt['hist_data'] = r"\\".join([str(x) for x in lista_voti])
+    if VERBOSE:
+        sys.stderr.write("Stats data: {}\n".format(dbt) )
     result = r"""
 \renewcommand{\bubblesheet}[3][1]{}
 \begin{center}
@@ -2226,9 +2232,9 @@ def generate_stats_summary(db):
 \begin{verbatim}
 Number of Questions: %(NumberOfQuestions)s
 Number of Students: %(NumberOfStudents)s
-Mean Score: %(MeanScore)s
-Median Score: %(MedianScore)s
-Standard Deviation: %(StandardDeviation)s
+Mean Score: %(MeanScore).2f
+Median Score: %(MedianScore).2f
+Standard Deviation: %(StandardDeviation).2f
 Obtained Maximum: %(Maximum)s; Possible Maximum: %(PossibleMaximum)s
 Obtained Minumum: %(Minimum)s; Possible Minimum: %(PossibleMinimum)s
 Percentage with >= %(SuffScore)s:  %(PercOfSuff)5.2f%%
@@ -3712,6 +3718,9 @@ xelatex_template = r"""%%=======================================================
 \newcommand{\from}{\colon}
 \newcommand{\vv}{\boldsymbol{v}}
 \newcommand{\vw}{\boldsymbol{w}}
+\newcommand{\vx}{\boldsymbol{x}}
+\newcommand{\vy}{\boldsymbol{y}}
+\newcommand{\vz}{\boldsymbol{z}}
 
 
 %%===================================================================
