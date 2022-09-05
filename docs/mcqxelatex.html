@@ -40,7 +40,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (update 2020-04-08)</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (update 2022-09-05)</td>
 </tr>
 </tbody>
 </table>
@@ -88,12 +88,12 @@ helping to assess problems.</p>
 <a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a> can export
 <a class="reference external" href="http://docs.moodle.org/24/en/GIFT_format">GIFT files</a> (to be imported on a
 <a class="reference external" href="http://www.moodle.org">MOODLE</a> course) or dynamical HTML files (such
-as <a class="reference external" href="http://www.matapp.unimib.it/~ferrario/qb/">these examples</a>). In
+as <a class="reference external" href="http://staff.matapp.unimib.it/~ferrario/qb/">these examples</a>). In
 the latter case, the resulting HTML files will be self-contained, will
 display mathematical symbols with <a class="reference external" href="http://www.mathjax.org">MathJax</a>
 and will be dynamical (showing proper feedback to readers) with
 CSS+Javascript (see these
-<a class="reference external" href="http://www.matapp.unimib.it/~ferrario/qb/">examples</a>).</p>
+<a class="reference external" href="http://staff.matapp.unimib.it/~ferrario/qb/">examples</a>).</p>
 </div>
 <div class="section" id="how">
 <h2>How<a class="headerlink" href="#how" title="Permalink to this headline">¶</a></h2>
@@ -206,7 +206,7 @@ the local TeX installation. So, run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kpsewhich</span> <span class="o">-</span><span class="n">var</span><span class="o">-</span><span class="n">value</span> <span class="n">TEXMFHOME</span>
 </pre></div>
 </div>
-<p>and check the output (see how to have <a class="reference external" href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst">private installations of
+<p>and check the output (see how to have <a class="reference external" href="https://texfaq.org/FAQ-privinst">private installations of
 files</a>).
 Then, add <code class="docutils literal notranslate"><span class="pre">mcq.sty</span></code> to <code class="docutils literal notranslate"><span class="pre">${TEXMFHOME}/tex/latex/</span></code>, or to a
 subdirectory in it, and run <code class="docutils literal notranslate"><span class="pre">texhash</span></code>. Or, simply put
@@ -259,12 +259,12 @@ bubblesheets.</li>
 electronic exams (also know as CBA - Computer-Based Assessment, CBT -
 Computer-Based Testing or e-exam), with OMR functionality. It is not
 something an individual would install and use, and as an individual I did not.</li>
-<li><a class="reference external" href="http://www.formreturn.com/">FormReturn</a>: a commercial (an
+<li>FormReturn : it was a commercial (an
 academic site license costs 3495$) package. Costly, and their
 definition of <em>Integrated, Easy Setup &amp; Easy To Use</em> differed from
 mine. I could reproduce most of its functionality in <a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a>,
-adding LaTeX authoring and a more paranoid control model.</li>
-<li><a class="reference external" href="http://www.gravic.com/remark/officeomr/">Remark Office OMR</a>: another
+adding LaTeX authoring and a more paranoid control model. Now: <cite>GitHub Page &lt;https://github.com/rquast/formreturn/&gt;</cite></li>
+<li><a class="reference external" href="https://remarksoftware.com/products/office-omr/">Remark Office OMR</a>: another
 commercial package (a site license costs in the range of thousands of $).</li>
 <li>On the <a class="reference external" href="http://en.wikipedia.org/wiki/Optical_mark_recognition#OMR_software">Wikipedia
 page</a>

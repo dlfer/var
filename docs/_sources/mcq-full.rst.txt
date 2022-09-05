@@ -2,8 +2,10 @@
 MCQ-XeLaTeX Full Documentation
 ==============================
 
-.. highlight:: latex
+:Date:   2019-02-07 (updated 2022-08-28)
 
+
+.. highlight:: latex
 
 
 .. _MCQ-Latex:

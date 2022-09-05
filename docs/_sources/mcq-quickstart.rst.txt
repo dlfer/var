@@ -4,7 +4,7 @@
 MCQ-XeLaTeX: Quickstart
 ================================================================
 
-:Date:   2019-02-07 (updated 2020-03-27)
+:Date:   2019-02-07 (updated 2022-09-05)
 
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
@@ -16,8 +16,8 @@ script :download:`mcq.py <soft/mcq.py>` and the syle file
 :download:`mcq.sty <soft/mcq.sty>` (e.g. in linux)::
 
         $ sudo apt-get install fonts-linuxlibertine
-        $ wget https://www.dlfer.xyz/var/_downloads/mcq.py
-        $ wget https://www.dlfer.xyz/var/_downloads/mcq.sty
+        $ wget https://www.dlfer.xyz/var/mcq.py
+        $ wget https://www.dlfer.xyz/var/mcq.sty
         $ chmod +x mcq.py
 
 Of course you can move both files in more appropriate places (``/usr/loca/bin/mcq.py``, 

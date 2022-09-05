@@ -2,7 +2,7 @@
 MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
 ==================================================================
 
-:Date:   2019-02-07 (update 2020-04-08)
+:Date:   2019-02-07 (update 2022-09-05)
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
 ========================================================================
@@ -57,12 +57,12 @@ helping to assess problems.
 :download:`mcq.py <soft/mcq.py>` can export 
 `GIFT files <http://docs.moodle.org/24/en/GIFT_format>`__ (to be imported on a
 `MOODLE <http://www.moodle.org>`__ course) or dynamical HTML files (such
-as `these examples <http://www.matapp.unimib.it/~ferrario/qb/>`__). In
+as `these examples <http://staff.matapp.unimib.it/~ferrario/qb/>`__). In
 the latter case, the resulting HTML files will be self-contained, will
 display mathematical symbols with `MathJax <http://www.mathjax.org>`__
 and will be dynamical (showing proper feedback to readers) with
 CSS+Javascript (see these
-`examples <http://www.matapp.unimib.it/~ferrario/qb/>`__).
+`examples <http://staff.matapp.unimib.it/~ferrario/qb/>`__).
 
 How
 ===
@@ -189,7 +189,7 @@ the local TeX installation. So, run
     kpsewhich -var-value TEXMFHOME
 
 and check the output (see how to have `private installations of
-files <http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst>`__).
+files <https://texfaq.org/FAQ-privinst>`__).
 Then, add ``mcq.sty`` to ``${TEXMFHOME}/tex/latex/``, or to a
 subdirectory in it, and run ``texhash``. Or, simply put
 :download:`mcq.sty <soft/mcq.sty>` in the directory where you plan to work.
@@ -250,13 +250,13 @@ Similar programs
    Computer-Based Testing or e-exam), with OMR functionality. It is not
    something an individual would install and use, and as an individual I did not.
 
--  `FormReturn <http://www.formreturn.com/>`__: a commercial (an
+-  FormReturn : it was a commercial (an
    academic site license costs 3495$) package. Costly, and their
    definition of *Integrated, Easy Setup & Easy To Use* differed from
    mine. I could reproduce most of its functionality in :download:`mcq.py <soft/mcq.py>`, 
-   adding LaTeX authoring and a more paranoid control model.
+   adding LaTeX authoring and a more paranoid control model. Now: `GitHub Page <https://github.com/rquast/formreturn/>`
 
--  `Remark Office OMR <http://www.gravic.com/remark/officeomr/>`__: another
+-  `Remark Office OMR <https://remarksoftware.com/products/office-omr/>`__: another
    commercial package (a site license costs in the range of thousands of $).
 
 -  On the `Wikipedia
