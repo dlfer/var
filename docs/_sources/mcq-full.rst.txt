@@ -25,7 +25,7 @@ somewhere. For example, in `ubuntu <https://help.ubuntu.com/community/LaTeX>`__:
 
   $ mkdir -p ~/texmf/tex/latex/mcq
   $ cd ~/texmf/tex/latex/mcq
-  $ wget https://www.dlfer.xyz/var/_downloads/mcq.sty
+  $ wget https://www.dlfer.xyz/var/mcq.sty
   $ texhash 
 
 
