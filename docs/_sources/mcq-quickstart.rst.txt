@@ -20,7 +20,7 @@ script :download:`mcq.py <soft/mcq.py>` and the syle file
         $ wget https://www.dlfer.xyz/var/mcq.sty
         $ chmod +x mcq.py
 
-Of course you can move both files in more appropriate places (``/usr/loca/bin/mcq.py``, 
+Of course you can move both files in more appropriate places (``/usr/local/bin/mcq.py``, 
 and ``mcq.sty`` somewhere in  ``$TEXINPUTS``).
 
 .. highlight:: latex
