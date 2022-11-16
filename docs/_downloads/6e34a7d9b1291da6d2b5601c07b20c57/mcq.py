@@ -11,7 +11,7 @@
 # (C) DLFerrario https://www.dlfer.xyz/var/mcqxelatex.html
 
 r"""
-MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2021-09-17
+MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2022-11-16
 
 USAGE:
 ------
@@ -483,6 +483,7 @@ ZIPPASSWORD = b'SECRET'
 OMARSERVICE = 'https://peano.matapp.unimib.it/omar/cgi-bin/omrgw.cgi'
 # OMARSERVICE='https://failsafe.matapp.unimib.it/cgi-bin/omrgw.cgi'
 ISUI = False
+SAFE_DVIPDFMX=False
 MAX_HISTORY_LENGTH = 1024  # number of terms in the history of readline
 MCQXELATEXURL = 'https://www.dlfer.xyz/var/mcqxelatex.html'
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
@@ -580,7 +581,7 @@ def ssclient(basetexfile, scanfiles, outputtype=None, outputfile='omr-output.pdf
 
 # ----------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSQogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHF1ZXN0aW9udGV4dF9maWxlPWEpCiAgICAgICAgICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAic3BsaXRfZm9yX21vb2RsZSBuZWVkcyBhbmQgYXJndW1lbnQiCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMob3BlbihhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IG9wZW4oYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9JzEzYTc1ZTExYjdlMGJjM2ZhMTIzMWI2MmIzNGI4OTk5NDFiMjI3NWQyMThhMWJlODFkN2ZhMGMzJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKCmRlZiBnZXRfb3B0KCk6CiAgICBnbG9iYWwgVkVSQk9TRSwgb3V0cHV0LCBleHBsaWNpdF9vdXRwdXQsIE5VTUJFUl9PRl9DT1BJRVMsIFNPTFVUSU9OU19GSUxFLCBEQl9GSUxFLCBFVkFMVUFURSwgR0lGVCwgWEhUTUwsIFZBTEZJTEUsIE1BS0VfU1RBVFMsIERCX1NUQVRTX0ZJTEUsIEJBU0VOQU1FRklMRSwgTUVSR0VGSUxFUywgSVNVSSwgU0FGRV9EVklQREZNWAogICAgaWYgbm90IGNoZWNrX3NlbGYoKToKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKAogICAgICAgICAgICAiU2VsZi1pbnRlZ3JpdHkgY2hlY2tzdW0gZmFpbGVkISBBYm9ydGluZy4uLlxuSW5zdGFsbCBhIG5ldyBjbGVhbiB2ZXJzaW9uIVxuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgaWYgY2hlY2tfc2FmZV9kdmlwZGZteCgpOgogICAgICAgIFNBRkVfRFZJUERGTVg9VHJ1ZQogICAgT01BUlNDQU4gPSBGYWxzZQogICAgQ1NWSk9JTiA9IEZhbHNlCiAgICBSQU5ET01DSE9PU0UgPSBGYWxzZQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhneG46bzp2czoiLCBbCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImhlbHAiLCAib3V0cHV0PSIsICJudW1iZXI9IiwgImRiPSIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnaWZ0IiwgInhodG1sIiwgInN0YXRzPSIsICJ1aWQ9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm9tcj0iLCAiam9pbiIsICJjaG9vc2U9IiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwbGl0LWZvci1tb29kbGU9IiwgInZlcmJvc2UiXSkKICAgIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogICAgICAgIHByaW50KHN0cihlcnIpKQogICAgICAgIHByaW50KCJbb3B0aW9uIC0taGVscCBmb3IgaGVscF0iKQogICAgICAgIHN5cy5leGl0KDIpCiAgICBpZiBsZW4oYXJncykgPT0gMDoKICAgICAgICBJU1VJID0gVHJ1ZQogICAgZm9yIG8sIGEgaW4gb3B0czoKICAgICAgICBpZiBvIGluICgiLXYiLCAiLS12ZXJib3NlIik6CiAgICAgICAgICAgIFZFUkJPU0UgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLWgiLCAiLS1oZWxwIik6CiAgICAgICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCItZyIsICItLWdpZnQiKToKICAgICAgICAgICAgR0lGVCA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCIteCIsICItLXhodG1sIik6CiAgICAgICAgICAgIFhIVE1MID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1vIiwgIi0tb3V0cHV0Iik6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYSwgJ3cnKQogICAgICAgICAgICBTT0xVVElPTlNfRklMRSA9IG9wZW4oYiArICJfZXhhbS5zb2xzIiwgJ3cnKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgICAgICAgICAgZXhwbGljaXRfb3V0cHV0ID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tZGIiLCApOgogICAgICAgICAgICBiLCBlID0gb3MucGF0aC5zcGxpdGV4dChhKQogICAgICAgICAgICBEQl9GSUxFID0gb3BlbihhLCAncmInKQogICAgICAgICAgICBEQl9TVEFUU19GSUxFID0gb3BlbihiICsgIl9zdGF0cy5kYiIsICd3YicpCiAgICAgICAgICAgIG91dHB1dCA9IG9wZW4oYiArICIuY3N2IiwgJ3cnKQogICAgICAgICAgICBFVkFMVUFURSA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItLXVpZCIsICk6CiAgICAgICAgICAgIFVJREZJTEUgPSBhCiAgICAgICAgICAgIE1FUkdFRklMRVMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1jaG9vc2UiLCApOgogICAgICAgICAgICBDSE9PU0VOVU1CRVIgPSBpbnQoYSkKICAgICAgICAgICAgUkFORE9NQ0hPT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tb21yIiwgKToKICAgICAgICAgICAgT01BUkJBU0UsIF8gPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIE9NQVJTQ0FOID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi0tam9pbiIsICk6CiAgICAgICAgICAgIENTVkpPSU4gPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLS1zdGF0cyIsICk6CiAgICAgICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGEpCiAgICAgICAgICAgIERCX1NUQVRTX0ZJTEUgPSBvcGVuKGEsICdyYicpCiAgICAgICAgICAgICMgb3V0cHV0ID0gZmlsZShiKyIudGV4IiwndycpCiAgICAgICAgICAgIE1BS0VfU1RBVFMgPSBUcnVlCiAgICAgICAgZWxpZiBvIGluICgiLW4iLCAiLS1udW1iZXIiKToKICAgICAgICAgICAgTlVNQkVSX09GX0NPUElFUyA9IGludChhKQogICAgICAgIGVsaWYgbyBpbiAoIi0tc3BsaXQtZm9yLW1vb2RsZSIsIi1zIik6CiAgICAgICAgICAgIGlmIGxlbihhcmdzKSA9PSAxOgogICAgICAgICAgICAgICAgc3BsaXRfZm9yX21vb2RsZShhcmdzWzBdLHF1ZXN0aW9udGV4dF9maWxlPWEpCiAgICAgICAgICAgICAgICBzeXMuZXhpdCgwKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAic3BsaXRfZm9yX21vb2RsZSBuZWVkcyBhbmQgYXJndW1lbnQiCiAgICAgICAgZWxzZToKICAgICAgICAgICAgYXNzZXJ0IEZhbHNlLCAidW5oYW5kbGVkIG9wdGlvbiIKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHVpbG9vcCgpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgICAgICByZXR1cm4gKHN5cy5zdGRpbi5yZWFkKCksIG91dHB1dCkKICAgIGlmIEVWQUxVQVRFIG9yIEdJRlQgb3IgWEhUTUwgb3IgTUFLRV9TVEFUUzoKICAgICAgICBWQUxGSUxFID0gYXJnc1swXQogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgaWYgTUVSR0VGSUxFUzoKICAgICAgICBvdXRwdXQud3JpdGUobWVyZ2VfZmlsZXMob3BlbihhcmdzWzBdLCAncicpLnJlYWRsaW5lcygpLCBVSURGSUxFKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgT01BUlNDQU46CiAgICAgICAgb3V0cHV0LndyaXRlKHNzY2xpZW50KE9NQVJCQVNFLCBhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgQ1NWSk9JTjoKICAgICAgICBvdXRwdXQud3JpdGUoY3N2am9pbihhcmdzKSkKICAgICAgICBzeXMuZXhpdCgwKQogICAgaWYgUkFORE9NQ0hPT1NFOgogICAgICAgIG91dHB1dC53cml0ZShyYW5kb21fY2hvb3NlKENIT09TRU5VTUJFUiwgYXJncykpCiAgICAgICAgc3lzLmV4aXQoMCkKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pIGFuZCBub3QgZXhwbGljaXRfb3V0cHV0OgogICAgICAgIGIsIGUgPSBvcy5wYXRoLnNwbGl0ZXh0KGFyZ3NbMF0pCiAgICAgICAgQkFTRU5BTUVGSUxFID0gYgogICAgICAgIG91dHB1dCA9IG9wZW4oYiArICJfZXhhbS50ZXgiLCAndycpCiAgICAgICAgU09MVVRJT05TX0ZJTEUgPSBvcGVuKGIgKyAiX2V4YW0uc29scyIsICd3JykKICAgICAgICBEQl9GSUxFID0gb3BlbihiICsgIl9leGFtLmRiIiwgJ3diJykKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFyZ3NbMF0pOgogICAgICAgIHJldHVybiAob3BlbihhcmdzWzBdLCAncicpLnJlYWQoKSwgb3V0cHV0KQogICAgZWxzZToKICAgICAgICByYWlzZSBFeGNlcHRpb24oImZpbGUgJXMgZG9lcyBub3QgZXhpc3QhIiAlIGFyZ3NbMF0pCgpkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLHJlLCBzeXMKIE1FX2Jhc2UsTUVfZXh0PW9zLnBhdGguc3BsaXRleHQob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKIE1FPU1FX2Jhc2UrJy5weScKIGlmIHN5cy52ZXJzaW9uX2luZm9bMF0gPiAyOgogICBhbGw9b3BlbihNRSwncicsZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50LmVuY29kZShlbmNvZGluZz0ndXRmLTgnKSkuaGV4ZGlnZXN0KCkKIGVsc2U6CiAgIGFsbD1vcGVuKE1FLCdyJykucmVhZCgpCiAgIGRlZiBteV9oYXNoKGlucHV0X2NvbnRlbnQpOgogICAgIHJldHVybiBoYXNobGliLnNoYTIyNChpbnB1dF9jb250ZW50KS5oZXhkaWdlc3QoKQogcD1hbGwuaW5kZXgoIlxuIikKIHJlZz1yZS5jb21waWxlKCIjLS1CRUdJTiIrIlNJRy0tfCMtLUVORCIrIlNJRy0tIixyZS5NIGFuZCByZS5ET1RBTEwgKQogYm9keV9maXJzdCxoaWRkZW4sYm9keV9sYXN0PXJlcz1yZWcuc3BsaXQoYWxsW3ArMTpdKQogbD1teV9oYXNoKGJvZHlfZmlyc3Quc3RyaXAoKSArIGJvZHlfbGFzdC5zdHJpcCgpKQogZXhwZWN0X2w9JzFjMWNjZGIzOWJjMTRjZWI5NzcwNWI2NDFhOWE1YTk5ZjcxZTRiNzk3MTFlYmE1MGIzOTk2N2EzJwogaWYgbCAhPSBleHBlY3RfbDoKICByZXR1cm4gRmFsc2UKIGVsc2U6CiAgcmV0dXJuIFRydWUK').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 # ----------------------------------------------------------------------
 
@@ -765,6 +766,89 @@ def merge_files(s, uidfile):
                     "line `%s' skipped.... with error: %s\n" % (x.strip(), v))
             res += x
     return res
+# ----------------------------------------------------------------------
+def check_safe_dvipdfmx():
+    """Check that the dvipdfmx correcly works with pstricks, for the output of 2Dbarcodes"""
+    try:
+        this_dvipdfmx = subprocess.check_output("kpsewhich -progname dvipdfmx --format=othertext dvipdfmx.cfg", shell=True).strip().decode('UTF-8')
+        TEXMFHOME = subprocess.check_output("kpsewhich --var-value TEXMFHOME" , shell=True).strip().decode('UTF-8')
+    except Exception as v:
+        sys.stderr.write("check_safe_dvipdfmx failed with error: {}\nPlease check what is wrong!".format(v) )
+        return
+
+    this_dvipdfmx_fd=open(this_dvipdfmx,'r')
+    this_dvipdfmx_data=this_dvipdfmx_fd.read()
+    this_dvipdfmx_fd.close()
+    line_regex=re.compile("(?P<before>.+?) -dSAFER (?P<after>.+?)$" ) 
+    if re.search("^D (.+) -dSAFER (.+)$",this_dvipdfmx_data, re.MULTILINE):
+        # it should be -dNOSAFER or -dDELAYSAFER
+        # check if dvipdfmx-unsafe.cfg is available
+        try:
+            this_dvipdfmx_unsafe = subprocess.check_output("kpsewhich -progname dvipdfmx --format=othertext dvipdfmx-unsafe.cfg", shell=True).strip().decode('UTF-8')
+        except:
+            this_dvipdfmx_unsafe = False
+        if this_dvipdfmx_unsafe:
+            sys.stderr.write("""
+WARNING: pstricks barcodes w/ xelatex might not work on your system!
+
+   ==> !!!Check the PDF output please!!! <==
+
+Your dvipdfmx.cfg ({}) is too strict to work here. 
+
+But it appears that you have a working dvipdfmx-unsafe.cfg file:
+   {}
+
+Check that it has a rungs with -dNOSAFER setting, otherwise modify it accordingly.
+
+Then you can put it into your $TEXMFHOME/dvipdfmx/ directory -- with the name dvipdfmx.cfg:
+   {}/dvipdfmx/dvipdfmx.cfg
+or, alternatively, put it somewhere else with the name dvipdfmx.cfg and set the 
+environment variable DVIPDFMXINPUTS to point to that directory. 
+
+Or, alternatively, you can set an alias for xelatex (in .bash_aliases or similar):
+
+  alias xelatex="xelatex -output-driver=\"xdvipdfmx -i dvipdfmx-unsafe.cfg -E\""
+
+""".format(this_dvipdfmx,this_dvipdfmx_unsafe,TEXMFHOME) )
+            input("Press <Return> to continue...")
+            return True
+
+        # ok, prep a fixing file
+        other_dvipdfmx_datalines=[]
+        for l in this_dvipdfmx_data.splitlines():
+            if line_regex.match(l):
+                before_string, after_string = line_regex.match(l).groups()
+                other_dvipdfmx_datalines.append( "{} -dNOSAFER {}".format(before_string,after_string) )
+            else:    
+                other_dvipdfmx_datalines.append(l)
+        other_dvipdfmx_data = "\n".join(other_dvipdfmx_datalines)
+
+        import tempfile
+        _, tmpfile = tempfile.mkstemp(prefix="dvipdfmx_", suffix=".cfg",text=True)
+        fd = open(tmpfile, 'w')
+        fd.write(other_dvipdfmx_data)
+        fd.close()
+        sys.stderr.write("""
+WARNING: pstricks barcodes w/ xelatex might not work on your system!
+
+   ==> !!!Check the PDF output please!!! <==
+
+For your convenience, I've created an unsafe config file:
+   {}
+
+You can put it into your $TEXMFHOME/dvipdfmx/ directory -- with the name dvipdfmx.cfg:
+   {}/dvipdfmx/dvipdfmx.cfg
+or, alternatively, put it somewhere else with the name dvipdfmx.cfg and set the 
+environment variable DVIPDFMXINPUTS to point to that directory. 
+
+""".format(tmpfile,TEXMFHOME) )
+        input("Press <Return> to continue...")
+        return True
+    return False
+
+
+# where in th line beginning with "D" the option  -dSAFER is replaced by -dNOSAFER or -dDELAYSAFER
+
 # ----------------------------------------------------------------------
 
 
@@ -2541,6 +2625,7 @@ PLEASE CHECK, and remove the lockfiles ~/.mcq_lock* !!!!!!!!!!!!
         fd.close()
 
     def get_requirements(self):
+        global SAFE_DVIPDFMX
         result = ""
         if self.platform == "win" or sys.version_info < (2, 7):
             return result
@@ -2550,6 +2635,8 @@ PLEASE CHECK, and remove the lockfiles ~/.mcq_lock* !!!!!!!!!!!!
             result += "WARNING: missing `mcq.sty`. Please install it first.\n"
         if not self.req_db.get('has_linuxlibertinettf'):
             result += "WARNING: missing `Linux Libertine` OTF/TTF font. Please install it first.\n"
+        if SAFE_DVIPDFMX:
+            result += "WARNING: pstricks barcodes might fail in PDF output!!!\n"
         return result
 
     def check_requirements(self):
@@ -2560,8 +2647,10 @@ PLEASE CHECK, and remove the lockfiles ~/.mcq_lock* !!!!!!!!!!!!
         check_commands = [['kpsewhich', '--version'], ['xelatex', '--version'], [
             'gs', '--version'], ['fc-list', '--version'], ['pdfimages', '-v'],
             ['qpdf','--version'] ]
-        check_output_list = [['has_mcq', 'kpsewhich', 'mcq.sty'], [
-            'has_linuxlibertinettf', 'fc-list', ":fullname=\"Linux Libertine\""]]
+        check_output_list = [
+                ['has_mcq', 'kpsewhich', 'mcq.sty'], 
+                [ 'has_linuxlibertinettf', 'fc-list', ":fullname=\"Linux Libertine\""]
+                            ]
         for p in check_commands:
             if VERBOSE:
                 self.write(" * %s...   " % p[0])
@@ -2588,8 +2677,8 @@ PLEASE CHECK, and remove the lockfiles ~/.mcq_lock* !!!!!!!!!!!!
                         self.write(
                             self.termcmd("green black") + "[OK]\n" + self.termcmd())
                     if VERBOSE:
-                        self.write("( %s )\n" % o.strip())
-                    self.req_db[p[0]] = True
+                        self.write("( {} )\n".format( o.decode('UTF-8').strip() ))
+                    self.req_db[p[0]] = o # True
                 else:
                     if VERBOSE:
                         self.write(
@@ -2623,8 +2712,10 @@ PLEASE CHECK, and remove the lockfiles ~/.mcq_lock* !!!!!!!!!!!!
                         self.termcmd("red") + "[FAIL]\n" + self.termcmd())
                 if VERBOSE:
                     self.error("ERROR: %s" % v)
+        self.req_db['TEXMFHOME']=None            
         if VERBOSE:
             self.write("DONE!\n\n")
+
 
     def touch_lockfile(self):
         fd = open(self.lockfile, 'w')

@@ -4,25 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>MCQ-XeLaTeX Full Documentation &#8212; var  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -33,8 +26,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -55,15 +47,15 @@
 <div class="section" id="latex-documentation-of-mcq-sty">
 <span id="mcq-latex"></span><h2>LaTeX documentation of mcq.sty<a class="headerlink" href="#latex-documentation-of-mcq-sty" title="Permalink to this headline">¶</a></h2>
 <p>The package can be called with any latex class, but recommended classes
-are <code class="docutils literal"><span class="pre">article</span></code> (for Multiple Choice Questions and Optical Mark Recognition).
-It also support the <code class="docutils literal"><span class="pre">exam</span></code> class(for open questions, see below <a class="reference internal" href="#exam"><span class="std std-ref">An exam class example:</span></a>):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+are <code class="docutils literal notranslate"><span class="pre">article</span></code> (for Multiple Choice Questions and Optical Mark Recognition).
+It also support the <code class="docutils literal notranslate"><span class="pre">exam</span></code> class(for open questions, see below <a class="reference internal" href="#exam"><span class="std std-ref">An exam class example:</span></a>):</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>mcq<span class="nb">}</span>
 </pre></div>
 </div>
-<p>To install, download it: <a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a>. Then, put it
+<p>To install, download it: <a class="reference download internal" download="" href="_downloads/a7a670f40b50b15891accdb8ccfb2d2a/mcq.sty"><code class="xref download docutils literal notranslate"><span class="pre">mcq.sty</span></code></a>. Then, put it
 somewhere. For example, in <a class="reference external" href="https://help.ubuntu.com/community/LaTeX">ubuntu</a>:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mkdir </span><span class="o">-</span><span class="nb">p ~</span><span class="o">/</span><span class="nb">texmf</span><span class="o">/</span><span class="nb">tex</span><span class="o">/</span><span class="nb">latex</span><span class="o">/</span><span class="nb">mcq</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mkdir </span><span class="o">-</span><span class="nb">p ~</span><span class="o">/</span><span class="nb">texmf</span><span class="o">/</span><span class="nb">tex</span><span class="o">/</span><span class="nb">latex</span><span class="o">/</span><span class="nb">mcq</span>
 <span class="s">$</span> cd ~/texmf/tex/latex/mcq
 <span class="s">$</span><span class="nb"> wget https:</span><span class="o">//</span><span class="nb">www.dlfer.xyz</span><span class="o">/</span><span class="nb">var</span><span class="o">/</span><span class="nb">mcq.sty</span>
 <span class="s">$</span> texhash
@@ -72,84 +64,84 @@ somewhere. For example, in <a class="reference external" href="https://help.ubun
 <div class="section" id="package-options">
 <h3>Package options:<a class="headerlink" href="#package-options" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">bubblesheet</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">bubblesheet</span></code></dt>
 <dd>Print a cover sheet with the grid of bubbles (to be filled) for student UID and
 answers.</dd>
-<dt><code class="docutils literal"><span class="pre">dsa</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">dsa</span></code></dt>
 <dd><p class="first">Use <a class="reference external" href="https://www.opendyslexic.org">OpenDyslexic</a> font, a typeface for Dyslexia.
 It has to be installed on the system. On ubuntu linux, for example:</p>
-<div class="last highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> sudo apt install fonts</span><span class="o">-</span><span class="nb">opendyslexic</span>
+<div class="last highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> sudo apt install fonts</span><span class="o">-</span><span class="nb">opendyslexic</span>
 </pre></div>
 </div>
 </dd>
-<dt><code class="docutils literal"><span class="pre">extrasheet</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">extrasheet</span></code></dt>
 <dd>Print a second bubblesheet after the first, just in case, if the students are
 considered not careful enough in filling the bubbles (and therefore a high percentage will
 do a mistake).</dd>
-<dt><code class="docutils literal"><span class="pre">namedheader</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">namedheader</span></code></dt>
 <dd>Print a named header, useful for when a multi-page document has to be returned by students,
 and therefore they need to write their own name on each sheet.</dd>
-<dt><code class="docutils literal"><span class="pre">noblankpage</span></code></dt>
-<dd>Do not print a blank page after the <code class="docutils literal"><span class="pre">bubblesheet</span></code> page. Usefule if one does not print
+<dt><code class="docutils literal notranslate"><span class="pre">noblankpage</span></code></dt>
+<dd>Do not print a blank page after the <code class="docutils literal notranslate"><span class="pre">bubblesheet</span></code> page. Usefule if one does not print
 on duplex printers.</dd>
-<dt><code class="docutils literal"><span class="pre">sol</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">sol</span></code></dt>
 <dd>With this option, an explicit graphic mark will highlight the (correct) answers. Userful for
 proof-reading the exam document, but <strong>absolutely</strong> to remove befor generating
 the real production document.</dd>
-<dt><code class="docutils literal"><span class="pre">ttf</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">ttf</span></code></dt>
 <dd>Use the TTF version of <a class="reference external" href="http://libertine-fonts.org/">Linux Libertine</a> instead of the
 default OTF version.</dd>
-<dt><code class="docutils literal"><span class="pre">doexe</span></code></dt>
-<dd>when generating copies for the individual sheets, include not only <code class="docutils literal"><span class="pre">exerm</span></code> style questions,
-but also open-answer questions <code class="docutils literal"><span class="pre">\begin{exe}...\end{exe}</span></code></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">doexe</span></code></dt>
+<dd>when generating copies for the individual sheets, include not only <code class="docutils literal notranslate"><span class="pre">exerm</span></code> style questions,
+but also open-answer questions <code class="docutils literal notranslate"><span class="pre">\begin{exe}...\end{exe}</span></code></dd>
 </dl>
 </div>
 <div class="section" id="preamble-commands">
 <h3>Preamble commands:<a class="headerlink" href="#preamble-commands" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">\puntigiusta{&lt;number&gt;}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\puntigiusta{&lt;number&gt;}</span></code></dt>
 <dd>Number of points (float or signed integer) assigned to a correct answer. Typical value: <em>n - 1</em>, where
 <em>n</em>  is the  number of answers.
-Dafault value: <code class="docutils literal"><span class="pre">1</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\puntisbagliata{&lt;number&gt;}</span></code></dt>
-<dd>Number of points (float or signed integer) assigned to a wrong answer. Typical value: <em>-1</em>.  Default value: <code class="docutils literal"><span class="pre">0</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\puntiempty{&lt;number&gt;}</span></code></dt>
-<dd>Number of points (float or signed integer) assigned to a ungiven answer. Typical value: <em>0</em>. Default value: <code class="docutils literal"><span class="pre">0</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\formulavoto{&lt;python</span> <span class="pre">expression</span> <span class="pre">in</span> <span class="pre">x</span> <span class="pre">and</span> <span class="pre">y&gt;}</span></code></dt>
+Dafault value: <code class="docutils literal notranslate"><span class="pre">1</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\puntisbagliata{&lt;number&gt;}</span></code></dt>
+<dd>Number of points (float or signed integer) assigned to a wrong answer. Typical value: <em>-1</em>.  Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\puntiempty{&lt;number&gt;}</span></code></dt>
+<dd>Number of points (float or signed integer) assigned to a ungiven answer. Typical value: <em>0</em>. Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\formulavoto{&lt;python</span> <span class="pre">expression</span> <span class="pre">in</span> <span class="pre">x</span> <span class="pre">and</span> <span class="pre">y&gt;}</span></code></dt>
 <dd>Formula to aggregate <em>x</em> = &lt;MCQ_MARK&gt; and <em>y</em> = &lt;OPTIONAL_MARK&gt;.
 The exam might consist of a Multiple-Choice part, followed by some
 open questions or exercises. The mark of the MCQ part will be
 computed automatically, and denoted by &lt;MCQ_MARK&gt;. The mark of the
 open-ended part needs to be given by your grading.
 This formula is simply the way to sum the two parts, in python syntax.</dd>
-<dt><code class="docutils literal"><span class="pre">\UIDdigits{number}</span></code></dt>
-<dd>Number of UID digits. Default value: <code class="docutils literal"><span class="pre">6</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\headline{text}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\UIDdigits{number}</span></code></dt>
+<dd>Number of UID digits. Default value: <code class="docutils literal notranslate"><span class="pre">6</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\headline{text}</span></code></dt>
 <dd>Headline of the page (with info about the exam).</dd>
-<dt><code class="docutils literal"><span class="pre">\englishinfo</span></code></dt>
-<dd>Choose <code class="docutils literal"><span class="pre">English</span></code> language, instead of Italian, for the front sheet info.</dd>
-<dt><code class="docutils literal"><span class="pre">\variantlabel{ABC}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\englishinfo</span></code></dt>
+<dd>Choose <code class="docutils literal notranslate"><span class="pre">English</span></code> language, instead of Italian, for the front sheet info.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\variantlabel{ABC}</span></code></dt>
 <dd>Optional label to prepend to the permutation code of each sheet.</dd>
-<dt><code class="docutils literal"><span class="pre">\moodlecategory{categoryname/subcategory}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\moodlecategory{categoryname/subcategory}</span></code></dt>
 <dd>Optional category name, in case a GIFT export is planned.</dd>
 </dl>
 </div>
 <div class="section" id="environments-and-list-of-questions">
 <h3>Environments and list of questions:<a class="headerlink" href="#environments-and-list-of-questions" title="Permalink to this headline">¶</a></h3>
-<p>Just after the <code class="docutils literal"><span class="pre">\begin{document}</span></code>, one of the two following commands should appear:</p>
+<p>Just after the <code class="docutils literal notranslate"><span class="pre">\begin{document}</span></code>, one of the two following commands should appear:</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">\nomeesame</span></code></dt>
-<dd>Write <code class="docutils literal"><span class="pre">\Cognomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Nomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Firmaname:\dotfill</span></code>,
+<dt><code class="docutils literal notranslate"><span class="pre">\nomeesame</span></code></dt>
+<dd>Write <code class="docutils literal notranslate"><span class="pre">\Cognomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Nomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Firmaname:\dotfill</span></code>,
 or an analogue.</dd>
-<dt><code class="docutils literal"><span class="pre">\bubblesheet[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">columns]{number</span> <span class="pre">of</span> <span class="pre">questions}{number</span> <span class="pre">of</span> <span class="pre">anwsers}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\bubblesheet[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">columns]{number</span> <span class="pre">of</span> <span class="pre">questions}{number</span> <span class="pre">of</span> <span class="pre">anwsers}</span></code></dt>
 <dd>Print a cover page with fillable bubbles, to be fed to a document scanner and OMR.</dd>
 </dl>
 <p>Then, there will be all questions/exercises, grouped in some environments.
-The top (numbered or *-numbered) environment is <code class="docutils literal"><span class="pre">esercizi</span></code>, which surrounds the list of questions,
-each given by an <code class="docutils literal"><span class="pre">exerm</span></code> or <code class="docutils literal"><span class="pre">exe</span></code>. The <code class="docutils literal"><span class="pre">exe</span></code> type does not have any features. The <code class="docutils literal"><span class="pre">exerm</span></code>
+The top (numbered or *-numbered) environment is <code class="docutils literal notranslate"><span class="pre">esercizi</span></code>, which surrounds the list of questions,
+each given by an <code class="docutils literal notranslate"><span class="pre">exerm</span></code> or <code class="docutils literal notranslate"><span class="pre">exe</span></code>. The <code class="docutils literal notranslate"><span class="pre">exe</span></code> type does not have any features. The <code class="docutils literal notranslate"><span class="pre">exerm</span></code>
 environment is a multiple choice question: its anwers are enumerated as in the
 following example:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="c">% here a normal section of exercises</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% here a normal section of exercises</span>
 <span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>Title of the section<span class="nb">}</span>
 
   <span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[optional text]
@@ -185,13 +177,13 @@ following example:</p>
 <span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
 </pre></div>
 </div>
-<p>The difference of <code class="docutils literal"><span class="pre">esercizi</span></code> and <code class="docutils literal"><span class="pre">esercizi*</span></code>
-is the same as the <code class="docutils literal"><span class="pre">\section</span></code> and <code class="docutils literal"><span class="pre">\section*</span></code> commands.</p>
-<p>The two questions/exercises types are <code class="docutils literal"><span class="pre">exerm</span></code> and <code class="docutils literal"><span class="pre">exe</span></code>: the first is a <strong>Multiple Choice Question</strong>,
+<p>The difference of <code class="docutils literal notranslate"><span class="pre">esercizi</span></code> and <code class="docutils literal notranslate"><span class="pre">esercizi*</span></code>
+is the same as the <code class="docutils literal notranslate"><span class="pre">\section</span></code> and <code class="docutils literal notranslate"><span class="pre">\section*</span></code> commands.</p>
+<p>The two questions/exercises types are <code class="docutils literal notranslate"><span class="pre">exerm</span></code> and <code class="docutils literal notranslate"><span class="pre">exe</span></code>: the first is a <strong>Multiple Choice Question</strong>,
 the second is a normal <strong>exercise</strong>.</p>
-<p>More precisely, in <code class="docutils literal"><span class="pre">exerm</span></code> the question with answers
+<p>More precisely, in <code class="docutils literal notranslate"><span class="pre">exerm</span></code> the question with answers
 can be formatted as in the following full example:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[Optional text]
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>[Optional text]
 <span class="k">\qtitle</span><span class="nb">{</span>Optional command for the title of the question: it is
  not shown in the PDF<span class="nb">}</span>
 <span class="c">% the qtitle can be used to assign a unique ID to questions,</span>
@@ -228,7 +220,7 @@ Here write the text of the question.
 </pre></div>
 </div>
 <p>The other exercise type is a simple environment, that can be also used as follows:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[Optional text]
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[Optional text]
 Text of the exercise
 <span class="k">\end</span><span class="nb">{</span>exe<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>sol<span class="nb">}</span>
@@ -237,8 +229,8 @@ Solution
 </pre></div>
 </div>
 <p>Open answer questions can be used also to generate essay questions for MOODLE, with textarea
-solutions (visible with the <code class="docutils literal"><span class="pre">sol</span></code> mcq option and removed in the moodle exported version):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[comment]
+solutions (visible with the <code class="docutils literal notranslate"><span class="pre">sol</span></code> mcq option and removed in the moodle exported version):</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exe<span class="nb">}</span>[comment]
 <span class="k">\qtitle</span><span class="nb">{</span>Eventual tag of the question, it is only for MOODLE<span class="nb">}</span>
 How much is <span class="s">$</span><span class="m">1</span><span class="o">+</span><span class="m">1</span><span class="s">$</span>?
 <span class="k">\blank</span><span class="nb">{</span><span class="s">$</span><span class="m">2</span><span class="s">$</span><span class="nb">}</span>
@@ -246,7 +238,7 @@ How much is <span class="s">$</span><span class="m">1</span><span class="o">+</s
 </pre></div>
 </div>
 <p>The GIFT output will be:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>::Eventual tag of the question, it is only for MOODLE::
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>::Eventual tag of the question, it is only for MOODLE::
 How much is <span class="s">$</span><span class="m">1</span><span class="o">+</span><span class="m">1</span><span class="s">$</span>?
 <span class="nb">{}</span>
 </pre></div>
@@ -258,7 +250,7 @@ How much is <span class="s">$</span><span class="m">1</span><span class="o">+</s
 randomly choose variants (with different numerical values, or different
 questions and different answers) of the questions.</p>
 <p>The syntax is as in the following example:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>exerm<span class="nb">}</span>
   <span class="k">\begin</span><span class="nb">{</span>varianti<span class="nb">}</span>
   <span class="c">%% this is an exercise with two variants (randomly select just one of the two).</span>
   <span class="k">\varitem</span>
@@ -285,25 +277,25 @@ questions and different answers) of the questions.</p>
 <span class="k">\end</span><span class="nb">{</span>exerm<span class="nb">}</span>
 </pre></div>
 </div>
-<p>The same can be done with <code class="docutils literal"><span class="pre">\begin{exe}</span> <span class="pre">...</span> <span class="pre">\end{exe}</span></code> type exercises.</p>
+<p>The same can be done with <code class="docutils literal notranslate"><span class="pre">\begin{exe}</span> <span class="pre">...</span> <span class="pre">\end{exe}</span></code> type exercises.</p>
 <p>When exportin in moodle GIFT format, all the variants will be sequentially exported.</p>
 </div>
 <div class="section" id="other-commands">
 <h3>Other commands:<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">\begin{sol}</span> <span class="pre">...</span> <span class="pre">\end{sol}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\begin{sol}</span> <span class="pre">...</span> <span class="pre">\end{sol}</span></code></dt>
 <dd>It is a proof-like environment, for solutions of exercises.</dd>
-<dt><code class="docutils literal"><span class="pre">\WarningSign</span></code></dt>
-<dd>Default: the string <code class="docutils literal"><span class="pre">★★!!★★``</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\OrnamentalBreak</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\WarningSign</span></code></dt>
+<dd>Default: the string <code class="docutils literal notranslate"><span class="pre">★★!!★★``</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\OrnamentalBreak</span></code></dt>
 <dd>An ornamental break (centered).</dd>
-<dt><code class="docutils literal"><span class="pre">\blank{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\blank{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
 <dd>Will draw a blank line with space for a solution (until the end of the line).</dd>
-<dt><code class="docutils literal"><span class="pre">\blankarea[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows]{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\blankarea[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows]{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
 <dd>Will draw a blank area with space for a solution.</dd>
 </dl>
-<p>When compiled with the <code class="docutils literal"><span class="pre">sol</span></code> option:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<p>When compiled with the <code class="docutils literal notranslate"><span class="pre">sol</span></code> option:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
 </pre></div>
 </div>
 <p>the blank areas/lines will be filled with the texts of the solutions.
@@ -312,26 +304,26 @@ Otherwise, it can be any positive integer.</p>
 </div>
 <div class="section" id="latex-variables">
 <h3>LaTeX variables:<a class="headerlink" href="#latex-variables" title="Permalink to this headline">¶</a></h3>
-<p>can be redefined with <code class="docutils literal"><span class="pre">\renewcommand</span></code>, and are meant for internal use):</p>
+<p>can be redefined with <code class="docutils literal notranslate"><span class="pre">\renewcommand</span></code>, and are meant for internal use):</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">\geninfo</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\geninfo</span></code></dt>
 <dd>Definition of the text giving the instructions/info about the test/exam.</dd>
-<dt><code class="docutils literal"><span class="pre">\ansinfo</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\ansinfo</span></code></dt>
 <dd>Text to write before the bubblesheet answers.</dd>
-<dt><code class="docutils literal"><span class="pre">\uidname</span></code></dt>
-<dd>Name of the UID. Default: <code class="docutils literal"><span class="pre">Matricola</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\Cognomename</span></code></dt>
-<dd>Name of FamilyName. Default: <code class="docutils literal"><span class="pre">Cognome</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\Nomename</span></code></dt>
-<dd>Name of GivenName. Default: <code class="docutils literal"><span class="pre">Nome</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\Firmaname</span></code></dt>
-<dd>Name of the signature. Default: <code class="docutils literal"><span class="pre">Firma</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\SolName</span></code></dt>
-<dd>Name of the solution. Default: <code class="docutils literal"><span class="pre">Soluzione</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">\squarebox</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\uidname</span></code></dt>
+<dd>Name of the UID. Default: <code class="docutils literal notranslate"><span class="pre">Matricola</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\Cognomename</span></code></dt>
+<dd>Name of FamilyName. Default: <code class="docutils literal notranslate"><span class="pre">Cognome</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\Nomename</span></code></dt>
+<dd>Name of GivenName. Default: <code class="docutils literal notranslate"><span class="pre">Nome</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\Firmaname</span></code></dt>
+<dd>Name of the signature. Default: <code class="docutils literal notranslate"><span class="pre">Firma</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\SolName</span></code></dt>
+<dd>Name of the solution. Default: <code class="docutils literal notranslate"><span class="pre">Soluzione</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\squarebox</span></code></dt>
 <dd>The character for the symbol appearing on the left of each possible item-answer.
 Check that the characters is included in the font Linux Libertine first.</dd>
-<dt><code class="docutils literal"><span class="pre">\variantlabel</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">\variantlabel</span></code></dt>
 <dd>A label (possibly empty) to prepend to each permutation code.</dd>
 </dl>
 </div>
@@ -344,8 +336,8 @@ nothing is done (read the logs to see what happended).</p>
 <div class="section" id="mcq-w-bubblesheet-example">
 <h3>MCQ w/Bubblesheet example:<a class="headerlink" href="#mcq-w-bubblesheet-example" title="Permalink to this headline">¶</a></h3>
 <p>An example of MCQ exam with bubblesheet (try to compile it with or without the
-<code class="docutils literal"><span class="pre">sol</span></code> package option):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="c">%===================================================================</span>
+<code class="docutils literal notranslate"><span class="pre">sol</span></code> package option):</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">%===================================================================</span>
 <span class="k">\documentclass</span><span class="na">[twoside,a4paper,leqno]</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="c">%===================================================================</span>
 <span class="k">\usepackage</span><span class="nb">{</span>mathpazo<span class="nb">}</span> <span class="c">% I like it.</span>
@@ -424,7 +416,7 @@ nothing is done (read the logs to see what happended).</p>
 <div class="section" id="an-exam-class-example">
 <span id="exam"></span><h3>An exam class example:<a class="headerlink" href="#an-exam-class-example" title="Permalink to this headline">¶</a></h3>
 <p>Some commands taken from  the <a class="reference external" href="http://www-math.mit.edu/~psh/exam/examdoc.pdf">exam latex class</a>:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>exam<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>exam<span class="nb">}</span>
 
 <span class="k">\pointpoints</span><span class="nb">{</span>point<span class="nb">}{</span>points<span class="nb">}</span>
 <span class="k">\bonuspointspoints</span><span class="nb">{</span>bonus point<span class="nb">}{</span>bonus points<span class="nb">}</span>
@@ -438,8 +430,8 @@ nothing is done (read the logs to see what happended).</p>
 </pre></div>
 </div>
 <p>An example of an exam with blankareas and no bubblesheet (try to compile it with or without
-the <code class="docutils literal"><span class="pre">sol</span></code> option):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="c">%===================================================================</span>
+the <code class="docutils literal notranslate"><span class="pre">sol</span></code> option):</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">%===================================================================</span>
 <span class="k">\documentclass</span><span class="na">[twoside,a4paper,leqno,addpoints]</span><span class="nb">{</span>exam<span class="nb">}</span>
 <span class="c">%===================================================================</span>
 <span class="k">\usepackage</span><span class="nb">{</span>mathpazo<span class="nb">}</span>
@@ -517,12 +509,12 @@ Determinare in quali punti di <span class="s">$</span><span class="nv">\mathbb</
 <div class="section" id="documentation-of-the-cli">
 <span id="mcq-cli"></span><h2>Documentation of the CLI<a class="headerlink" href="#documentation-of-the-cli" title="Permalink to this headline">¶</a></h2>
 <p>The Command Line Interface, which runs simply by:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
 </pre></div>
 </div>
 <p>has can be summarized by the following graph. Full documentation and
 use instructions are shown in the interface itself.</p>
-<img src="_images/graphviz-cc489935d8627383bc7772aeb53a89c8694ed331.png" alt="digraph {
+<div class="graphviz"><img src="_images/graphviz-97a2ade9b740e1f36800dab44b28d588192cfe42.png" alt="digraph {
 
 welcome [shape = box, label=&quot;Welcome\n[prompt = ' mcq-&gt;&gt;']&quot; ] ;
 open [shape = oval , label = &quot;Open a XeLaTeX file\n(uiFileNavigator)\n[prompt = '(File)mcq[folder]-&gt;&gt; ']&quot; ] ;
@@ -538,15 +530,15 @@ welcome -&gt; exit   [label = &quot; q &quot; ];
 
 open -&gt; active;
 create -&gt; active;
-         }" />
+         }" class="graphviz" /></div>
 <p>After this,  several commands are available, each with their own help (see below,
-prepending <code class="docutils literal"><span class="pre">do_</span></code> with the commands: for example, <code class="docutils literal"><span class="pre">do_x</span></code> will
-give the help for the command <code class="docutils literal"><span class="pre">x</span></code> in the CLI.</p>
+prepending <code class="docutils literal notranslate"><span class="pre">do_</span></code> with the commands: for example, <code class="docutils literal notranslate"><span class="pre">do_x</span></code> will
+give the help for the command <code class="docutils literal notranslate"><span class="pre">x</span></code> in the CLI.</p>
 <dl class="class">
 <dt id="mcq.uiMasterFile">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Main Commands (type <code class="docutils literal"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>status                 : show MCQ-XeLaTex status
+<dd><p>Main Commands (type <code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>status                 : show MCQ-XeLaTex status
 make                   : compile the main TeX file &lt;main&gt;.tex (with XeLaTeX)
 exam &lt;n&gt;               : gen &lt;n&gt; exam permuted copies -&gt; *<span class="nb">_</span>exam.<span class="nb">{</span>tex,pdf<span class="nb">}</span>
 omr &lt;scanfiles*.pdf&gt;   : get the OMR  answers file &lt;main&gt;<span class="nb">_</span>answers.txt
@@ -566,11 +558,11 @@ q                      : quit (without clearing the status)
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">Quitting the CLI keeps a persistent status, found in pickle objects saved in the
-home directory. Next time <code class="docutils literal"><span class="pre">mcq.py</span></code> is run, it will start from where left.</p>
+home directory. Next time <code class="docutils literal notranslate"><span class="pre">mcq.py</span></code> is run, it will start from where left.</p>
 </div>
-<p>Assuming the exam file name is <code class="docutils literal"><span class="pre">f.tex</span></code>, the following hierarchy of files
+<p>Assuming the exam file name is <code class="docutils literal notranslate"><span class="pre">f.tex</span></code>, the following hierarchy of files
 will be generated, among others. The commands are on the arrows.</p>
-<img src="_images/graphviz-0a0535e9eb3b280d498a2bdf4ce93c9dab0047b0.png" alt="digraph {
+<div class="graphviz"><img src="_images/graphviz-286c7cce3383f7d62931422b7a90ddf6fe4a08f8.png" alt="digraph {
 
 main [label=&quot;Main file: f.tex&quot;];
 xml [label=&quot;f.pos\n f.lbl\n f.pdf&quot;] ;
@@ -611,14 +603,14 @@ marked -&gt; stats  [ label = &quot; makestats &quot; ];
 stats -&gt; main [ label = &quot; check stats\n and fix f.tex &quot; ];
 
 stats -&gt; end [label = &quot; x &quot; ];
-}" />
+}" class="graphviz" /></div>
 </div>
 <div class="section" id="managing-and-using-a-question-bank-with-random-choices">
 <span id="mcq-qb"></span><h2>Managing and using a Question Bank with Random Choices<a class="headerlink" href="#managing-and-using-a-question-bank-with-random-choices" title="Permalink to this headline">¶</a></h2>
-<p>A <code class="docutils literal"><span class="pre">question</span> <span class="pre">bank</span></code> is simply a folder where there are TeX files with
+<p>A <code class="docutils literal notranslate"><span class="pre">question</span> <span class="pre">bank</span></code> is simply a folder where there are TeX files with
 mcq.sty questions in them. Operating on question banks allows to
 generate random questions for a test:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>You can use the commands listed below to choose random questions
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>You can use the commands listed below to choose random questions
 from the Question Bank.
 
 Main Commands (type `? &lt;command&gt;` for help):
@@ -638,9 +630,9 @@ next                 : Accept the random choice and proceed.
 x                    : Exit (without accepting)
 </pre></div>
 </div>
-<p>A typical session, which can be saved in a <code class="docutils literal"><span class="pre">txt</span></code> file and loaded with the command <code class="docutils literal"><span class="pre">load</span></code>
+<p>A typical session, which can be saved in a <code class="docutils literal notranslate"><span class="pre">txt</span></code> file and loaded with the command <code class="docutils literal notranslate"><span class="pre">load</span></code>
 is as follows:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span>add 1 from c*-2018.tex
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>add 1 from c*-2018.tex
 add 3 from c*-2019.tex
 add 1 from richiami.tex
 add 1 from derivate.tex
@@ -659,26 +651,26 @@ add 1 from hilbert.tex
 <div class="section" id="exporting-to-other-formats-html-and-gift">
 <span id="mcq-export"></span><h2>Exporting to other formats: HTML and GIFT<a class="headerlink" href="#exporting-to-other-formats-html-and-gift" title="Permalink to this headline">¶</a></h2>
 <p>The commandline:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py </span><span class="o">--</span><span class="nb">gift filename.tex &gt; questions.gift</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py </span><span class="o">--</span><span class="nb">gift filename.tex &gt; questions.gift</span>
 </pre></div>
 </div>
-<p>will convert <strong>all</strong> the questions in <code class="docutils literal"><span class="pre">filename.tex</span></code> to the GIFT moodle format, ready
-to be imported in MOODLE as questions. The two main types (<code class="docutils literal"><span class="pre">exerm</span></code> and <code class="docutils literal"><span class="pre">exe</span></code>) correspond
+<p>will convert <strong>all</strong> the questions in <code class="docutils literal notranslate"><span class="pre">filename.tex</span></code> to the GIFT moodle format, ready
+to be imported in MOODLE as questions. The two main types (<code class="docutils literal notranslate"><span class="pre">exerm</span></code> and <code class="docutils literal notranslate"><span class="pre">exe</span></code>) correspond
 to multiple choice questions or essays, in moodle.</p>
-<p>The preamble command <code class="docutils literal"><span class="pre">\moodlecategory{categoryname}</span></code> will trigger the following behavour:
+<p>The preamble command <code class="docutils literal notranslate"><span class="pre">\moodlecategory{categoryname}</span></code> will trigger the following behavour:
 for each group of questions,
-all the questions in a single environment <code class="docutils literal"><span class="pre">\begin{esercizi}{sectioname}..</span></code> or
-<code class="docutils literal"><span class="pre">\begin{esercizi*}{sectionname}</span></code>
+all the questions in a single environment <code class="docutils literal notranslate"><span class="pre">\begin{esercizi}{sectioname}..</span></code> or
+<code class="docutils literal notranslate"><span class="pre">\begin{esercizi*}{sectionname}</span></code>
 will be categorized under the moodle GIFT category:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb">CATEGORY: categoryname</span><span class="o">/</span><span class="nb">sectionname</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb">CATEGORY: categoryname</span><span class="o">/</span><span class="nb">sectionname</span>
 </pre></div>
 </div>
 <p>or, if the sectionname is empty,:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb">CATEGORY: category</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb">CATEGORY: category</span>
 </pre></div>
 </div>
 <p>to facilitate categorized GIFT importing into MOODLE question banks.</p>
-<p>Exactly the same function is provided by the <code class="docutils literal"><span class="pre">export</span> <span class="pre">filename.gift</span></code> in the command
+<p>Exactly the same function is provided by the <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">filename.gift</span></code> in the command
 line user interface.</p>
 </div>
 <div class="section" id="when-things-go-wrong">
@@ -695,7 +687,8 @@ line user interface.</p>
 <dl class="class">
 <dt id="mcq.Esercizio">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">Esercizio</code><span class="sig-paren">(</span><em>testo</em>, <em>type='EXERM'</em>, <em>numero_colonne=1</em>, <em>risposte=None</em>, <em>src=''</em>, <em>fb=None</em>, <em>coda=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for exercises</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for exercises</p>
 <dl class="method">
 <dt id="mcq.Esercizio.latex_perm">
 <code class="descname">latex_perm</code><span class="sig-paren">(</span><em>perm</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_perm" title="Permalink to this definition">¶</a></dt>
@@ -715,22 +708,26 @@ together with statistical data annotations.</p>
 <dl class="class">
 <dt id="mcq.MultiEsercizio">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">MultiEsercizio</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.MultiEsercizio" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
 
 <dl class="class">
 <dt id="mcq.Risposta">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">Risposta</code><span class="sig-paren">(</span><em>testo</em>, <em>giusta=False</em>, <em>punti=None</em>, <em>fb=None</em>, <em>src=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Risposta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
 
 <dl class="class">
 <dt id="mcq.myTerm">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">myTerm</code><span class="sig-paren">(</span><em>output=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w'&gt;</em>, <em>prompt='mcq-&gt; '</em>, <em>number_of_columns=79</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.myTerm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">myTerm</code><span class="sig-paren">(</span><em>output=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em>, <em>prompt='mcq-&gt; '</em>, <em>number_of_columns=79</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.myTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
 
 <dl class="class">
 <dt id="mcq.ExamFile">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">ExamFile</code><span class="sig-paren">(</span><em>abspath</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
 <dt id="mcq.ExamFile.show_status">
 <code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.show_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the poset of dependencies</p>
@@ -747,7 +744,15 @@ together with statistical data annotations.</p>
 <dl class="class">
 <dt id="mcq.uiShell">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiShell</code><span class="sig-paren">(</span><em>name</em>, <em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">cmd.Cmd</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cmd.Cmd</span></code></p>
+<dl class="method">
+<dt id="mcq.uiShell.emptyline">
+<code class="descname">emptyline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.emptyline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when an empty line is entered in response to the prompt.</p>
+<p>If this method is not overridden, it repeats the last nonempty
+command entered.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mcq.uiShell.do_shell">
 <code class="descname">do_shell</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_shell" title="Permalink to this definition">¶</a></dt>
@@ -758,16 +763,23 @@ together with statistical data annotations.</p>
 <dt id="mcq.uiShell.do_open">
 <code class="descname">do_open</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; open &lt;file&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; open &lt;file&gt;
 </pre></div>
 </div>
 <p>Open PDF/TXT/CVS/… file with the appropriate program
 (according to system configuration / mime-types / OS… )</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; open main_answers.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; open main_answers.pdf
 -&gt;&gt; open main_answers.txt
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcq.uiShell.precmd">
+<code class="descname">precmd</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.precmd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method executed just before the command line is
+interpreted, but after the input prompt is generated and issued.</p>
 </dd></dl>
 
 <dl class="method">
@@ -794,17 +806,25 @@ together with statistical data annotations.</p>
 <dd><p>Quit (saving status)</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="mcq.uiShell.completedefault">
+<code class="descname">completedefault</code><span class="sig-paren">(</span><em>text</em>, <em>line</em>, <em>begidx</em>, <em>endidx</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.completedefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called to complete an input line when no command-specific
+complete_*() method is available.</p>
+<p>By default, it returns an empty list.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="mcq.uiFileNavigator">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiFileNavigator</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcq.uiShell</span></code></a></p>
 <dl class="method">
 <dt id="mcq.uiFileNavigator.do_ls">
 <code class="descname">do_ls</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_ls" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; ls [&lt;path&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ls [&lt;path&gt;]
 </pre></div>
 </div>
 <p>Return the list of .TeX files or directories containing TeX files
@@ -822,7 +842,7 @@ the current dir will be listed.</p>
 <dt id="mcq.uiFileNavigator.do_cd">
 <code class="descname">do_cd</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_cd" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; cd [&lt;dir&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; cd [&lt;dir&gt;]
 </pre></div>
 </div>
 <p>Change working directory to directory &lt;arg&gt;. With no &lt;dir&gt; argument,
@@ -833,13 +853,13 @@ it will go to the Home Directory.</p>
 <dt id="mcq.uiFileNavigator.do_load">
 <code class="descname">do_load</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_load" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; load &lt;mainfile&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load &lt;mainfile&gt;
 </pre></div>
 </div>
 <p>This commands simply loads the MCQ-XeLaTeX file &lt;mainfile&gt;.
 Use ls, cd and tab-completion to locate the file, first.</p>
 <p>EQUIVALENT EXAMPLES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; load main.tex
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load main.tex
 -&gt;&gt; load main
 -&gt;&gt; load mai&lt;TAB&gt;
 </pre></div>
@@ -851,9 +871,9 @@ Use ls, cd and tab-completion to locate the file, first.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span></dt>
-<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
-<p>Main Commands (type <code class="docutils literal"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="n">status</span>                 <span class="o">:</span> <span class="n">show</span> <span class="n">MCQ</span><span class="o">-</span><span class="n">XeLaTex</span> <span class="n">status</span>
+<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcq.uiShell</span></code></a></p>
+<p>Main Commands (type <code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">status</span>                 <span class="o">:</span> <span class="n">show</span> <span class="n">MCQ</span><span class="o">-</span><span class="n">XeLaTex</span> <span class="n">status</span>
 <span class="n">make</span>                   <span class="o">:</span> <span class="n">compile</span> <span class="n">the</span> <span class="n">main</span> <span class="n">TeX</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;.</span><span class="n">tex</span> <span class="o">(</span><span class="k">with</span> <span class="n">XeLaTeX</span><span class="o">)</span>
 <span class="n">exam</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span>               <span class="o">:</span> <span class="n">gen</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">exam</span> <span class="n">permuted</span> <span class="n">copies</span> <span class="o">-&gt;</span> <span class="o">*</span><span class="n">_exam</span><span class="o">.{</span><span class="n">tex</span><span class="o">,</span><span class="n">pdf</span><span class="o">}</span>
 <span class="n">omr</span> <span class="o">&lt;</span><span class="n">scanfiles</span><span class="o">*.</span><span class="n">pdf</span><span class="o">&gt;</span>   <span class="o">:</span> <span class="kd">get</span> <span class="n">the</span> <span class="n">OMR</span>  <span class="n">answers</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_answers</span><span class="o">.</span><span class="na">txt</span>
@@ -872,7 +892,7 @@ Use ls, cd and tab-completion to locate the file, first.</p>
 <dt id="mcq.uiMasterFile.do_x">
 <code class="descname">do_x</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; x
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; x
 </pre></div>
 </div>
 <p>Clear the status and go to main menu.
@@ -895,7 +915,7 @@ Use with caution: you need to re-load a main MCQ-XeLaTeX file after.</p>
 <dt id="mcq.uiMasterFile.do_make">
 <code class="descname">do_make</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_make" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; make
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; make
 </pre></div>
 </div>
 <p>Compile (XeLaTeX-ing) the TeX file &lt;main&gt;.tex, and generates some
@@ -909,15 +929,15 @@ INTERNAL: &lt;main&gt;.lbl, &lt;main&gt;.pos</div></blockquote>
 <dt id="mcq.uiMasterFile.do_export">
 <code class="descname">do_export</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_export" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; export &lt;outputfile&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; export &lt;outputfile&gt;
 </pre></div>
 </div>
 <p>It exports all the questions in the main TeX to &lt;outputfile&gt;,
 in a format depending on the &lt;outputfile&gt; extension.
-If the extension is <code class="docutils literal"><span class="pre">.gift</span></code>, the format is MOODLE GIFT. (.txt ext appended)
-If the extension is <code class="docutils literal"><span class="pre">.html</span></code> or <code class="docutils literal"><span class="pre">.htm</span></code>, the format is HTML.</p>
+If the extension is <code class="docutils literal notranslate"><span class="pre">.gift</span></code>, the format is MOODLE GIFT. (.txt ext appended)
+If the extension is <code class="docutils literal notranslate"><span class="pre">.html</span></code> or <code class="docutils literal notranslate"><span class="pre">.htm</span></code>, the format is HTML.</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; export file.gift
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; export file.gift
 -&gt;&gt; export file.html
 </pre></div>
 </div>
@@ -933,20 +953,20 @@ If the extension is <code class="docutils literal"><span class="pre">.html</span
 <dt id="mcq.uiMasterFile.do_exam">
 <code class="descname">do_exam</code><span class="sig-paren">(</span><em>args</em>, <em>DOLATEX=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>exam &lt;n&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>exam &lt;n&gt;
 </pre></div>
 </div>
-<p>Generate &lt;n&gt; exam copies of <code class="docutils literal"><span class="pre">&lt;main&gt;.tex</span></code>, permuting the questions
+<p>Generate &lt;n&gt; exam copies of <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;.tex</span></code>, permuting the questions
 and the anwsers if &lt;n&gt; is at least 2. It will save the output in
-file <code class="docutils literal"><span class="pre">&lt;main&gt;_exam.tex</span></code> and then compile it to obtain
-<code class="docutils literal"><span class="pre">&lt;main&gt;_exam.pdf</span></code>, where &lt;main&gt;.tex is the name of the main TeX file.
+file <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_exam.tex</span></code> and then compile it to obtain
+<code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_exam.pdf</span></code>, where &lt;main&gt;.tex is the name of the main TeX file.
 If &lt;n&gt;=1, then it will not permute questions and answers.
 If &lt;n&gt; &gt;= 2, the permutations will be pseudo-random, with a constant
 seed, so that each run will give exactly the same permutations.
-So, if a mistake in <code class="docutils literal"><span class="pre">&lt;main&gt;.tex</span></code> needs to be fixed, it is possible
+So, if a mistake in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;.tex</span></code> needs to be fixed, it is possible
 to re-generate the answer keys by XeLaTeX-ing &lt;main&gt;.tex and
 re-running <cite>exam &lt;n&gt;</cite> as many times necessary:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>OUTPUT: &lt;main&gt;_exam.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>OUTPUT: &lt;main&gt;_exam.pdf
 INTERNAL: &lt;main&gt;_exam.tex, &lt;main&gt;.xml, &lt;main&gt;_exam.db
 HUMAN-READABLE DEBUG: &lt;main&gt;_exam.sols
 </pre></div>
@@ -957,18 +977,18 @@ HUMAN-READABLE DEBUG: &lt;main&gt;_exam.sols
 <dt id="mcq.uiMasterFile.do_omr">
 <code class="descname">do_omr</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_omr" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>omr &lt;scanfiles*.pdf&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>omr &lt;scanfiles*.pdf&gt;
 </pre></div>
 </div>
-<p>Parse the scanned bubblesheets in <code class="docutils literal"><span class="pre">&lt;scanfiles*.pdf&gt;</span></code>, and save
-the list of answers in <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
+<p>Parse the scanned bubblesheets in <code class="docutils literal notranslate"><span class="pre">&lt;scanfiles*.pdf&gt;</span></code>, and save
+the list of answers in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
 The argument is a list of PDF files (wildcard * is accepted).</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; omr scan/c1-s1.pdf scan/c1-s2.pdf scan/c2-s1.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; omr scan/c1-s1.pdf scan/c1-s2.pdf scan/c2-s1.pdf
 -&gt;&gt; omr scan/c1-*.pdf scan/c2-S*.pdf
 </pre></div>
 </div>
-<p>The annotated PDF file <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.pdf</span></code> is created. It is possible
+<p>The annotated PDF file <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.pdf</span></code> is created. It is possible
 to visually check the errors in the Optical Marks Recognition,
 and (more likely) the mistakes of the humans on the bubblesheets.
 A <strong>RED</strong> circle means it is an out-of place mark,
@@ -978,22 +998,22 @@ The OMR is based on a client-server model (a remote OMR service),
 therefore it is necessary to be connected to internet, and to wait some
 time.  If running multiple times on different PDF sets, the different
 answers files can be simply manually merged.</p>
-<p>The format of the output, written in <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>
+<p>The format of the output, written in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.txt</span></code>
 is the format required by the subsequent <cite>mark</cite> process:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;CODE&gt;:&lt;NAME&gt;:&lt;UID&gt;:&lt;ANSWERS&gt;:&lt;OPTIONAL_MARK&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;CODE&gt;:&lt;NAME&gt;:&lt;UID&gt;:&lt;ANSWERS&gt;:&lt;OPTIONAL_MARK&gt;
 </pre></div>
 </div>
-<p>with empty column name and empty <code class="docutils literal"><span class="pre">&lt;OPTIONAL_MARK&gt;</span></code>.
-The string <code class="docutils literal"><span class="pre">&lt;ANSWERS&gt;</span></code> is a string of length = number of questions,
+<p>with empty column name and empty <code class="docutils literal notranslate"><span class="pre">&lt;OPTIONAL_MARK&gt;</span></code>.
+The string <code class="docutils literal notranslate"><span class="pre">&lt;ANSWERS&gt;</span></code> is a string of length = number of questions,
 with a `` 0 `` for a missed answer,
-one of <code class="docutils literal"><span class="pre">ABCD</span></code>… for a given answer,
+one of <code class="docutils literal notranslate"><span class="pre">ABCD</span></code>… for a given answer,
 and a `` * `` for a multiple answer found.
-One needs to manually check <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.pdf</span></code> to possibly correct
-the output <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>.</p>
+One needs to manually check <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.pdf</span></code> to possibly correct
+the output <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.txt</span></code>.</p>
 <p><strong>WARNING:</strong> Please scan the bubblesheets in GRAYSCALE format, not BW,
 to minimize OMR errors.</p>
 <p>OUTPUT:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;main&gt;_answers.txt  &lt;main&gt;_answers.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;main&gt;_answers.txt  &lt;main&gt;_answers.pdf
 </pre></div>
 </div>
 </dd></dl>
@@ -1002,42 +1022,42 @@ to minimize OMR errors.</p>
 <dt id="mcq.uiMasterFile.do_uid">
 <code class="descname">do_uid</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_uid" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; uid [&lt;UIDfile&gt;][:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; uid [&lt;UIDfile&gt;][:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
 </pre></div>
 </div>
 <p>Add Names to the answers list &lt;main&gt;_answers.txt, from a &lt;UIDfile&gt;.
-The file <code class="docutils literal"><span class="pre">&lt;UIDfile&gt;</span></code> is a CSV file, with delimiter <code class="docutils literal"><span class="pre">&lt;delim&gt;</span></code>
-(default is the colon <code class="docutils literal"><span class="pre">:</span></code>)</p>
+The file <code class="docutils literal notranslate"><span class="pre">&lt;UIDfile&gt;</span></code> is a CSV file, with delimiter <code class="docutils literal notranslate"><span class="pre">&lt;delim&gt;</span></code>
+(default is the colon <code class="docutils literal notranslate"><span class="pre">:</span></code>)</p>
 <p>EXAMPLES OF DEFAULT LINES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>:Verdi, Giuseppe:762809:
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>:Verdi, Giuseppe:762809:
 1F5G:Peano, Giuseppe:012345:
 </pre></div>
 </div>
 <p>After the optional argument &lt;UIDfile&gt; there is an optional
 specification of which columns contain the UID and the NAME,
 and which character is the delimiter (for example, <cite>:</cite>, <cite>;</cite> or <cite>,</cite>):</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;UIDfile&gt;[:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;UIDfile&gt;[:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
 </pre></div>
 </div>
 <p><strong>EXAMPLE:</strong></p>
 <p>If the file <cite>main.uid</cite> contains lines such as:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>012345;Rossi,Giuseppe
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>012345;Rossi,Giuseppe
 </pre></div>
 </div>
 <p>the columns specifications are &lt;UIDcol&gt;=1 &lt;delim&gt;=; &lt;NAMEcol&gt;=2
 and therefore one has to type:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="err">`</span><span class="nt">uid</span> <span class="nt">main</span><span class="p">.</span><span class="nc">uid</span><span class="p">:</span><span class="nd">1</span><span class="o">;</span><span class="nt">2</span><span class="err">`</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="err">`</span><span class="nt">uid</span> <span class="nt">main</span><span class="p">.</span><span class="nc">uid</span><span class="p">:</span><span class="nd">1</span><span class="o">;</span><span class="nt">2</span><span class="err">`</span>
 </pre></div>
 </div>
 <p>Omitting the optional ‘spec’ argument gives the default:
-<code class="docutils literal"><span class="pre">filename.uid</span></code> correponds to  <code class="docutils literal"><span class="pre">filename.uid:3:2</span></code>, i.e.,
+<code class="docutils literal notranslate"><span class="pre">filename.uid</span></code> correponds to  <code class="docutils literal notranslate"><span class="pre">filename.uid:3:2</span></code>, i.e.,
 the third and second columns contain UID and name, with delimiter <cite>:</cite>.</p>
 <p>The default format is the output of ‘esse3.py –uid Table.xls’, the multi-tool
 available at www.dlfer.xyz/var/ (cf. the documentation there).</p>
 <p>If &lt;UIDfile&gt; is empty, the default is &lt;main&gt;.uid (if it exists),
 where &lt;main&gt;.tex is the main MCQ-XeLaTeX file.</p>
 <p>OUTPUT:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>none; the file &lt;main&gt;_answers.txt is modified in-place.
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>none; the file &lt;main&gt;_answers.txt is modified in-place.
 </pre></div>
 </div>
 </dd></dl>
@@ -1046,14 +1066,14 @@ where &lt;main&gt;.tex is the main MCQ-XeLaTeX file.</p>
 <dt id="mcq.uiMasterFile.do_mark">
 <code class="descname">do_mark</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_mark" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>mark [&lt;answersfile&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>mark [&lt;answersfile&gt;]
 </pre></div>
 </div>
 <p>Take the optional argument &lt;answersfile&gt;, and give marks according to
-the answer keys generated by <code class="docutils literal"><span class="pre">exam</span></code>.</p>
-<p>Default answersfile: <code class="docutils literal"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
+the answer keys generated by <code class="docutils literal notranslate"><span class="pre">exam</span></code>.</p>
+<p>Default answersfile: <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
 The general format of the answers lines is the following:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span><span class="mi">30</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span><span class="mi">30</span>
 <span class="o">&lt;</span><span class="n">CODE</span><span class="o">&gt;:&lt;</span><span class="n">NAME</span><span class="o">&gt;:&lt;</span><span class="n">UID</span><span class="o">&gt;:&lt;</span><span class="n">ANSWERS</span><span class="o">&gt;:&lt;</span><span class="n">OPTIONAL_MARK</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -1065,12 +1085,12 @@ or <cite>0</cite> if no answer was given.
 The optional field &lt;OPTIONAL_MARK&gt; is a number, which can be given
 to assess other forms of exercises in the exam.
 In general it is not used, so the line reads as:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span>
 </pre></div>
 </div>
 <p>The output files are <cite>&lt;main&gt;_exam.csv</cite> and <cite>&lt;main&gt;_exam.txt</cite>.
 The format of the CSV version is:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>FXZH;Verdi, Giuseppe;193146;15.0;14.0;29.0
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>FXZH;Verdi, Giuseppe;193146;15.0;14.0;29.0
 &lt;CODE&gt;;&lt;NAME&gt;;&lt;UID&gt;;&lt;MCQ_MARK&gt;;&lt;OPTIONAL_MARK&gt;;&lt;TOTAL&gt;
 </pre></div>
 </div>
@@ -1078,21 +1098,21 @@ The format of the CSV version is:</p>
 The new field &lt;MCQ_MARK&gt; is the sum of the numerical values
 of the given answers, and &lt;TOTAL&gt; is the combination of
 &lt;MCQ_MARK&gt; with &lt;OPTIONAL_MARK&gt; using the formula
-<code class="docutils literal"><span class="pre">formulavoto</span></code> defined in the &lt;main&gt;.tex file (python syntax),
+<code class="docutils literal notranslate"><span class="pre">formulavoto</span></code> defined in the &lt;main&gt;.tex file (python syntax),
 where <cite>x</cite> stands for &lt;MCQ_MARK&gt; and <cite>y</cite> stands for &lt;OPTIONAL_MARK&gt;.</p>
 <p><strong>EXAMPLE:</strong></p>
 <p>If in the &lt;main&gt;.tex file there is a:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>\formulavoto{x+2*y}
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>\formulavoto{x+2*y}
 </pre></div>
 </div>
 <p>then in the result list the total mark will be:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;TOTAL&gt;=&lt;MCQ_MARK&gt; + 2 *&lt;OPTIONAL_MARK&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;TOTAL&gt;=&lt;MCQ_MARK&gt; + 2 *&lt;OPTIONAL_MARK&gt;
 </pre></div>
 </div>
-<p>The output file <code class="docutils literal"><span class="pre">&lt;main&gt;_exam.txt</span></code> is an anonymous version, with
+<p>The output file <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_exam.txt</span></code> is an anonymous version, with
 just the &lt;CODE&gt; and &lt;TOTAL&gt; columns, used to publish results on-line.</p>
 <p>OUTPUT:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;main&gt;_exam.csv, &lt;main&gt;_exam.txt
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;main&gt;_exam.csv, &lt;main&gt;_exam.txt
 </pre></div>
 </div>
 </dd></dl>
@@ -1101,7 +1121,7 @@ just the &lt;CODE&gt; and &lt;TOTAL&gt; columns, used to publish results on-line
 <dt id="mcq.uiMasterFile.do_makestats">
 <code class="descname">do_makestats</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_makestats" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; makestats
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; makestats
 </pre></div>
 </div>
 <p>Generate the statistics file (after marking).
@@ -1115,7 +1135,7 @@ students who gave the correct answer, divided by the number
 of 27% students). If $d$&gt;25%, it os OK. If $d$&lt;20%, or worse,
 $d$ is negative, probably there is a mistake in the answer keys.</p>
 <p>OUTPUT:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;main&gt;_stats.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;main&gt;_stats.pdf
 </pre></div>
 </div>
 </dd></dl>
@@ -1124,10 +1144,10 @@ $d$ is negative, probably there is a mistake in the answer keys.</p>
 <dt id="mcq.uiMasterFile.do_pdfx">
 <code class="descname">do_pdfx</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_pdfx" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; pdfx
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; pdfx
 </pre></div>
 </div>
-<p>Attempt to convert the <code class="docutils literal"><span class="pre">&lt;main&gt;_exam.pdf</span></code> PDF file to a PDFX version,
+<p>Attempt to convert the <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_exam.pdf</span></code> PDF file to a PDFX version,
 more suitable for error-free printing, using ghostscript, if installed.
 It tries to set a proper GS_FONTPATH.</p>
 </dd></dl>
@@ -1137,17 +1157,17 @@ It tries to set a proper GS_FONTPATH.</p>
 <dl class="class">
 <dt id="mcq.uiChooser">
 <em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiChooser</code><span class="sig-paren">(</span><em>dbvars={}</em>, <em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal"><span class="pre">mcq.uiShell</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcq.uiShell</span></code></a></p>
 <dl class="method">
 <dt id="mcq.uiChooser.do_make">
 <code class="descname">do_make</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_make" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; make
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; make
 </pre></div>
 </div>
 <p>Compile (XeLaTeX-ing) the TeX file generated file.</p>
 <p>OUTPUT:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>&lt;file&gt;.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&lt;file&gt;.pdf
 </pre></div>
 </div>
 </dd></dl>
@@ -1156,7 +1176,7 @@ It tries to set a proper GS_FONTPATH.</p>
 <dt id="mcq.uiChooser.do_add">
 <code class="descname">do_add</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_add" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; add &lt;n&gt; from file1.tex f2.tex ... f2*.tex
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; add &lt;n&gt; from file1.tex f2.tex ... f2*.tex
 </pre></div>
 </div>
 </dd></dl>
@@ -1165,7 +1185,7 @@ It tries to set a proper GS_FONTPATH.</p>
 <dt id="mcq.uiChooser.do_ls">
 <code class="descname">do_ls</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_ls" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; ls [&lt;path&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ls [&lt;path&gt;]
 </pre></div>
 </div>
 <p>Return the list of .TeX files or directories containing TeX files
@@ -1179,7 +1199,7 @@ If &lt;path&gt; is a file, just this file will be listed.</p>
 <dt id="mcq.uiChooser.do_lsbank">
 <code class="descname">do_lsbank</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_lsbank" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; ls
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ls
 </pre></div>
 </div>
 <p>Return the list of .TeX files in the Question Bank Directory.</p>
@@ -1189,7 +1209,7 @@ If &lt;path&gt; is a file, just this file will be listed.</p>
 <dt id="mcq.uiChooser.do_qbank">
 <code class="descname">do_qbank</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_qbank" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>qbank &lt;directory&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>qbank &lt;directory&gt;
 </pre></div>
 </div>
 <p>This commands define the Question Bank = &lt;directory&gt;
@@ -1200,7 +1220,7 @@ Use ls, cd and tab-completion to locate the file, first.</p>
 <dt id="mcq.uiChooser.do_cd">
 <code class="descname">do_cd</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_cd" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; cd [&lt;dir&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; cd [&lt;dir&gt;]
 </pre></div>
 </div>
 <p>Change working directory to directory &lt;arg&gt;. With no &lt;dir&gt; argument,
@@ -1223,13 +1243,13 @@ it will go to the Main File Directory.</p>
 <dt id="mcq.uiChooser.do_random">
 <code class="descname">do_random</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_random" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; random [all]|[&lt;n&gt;] [n_2] ...
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; random [all]|[&lt;n&gt;] [n_2] ...
 </pre></div>
 </div>
 <p>Random choose either all questions (if no argument or <cite>all</cite> is given).
 Otherwise random choose just the n-th question.</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; random all
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; random all
 -&gt;&gt; random
 -&gt;&gt; random 3
 -&gt;&gt; random 3 5 7
@@ -1259,13 +1279,13 @@ Otherwise random choose just the n-th question.</p>
 <dt id="mcq.uiChooser.do_load">
 <code class="descname">do_load</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_load" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; load &lt;commandsfile&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load &lt;commandsfile&gt;
 </pre></div>
 </div>
 <p>Load a file with add|del|random|qbank|… commands,
 one per line (same syntax as the UI shell)”</p>
 <p>EQUIVALENT EXAMPLES:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>-&gt;&gt; load commandsfile.txt
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load commandsfile.txt
 -&gt;&gt; load command&lt;TAB&gt;
 </pre></div>
 </div>
@@ -1279,7 +1299,7 @@ one per line (same syntax as the UI shell)”</p>
 <p><strong>default_combina_voti ARGOMENTO</strong>:</p>
 <blockquote>
 <div><p>Return the formula for the two parts, default of:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>\formulavoto{x+y}
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>\formulavoto{x+y}
 </pre></div>
 </div>
 </div></blockquote>
@@ -1287,7 +1307,7 @@ one per line (same syntax as the UI shell)”</p>
 <dt id="mcq.default_combina_voti">
 <code class="descclassname">mcq.</code><code class="descname">default_combina_voti</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.default_combina_voti" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the formula for the two parts, default of:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span>\formulavoto{x+y}
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>\formulavoto{x+y}
 </pre></div>
 </div>
 </dd></dl>
@@ -1301,7 +1321,7 @@ one per line (same syntax as the UI shell)”</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">Table Of Contents</a></h3>
+<h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
@@ -1323,12 +1343,14 @@ one per line (same syntax as the UI shell)”</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -1339,7 +1361,7 @@ one per line (same syntax as the UI shell)”</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -4,25 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>MCQ-XeLaTeX: How to use it with Moodle and for online exams &#8212; var  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -33,8 +26,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -60,13 +52,13 @@ The second: a PDF with some exercises/open questions is given via moodle,
 then the student writes solutions/answers on a sheet of paper, document-scans them
 to a PDF file before the end of the exam, and uploads it as essay to moodle.</p>
 <p>Needed files: last versions of
-<a class="reference download internal" href="_downloads/mcq.py" download=""><code class="xref download docutils literal"><span class="pre">mcq.py</span></code></a> and
-<a class="reference download internal" href="_downloads/mcq.sty" download=""><code class="xref download docutils literal"><span class="pre">mcq.sty</span></code></a> .</p>
+<a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a> and
+<a class="reference download internal" download="" href="_downloads/a7a670f40b50b15891accdb8ccfb2d2a/mcq.sty"><code class="xref download docutils literal notranslate"><span class="pre">mcq.sty</span></code></a> .</p>
 <div class="section" id="multiple-choice-questions">
 <h3>Multiple Choice Questions<a class="headerlink" href="#multiple-choice-questions" title="Permalink to this headline">¶</a></h3>
 <p>As in the <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a> documentation, create a XeLaTeX file with questions,
 default marking values, and answers. An example:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>mcq<span class="nb">}</span>
 <span class="k">\moodlecategory</span><span class="nb">{</span>2020-04-21 test quiz<span class="nb">}</span>
 <span class="c">%===================================================================</span>
@@ -103,16 +95,16 @@ What is the color of Mars?
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </pre></div>
 </div>
-<p>Then simply generate a <code class="docutils literal"><span class="pre">.gift.txt</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --gift filename.tex  &gt; filename.gift.txt
+<p>Then simply generate a <code class="docutils literal notranslate"><span class="pre">.gift.txt</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mcq.py --gift filename.tex  &gt; filename.gift.txt
 </pre></div>
 </div>
 <p>The output can be imported in <a class="reference external" href="https://www.moodle.org">MOODLE</a> as plain/text file.
 Select format: GIFT.</p>
-<p>If the command <code class="docutils literal"><span class="pre">\moodlecategory{categoryname}</span></code> is used in the tex preamble, the questions
+<p>If the command <code class="docutils literal notranslate"><span class="pre">\moodlecategory{categoryname}</span></code> is used in the tex preamble, the questions
 will be imported in the category <strong>categoryname</strong>
 (if the names of the esercizi sections are empty) or <strong>categoryname/sectionname</strong> for each section name of groups of questions:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>sectionmame<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>esercizi<span class="nb">}{</span>sectionmame<span class="nb">}</span>
 ...
 <span class="k">\end</span><span class="nb">{</span>esercizi<span class="nb">}</span>
 
@@ -132,7 +124,7 @@ Check <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="
 a PDF document at the end of the exam duration.</p>
 <p>So, write a tex file as described in <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a>, full of exercises
 with variants and solutions:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[bubblesheet,doexe,sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[bubblesheet,doexe,sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
 ...
 <span class="k">\begin</span><span class="nb">{</span>esercizi*<span class="nb">}{}</span>
 ...
@@ -152,31 +144,31 @@ Question 3 <span class="k">\blank</span><span class="nb">{</span>Answer 3<span c
 </div>
 <p>Variants can be automatically generated by <a class="reference internal" href="casengine.html#casengine"><span class="std std-ref">CASengine</span></a>, if necessary.
 Now, generate a number of copies (either with mcq CLI, or with the command):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py -n <span class="m">50</span> filename.tex
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mcq.py -n <span class="m">50</span> filename.tex
 $ xelatex filename_exam.tex
 $ xelatex filename_exam.tex
 </pre></div>
 </div>
-<p>Remove the <code class="docutils literal"><span class="pre">sol</span></code> option to remove the warning.</p>
-<p>Now, how to split the output <code class="docutils literal"><span class="pre">filename_exam.pdf</span></code> into 50 single PDF documents, and assign
+<p>Remove the <code class="docutils literal notranslate"><span class="pre">sol</span></code> option to remove the warning.</p>
+<p>Now, how to split the output <code class="docutils literal notranslate"><span class="pre">filename_exam.pdf</span></code> into 50 single PDF documents, and assign
 one to each to the students?</p>
-<p>Just use the <code class="docutils literal"><span class="pre">--split-for-moodle=</span></code> option in mcq:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mcq.py --split-for-moodle<span class="o">=</span>templatefile.html filename_exam.pdf
+<p>Just use the <code class="docutils literal notranslate"><span class="pre">--split-for-moodle=</span></code> option in mcq:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mcq.py --split-for-moodle<span class="o">=</span>templatefile.html filename_exam.pdf
 </pre></div>
 </div>
-<p>The file <code class="docutils literal"><span class="pre">templatefile.html</span></code> must exist, and its content is the HTML part of the essay
+<p>The file <code class="docutils literal notranslate"><span class="pre">templatefile.html</span></code> must exist, and its content is the HTML part of the essay
 question given to moodle, with the following <strong>important</strong> two template variables:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">{</span>SecretFolder<span class="o">}</span> <span class="o">=</span> the <span class="s2">&quot;secret&quot;</span> folder were all the files
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>SecretFolder<span class="o">}</span> <span class="o">=</span> the <span class="s2">&quot;secret&quot;</span> folder were all the files
                  will be stored <span class="o">(</span><span class="nb">local</span> and remote<span class="o">)</span>
 <span class="o">{</span>PDF<span class="o">}</span>          <span class="o">=</span> the PDF of the exam
 </pre></div>
 </div>
 <p>The syntax is the <a class="reference external" href="https://docs.python.org/3/library/string.html#formatspec">python strings format</a>
-mini-language: the only two variables are <code class="docutils literal"><span class="pre">{SecretFolder}</span></code> and <code class="docutils literal"><span class="pre">{PDF}</span></code>. If
+mini-language: the only two variables are <code class="docutils literal notranslate"><span class="pre">{SecretFolder}</span></code> and <code class="docutils literal notranslate"><span class="pre">{PDF}</span></code>. If
 one needs to include a brace character in the literal text, it can be escaped by doubling:
-<code class="docutils literal"><span class="pre">{{</span></code> and <code class="docutils literal"><span class="pre">}}</span></code>.</p>
-<p>Example of <code class="docutils literal"><span class="pre">templatefile.html</span></code> content (the first line is <strong>necessary</strong>):</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<code class="docutils literal notranslate"><span class="pre">{{</span></code> and <code class="docutils literal notranslate"><span class="pre">}}</span></code>.</p>
+<p>Example of <code class="docutils literal notranslate"><span class="pre">templatefile.html</span></code> content (the first line is <strong>necessary</strong>):</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.example.com/subdir/{SecretFolder}/{PDF}&quot;</span><span class="p">&gt;</span>
   »Download the PDF document: ({PDF})«
   <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
@@ -184,7 +176,7 @@ one needs to include a brace character in the literal text, it can be escaped by
 </pre></div>
 </div>
 <p>The file I would use:</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.dlfer.xyz/var/{SecretFolder}/{PDF}&quot;</span><span class="p">&gt;</span>
  »Scaricare qui il testo in PDF: ({PDF})«
  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
@@ -196,13 +188,13 @@ one needs to include a brace character in the literal text, it can be escaped by
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>It will split the <code class="docutils literal"><span class="pre">PDF</span></code> document into 50 documents, each tagged with the unique four-characters
+<p>It will split the <code class="docutils literal notranslate"><span class="pre">PDF</span></code> document into 50 documents, each tagged with the unique four-characters
 code of the variant, and generate a <strong>moodle XML</strong> archive of 50 essay questions
-each linking to the proper PDF in the external URL. The files are in a <code class="docutils literal"><span class="pre">SecretFolder</span></code>,
-which means are created and stored in a folder with a hashed name, such as <code class="docutils literal"><span class="pre">7Rse-RseH-seHD</span></code>.</p>
+each linking to the proper PDF in the external URL. The files are in a <code class="docutils literal notranslate"><span class="pre">SecretFolder</span></code>,
+which means are created and stored in a folder with a hashed name, such as <code class="docutils literal notranslate"><span class="pre">7Rse-RseH-seHD</span></code>.</p>
 <p>Upload the folder with the PDF documents to a suitable public website,
 the one set in the template.</p>
-<p>Create a <strong>category</strong> in moodle, or have it defined in tex by <code class="docutils literal"><span class="pre">\moodlecategory{cat}</span></code>.
+<p>Create a <strong>category</strong> in moodle, or have it defined in tex by <code class="docutils literal notranslate"><span class="pre">\moodlecategory{cat}</span></code>.
 Import the XML questions file in the catogory, or get it taken from the moodle XML file.
 Then create a moodle quiz with just one random question taken from the given category.</p>
 <div class="admonition important">
@@ -222,7 +214,7 @@ the PDF files to each one of manually created questions.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">Table Of Contents</a></h3>
+<h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="mcq-quickstart.html">MCQ-XeLaTeX: Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mcqxelatex.html">MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX</a></li>
@@ -244,12 +236,14 @@ the PDF files to each one of manually created questions.</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -260,7 +254,7 @@ the PDF files to each one of manually created questions.</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
