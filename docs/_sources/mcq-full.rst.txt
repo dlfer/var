@@ -776,3 +776,7 @@ JUNKYARD
 
 .. autofunction:: mcq.default_combina_voti
 
+
+.. autofunction:: mcq.check_safe_dvipdfmx
+
+
