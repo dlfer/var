@@ -2,7 +2,7 @@
 MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
 ==================================================================
 
-:Date:   2019-02-07 (update 2022-09-05)
+:Date:   2019-02-07 (updated 2022-11-16)
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
 ========================================================================
@@ -134,8 +134,7 @@ Requirements
 Requirements are very minimal, and the program has been tested on a
 variety of platforms.
 
--  `Python <http://www.python.org>`__. Any version 2.\* or 3.\* should work
-
+-  `Python <http://www.python.org>`__. Any 3.\* should work
 but it's safer to stay with 3 (warning: 2.7.5 might show 
 `this bug <http://bugs.python.org/issue17998>`__). To switch bewteen 2 and 3, 
 just edit the script file :download:`mcq.py <soft/mcq.py>` and
@@ -144,12 +143,18 @@ in the first line replace the word ``'python'`` with the word
 
 -  The (free) OTF font `Linux Libertine <http://www.linuxlibertine.org>`__, 
    or the TTF version (but
-   in this case: plase call the sty package with the \`ttf\` option, and
+   in this case: plase call the sty package with the \`ttf\` option), and
 -  a not-too-old `TeX
    system <http://www.tug.org/texlive/acquire-netinstall.html>`__.
    
    If you do not have one already installed, probably you do not know what
    LaTeX is, and you cannot use MCQ-XeLaTeX.
+-  **WARNING**: on some recent TeX distributions (e.g. texlive 2021) a weird 
+   combination of dvipdfmx and ghostscript configuration files results
+   in a total failure of producing pstricks barcodes with xelatex. 
+   The script is probably warning the user of such a risk. The solution
+   is simple: replace ``dvipdfmx.cfg`` with an unsafe version, such as  
+   ``dvipdfmx-unsafe.cfg``. 
 -  On **windows**: it is not strictly necessary, but it is much better
    to install `pyreadline <https://pypi.python.org/pypi/pyreadline>`__.
    This will allow tab-completion in the interface, and avoid annoying
@@ -278,6 +283,6 @@ Download
 
 -  Example file: :download:`file.tex <soft/file.tex>`
 -  (Xe)LaTeX style file: :download:`mcq.sty <soft/mcq.sty>`
--  Python {2.5?,2.6?,2.7} script: :download:`mcq.py <soft/mcq.py>`
+-  Python 3.? script: :download:`mcq.py <soft/mcq.py>`
 
 

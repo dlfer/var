@@ -40,7 +40,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (update 2022-09-05)</td>
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (updated 2022-11-16)</td>
 </tr>
 </tbody>
 </table>
@@ -157,7 +157,7 @@ marking.</p>
 <p>Requirements are very minimal, and the program has been tested on a
 variety of platforms.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.python.org">Python</a>. Any version 2.* or 3.* should work</li>
+<li><a class="reference external" href="http://www.python.org">Python</a>. Any 3.* should work</li>
 </ul>
 <p>but it’s safer to stay with 3 (warning: 2.7.5 might show
 <a class="reference external" href="http://bugs.python.org/issue17998">this bug</a>). To switch bewteen 2 and 3,
@@ -167,12 +167,19 @@ in the first line replace the word <code class="docutils literal notranslate"><s
 <ul>
 <li><p class="first">The (free) OTF font <a class="reference external" href="http://www.linuxlibertine.org">Linux Libertine</a>,
 or the TTF version (but
-in this case: plase call the sty package with the `ttf` option, and</p>
+in this case: plase call the sty package with the `ttf` option), and</p>
 </li>
 <li><p class="first">a not-too-old <a class="reference external" href="http://www.tug.org/texlive/acquire-netinstall.html">TeX
 system</a>.</p>
 <p>If you do not have one already installed, probably you do not know what
 LaTeX is, and you cannot use MCQ-XeLaTeX.</p>
+</li>
+<li><p class="first"><strong>WARNING</strong>: on some recent TeX distributions (e.g. texlive 2021) a weird
+combination of dvipdfmx and ghostscript configuration files results
+in a total failure of producing pstricks barcodes with xelatex.
+The script is probably warning the user of such a risk. The solution
+is simple: replace <code class="docutils literal notranslate"><span class="pre">dvipdfmx.cfg</span></code> with an unsafe version, such as
+<code class="docutils literal notranslate"><span class="pre">dvipdfmx-unsafe.cfg</span></code>.</p>
 </li>
 <li><p class="first">On <strong>windows</strong>: it is not strictly necessary, but it is much better
 to install <a class="reference external" href="https://pypi.python.org/pypi/pyreadline">pyreadline</a>.
@@ -283,7 +290,7 @@ these terms and conditions.</p>
 <ul class="simple">
 <li>Example file: <a class="reference download internal" download="" href="_downloads/5972613069b63f727d88463773f662c2/file.tex"><code class="xref download docutils literal notranslate"><span class="pre">file.tex</span></code></a></li>
 <li>(Xe)LaTeX style file: <a class="reference download internal" download="" href="_downloads/a7a670f40b50b15891accdb8ccfb2d2a/mcq.sty"><code class="xref download docutils literal notranslate"><span class="pre">mcq.sty</span></code></a></li>
-<li>Python {2.5?,2.6?,2.7} script: <a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a></li>
+<li>Python 3.? script: <a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a></li>
 </ul>
 </div>
 </div>
