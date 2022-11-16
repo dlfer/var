@@ -770,9 +770,6 @@ JUNKYARD
 
 **default_combina_voti ARGOMENTO**:
 
-.. autosimplefunc:: mcq.default_combina_voti
-
-
 
 .. autofunction:: mcq.default_combina_voti
 
