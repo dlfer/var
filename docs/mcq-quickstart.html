@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>MCQ-XeLaTeX: Quickstart &#8212; var  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,6 +22,7 @@
     <link rel="prev" title="Various pieces of software for math and teaching" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -32,19 +32,18 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="mcq-xelatex-quickstart">
+  <section id="mcq-xelatex-quickstart">
 <span id="mcq-quickstart"></span><h1>MCQ-XeLaTeX: Quickstart<a class="headerlink" href="#mcq-xelatex-quickstart" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (updated 2022-09-05)</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="multiple-choice-questions-in-xelatex-and-omr-optical-mark-recognition">
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>2019-02-07 (updated 2022-09-05)</p>
+</dd>
+</dl>
+<section id="multiple-choice-questions-in-xelatex-and-omr-optical-mark-recognition">
 <h2>Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)<a class="headerlink" href="#multiple-choice-questions-in-xelatex-and-omr-optical-mark-recognition" title="Permalink to this headline">¶</a></h2>
 <p>Before anything: a full <strong>TeX Distribution</strong> (such as <a class="reference external" href="http://www.tug.org/texlive/">texlive</a>).
 Check the <a class="reference internal" href="mcqxelatex.html#requirements"><span class="std std-ref">Requirements</span></a>, then download and install both the
@@ -58,8 +57,8 @@ $ chmod +x mcq.py
 </div>
 <p>Of course you can move both files in more appropriate places (<code class="docutils literal notranslate"><span class="pre">/usr/local/bin/mcq.py</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">mcq.sty</span></code> somewhere in  <code class="docutils literal notranslate"><span class="pre">$TEXINPUTS</span></code>).</p>
-<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2022-11-16</p>
-<div class="section" id="usage">
+<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2022-12-17</p>
+<section id="usage">
 <h3>USAGE:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>Just put <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.py">mcq.py</a> in your PATH and run:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
@@ -78,8 +77,8 @@ the phase of the program. For example, if the working directory is
 </div>
 <p>The LaTeX engine to be used is <code class="docutils literal notranslate"><span class="pre">XeLaTeX</span></code>, and the style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has to be
 found by XeLaTeX when compiling.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h3>EXAMPLES:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>The MCQ CLI prompt is here summarized as <code class="docutils literal notranslate"><span class="pre">-&gt;&gt;</span></code>.
 After loading or generating a XeLaTeX exam file <code class="docutils literal notranslate"><span class="pre">file.tex</span></code>, to compile  it:</p>
@@ -95,8 +94,8 @@ modify <code class="docutils literal notranslate"><span class="pre">file.tex</sp
 After printing and delivering it, one can use an OMR service (Optical Mark
 Recognition) or not.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The scanned images of the bubblesheed should be at least 200DPI, grayscale
+<p class="admonition-title">Warning</p>
+<p>The scanned images of the bubblesheed should be at least 200DPI, grayscale
 (better than BW). In PDF format is easier.</p>
 </div>
 <p>Assuming you have a properly configured OMR remote
@@ -116,23 +115,19 @@ of the format:</p>
 <p>It is important to understand the format of this file:</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">The first field <code class="docutils literal notranslate"><span class="pre">FXZH</span></code> is the permutation code of the sheet,</p>
-</li>
-<li><p class="first">the second `` `` is the (empty) field where later the student name will appear,</p>
-</li>
-<li><p class="first">the third <code class="docutils literal notranslate"><span class="pre">193146</span></code> is the student UID number,</p>
-</li>
-<li><p class="first">the fourth <code class="docutils literal notranslate"><span class="pre">AB0*AAAD0</span></code> is the string with the answers. Each question, a character:</p>
+<li><p>The first field <code class="docutils literal notranslate"><span class="pre">FXZH</span></code> is the permutation code of the sheet,</p></li>
+<li><p>the second `` `` is the (empty) field where later the student name will appear,</p></li>
+<li><p>the third <code class="docutils literal notranslate"><span class="pre">193146</span></code> is the student UID number,</p></li>
+<li><p>the fourth <code class="docutils literal notranslate"><span class="pre">AB0*AAAD0</span></code> is the string with the answers. Each question, a character:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">0</span></code> means there is no answer,</li>
-<li><code class="docutils literal notranslate"><span class="pre">*</span></code> means there is more than one answers (and hence not a valid answer),</li>
-<li><code class="docutils literal notranslate"><span class="pre">A</span></code> means the answer is <code class="docutils literal notranslate"><span class="pre">A</span></code> (and the same for <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, …).</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> means there is no answer,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> means there is more than one answers (and hence not a valid answer),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> means the answer is <code class="docutils literal notranslate"><span class="pre">A</span></code> (and the same for <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, …).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">The fifth column is empty here, after the last colon, but can be used later.</p>
-</li>
+<li><p>The fifth column is empty here, after the last colon, but can be used later.</p></li>
 </ol>
 </div></blockquote>
 <p>OMR outputs uppercase letters by default. Lowercase letters can be used when
@@ -170,8 +165,8 @@ part, the score for the second part can be written as the last column of
 <p>Two files will be generated, if everything goes right:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">file_exam.csv</span></code> with the full list of students and scores.</li>
-<li><code class="docutils literal notranslate"><span class="pre">file_exam.txt</span></code> with an anonymized list of UID’s and scores.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_exam.csv</span></code> with the full list of students and scores.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_exam.txt</span></code> with an anonymized list of UID’s and scores.</p></li>
 </ul>
 </div></blockquote>
 <p>Afterwards, <strong>very important</strong>: generate a stats PDF, <code class="docutils literal notranslate"><span class="pre">file_stats.pdf</span></code> where
@@ -199,17 +194,17 @@ and two indicators of each question: the
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>The pseudo-random sequences used to randomize the order of questions and the
 order of the answers is exactly the same, each time one runs the script.
 So, <strong>when things go wrong</strong>, just re-trace all the steps, fix the error
 and nothing is lost.</p>
-<p class="last">Many things can (and usually do) go wrong. The software was built with a few
+<p>Many things can (and usually do) go wrong. The software was built with a few
 failsafe mechanisms, to prevent error propagation and to allow error corrections,
 since there are not irreveversible steps.</p>
 </div>
-</div>
-<div class="section" id="latex">
+</section>
+<section id="latex">
 <h3>LATEX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h3>
 <p>The first time <code class="docutils literal notranslate"><span class="pre">mcq.py</span></code> is executed it will assist the user in generating a LaTeX
 exam file, ready to be modified. This step is not necessary, but useful.</p>
@@ -348,10 +343,11 @@ question:</p>
 <p>In order to choose variants in <code class="docutils literal notranslate"><span class="pre">exe</span></code> question types, the option <code class="docutils literal notranslate"><span class="pre">doexe</span></code> must be
 set when loading <code class="docutils literal notranslate"><span class="pre">mcq.sty</span></code>.</p>
 <blockquote>
-<div>This part is a little bit experimental (see the full documentation for the
-<code class="docutils literal notranslate"><span class="pre">--split-for-moodle</span></code> option).</div></blockquote>
-</div>
-<div class="section" id="options">
+<div><p>This part is a little bit experimental (see the full documentation for the
+<code class="docutils literal notranslate"><span class="pre">--split-for-moodle</span></code> option).</p>
+</div></blockquote>
+</section>
+<section id="options">
 <h3>OPTIONS:<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>There are a few options that might be useful, but please use them only
 for debugging purposes:</p>
@@ -390,12 +386,13 @@ San Francisco, California, 94105, USA.]
 (C)  DLFerrario http://www.dlfer.xyz/var/mcqxelatex.html
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -421,17 +418,15 @@ San Francisco, California, 94105, USA.]
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -440,8 +435,8 @@ San Francisco, California, 94105, USA.]
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/mcq-quickstart.rst.txt"

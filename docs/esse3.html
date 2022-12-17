@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ESSE3: nei meandri della burocrazia &#8212; var  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,6 +22,7 @@
     <link rel="prev" title="MCQ-XeLaTeX: How to use it with Moodle and for online exams" href="mcq-moodle.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -32,19 +32,18 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="esse3-nei-meandri-della-burocrazia">
+  <section id="esse3-nei-meandri-della-burocrazia">
 <h1>ESSE3: nei meandri della burocrazia<a class="headerlink" href="#esse3-nei-meandri-della-burocrazia" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-03-06 (aggiornato 2020-11-03)</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="esse3-py-a-cosa-serve">
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>2019-03-06 (aggiornato 2020-11-03)</p>
+</dd>
+</dl>
+<section id="esse3-py-a-cosa-serve">
 <h2>esse3.py: A cosa serve<a class="headerlink" href="#esse3-py-a-cosa-serve" title="Permalink to this headline">¶</a></h2>
 <p>Automatizza alcune delle fasi delle operazioni più ripetitive della burocrazia accademica:
 compilare il registro delle lezioni, verbalizzare gli esami.</p>
@@ -70,18 +69,17 @@ FILES:
 (C) DLFerrario http://www.dlfer.xyz
 </pre></div>
 </div>
-<div class="section" id="dettaglio-delle-opzioni">
+<section id="dettaglio-delle-opzioni">
 <h3>Dettaglio delle opzioni:<a class="headerlink" href="#dettaglio-delle-opzioni" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">--help,</span> <span class="pre">-h</span></code></dt>
-<dd>Un breve aiuto</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--uid</span> <span class="pre">Nomefile.xls</span></code></dt>
-<dd><p class="first">Produce una lista iscritti formattata come <code class="docutils literal notranslate"><span class="pre">:matricola:cognome,nome:</span></code>,
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--help,</span> <span class="pre">-h</span></code></dt><dd><p>Un breve aiuto</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--uid</span> <span class="pre">Nomefile.xls</span></code></dt><dd><p>Produce una lista iscritti formattata come <code class="docutils literal notranslate"><span class="pre">:matricola:cognome,nome:</span></code>,
 che è già pronta per poter essere usata da <code class="docutils literal notranslate"><span class="pre">mcq.py</span></code>. Il file <code class="docutils literal notranslate"><span class="pre">Nomefile.xls</span></code>
 è il file <em>excel</em> scaricato dal sito delle segreterie online
 (in genere ha il nome <code class="docutils literal notranslate"><span class="pre">ListaStudentiEsameExportExcel.xls</span></code>.
 Un esempio:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ esse3.py --uid ListaStudenti.xls &gt; sc1-Lista.uid
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ esse3.py --uid ListaStudenti.xls &gt; sc1-Lista.uid
 </pre></div>
 </div>
 </dd>
@@ -114,39 +112,39 @@ porta USB del computer, e conoscere qual è il nome del dispositivo:</p>
 </pre></div>
 </div>
 </div></blockquote>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">--yml</span> <span class="pre">ymlfile.yml</span></code></dt>
-<dd>Crea una versione CSV del registro delle lezioni, da compilare tramite il sito delle segreterie online.
-Il formato corretto del file <code class="docutils literal notranslate"><span class="pre">ymlfile</span></code> è una variante locale di <a class="reference external" href="https://yaml.org/">YAML</a>, seguendo questo esempio:</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--yml</span> <span class="pre">ymlfile.yml</span></code></dt><dd><p>Crea una versione CSV del registro delle lezioni, da compilare tramite il sito delle segreterie online.
+Il formato corretto del file <code class="docutils literal notranslate"><span class="pre">ymlfile</span></code> è una variante locale di <a class="reference external" href="https://yaml.org/">YAML</a>, seguendo questo esempio:</p>
+</dd>
 </dl>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># commenti</span>
-<span class="c1">#</span>
-<span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># commenti</span><span class="w"></span>
+<span class="c1">#</span><span class="w"></span>
+<span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span><span class="w"></span>
 
-<span class="nt">orario</span><span class="p">:</span>
-<span class="nt">lun</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">14:30-16:30</span>
-<span class="nt">mar</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">17:30-18:30</span>
-<span class="nt">mer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-19:30</span>
-<span class="nt">gio</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span>
-<span class="nt">ven</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span>
+<span class="nt">orario</span><span class="p">:</span><span class="w"></span>
+<span class="nt">lun</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14:30-16:30</span><span class="w"></span>
+<span class="nt">mar</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17:30-18:30</span><span class="w"></span>
+<span class="nt">mer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16:30-19:30</span><span class="w"></span>
+<span class="nt">gio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span><span class="w"></span>
+<span class="nt">ven</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span><span class="w"></span>
 
-<span class="nt">anno</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2020</span>
-<span class="nt">type</span><span class="p">:</span> <span class="s">&#39;0001&#39;</span>
-<span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span>
-<span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span>
-<span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">L</span>
+<span class="nt">anno</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2020</span><span class="w"></span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0001&#39;</span><span class="w"></span>
+<span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span><span class="w"></span>
+<span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span><span class="w"></span>
+<span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L</span><span class="w"></span>
 
-<span class="nn">---</span>
-<span class="nt">OTT</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">01 *L1,2  Distanza negli spazi vettoriali euclidei.</span>
-<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">02 *L3 Topologia di R^n.</span>
+<span class="nn">---</span><span class="w"></span>
+<span class="nt">OTT</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">01 *L1,2  Distanza negli spazi vettoriali euclidei.</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">02 *L3 Topologia di R^n.</span><span class="w"></span>
 
-<span class="nt">NOV</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">03 *L4 Altro argomento</span>
+<span class="nt">NOV</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">03 *L4 Altro argomento</span><span class="w"></span>
 
-<span class="nn">---</span>
-<span class="nt">GEN</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">04 *L5 Ultima lezione</span>
+<span class="nn">---</span><span class="w"></span>
+<span class="nt">GEN</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">04 *L5 Ultima lezione</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Osservazione importante: le lezioni <strong>devono</strong> iniziare con un trattivo, a
@@ -155,46 +153,47 @@ ignorata (in modo che l’annotazione sul numero di lezioni non compaia nel
 registro).</p>
 <p>Una volta prodotto il file CSV, occorre copia-e-incollarlo nel file XLS delle
 segreterie online, per il registro delle lezioni.</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">--blankyml</span> <span class="pre">ymlfile.yml</span></code></dt>
-<dd>Crea un registro delle lezioni vuoto, con date del calendario indicate.
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--blankyml</span> <span class="pre">ymlfile.yml</span></code></dt><dd><p>Crea un registro delle lezioni vuoto, con date del calendario indicate.
 Verranno elencati tutti i giorni (in cui sono previste lezioni da orario)
 comprese tra le due ISO date di inizio e fine semestre <code class="docutils literal notranslate"><span class="pre">sem-start</span></code> e <code class="docutils literal notranslate"><span class="pre">sem-end</span></code>.
-Il formato corretto del file <code class="docutils literal notranslate"><span class="pre">ymlfile</span></code> è il preambolo di un file yml, come segue:</dd>
+Il formato corretto del file <code class="docutils literal notranslate"><span class="pre">ymlfile</span></code> è il preambolo di un file yml, come segue:</p>
+</dd>
 </dl>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># commenti</span>
-<span class="c1">#</span>
-<span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># commenti</span><span class="w"></span>
+<span class="c1">#</span><span class="w"></span>
+<span class="c1"># Importante le tree dash tra il preambolo e al cambio di anno)</span><span class="w"></span>
 
-<span class="nt">orario</span><span class="p">:</span>
-<span class="nt">lun</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">14:30-16:30</span>
-<span class="nt">mar</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">17:30-18:30</span>
-<span class="nt">mer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-19:30</span>
-<span class="nt">gio</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span>
-<span class="nt">ven</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span>
+<span class="nt">orario</span><span class="p">:</span><span class="w"></span>
+<span class="nt">lun</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14:30-16:30</span><span class="w"></span>
+<span class="nt">mar</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17:30-18:30</span><span class="w"></span>
+<span class="nt">mer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16:30-19:30</span><span class="w"></span>
+<span class="nt">gio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16:30-18:30</span><span class="w"></span>
+<span class="nt">ven</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13:30-15:30</span><span class="w"></span>
 
-<span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">L</span>
+<span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L</span><span class="w"></span>
 
-<span class="nt">sem-start</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2020-10-05</span>
-<span class="nt">sem-end</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2021-01-25</span>
-<span class="nt">anno</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2020</span>
+<span class="nt">sem-start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2020-10-05</span><span class="w"></span>
+<span class="nt">sem-end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2021-01-25</span><span class="w"></span>
+<span class="nt">anno</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2020</span><span class="w"></span>
 
-<span class="nt">type</span><span class="p">:</span> <span class="s">&#39;0001&#39;</span>
-<span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span>
-<span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0001&#39;</span><span class="w"></span>
+<span class="c1"># cfr. file excel scaricato dal sito delle segreterie</span><span class="w"></span>
+<span class="c1"># (lezioni=&#39;0001&#39;, esercitazioni=... )</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="download">
+<section id="download">
 <h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
 <p>Download : <a class="reference download internal" download="" href="_downloads/af20f15929a045beebce9e74cb8c2491/esse3.py"><code class="xref download docutils literal notranslate"><span class="pre">esse3.py</span></code></a></p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -220,17 +219,15 @@ Il formato corretto del file <code class="docutils literal notranslate"><span cl
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -239,8 +236,8 @@ Il formato corretto del file <code class="docutils literal notranslate"><span cl
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/esse3.rst.txt"

@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>MCQ-XeLaTeX: How to use it with Moodle and for online exams &#8212; var  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,6 +22,7 @@
     <link rel="prev" title="MCQ-XeLaTeX Full Documentation" href="mcq-full.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -32,19 +32,18 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="mcq-xelatex-how-to-use-it-with-moodle-and-for-online-exams">
+  <section id="mcq-xelatex-how-to-use-it-with-moodle-and-for-online-exams">
 <span id="mcq-moodle"></span><h1>MCQ-XeLaTeX: How to use it with Moodle and for online exams<a class="headerlink" href="#mcq-xelatex-how-to-use-it-with-moodle-and-for-online-exams" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2020-04-01  (updated 2020-04-23)</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="online-exams-multiple-choice-questions-in-xelatex-and-moodle">
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>2020-04-01  (updated 2020-04-23)</p>
+</dd>
+</dl>
+<section id="online-exams-multiple-choice-questions-in-xelatex-and-moodle">
 <h2>Online exams, Multiple Choice Questions in XeLaTeX, and Moodle<a class="headerlink" href="#online-exams-multiple-choice-questions-in-xelatex-and-moodle" title="Permalink to this headline">¶</a></h2>
 <p>Two types of assessment: <strong>multiple choice question</strong>, and <strong>mathematics essay</strong>.</p>
 <p>The first: on-screen selection of answer from a set of possible choices.
@@ -54,7 +53,7 @@ to a PDF file before the end of the exam, and uploads it as essay to moodle.</p>
 <p>Needed files: last versions of
 <a class="reference download internal" download="" href="_downloads/6e34a7d9b1291da6d2b5601c07b20c57/mcq.py"><code class="xref download docutils literal notranslate"><span class="pre">mcq.py</span></code></a> and
 <a class="reference download internal" download="" href="_downloads/a7a670f40b50b15891accdb8ccfb2d2a/mcq.sty"><code class="xref download docutils literal notranslate"><span class="pre">mcq.sty</span></code></a> .</p>
-<div class="section" id="multiple-choice-questions">
+<section id="multiple-choice-questions">
 <h3>Multiple Choice Questions<a class="headerlink" href="#multiple-choice-questions" title="Permalink to this headline">¶</a></h3>
 <p>As in the <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a> documentation, create a XeLaTeX file with questions,
 default marking values, and answers. An example:</p>
@@ -117,8 +116,8 @@ will be imported in the category <strong>categoryname</strong>
 be generated: each question score is normalized to <strong>1</strong>. Just add all necessary questions
 to a Moodle quiz (permuted answers and questions, duration, …).
 Check <a class="reference internal" href="mcq-full.html#mcq-latex"><span class="std std-ref">LaTeX documentation of mcq.sty</span></a> for full details.</p>
-</div>
-<div class="section" id="essay-questions">
+</section>
+<section id="essay-questions">
 <h3>Essay Questions<a class="headerlink" href="#essay-questions" title="Permalink to this headline">¶</a></h3>
 <p>Being mathematics, you need to give a PDF document as exam, and expect the student to upload
 a PDF document at the end of the exam duration.</p>
@@ -198,18 +197,19 @@ the one set in the template.</p>
 Import the XML questions file in the catogory, or get it taken from the moodle XML file.
 Then create a moodle quiz with just one random question taken from the given category.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">The files are supposed to be hosted in an <strong>external web site</strong> (until I will understand
+<p class="admonition-title">Important</p>
+<p>The files are supposed to be hosted in an <strong>external web site</strong> (until I will understand
 how to predict uploaded file URLs, in moodle), if you want to use the generated moodle_xml.
 Otherwise, just manually create essay questions in moodle and attach each one of
 the PDF files to each one of manually created questions.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -235,17 +235,15 @@ the PDF files to each one of manually created questions.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -254,8 +252,8 @@ the PDF files to each one of manually created questions.</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/mcq-moodle.rst.txt"

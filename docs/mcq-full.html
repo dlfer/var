@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>MCQ-XeLaTeX Full Documentation &#8212; var  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,6 +22,7 @@
     <link rel="prev" title="MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX" href="mcqxelatex.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -32,19 +32,18 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="mcq-xelatex-full-documentation">
+  <section id="mcq-xelatex-full-documentation">
 <h1>MCQ-XeLaTeX Full Documentation<a class="headerlink" href="#mcq-xelatex-full-documentation" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-02-07 (updated 2022-08-28)</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="latex-documentation-of-mcq-sty">
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>2019-02-07 (updated 2022-08-28)</p>
+</dd>
+</dl>
+<section id="latex-documentation-of-mcq-sty">
 <span id="mcq-latex"></span><h2>LaTeX documentation of mcq.sty<a class="headerlink" href="#latex-documentation-of-mcq-sty" title="Permalink to this headline">¶</a></h2>
 <p>The package can be called with any latex class, but recommended classes
 are <code class="docutils literal notranslate"><span class="pre">article</span></code> (for Multiple Choice Questions and Optical Mark Recognition).
@@ -61,80 +60,79 @@ somewhere. For example, in <a class="reference external" href="https://help.ubun
 <span class="s">$</span> texhash
 </pre></div>
 </div>
-<div class="section" id="package-options">
+<section id="package-options">
 <h3>Package options:<a class="headerlink" href="#package-options" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">bubblesheet</span></code></dt>
-<dd>Print a cover sheet with the grid of bubbles (to be filled) for student UID and
-answers.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">dsa</span></code></dt>
-<dd><p class="first">Use <a class="reference external" href="https://www.opendyslexic.org">OpenDyslexic</a> font, a typeface for Dyslexia.
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">bubblesheet</span></code></dt><dd><p>Print a cover sheet with the grid of bubbles (to be filled) for student UID and
+answers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dsa</span></code></dt><dd><p>Use <a class="reference external" href="https://www.opendyslexic.org">OpenDyslexic</a> font, a typeface for Dyslexia.
 It has to be installed on the system. On ubuntu linux, for example:</p>
-<div class="last highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> sudo apt install fonts</span><span class="o">-</span><span class="nb">opendyslexic</span>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> sudo apt install fonts</span><span class="o">-</span><span class="nb">opendyslexic</span>
 </pre></div>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">extrasheet</span></code></dt>
-<dd>Print a second bubblesheet after the first, just in case, if the students are
+<dt><code class="docutils literal notranslate"><span class="pre">extrasheet</span></code></dt><dd><p>Print a second bubblesheet after the first, just in case, if the students are
 considered not careful enough in filling the bubbles (and therefore a high percentage will
-do a mistake).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">namedheader</span></code></dt>
-<dd>Print a named header, useful for when a multi-page document has to be returned by students,
-and therefore they need to write their own name on each sheet.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">noblankpage</span></code></dt>
-<dd>Do not print a blank page after the <code class="docutils literal notranslate"><span class="pre">bubblesheet</span></code> page. Usefule if one does not print
-on duplex printers.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">sol</span></code></dt>
-<dd>With this option, an explicit graphic mark will highlight the (correct) answers. Userful for
+do a mistake).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">namedheader</span></code></dt><dd><p>Print a named header, useful for when a multi-page document has to be returned by students,
+and therefore they need to write their own name on each sheet.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">noblankpage</span></code></dt><dd><p>Do not print a blank page after the <code class="docutils literal notranslate"><span class="pre">bubblesheet</span></code> page. Usefule if one does not print
+on duplex printers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sol</span></code></dt><dd><p>With this option, an explicit graphic mark will highlight the (correct) answers. Userful for
 proof-reading the exam document, but <strong>absolutely</strong> to remove befor generating
-the real production document.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ttf</span></code></dt>
-<dd>Use the TTF version of <a class="reference external" href="http://libertine-fonts.org/">Linux Libertine</a> instead of the
-default OTF version.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">doexe</span></code></dt>
-<dd>when generating copies for the individual sheets, include not only <code class="docutils literal notranslate"><span class="pre">exerm</span></code> style questions,
-but also open-answer questions <code class="docutils literal notranslate"><span class="pre">\begin{exe}...\end{exe}</span></code></dd>
+the real production document.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ttf</span></code></dt><dd><p>Use the TTF version of <a class="reference external" href="http://libertine-fonts.org/">Linux Libertine</a> instead of the
+default OTF version.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">doexe</span></code></dt><dd><p>when generating copies for the individual sheets, include not only <code class="docutils literal notranslate"><span class="pre">exerm</span></code> style questions,
+but also open-answer questions <code class="docutils literal notranslate"><span class="pre">\begin{exe}...\end{exe}</span></code></p>
+</dd>
 </dl>
-</div>
-<div class="section" id="preamble-commands">
+</section>
+<section id="preamble-commands">
 <h3>Preamble commands:<a class="headerlink" href="#preamble-commands" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">\puntigiusta{&lt;number&gt;}</span></code></dt>
-<dd>Number of points (float or signed integer) assigned to a correct answer. Typical value: <em>n - 1</em>, where
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">\puntigiusta{&lt;number&gt;}</span></code></dt><dd><p>Number of points (float or signed integer) assigned to a correct answer. Typical value: <em>n - 1</em>, where
 <em>n</em>  is the  number of answers.
-Dafault value: <code class="docutils literal notranslate"><span class="pre">1</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\puntisbagliata{&lt;number&gt;}</span></code></dt>
-<dd>Number of points (float or signed integer) assigned to a wrong answer. Typical value: <em>-1</em>.  Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\puntiempty{&lt;number&gt;}</span></code></dt>
-<dd>Number of points (float or signed integer) assigned to a ungiven answer. Typical value: <em>0</em>. Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\formulavoto{&lt;python</span> <span class="pre">expression</span> <span class="pre">in</span> <span class="pre">x</span> <span class="pre">and</span> <span class="pre">y&gt;}</span></code></dt>
-<dd>Formula to aggregate <em>x</em> = &lt;MCQ_MARK&gt; and <em>y</em> = &lt;OPTIONAL_MARK&gt;.
+Dafault value: <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\puntisbagliata{&lt;number&gt;}</span></code></dt><dd><p>Number of points (float or signed integer) assigned to a wrong answer. Typical value: <em>-1</em>.  Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\puntiempty{&lt;number&gt;}</span></code></dt><dd><p>Number of points (float or signed integer) assigned to a ungiven answer. Typical value: <em>0</em>. Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\formulavoto{&lt;python</span> <span class="pre">expression</span> <span class="pre">in</span> <span class="pre">x</span> <span class="pre">and</span> <span class="pre">y&gt;}</span></code></dt><dd><p>Formula to aggregate <em>x</em> = &lt;MCQ_MARK&gt; and <em>y</em> = &lt;OPTIONAL_MARK&gt;.
 The exam might consist of a Multiple-Choice part, followed by some
 open questions or exercises. The mark of the MCQ part will be
 computed automatically, and denoted by &lt;MCQ_MARK&gt;. The mark of the
 open-ended part needs to be given by your grading.
-This formula is simply the way to sum the two parts, in python syntax.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\UIDdigits{number}</span></code></dt>
-<dd>Number of UID digits. Default value: <code class="docutils literal notranslate"><span class="pre">6</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\headline{text}</span></code></dt>
-<dd>Headline of the page (with info about the exam).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\englishinfo</span></code></dt>
-<dd>Choose <code class="docutils literal notranslate"><span class="pre">English</span></code> language, instead of Italian, for the front sheet info.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\variantlabel{ABC}</span></code></dt>
-<dd>Optional label to prepend to the permutation code of each sheet.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\moodlecategory{categoryname/subcategory}</span></code></dt>
-<dd>Optional category name, in case a GIFT export is planned.</dd>
+This formula is simply the way to sum the two parts, in python syntax.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\UIDdigits{number}</span></code></dt><dd><p>Number of UID digits. Default value: <code class="docutils literal notranslate"><span class="pre">6</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\headline{text}</span></code></dt><dd><p>Headline of the page (with info about the exam).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\englishinfo</span></code></dt><dd><p>Choose <code class="docutils literal notranslate"><span class="pre">English</span></code> language, instead of Italian, for the front sheet info.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\variantlabel{ABC}</span></code></dt><dd><p>Optional label to prepend to the permutation code of each sheet.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\moodlecategory{categoryname/subcategory}</span></code></dt><dd><p>Optional category name, in case a GIFT export is planned.</p>
+</dd>
 </dl>
-</div>
-<div class="section" id="environments-and-list-of-questions">
+</section>
+<section id="environments-and-list-of-questions">
 <h3>Environments and list of questions:<a class="headerlink" href="#environments-and-list-of-questions" title="Permalink to this headline">¶</a></h3>
 <p>Just after the <code class="docutils literal notranslate"><span class="pre">\begin{document}</span></code>, one of the two following commands should appear:</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">\nomeesame</span></code></dt>
-<dd>Write <code class="docutils literal notranslate"><span class="pre">\Cognomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Nomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Firmaname:\dotfill</span></code>,
-or an analogue.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\bubblesheet[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">columns]{number</span> <span class="pre">of</span> <span class="pre">questions}{number</span> <span class="pre">of</span> <span class="pre">anwsers}</span></code></dt>
-<dd>Print a cover page with fillable bubbles, to be fed to a document scanner and OMR.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">\nomeesame</span></code></dt><dd><p>Write <code class="docutils literal notranslate"><span class="pre">\Cognomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Nomename:</span> <span class="pre">\dotfill</span> <span class="pre">\Firmaname:\dotfill</span></code>,
+or an analogue.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\bubblesheet[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">columns]{number</span> <span class="pre">of</span> <span class="pre">questions}{number</span> <span class="pre">of</span> <span class="pre">anwsers}</span></code></dt><dd><p>Print a cover page with fillable bubbles, to be fed to a document scanner and OMR.</p>
+</dd>
 </dl>
 <p>Then, there will be all questions/exercises, grouped in some environments.
 The top (numbered or *-numbered) environment is <code class="docutils literal notranslate"><span class="pre">esercizi</span></code>, which surrounds the list of questions,
@@ -243,8 +241,8 @@ How much is <span class="s">$</span><span class="m">1</span><span class="o">+</s
 <span class="nb">{}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="questions-with-variants">
+</section>
+<section id="questions-with-variants">
 <h3>Questions with variants:<a class="headerlink" href="#questions-with-variants" title="Permalink to this headline">¶</a></h3>
 <p>Instead of just permuting the questions and the answers, it can
 randomly choose variants (with different numerical values, or different
@@ -279,20 +277,20 @@ questions and different answers) of the questions.</p>
 </div>
 <p>The same can be done with <code class="docutils literal notranslate"><span class="pre">\begin{exe}</span> <span class="pre">...</span> <span class="pre">\end{exe}</span></code> type exercises.</p>
 <p>When exportin in moodle GIFT format, all the variants will be sequentially exported.</p>
-</div>
-<div class="section" id="other-commands">
+</section>
+<section id="other-commands">
 <h3>Other commands:<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">\begin{sol}</span> <span class="pre">...</span> <span class="pre">\end{sol}</span></code></dt>
-<dd>It is a proof-like environment, for solutions of exercises.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\WarningSign</span></code></dt>
-<dd>Default: the string <code class="docutils literal notranslate"><span class="pre">★★!!★★``</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\OrnamentalBreak</span></code></dt>
-<dd>An ornamental break (centered).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\blank{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
-<dd>Will draw a blank line with space for a solution (until the end of the line).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\blankarea[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows]{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt>
-<dd>Will draw a blank area with space for a solution.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">\begin{sol}</span> <span class="pre">...</span> <span class="pre">\end{sol}</span></code></dt><dd><p>It is a proof-like environment, for solutions of exercises.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\WarningSign</span></code></dt><dd><p>Default: the string <code class="docutils literal notranslate"><span class="pre">★★!!★★``</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\OrnamentalBreak</span></code></dt><dd><p>An ornamental break (centered).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\blank{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt><dd><p>Will draw a blank line with space for a solution (until the end of the line).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\blankarea[optional</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows]{Text</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">solution}</span></code></dt><dd><p>Will draw a blank area with space for a solution.</p>
+</dd>
 </dl>
 <p>When compiled with the <code class="docutils literal notranslate"><span class="pre">sol</span></code> option:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[sol]</span><span class="nb">{</span>mcq<span class="nb">}</span>
@@ -301,39 +299,39 @@ questions and different answers) of the questions.</p>
 <p>the blank areas/lines will be filled with the texts of the solutions.
 Otherwise, they will be white or filled with squares. The default number of rows is 10, if omitted.
 Otherwise, it can be any positive integer.</p>
-</div>
-<div class="section" id="latex-variables">
+</section>
+<section id="latex-variables">
 <h3>LaTeX variables:<a class="headerlink" href="#latex-variables" title="Permalink to this headline">¶</a></h3>
 <p>can be redefined with <code class="docutils literal notranslate"><span class="pre">\renewcommand</span></code>, and are meant for internal use):</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">\geninfo</span></code></dt>
-<dd>Definition of the text giving the instructions/info about the test/exam.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\ansinfo</span></code></dt>
-<dd>Text to write before the bubblesheet answers.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\uidname</span></code></dt>
-<dd>Name of the UID. Default: <code class="docutils literal notranslate"><span class="pre">Matricola</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\Cognomename</span></code></dt>
-<dd>Name of FamilyName. Default: <code class="docutils literal notranslate"><span class="pre">Cognome</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\Nomename</span></code></dt>
-<dd>Name of GivenName. Default: <code class="docutils literal notranslate"><span class="pre">Nome</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\Firmaname</span></code></dt>
-<dd>Name of the signature. Default: <code class="docutils literal notranslate"><span class="pre">Firma</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\SolName</span></code></dt>
-<dd>Name of the solution. Default: <code class="docutils literal notranslate"><span class="pre">Soluzione</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\squarebox</span></code></dt>
-<dd>The character for the symbol appearing on the left of each possible item-answer.
-Check that the characters is included in the font Linux Libertine first.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">\variantlabel</span></code></dt>
-<dd>A label (possibly empty) to prepend to each permutation code.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">\geninfo</span></code></dt><dd><p>Definition of the text giving the instructions/info about the test/exam.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\ansinfo</span></code></dt><dd><p>Text to write before the bubblesheet answers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\uidname</span></code></dt><dd><p>Name of the UID. Default: <code class="docutils literal notranslate"><span class="pre">Matricola</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\Cognomename</span></code></dt><dd><p>Name of FamilyName. Default: <code class="docutils literal notranslate"><span class="pre">Cognome</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\Nomename</span></code></dt><dd><p>Name of GivenName. Default: <code class="docutils literal notranslate"><span class="pre">Nome</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\Firmaname</span></code></dt><dd><p>Name of the signature. Default: <code class="docutils literal notranslate"><span class="pre">Firma</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\SolName</span></code></dt><dd><p>Name of the solution. Default: <code class="docutils literal notranslate"><span class="pre">Soluzione</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\squarebox</span></code></dt><dd><p>The character for the symbol appearing on the left of each possible item-answer.
+Check that the characters is included in the font Linux Libertine first.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">\variantlabel</span></code></dt><dd><p>A label (possibly empty) to prepend to each permutation code.</p>
+</dd>
 </dl>
-</div>
-<div class="section" id="further-commands">
+</section>
+<section id="further-commands">
 <h3>Further commands:<a class="headerlink" href="#further-commands" title="Permalink to this headline">¶</a></h3>
 <p>Other commands can be included in the [optional] file <cite>mcq_commands.tex</cite>. If it
 exists, it is included and processed automatically. If it does not exists,
 nothing is done (read the logs to see what happended).</p>
-</div>
-<div class="section" id="mcq-w-bubblesheet-example">
+</section>
+<section id="mcq-w-bubblesheet-example">
 <h3>MCQ w/Bubblesheet example:<a class="headerlink" href="#mcq-w-bubblesheet-example" title="Permalink to this headline">¶</a></h3>
 <p>An example of MCQ exam with bubblesheet (try to compile it with or without the
 <code class="docutils literal notranslate"><span class="pre">sol</span></code> package option):</p>
@@ -412,8 +410,8 @@ nothing is done (read the logs to see what happended).</p>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="an-exam-class-example">
+</section>
+<section id="an-exam-class-example">
 <span id="exam"></span><h3>An exam class example:<a class="headerlink" href="#an-exam-class-example" title="Permalink to this headline">¶</a></h3>
 <p>Some commands taken from  the <a class="reference external" href="http://www-math.mit.edu/~psh/exam/examdoc.pdf">exam latex class</a>:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>exam<span class="nb">}</span>
@@ -504,9 +502,9 @@ Determinare in quali punti di <span class="s">$</span><span class="nv">\mathbb</
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="documentation-of-the-cli">
+</section>
+</section>
+<section id="documentation-of-the-cli">
 <span id="mcq-cli"></span><h2>Documentation of the CLI<a class="headerlink" href="#documentation-of-the-cli" title="Permalink to this headline">¶</a></h2>
 <p>The Command Line Interface, which runs simply by:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
@@ -534,9 +532,9 @@ create -&gt; active;
 <p>After this,  several commands are available, each with their own help (see below,
 prepending <code class="docutils literal notranslate"><span class="pre">do_</span></code> with the commands: for example, <code class="docutils literal notranslate"><span class="pre">do_x</span></code> will
 give the help for the command <code class="docutils literal notranslate"><span class="pre">x</span></code> in the CLI.</p>
-<dl class="class">
-<dt id="mcq.uiMasterFile">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.uiMasterFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">uiMasterFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main Commands (type <code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>status                 : show MCQ-XeLaTex status
 make                   : compile the main TeX file &lt;main&gt;.tex (with XeLaTeX)
@@ -556,8 +554,8 @@ q                      : quit (without clearing the status)
 </dd></dl>
 
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Quitting the CLI keeps a persistent status, found in pickle objects saved in the
+<p class="admonition-title">Important</p>
+<p>Quitting the CLI keeps a persistent status, found in pickle objects saved in the
 home directory. Next time <code class="docutils literal notranslate"><span class="pre">mcq.py</span></code> is run, it will start from where left.</p>
 </div>
 <p>Assuming the exam file name is <code class="docutils literal notranslate"><span class="pre">f.tex</span></code>, the following hierarchy of files
@@ -604,8 +602,8 @@ stats -&gt; main [ label = &quot; check stats\n and fix f.tex &quot; ];
 
 stats -&gt; end [label = &quot; x &quot; ];
 }" class="graphviz" /></div>
-</div>
-<div class="section" id="managing-and-using-a-question-bank-with-random-choices">
+</section>
+<section id="managing-and-using-a-question-bank-with-random-choices">
 <span id="mcq-qb"></span><h2>Managing and using a Question Bank with Random Choices<a class="headerlink" href="#managing-and-using-a-question-bank-with-random-choices" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">question</span> <span class="pre">bank</span></code> is simply a folder where there are TeX files with
 mcq.sty questions in them. Operating on question banks allows to
@@ -647,8 +645,8 @@ add 1 from lebes2.tex
 add 1 from hilbert.tex
 </pre></div>
 </div>
-</div>
-<div class="section" id="exporting-to-other-formats-html-and-gift">
+</section>
+<section id="exporting-to-other-formats-html-and-gift">
 <span id="mcq-export"></span><h2>Exporting to other formats: HTML and GIFT<a class="headerlink" href="#exporting-to-other-formats-html-and-gift" title="Permalink to this headline">¶</a></h2>
 <p>The commandline:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py </span><span class="o">--</span><span class="nb">gift filename.tex &gt; questions.gift</span>
@@ -672,143 +670,143 @@ will be categorized under the moodle GIFT category:</p>
 <p>to facilitate categorized GIFT importing into MOODLE question banks.</p>
 <p>Exactly the same function is provided by the <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">filename.gift</span></code> in the command
 line user interface.</p>
-</div>
-<div class="section" id="when-things-go-wrong">
+</section>
+<section id="when-things-go-wrong">
 <span id="mcq-errors"></span><h2>When things go wrong<a class="headerlink" href="#when-things-go-wrong" title="Permalink to this headline">¶</a></h2>
 <p>(TODO)</p>
-</div>
-<div class="section" id="advanced-usage-command-line-options">
+</section>
+<section id="advanced-usage-command-line-options">
 <span id="mcq-options"></span><h2>Advanced usage: command line options<a class="headerlink" href="#advanced-usage-command-line-options" title="Permalink to this headline">¶</a></h2>
 <p>(TODO)</p>
 <hr class="docutils" />
-</div>
-<div class="section" id="mcq-as-a-python-module-mcq-classes">
+</section>
+<section id="mcq-as-a-python-module-mcq-classes">
 <span id="mcq-python"></span><h2>mcq as a python module: mcq CLASSES<a class="headerlink" href="#mcq-as-a-python-module-mcq-classes" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="mcq.Esercizio">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">Esercizio</code><span class="sig-paren">(</span><em>testo</em>, <em>type='EXERM'</em>, <em>numero_colonne=1</em>, <em>risposte=None</em>, <em>src=''</em>, <em>fb=None</em>, <em>coda=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.Esercizio">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">Esercizio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EXERM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numero_colonne</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">risposte</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coda</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class for exercises</p>
-<dl class="method">
-<dt id="mcq.Esercizio.latex_perm">
-<code class="descname">latex_perm</code><span class="sig-paren">(</span><em>perm</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_perm" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.Esercizio.latex_perm">
+<span class="sig-name descname"><span class="pre">latex_perm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">perm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_perm" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a latex representation of the exercise,
 with permuted answers.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.Esercizio.latex_withstats">
-<code class="descname">latex_withstats</code><span class="sig-paren">(</span><em>stats</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_withstats" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.Esercizio.latex_withstats">
+<span class="sig-name descname"><span class="pre">latex_withstats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stats</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Esercizio.latex_withstats" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a latex (unpermuted) representation of the exercise,
 together with statistical data annotations.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.MultiEsercizio">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">MultiEsercizio</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.MultiEsercizio" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.MultiEsercizio">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">MultiEsercizio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.MultiEsercizio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.Risposta">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">Risposta</code><span class="sig-paren">(</span><em>testo</em>, <em>giusta=False</em>, <em>punti=None</em>, <em>fb=None</em>, <em>src=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Risposta" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.Risposta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">Risposta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">giusta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">punti</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.Risposta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.myTerm">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">myTerm</code><span class="sig-paren">(</span><em>output=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em>, <em>prompt='mcq-&gt; '</em>, <em>number_of_columns=79</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.myTerm" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.myTerm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">myTerm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt='mcq-&gt;</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_columns=79</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.myTerm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.ExamFile">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">ExamFile</code><span class="sig-paren">(</span><em>abspath</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.ExamFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">ExamFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abspath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="mcq.ExamFile.show_status">
-<code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.show_status" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.ExamFile.show_status">
+<span class="sig-name descname"><span class="pre">show_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.show_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the poset of dependencies</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.ExamFile.view">
-<code class="descname">view</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.view" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.ExamFile.view">
+<span class="sig-name descname"><span class="pre">view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.ExamFile.view" title="Permalink to this definition">¶</a></dt>
 <dd><p>View status, log, …</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.uiShell">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiShell</code><span class="sig-paren">(</span><em>name</em>, <em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.uiShell">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">uiShell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cmd.Cmd</span></code></p>
-<dl class="method">
-<dt id="mcq.uiShell.emptyline">
-<code class="descname">emptyline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.emptyline" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.emptyline">
+<span class="sig-name descname"><span class="pre">emptyline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.emptyline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called when an empty line is entered in response to the prompt.</p>
 <p>If this method is not overridden, it repeats the last nonempty
 command entered.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.do_shell">
-<code class="descname">do_shell</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_shell" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.do_shell">
+<span class="sig-name descname"><span class="pre">do_shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_shell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shell (direct) commands</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.do_open">
-<code class="descname">do_open</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_open" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.do_open">
+<span class="sig-name descname"><span class="pre">do_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; open &lt;file&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Open PDF/TXT/CVS/… file with the appropriate program
 (according to system configuration / mime-types / OS… )</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; open main_answers.pdf
--&gt;&gt; open main_answers.txt
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="n">main_answers</span><span class="p">.</span><span class="n">pdf</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="n">main_answers</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.precmd">
-<code class="descname">precmd</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.precmd" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.precmd">
+<span class="sig-name descname"><span class="pre">precmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.precmd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hook method executed just before the command line is
 interpreted, but after the input prompt is generated and issued.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.do_EOF">
-<code class="descname">do_EOF</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_EOF" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.do_EOF">
+<span class="sig-name descname"><span class="pre">do_EOF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_EOF" title="Permalink to this definition">¶</a></dt>
 <dd><p>EndOfFile (equivalent to Quit)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.do_x">
-<code class="descname">do_x</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_x" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.do_x">
+<span class="sig-name descname"><span class="pre">do_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exit (interrupting everything and not saving)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.help_help">
-<code class="descname">help_help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.help_help" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.help_help">
+<span class="sig-name descname"><span class="pre">help_help</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.help_help" title="Permalink to this definition">¶</a></dt>
 <dd><p>help</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.do_q">
-<code class="descname">do_q</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_q" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.do_q">
+<span class="sig-name descname"><span class="pre">do_q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.do_q" title="Permalink to this definition">¶</a></dt>
 <dd><p>Quit (saving status)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiShell.completedefault">
-<code class="descname">completedefault</code><span class="sig-paren">(</span><em>text</em>, <em>line</em>, <em>begidx</em>, <em>endidx</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.completedefault" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiShell.completedefault">
+<span class="sig-name descname"><span class="pre">completedefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">begidx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endidx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiShell.completedefault" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method called to complete an input line when no command-specific
 complete_*() method is available.</p>
 <p>By default, it returns an empty list.</p>
@@ -816,15 +814,15 @@ complete_*() method is available.</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.uiFileNavigator">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiFileNavigator</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.uiFileNavigator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">uiFileNavigator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcq.uiShell</span></code></a></p>
-<dl class="method">
-<dt id="mcq.uiFileNavigator.do_ls">
-<code class="descname">do_ls</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_ls" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiFileNavigator.do_ls">
+<span class="sig-name descname"><span class="pre">do_ls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_ls" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ls [&lt;path&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Return the list of .TeX files or directories containing TeX files
@@ -832,104 +830,105 @@ or directories. If the optional argument &lt;path&gt; is missing,
 the current dir will be listed.</p>
 <blockquote>
 <div><ul class="simple">
-<li>If &lt;path&gt; is a directory, its content will be listed.</li>
-<li>If &lt;path&gt; is a file, just this file will be listed.</li>
+<li><p>If &lt;path&gt; is a directory, its content will be listed.</p></li>
+<li><p>If &lt;path&gt; is a file, just this file will be listed.</p></li>
 </ul>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiFileNavigator.do_cd">
-<code class="descname">do_cd</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_cd" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiFileNavigator.do_cd">
+<span class="sig-name descname"><span class="pre">do_cd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_cd" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; cd [&lt;dir&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">dir</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Change working directory to directory &lt;arg&gt;. With no &lt;dir&gt; argument,
 it will go to the Home Directory.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiFileNavigator.do_load">
-<code class="descname">do_load</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_load" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiFileNavigator.do_load">
+<span class="sig-name descname"><span class="pre">do_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiFileNavigator.do_load" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load &lt;mainfile&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="o">&lt;</span><span class="n">mainfile</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This commands simply loads the MCQ-XeLaTeX file &lt;mainfile&gt;.
 Use ls, cd and tab-completion to locate the file, first.</p>
 <p>EQUIVALENT EXAMPLES:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load main.tex
--&gt;&gt; load main
--&gt;&gt; load mai&lt;TAB&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">main</span><span class="o">.</span><span class="n">tex</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">main</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">mai</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt>
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiMasterFile</code><span class="sig-paren">(</span><em>term=None</em><span class="sig-paren">)</span></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">uiMasterFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcq.uiShell</span></code></a></p>
 <p>Main Commands (type <code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">&lt;command&gt;</span></code> for help):</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">status</span>                 <span class="o">:</span> <span class="n">show</span> <span class="n">MCQ</span><span class="o">-</span><span class="n">XeLaTex</span> <span class="n">status</span>
-<span class="n">make</span>                   <span class="o">:</span> <span class="n">compile</span> <span class="n">the</span> <span class="n">main</span> <span class="n">TeX</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;.</span><span class="n">tex</span> <span class="o">(</span><span class="k">with</span> <span class="n">XeLaTeX</span><span class="o">)</span>
-<span class="n">exam</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span>               <span class="o">:</span> <span class="n">gen</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">exam</span> <span class="n">permuted</span> <span class="n">copies</span> <span class="o">-&gt;</span> <span class="o">*</span><span class="n">_exam</span><span class="o">.{</span><span class="n">tex</span><span class="o">,</span><span class="n">pdf</span><span class="o">}</span>
-<span class="n">omr</span> <span class="o">&lt;</span><span class="n">scanfiles</span><span class="o">*.</span><span class="n">pdf</span><span class="o">&gt;</span>   <span class="o">:</span> <span class="kd">get</span> <span class="n">the</span> <span class="n">OMR</span>  <span class="n">answers</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_answers</span><span class="o">.</span><span class="na">txt</span>
-<span class="n">open</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>            <span class="o">:</span> <span class="n">open</span> <span class="n">and</span> <span class="n">view</span><span class="o">/</span><span class="n">edit</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span> <span class="k">with</span> <span class="n">appropriate</span> <span class="n">program</span>
-<span class="n">uid</span> <span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;][:&lt;</span><span class="n">specs</span><span class="o">&gt;]</span> <span class="o">:</span> <span class="n">align</span> <span class="n">UIDs</span> <span class="k">with</span> <span class="n">names</span><span class="o">,</span> <span class="n">following</span> <span class="n">specs</span>  <span class="o">(</span><span class="k">in</span><span class="o">-</span><span class="n">place</span><span class="o">)</span>
-<span class="n">mark</span> <span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;]</span>          <span class="o">:</span> <span class="n">evaluate</span> <span class="n">and</span> <span class="n">mark</span><span class="o">,</span> <span class="n">via</span> <span class="n">answers</span> <span class="n">file</span> <span class="o">(</span><span class="k">default</span> <span class="n">given</span><span class="o">)</span>
-<span class="n">makestats</span>              <span class="o">:</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">STATS</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_stats</span><span class="o">.</span><span class="na">pdf</span>
-<span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">,</span> <span class="k">in</span> <span class="n">GIFT</span> <span class="n">moodle</span> <span class="n">format</span> <span class="o">(.</span><span class="n">txt</span> <span class="n">ext</span> <span class="n">appended</span><span class="o">)</span>
-<span class="n">export</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">export</span> <span class="n">to</span> <span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">,</span> <span class="k">in</span> <span class="n">HTML</span> <span class="n">format</span>
-<span class="o">!</span> <span class="o">&lt;</span><span class="n">shell</span> <span class="n">commands</span><span class="o">&gt;</span>     <span class="o">:</span> <span class="n">execute</span> <span class="n">directly</span> <span class="n">shell</span> <span class="n">commands</span>
-<span class="n">x</span>                      <span class="o">:</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">status</span> <span class="n">and</span> <span class="n">go</span> <span class="n">to</span> <span class="n">main</span> <span class="n">menu</span>
-<span class="n">q</span>                      <span class="o">:</span> <span class="n">quit</span> <span class="o">(</span><span class="n">without</span> <span class="n">clearing</span> <span class="n">the</span> <span class="n">status</span><span class="o">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w">                 </span><span class="o">:</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="n">MCQ</span><span class="o">-</span><span class="n">XeLaTex</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
+<span class="n">make</span><span class="w">                   </span><span class="o">:</span><span class="w"> </span><span class="n">compile</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="n">TeX</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;.</span><span class="n">tex</span><span class="w"> </span><span class="o">(</span><span class="k">with</span><span class="w"> </span><span class="n">XeLaTeX</span><span class="o">)</span><span class="w"></span>
+<span class="n">exam</span><span class="w"> </span><span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span><span class="w">               </span><span class="o">:</span><span class="w"> </span><span class="n">gen</span><span class="w"> </span><span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span><span class="w"> </span><span class="n">exam</span><span class="w"> </span><span class="n">permuted</span><span class="w"> </span><span class="n">copies</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">_exam</span><span class="o">.{</span><span class="n">tex</span><span class="o">,</span><span class="n">pdf</span><span class="o">}</span><span class="w"></span>
+<span class="n">omr</span><span class="w"> </span><span class="o">&lt;</span><span class="n">scanfiles</span><span class="o">*.</span><span class="n">pdf</span><span class="o">&gt;</span><span class="w">   </span><span class="o">:</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">OMR</span><span class="w">  </span><span class="n">answers</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_answers</span><span class="o">.</span><span class="na">txt</span><span class="w"></span>
+<span class="n">open</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span><span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">view</span><span class="o">/</span><span class="n">edit</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">appropriate</span><span class="w"> </span><span class="n">program</span><span class="w"></span>
+<span class="n">uid</span><span class="w"> </span><span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;][:&lt;</span><span class="n">specs</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">align</span><span class="w"> </span><span class="n">UIDs</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">names</span><span class="o">,</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">specs</span><span class="w">  </span><span class="o">(</span><span class="k">in</span><span class="o">-</span><span class="n">place</span><span class="o">)</span><span class="w"></span>
+<span class="n">mark</span><span class="w"> </span><span class="o">[&lt;</span><span class="n">file</span><span class="o">&gt;]</span><span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="n">evaluate</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">mark</span><span class="o">,</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">answers</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">(</span><span class="k">default</span><span class="w"> </span><span class="n">given</span><span class="o">)</span><span class="w"></span>
+<span class="n">makestats</span><span class="w">              </span><span class="o">:</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">STATS</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">&lt;</span><span class="n">main</span><span class="o">&gt;</span><span class="n">_stats</span><span class="o">.</span><span class="na">pdf</span><span class="w"></span>
+<span class="n">export</span><span class="w"> </span><span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">&gt;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">export</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">filename</span><span class="o">.</span><span class="na">gift</span><span class="o">,</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">GIFT</span><span class="w"> </span><span class="n">moodle</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">(.</span><span class="n">txt</span><span class="w"> </span><span class="n">ext</span><span class="w"> </span><span class="n">appended</span><span class="o">)</span><span class="w"></span>
+<span class="n">export</span><span class="w"> </span><span class="o">&lt;</span><span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">&gt;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">export</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">filename</span><span class="o">.</span><span class="na">html</span><span class="o">,</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">HTML</span><span class="w"> </span><span class="n">format</span><span class="w"></span>
+<span class="o">!</span><span class="w"> </span><span class="o">&lt;</span><span class="n">shell</span><span class="w"> </span><span class="n">commands</span><span class="o">&gt;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="n">execute</span><span class="w"> </span><span class="n">directly</span><span class="w"> </span><span class="n">shell</span><span class="w"> </span><span class="n">commands</span><span class="w"></span>
+<span class="n">x</span><span class="w">                      </span><span class="o">:</span><span class="w"> </span><span class="n">clear</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">go</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="n">menu</span><span class="w"></span>
+<span class="n">q</span><span class="w">                      </span><span class="o">:</span><span class="w"> </span><span class="n">quit</span><span class="w"> </span><span class="o">(</span><span class="n">without</span><span class="w"> </span><span class="n">clearing</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">status</span><span class="o">)</span><span class="w"></span>
 </pre></div>
 </div>
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_x">
-<code class="descname">do_x</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_x" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_x">
+<span class="sig-name descname"><span class="pre">do_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; x
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Clear the status and go to main menu.
 Use with caution: you need to re-load a main MCQ-XeLaTeX file after.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_q">
-<code class="descname">do_q</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_q" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_q">
+<span class="sig-name descname"><span class="pre">do_q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_q" title="Permalink to this definition">¶</a></dt>
 <dd><p>Quit, saving the status.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_status">
-<code class="descname">do_status</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_status" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_status">
+<span class="sig-name descname"><span class="pre">do_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show the status of the job.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_make">
-<code class="descname">do_make</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_make" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_make">
+<span class="sig-name descname"><span class="pre">do_make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_make" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; make
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">make</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Compile (XeLaTeX-ing) the TeX file &lt;main&gt;.tex, and generates some
 internal files necessary for the OMR scan:</p>
 <blockquote>
-<div>OUTPUT: &lt;main&gt;.pdf
-INTERNAL: &lt;main&gt;.lbl, &lt;main&gt;.pos</div></blockquote>
+<div><p>OUTPUT: &lt;main&gt;.pdf
+INTERNAL: &lt;main&gt;.lbl, &lt;main&gt;.pos</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_export">
-<code class="descname">do_export</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_export" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_export">
+<span class="sig-name descname"><span class="pre">do_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_export" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; export &lt;outputfile&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="k">export</span><span class="w"> </span><span class="o">&lt;</span><span class="n">outputfile</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>It exports all the questions in the main TeX to &lt;outputfile&gt;,
@@ -937,21 +936,21 @@ in a format depending on the &lt;outputfile&gt; extension.
 If the extension is <code class="docutils literal notranslate"><span class="pre">.gift</span></code>, the format is MOODLE GIFT. (.txt ext appended)
 If the extension is <code class="docutils literal notranslate"><span class="pre">.html</span></code> or <code class="docutils literal notranslate"><span class="pre">.htm</span></code>, the format is HTML.</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; export file.gift
--&gt;&gt; export file.html
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="k">export</span><span class="w"> </span><span class="n">file</span><span class="o">.</span><span class="n">gift</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="k">export</span><span class="w"> </span><span class="n">file</span><span class="o">.</span><span class="n">html</span><span class="w"></span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_exam_nolatex">
-<code class="descname">do_exam_nolatex</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam_nolatex" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_exam_nolatex">
+<span class="sig-name descname"><span class="pre">do_exam_nolatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam_nolatex" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>UNDOCUMENTED (DANGEROUS) FUNCTION: USAGE exam_nolatex &lt;n&gt;</strong></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_exam">
-<code class="descname">do_exam</code><span class="sig-paren">(</span><em>args</em>, <em>DOLATEX=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_exam">
+<span class="sig-name descname"><span class="pre">do_exam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DOLATEX</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_exam" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>exam &lt;n&gt;
 </pre></div>
@@ -973,9 +972,9 @@ HUMAN-READABLE DEBUG: &lt;main&gt;_exam.sols
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_omr">
-<code class="descname">do_omr</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_omr" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_omr">
+<span class="sig-name descname"><span class="pre">do_omr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_omr" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>omr &lt;scanfiles*.pdf&gt;
 </pre></div>
@@ -984,8 +983,8 @@ HUMAN-READABLE DEBUG: &lt;main&gt;_exam.sols
 the list of answers in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
 The argument is a list of PDF files (wildcard * is accepted).</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; omr scan/c1-s1.pdf scan/c1-s2.pdf scan/c2-s1.pdf
--&gt;&gt; omr scan/c1-*.pdf scan/c2-S*.pdf
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">omr</span><span class="w"> </span><span class="kr">scan</span><span class="o">/</span><span class="n">c1</span><span class="o">-</span><span class="n">s1</span><span class="p">.</span><span class="n">pdf</span><span class="w"> </span><span class="kr">scan</span><span class="o">/</span><span class="n">c1</span><span class="o">-</span><span class="n">s2</span><span class="p">.</span><span class="n">pdf</span><span class="w"> </span><span class="kr">scan</span><span class="o">/</span><span class="n">c2</span><span class="o">-</span><span class="n">s1</span><span class="p">.</span><span class="n">pdf</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">omr</span><span class="w"> </span><span class="kr">scan</span><span class="o">/</span><span class="n">c1</span><span class="o">-*</span><span class="p">.</span><span class="n">pdf</span><span class="w"> </span><span class="kr">scan</span><span class="o">/</span><span class="n">c2</span><span class="o">-</span><span class="n">S</span><span class="o">*</span><span class="p">.</span><span class="n">pdf</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The annotated PDF file <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.pdf</span></code> is created. It is possible
@@ -1018,11 +1017,11 @@ to minimize OMR errors.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_uid">
-<code class="descname">do_uid</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_uid" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_uid">
+<span class="sig-name descname"><span class="pre">do_uid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_uid" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; uid [&lt;UIDfile&gt;][:&lt;UIDcol&gt;&lt;delim&gt;&lt;NAMEcol&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">UIDfile</span><span class="o">&gt;</span><span class="p">][</span><span class="o">:&lt;</span><span class="n">UIDcol</span><span class="o">&gt;&lt;</span><span class="n">delim</span><span class="o">&gt;&lt;</span><span class="n">NAMEcol</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Add Names to the answers list &lt;main&gt;_answers.txt, from a &lt;UIDfile&gt;.
@@ -1041,12 +1040,12 @@ and which character is the delimiter (for example, <cite>:</cite>, <cite>;</cite
 </div>
 <p><strong>EXAMPLE:</strong></p>
 <p>If the file <cite>main.uid</cite> contains lines such as:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>012345;Rossi,Giuseppe
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="mf">012345</span><span class="p">;</span><span class="n">Rossi</span><span class="p">,</span><span class="n">Giuseppe</span><span class="w"></span>
 </pre></div>
 </div>
 <p>the columns specifications are &lt;UIDcol&gt;=1 &lt;delim&gt;=; &lt;NAMEcol&gt;=2
 and therefore one has to type:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="err">`</span><span class="nt">uid</span> <span class="nt">main</span><span class="p">.</span><span class="nc">uid</span><span class="p">:</span><span class="nd">1</span><span class="o">;</span><span class="nt">2</span><span class="err">`</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>`uid main.uid:1;2`
 </pre></div>
 </div>
 <p>Omitting the optional ‘spec’ argument gives the default:
@@ -1062,9 +1061,9 @@ where &lt;main&gt;.tex is the main MCQ-XeLaTeX file.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_mark">
-<code class="descname">do_mark</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_mark" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_mark">
+<span class="sig-name descname"><span class="pre">do_mark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_mark" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>mark [&lt;answersfile&gt;]
 </pre></div>
@@ -1073,8 +1072,8 @@ where &lt;main&gt;.tex is the main MCQ-XeLaTeX file.</p>
 the answer keys generated by <code class="docutils literal notranslate"><span class="pre">exam</span></code>.</p>
 <p>Default answersfile: <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_answers.txt</span></code>.
 The general format of the answers lines is the following:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span><span class="mi">30</span>
-<span class="o">&lt;</span><span class="n">CODE</span><span class="o">&gt;:&lt;</span><span class="n">NAME</span><span class="o">&gt;:&lt;</span><span class="n">UID</span><span class="o">&gt;:&lt;</span><span class="n">ANSWERS</span><span class="o">&gt;:&lt;</span><span class="n">OPTIONAL_MARK</span><span class="o">&gt;</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span><span class="w"> </span><span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span><span class="mi">30</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">CODE</span><span class="o">&gt;:&lt;</span><span class="n">NAME</span><span class="o">&gt;:&lt;</span><span class="n">UID</span><span class="o">&gt;:&lt;</span><span class="n">ANSWERS</span><span class="o">&gt;:&lt;</span><span class="n">OPTIONAL_MARK</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>where &lt;CODE&gt; is the code of the permutation,
@@ -1085,7 +1084,7 @@ or <cite>0</cite> if no answer was given.
 The optional field &lt;OPTIONAL_MARK&gt; is a number, which can be given
 to assess other forms of exercises in the exam.
 In general it is not used, so the line reads as:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span> <span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">FXZH</span><span class="o">:</span><span class="n">Verdi</span><span class="o">,</span><span class="w"> </span><span class="n">Giuseppe</span><span class="o">:</span><span class="mi">193146</span><span class="o">:</span><span class="n">ADba</span><span class="o">:</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The output files are <cite>&lt;main&gt;_exam.csv</cite> and <cite>&lt;main&gt;_exam.txt</cite>.
@@ -1117,11 +1116,11 @@ just the &lt;CODE&gt; and &lt;TOTAL&gt; columns, used to publish results on-line
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_makestats">
-<code class="descname">do_makestats</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_makestats" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_makestats">
+<span class="sig-name descname"><span class="pre">do_makestats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_makestats" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; makestats
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">makestats</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Generate the statistics file (after marking).
@@ -1140,11 +1139,11 @@ $d$ is negative, probably there is a mistake in the answer keys.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiMasterFile.do_pdfx">
-<code class="descname">do_pdfx</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_pdfx" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiMasterFile.do_pdfx">
+<span class="sig-name descname"><span class="pre">do_pdfx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiMasterFile.do_pdfx" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; pdfx
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">pdfx</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Attempt to convert the <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;_exam.pdf</span></code> PDF file to a PDFX version,
@@ -1154,15 +1153,15 @@ It tries to set a proper GS_FONTPATH.</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="mcq.uiChooser">
-<em class="property">class </em><code class="descclassname">mcq.</code><code class="descname">uiChooser</code><span class="sig-paren">(</span><em>dbvars={}</em>, <em>term=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="mcq.uiChooser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">uiChooser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbvars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mcq.uiShell" title="mcq.uiShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcq.uiShell</span></code></a></p>
-<dl class="method">
-<dt id="mcq.uiChooser.do_make">
-<code class="descname">do_make</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_make" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_make">
+<span class="sig-name descname"><span class="pre">do_make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_make" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; make
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">make</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Compile (XeLaTeX-ing) the TeX file generated file.</p>
@@ -1172,20 +1171,20 @@ It tries to set a proper GS_FONTPATH.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_add">
-<code class="descname">do_add</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_add" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_add">
+<span class="sig-name descname"><span class="pre">do_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_add" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; add &lt;n&gt; from file1.tex f2.tex ... f2*.tex
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">file1</span><span class="p">.</span><span class="n">tex</span><span class="w"> </span><span class="n">f2</span><span class="p">.</span><span class="n">tex</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">f2</span><span class="o">*</span><span class="p">.</span><span class="n">tex</span><span class="w"></span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_ls">
-<code class="descname">do_ls</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_ls" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_ls">
+<span class="sig-name descname"><span class="pre">do_ls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_ls" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ls [&lt;path&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Return the list of .TeX files or directories containing TeX files
@@ -1195,19 +1194,19 @@ If &lt;path&gt; is a directory, its content will be listed.
 If &lt;path&gt; is a file, just this file will be listed.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_lsbank">
-<code class="descname">do_lsbank</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_lsbank" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_lsbank">
+<span class="sig-name descname"><span class="pre">do_lsbank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_lsbank" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; ls
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">ls</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Return the list of .TeX files in the Question Bank Directory.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_qbank">
-<code class="descname">do_qbank</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_qbank" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_qbank">
+<span class="sig-name descname"><span class="pre">do_qbank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_qbank" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>qbank &lt;directory&gt;
 </pre></div>
@@ -1216,107 +1215,108 @@ If &lt;path&gt; is a file, just this file will be listed.</p>
 Use ls, cd and tab-completion to locate the file, first.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_cd">
-<code class="descname">do_cd</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_cd" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_cd">
+<span class="sig-name descname"><span class="pre">do_cd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_cd" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; cd [&lt;dir&gt;]
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">dir</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Change working directory to directory &lt;arg&gt;. With no &lt;dir&gt; argument,
 it will go to the Main File Directory.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_status">
-<code class="descname">do_status</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_status" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_status">
+<span class="sig-name descname"><span class="pre">do_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>status: print the current status of all chosen questions form the databank</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_rehash">
-<code class="descname">do_rehash</code><span class="sig-paren">(</span><em>args=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_rehash" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_rehash">
+<span class="sig-name descname"><span class="pre">do_rehash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_rehash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restart and rehash all</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_random">
-<code class="descname">do_random</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_random" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_random">
+<span class="sig-name descname"><span class="pre">do_random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_random" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; random [all]|[&lt;n&gt;] [n_2] ...
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="o">[</span><span class="n">all</span><span class="o">]|[</span><span class="n">&lt;n&gt;</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">n_2</span><span class="o">]</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Random choose either all questions (if no argument or <cite>all</cite> is given).
 Otherwise random choose just the n-th question.</p>
 <p>EXAMPLES:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; random all
--&gt;&gt; random
--&gt;&gt; random 3
--&gt;&gt; random 3 5 7
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nf">random</span><span class="w"> </span><span class="kr">all</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nf">random</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nf">random</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nf">random</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">7</span><span class="w"></span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_del">
-<code class="descname">do_del</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_del" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_del">
+<span class="sig-name descname"><span class="pre">do_del</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_del" title="Permalink to this definition">¶</a></dt>
 <dd><p>del &lt;n&gt;|all: delete the n-th question from the list, or all</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_q">
-<code class="descname">do_q</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_q" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_q">
+<span class="sig-name descname"><span class="pre">do_q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_q" title="Permalink to this definition">¶</a></dt>
 <dd><p>q: quit from the procedure.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_next">
-<code class="descname">do_next</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_next" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_next">
+<span class="sig-name descname"><span class="pre">do_next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_next" title="Permalink to this definition">¶</a></dt>
 <dd><p>Next: all finished, proceed to the Work Menu.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="mcq.uiChooser.do_load">
-<code class="descname">do_load</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_load" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="mcq.uiChooser.do_load">
+<span class="sig-name descname"><span class="pre">do_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.uiChooser.do_load" title="Permalink to this definition">¶</a></dt>
 <dd><p>USAGE:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load &lt;commandsfile&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="o">&lt;</span><span class="n">commandsfile</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Load a file with add|del|random|qbank|… commands,
 one per line (same syntax as the UI shell)”</p>
 <p>EQUIVALENT EXAMPLES:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>-&gt;&gt; load commandsfile.txt
--&gt;&gt; load command&lt;TAB&gt;
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">commandsfile</span><span class="o">.</span><span class="n">txt</span><span class="w"></span>
+<span class="o">-&gt;&gt;</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">command</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="junkyard">
+</section>
+<section id="junkyard">
 <h2>JUNKYARD<a class="headerlink" href="#junkyard" title="Permalink to this headline">¶</a></h2>
 <p><strong>default_combina_voti ARGOMENTO</strong>:</p>
-<dl class="function">
-<dt id="mcq.default_combina_voti">
-<code class="descclassname">mcq.</code><code class="descname">default_combina_voti</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.default_combina_voti" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="mcq.default_combina_voti">
+<span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">default_combina_voti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcq.default_combina_voti" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the formula for the two parts, default of:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>\formulavoto{x+y}
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="mcq.check_safe_dvipdfmx">
-<code class="descclassname">mcq.</code><code class="descname">check_safe_dvipdfmx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.check_safe_dvipdfmx" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="mcq.check_safe_dvipdfmx">
+<span class="sig-prename descclassname"><span class="pre">mcq.</span></span><span class="sig-name descname"><span class="pre">check_safe_dvipdfmx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcq.check_safe_dvipdfmx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the dvipdfmx correcly works with pstricks, for the output of 2Dbarcodes</p>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -1342,17 +1342,15 @@ one per line (same syntax as the UI shell)”</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -1361,8 +1359,8 @@ one per line (same syntax as the UI shell)”</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/mcq-full.rst.txt"

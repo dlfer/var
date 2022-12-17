@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>psd2pdf: drawing and presentation &#8212; var  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon-gears.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,6 +22,7 @@
     <link rel="prev" title="ESSE3: nei meandri della burocrazia" href="esse3.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -32,46 +32,32 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="psd2pdf-drawing-and-presentation">
+  <section id="psd2pdf-drawing-and-presentation">
 <h1>psd2pdf: drawing and presentation<a class="headerlink" href="#psd2pdf-drawing-and-presentation" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">2019-03-07</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
-
-psd2pdf.py: A tool for converting PSD graphics files
-
-positional arguments:
-  psdfile          The input PSD file (multi-layered or raster)
-
-optional arguments:
-  -h, --help       show this help message and exit
-  --autotrace, -a  make a vector-graphics version with autotrace
-  --potrace, -p    make a vector-graphics version with potrace
-  --png            convert and trim the PSD image
-  --crop, -c       crop the final image
-
-[https://www.dlfer.xyz/var/psd2pdf]
-</pre></div>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>2019-03-07</p>
+</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/6 (<span class="docutils literal">/home/ferrario/tex/docs/psd2pdf.rst</span>, line 9)</p>
+<p>Command 'python ./soft/psd2pdf.py -h' failed: [Errno 2] No such file or directory: 'python'</p>
 </div>
-<div class="section" id="what-for">
+<section id="what-for">
 <h2>What for<a class="headerlink" href="#what-for" title="Permalink to this headline">¶</a></h2>
 <p>Two purposes:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Convert a bitmap image (from scan or table drawing) to a vector format (PDF).</li>
-<li>Convert a multi-layer PSD raster image to an incremental PDF presentation.</li>
+<li><p>Convert a bitmap image (from scan or table drawing) to a vector format (PDF).</p></li>
+<li><p>Convert a multi-layer PSD raster image to an incremental PDF presentation.</p></li>
 </ol>
 </div></blockquote>
-</div>
-<div class="section" id="make-a-presentation-latex-beamer-and-pdf">
+</section>
+<section id="make-a-presentation-latex-beamer-and-pdf">
 <h2>Make a presentation (latex beamer and PDF)<a class="headerlink" href="#make-a-presentation-latex-beamer-and-pdf" title="Permalink to this headline">¶</a></h2>
 <p>Assume <code class="docutils literal notranslate"><span class="pre">image.psd</span></code> is a multi-layer image (made with photoshop or sketchbook or whatever).</p>
 <p>Then:</p>
@@ -87,8 +73,8 @@ optional arguments:
 <span class="k">\includepdf</span><span class="na">[pages=-]</span><span class="nb">{</span>figs/image.pdf<span class="nb">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="make-vector-image-to-be-includegraphics-ed-by-latex">
+</section>
+<section id="make-vector-image-to-be-includegraphics-ed-by-latex">
 <h2>Make vector image (to be includegraphics’ed by LaTeX)<a class="headerlink" href="#make-vector-image-to-be-includegraphics-ed-by-latex" title="Permalink to this headline">¶</a></h2>
 <p>Assume <code class="docutils literal notranslate"><span class="pre">image.psd</span></code> is a bitmap image (made with photoshop or sketchbook or whatever).</p>
 <p>Then:</p>
@@ -114,24 +100,24 @@ $ psd2pdf.py -p image.png
 </pre></div>
 </div>
 <p>to obtain vector graphics versions.</p>
-</div>
-<div class="section" id="install-and-requirements">
+</section>
+<section id="install-and-requirements">
 <h2>INSTALL and REQUIREMENTS<a class="headerlink" href="#install-and-requirements" title="Permalink to this headline">¶</a></h2>
 <p>The script should work on both python 2 and python 3.
 To install it, just download and copy it somewhere in your path.</p>
 <p><strong>Requirements</strong>: first install the following things</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">mkbitmap</span></code> and <code class="docutils literal notranslate"><span class="pre">potrace</span></code> from <a class="reference external" href="http://potrace.sourceforge.net/">http://potrace.sourceforge.net/</a></li>
-<li><code class="docutils literal notranslate"><span class="pre">autotrace</span></code> from <a class="reference external" href="http://autotrace.sourceforge.net/">http://autotrace.sourceforge.net/</a></li>
-<li><code class="docutils literal notranslate"><span class="pre">convert</span></code> and <code class="docutils literal notranslate"><span class="pre">identify</span></code> from <a class="reference external" href="https://imagemagick.org/index.php">ImageMagick</a></li>
-<li><code class="docutils literal notranslate"><span class="pre">pngtopnm</span></code> from <a class="reference external" href="http://netpbm.sourceforge.net/">netpbm</a></li>
-<li><code class="docutils literal notranslate"><span class="pre">pdfcrop</span></code> from <a class="reference external" href="https://ctan.org/pkg/pdfcrop?lang=en">CTAN page</a></li>
-<li><code class="docutils literal notranslate"><span class="pre">qpdf</span></code> from <a class="reference external" href="http://qpdf.sourceforge.net/">http://qpdf.sourceforge.net/</a></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkbitmap</span></code> and <code class="docutils literal notranslate"><span class="pre">potrace</span></code> from <a class="reference external" href="http://potrace.sourceforge.net/">http://potrace.sourceforge.net/</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autotrace</span></code> from <a class="reference external" href="http://autotrace.sourceforge.net/">http://autotrace.sourceforge.net/</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">convert</span></code> and <code class="docutils literal notranslate"><span class="pre">identify</span></code> from <a class="reference external" href="https://imagemagick.org/index.php">ImageMagick</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pngtopnm</span></code> from <a class="reference external" href="http://netpbm.sourceforge.net/">netpbm</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdfcrop</span></code> from <a class="reference external" href="https://ctan.org/pkg/pdfcrop?lang=en">CTAN page</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qpdf</span></code> from <a class="reference external" href="http://qpdf.sourceforge.net/">http://qpdf.sourceforge.net/</a></p></li>
 </ul>
 </div></blockquote>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="admonition-title">Warning</p>
 <p>In imagemagick policy.xml, found maybe in:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ImageMagick</span><span class="o">-</span><span class="mi">6</span><span class="o">/</span><span class="n">policy</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
@@ -140,21 +126,22 @@ To install it, just download and copy it somewhere in your path.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt; --&gt;
 </pre></div>
 </div>
-<p class="last">otherwise it will not work.</p>
+<p>otherwise it will not work.</p>
 </div>
-</div>
-<div class="section" id="download">
+</section>
+<section id="download">
 <h2>DOWNLOAD<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference download internal" download="" href="_downloads/39fb2197ef5c21c8202a1652b5c35d15/psd2pdf.py"><code class="xref download docutils literal notranslate"><span class="pre">psd2pdf.py</span></code></a></li>
+<li><p><a class="reference download internal" download="" href="_downloads/39fb2197ef5c21c8202a1652b5c35d15/psd2pdf.py"><code class="xref download docutils literal notranslate"><span class="pre">psd2pdf.py</span></code></a></p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -180,17 +167,15 @@ To install it, just download and copy it somewhere in your path.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -199,8 +184,8 @@ To install it, just download and copy it somewhere in your path.</p>
       &copy;2019, -dlf.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/psd2pdf.rst.txt"

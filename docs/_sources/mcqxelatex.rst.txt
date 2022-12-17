@@ -154,7 +154,7 @@ in the first line replace the word ``'python'`` with the word
    in a total failure of producing pstricks barcodes with xelatex. 
    The script is probably warning the user of such a risk. The solution
    is simple: replace ``dvipdfmx.cfg`` with an unsafe version, such as  
-   ``dvipdfmx-unsafe.cfg``. 
+   ``dvipdfmx-unsafe.cfg`` (follow the CLI instructions). 
 -  On **windows**: it is not strictly necessary, but it is much better
    to install `pyreadline <https://pypi.python.org/pypi/pyreadline>`__.
    This will allow tab-completion in the interface, and avoid annoying
