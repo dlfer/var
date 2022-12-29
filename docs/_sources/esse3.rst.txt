@@ -36,6 +36,12 @@ Dettaglio delle opzioni:
 
       $ esse3.py --uid ListaStudenti.xls > sc1-Lista.uid
 
+``--guid``
+   Come sopra, ma GUI per produrre una lista di iscritti formattata per mcq.py, 
+   a partire da un file .xlsx prodotto non da ESSE3 (per esempio, da MOODLE). 
+   Esempio::
+
+      $ esse3.py --guid
 
 ``--pdf Nomefile.xls`` 
 
