@@ -14,8 +14,7 @@ compilare il registro delle lezioni, verbalizzare gli esami.
 
 .. pip install sphinxcontrib-programoutput
 .. but also apt
-
-.. program-output:: python3 ./soft/esse3.py -h
+.. non fare niente  program-output:: python3 ./soft/esse3.py -h
 
 
 
