@@ -8,13 +8,13 @@ from __future__ import absolute_import
 from __future__ import print_function
 from six.moves import range
 from six.moves import input
-__version__='2022-12-29'
+__version__='2022-12-30'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2022-12-29
+# Version: 2022-12-30
 
 OPTIONS:
     --help|-h
@@ -36,7 +36,6 @@ XLRD_URL='http://pypi.python.org/pypi/xlrd'
 PYSIMPLEGUI_URL='https://pypi.org/project/PySimpleGUI/'
 SERIAL_URL='http://pypi.python.org/pypi/pyserial'
 VERBOSE=False
-
 #-------------------------------------------------------------------
 
 
@@ -123,7 +122,7 @@ def getesse3values():
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJndWlkIiwieW1sIiwiYmxhbmt5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogIHN5cy5zdGRlcnIud3JpdGUoIiVzXG4iICUgc3RyKGVycikgKQogIHN5cy5zdGRlcnIud3JpdGUoIltvcHRpb24gLS1oZWxwIGZvciBoZWxwXVxuIikKICBzeXMuZXhpdCgxKQogZm9yIG8sYSBpbiBvcHRzOgogIGlmIG8gaW4gKCItaCIsICItLWhlbHAiKToKICAgcHJpbnQoX19kb2NfXykKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50KCJQcm92aWFtbyBpbCBnc20uLi4iKQogICBTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTj1nZXRlc3NlM3ZhbHVlcygpCiAgIGNhbGxnc20oU0VSSUFMX1BPUlQsVEVMRU5VTUJFUixQSU4pCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLXVpZCIsKToKICAgRE9VSUQ9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXBkZiIsKToKICAgRE9QREY9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9jc3YoYXJnc1swXSxiICsgIi5jc3YiKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLS1ibGFua3ltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9ibGFua3ltbChhcmdzWzBdLGIgKyAiX2JsYW5rLnltbCIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWd1aWQiLCk6CiAgIGd1aWQoKQogICByZXR1cm4gCgogaWYgbGVuKGFyZ3MpPT0wIG9yIERPTk9USElORzoKICBwcmludCgiW2Vzc2UzLnB5IC0taGVscCBmb3IgaGVscF0iKQogIHN5cy5leGl0KDEpCiB4bHNmaWxlPWFyZ3NbMF0KIEVTPUVzc2UzKHhsc2ZpbGUpCiBpZiBET1VJRDoKICBpZiBVU0VTVERPVVQ6CiAgIEVTLm1ha2V1aWQoc3lzLnN0ZG91dC5idWZmZXIpCiAgZWxzZToKICAgRVMubWFrZXVpZChvcGVuKEJBU0VPVVRQVVQrJy51aWQnLCd3YicpKQogICBwcmludCgiXG4gPT0+IGZpbGUgIiwgQkFTRU9VVFBVVCsnLnVpZCcsICIgZ2VuZXJhdG8uIikKIGlmIERPUERGOgogIEVTLm1ha2VwZGYoQkFTRU9VVFBVVCkKICAKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUsIHN5cwogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogaWYgc3lzLnZlcnNpb25faW5mb1swXSA+IDI6CiAgIGFsbD1vcGVuKE1FLCdyJyxlbmNvZGluZz0ndXRmLTgnKS5yZWFkKCkKICAgZGVmIG15X2hhc2goaW5wdXRfY29udGVudCk6CiAgICAgcmV0dXJuIGhhc2hsaWIuc2hhMjI0KGlucHV0X2NvbnRlbnQuZW5jb2RlKGVuY29kaW5nPSd1dGYtOCcpKS5oZXhkaWdlc3QoKQogZWxzZToKICAgYWxsPW9wZW4oTUUsJ3InKS5yZWFkKCkKICAgZGVmIG15X2hhc2goaW5wdXRfY29udGVudCk6CiAgICAgcmV0dXJuIGhhc2hsaWIuc2hhMjI0KGlucHV0X2NvbnRlbnQpLmhleGRpZ2VzdCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPW15X2hhc2goYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpCiBleHBlY3RfbD0nYmE2ZTY1ODY2MDVhNWFmYWY5MWJiMTFjODFjZjM1NjhiZjg3OGFiYjBhMDRmNzZkOGNkNWRjMjEnCiBpZiBsICE9IGV4cGVjdF9sOgogIHJldHVybiBGYWxzZQogZWxzZToKICByZXR1cm4gVHJ1ZQo=').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJndWlkIiwieW1sIiwiYmxhbmt5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogIHN5cy5zdGRlcnIud3JpdGUoIiVzXG4iICUgc3RyKGVycikgKQogIHN5cy5zdGRlcnIud3JpdGUoIltvcHRpb24gLS1oZWxwIGZvciBoZWxwXVxuIikKICBzeXMuZXhpdCgxKQogZm9yIG8sYSBpbiBvcHRzOgogIGlmIG8gaW4gKCItaCIsICItLWhlbHAiKToKICAgcHJpbnQoX19kb2NfXykKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50KCJQcm92aWFtbyBpbCBnc20uLi4iKQogICBTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTj1nZXRlc3NlM3ZhbHVlcygpCiAgIGNhbGxnc20oU0VSSUFMX1BPUlQsVEVMRU5VTUJFUixQSU4pCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLXVpZCIsKToKICAgRE9VSUQ9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXBkZiIsKToKICAgRE9QREY9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9jc3YoYXJnc1swXSxiICsgIi5jc3YiKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLS1ibGFua3ltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9ibGFua3ltbChhcmdzWzBdLGIgKyAiX2JsYW5rLnltbCIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWd1aWQiLCk6CiAgIGd1aWQoKQogICByZXR1cm4gCgogaWYgbGVuKGFyZ3MpPT0wIG9yIERPTk9USElORzoKICBwcmludCgiW2Vzc2UzLnB5IC0taGVscCBmb3IgaGVscF0iKQogIHN5cy5leGl0KDEpCiB4bHNmaWxlPWFyZ3NbMF0KIEVTPUVzc2UzKHhsc2ZpbGUpCiBpZiBET1VJRDoKICBpZiBVU0VTVERPVVQ6CiAgIEVTLm1ha2V1aWQoc3lzLnN0ZG91dC5idWZmZXIpCiAgZWxzZToKICAgRVMubWFrZXVpZChvcGVuKEJBU0VPVVRQVVQrJy51aWQnLCd3YicpKQogICBwcmludCgiXG4gPT0+IGZpbGUgIiwgQkFTRU9VVFBVVCsnLnVpZCcsICIgZ2VuZXJhdG8uIikKIGlmIERPUERGOgogIEVTLm1ha2VwZGYoQkFTRU9VVFBVVCkKICAKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUsIHN5cwogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogaWYgc3lzLnZlcnNpb25faW5mb1swXSA+IDI6CiAgIGFsbD1vcGVuKE1FLCdyJyxlbmNvZGluZz0ndXRmLTgnKS5yZWFkKCkKICAgZGVmIG15X2hhc2goaW5wdXRfY29udGVudCk6CiAgICAgcmV0dXJuIGhhc2hsaWIuc2hhMjI0KGlucHV0X2NvbnRlbnQuZW5jb2RlKGVuY29kaW5nPSd1dGYtOCcpKS5oZXhkaWdlc3QoKQogZWxzZToKICAgYWxsPW9wZW4oTUUsJ3InKS5yZWFkKCkKICAgZGVmIG15X2hhc2goaW5wdXRfY29udGVudCk6CiAgICAgcmV0dXJuIGhhc2hsaWIuc2hhMjI0KGlucHV0X2NvbnRlbnQpLmhleGRpZ2VzdCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPW15X2hhc2goYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpCiBleHBlY3RfbD0nYmQwNDc4ODhhMGI4NzY4ODM2NDdiMDQzMGQ0YjdhMGUxM2FjZjA2MmUxZjMyMGE0MGQ5ODI4YjAnCiBpZiBsICE9IGV4cGVjdF9sOgogIHJldHVybiBGYWxzZQogZWxzZToKICByZXR1cm4gVHJ1ZQo=').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -186,7 +185,7 @@ class Esse3:
    out.write((":%s, %s:%s:\n" % x).encode('utf-8'))
   return 
 
- def makepdf(self,baseoutput):
+ def makepdf(self,baseoutput,curdir=os.getcwd()):
   BODY=r"""{\footnotesize
 \noindent\begin{verbatim}
 """ +  self.ALLTT + r"""\end{verbatim}}""" + "\\hrule\\vspace{2mm}\\hrule\n\n\\vspace{1cm}"
@@ -224,7 +223,7 @@ class Esse3:
  \vspace{12pt}
 """ % (progressivo,cognome, nome, matricola,usercomment)
   tmpdir=tempfile.mkdtemp()
-  curdir=os.getcwd()
+  # curdir=os.getcwd()
   os.chdir(tmpdir)
   fd=open('%s.tex' % baseoutput,'wb') ## __TODO__ output file
   fd.write( (latex_template % {'body':BODY, 'headline':self.HEADLINE}).encode('utf-8') )
@@ -523,10 +522,12 @@ def guid():
     num_rows = 5
     num_cols = 5
     output_filename=None
+    output_filename_basename=None
 
     data = [["" for x in range(num_rows)] for y in range(num_cols)]
     headings = ["" for x in range(num_cols)]
     HAS_HEADER=True
+    IS_ESSE3=False
     TABLE_COLS=["A","B","C","D","E","F","G","H"]
     TABLE_DATA=[]
     TO_TABLE_DATA=[]
@@ -535,8 +536,8 @@ def guid():
 
     layout = [
         [sg.Text("Choose a file: "), sg.Input(key='_FILEBROWSE_', enable_events=True, visible=False),\
-                sg.FileBrowse(file_types=(('XLSX files','*.xlsx'),), target='_FILEBROWSE_' ) ,
-                sg.Push(), sg.Button('Info')], 
+                sg.FileBrowse(file_types=(('XLSX files','*.xlsx *.xls'),), target='_FILEBROWSE_' ) ,
+                sg.Push(), sg.Button('Info') ], 
         [sg.Text(" "*80, key='STATUSBAR') ], 
         [sg.Table(values=TABLE_DATA,headings=TABLE_COLS, max_col_width=10,
             auto_size_columns=False,
@@ -545,11 +546,10 @@ def guid():
             num_rows=6,
             key='FROM_TABLE',
             tooltip='This is the from-table')],
-        [ sg.Text(" "*80) ], 
         [sg.Checkbox("First row is header?" , key="HAS_HEADER",default=HAS_HEADER, enable_events=True)], 
-        [sg.Text("Cognome Col: "), sg.Combo([], key='-COGNOME-', enable_events=True), 
-        sg.Text("Name Col: "), sg.Combo([], key='-NOME-',enable_events=True), 
-        sg.Text("UID Col: "), sg.Combo([], key='-UID-', enable_events=True) ],
+        [sg.Text("Cognome Col: "), sg.Combo([], key='-COGNOME-', enable_events=True,disabled=True), 
+        sg.Text("Name Col: "), sg.Combo([], key='-NOME-',enable_events=True,disabled=True), 
+        sg.Text("UID Col: "), sg.Combo([], key='-UID-', enable_events=True,disabled=True) ],
         [sg.Table(values=TO_TABLE_DATA,headings=TO_TABLE_COLS, max_col_width=4,
             auto_size_columns=False,
             col_widths=TO_TABLE_COL_W,
@@ -557,9 +557,9 @@ def guid():
             justification='left',
             num_rows=6,
             key='TO_TABLE',
-            tooltip='This is the to_table')], 
+            tooltip='This is the to_table') ], 
         [ sg.Text(" "*80, key='OUTPUTFILE') ], 
-        [sg.Button("Save"), sg.Push(), sg.Button("Exit")] 
+        [ sg.Button("Save"), sg.Button("Registro PDF"), sg.Push(), sg.Button("Exit") ] 
         ]
     window = sg.Window('ESSE3 multi-tool', layout)
 
@@ -582,7 +582,7 @@ background_color='black')
                 sg.popup("WRONG STEP", background_color="red")
                 continue
             elif os.path.exists(output_filename):
-                retval = sg.popup_ok_cancel("File  {} already exists!".format(output_filename) ,
+                retval = sg.popup_ok_cancel("File  {} already exists! Overwrite?".format(output_filename) ,
                         background_color='red')
                 if retval == 'Cancel':
                     continue
@@ -592,33 +592,68 @@ background_color='black')
                fd.close()    
             window['OUTPUTFILE'].update("Output: {} [SAVED]".format(output_filename), 
                     background_color='green')
+        elif event == "Registro PDF":
+            if not IS_ESSE3 or output_filename_basename is None:
+                sg.popup("WRONG STEP", background_color="red")
+                continue
+            ES.makepdf(output_filename_basename,curdir=output_curdir)
+            window['OUTPUTFILE'].update("Output: {} [SAVED]".format(output_filename_basename+".pdf"), 
+                    background_color='darkorange')
         elif event == '_FILEBROWSE_':
             # xlsx only
             xlsx_file = values['Browse']
             r,e = os.path.splitext(xlsx_file)
             output_filename = "{}_mcq.uid".format(r)
+            output_filename_basename = "{}_mcq".format(os.path.basename(r))
+            output_curdir=os.path.dirname(xlsx_file)
             wb=xlrd.open_workbook(xlsx_file)
             sheet_names = wb.sheet_names()
-            if VERBOSE:
-                sys.stderr.write("Sheets <{}> found! Trying the first...\n".format(sheet_names) )
             target_sheet=sheet_names[0]
             sheet=wb.sheet_by_name(target_sheet)
             window['STATUSBAR'].update("Input: {} ({} rows)".format(xlsx_file,sheet.nrows) )
             window['OUTPUTFILE'].update("Output: {}".format(output_filename) )
-            NCOLS=sheet.ncols
-            TABLE_DATA=[]
-            for r in range(sheet.nrows):
+            if VERBOSE:
+                sys.stderr.write("Sheets <{}> found! Trying the first...\n".format(sheet_names) )
+            # first try Esse3
+            if target_sheet=='esse3':
+              IS_ESSE3=True  
+              for k in [ '-COGNOME-', '-NOME-', '-UID-' ]:
+                window[k].update(disabled=True)
+              try:
+                ES=Esse3(xlsx_file)
+                TABLE_DATA=[["ESSE3 table"]]
+                window['FROM_TABLE'].update(TABLE_DATA)
+                #if os.path.exists(output_filename):
+                #    retval = sg.popup_ok_cancel("File  {} already exists! Overwrite?".format(output_filename) ,
+                #            background_color='red')
+                #    if retval == 'Cancel':
+                #        continue
+                #with open(output_filename,'wb') as fd:
+                #    ES.makeuid(fd)
+                #    fd.close()
+                #if sg.popup_ok_cancel("File {} generato!\n Quit?".format(output_filename), background_color="green") == 'OK':
+                #    break
+                #else:
+                #    continue
+              except Exception as v:
+                sg.popup_error_with_traceback('An error happened.  Here is the info: ', v)
+                continue
+            else:
+              IS_ESSE3=False  
+              NCOLS=sheet.ncols
+              TABLE_DATA=[]
+              for r in range(sheet.nrows):
                 row=sheet.row_values(r)
                 TABLE_DATA.append(row)
                 # Cognome, Nome, UID =  row[Cognome_i],row[Nome_i],row[UID_i]
-            window['FROM_TABLE'].update(TABLE_DATA)
-            ii=0
-            for k in [ '-COGNOME-', '-NOME-', '-UID-' ]:
-                window[k].update(value=TABLE_COLS[ii], values=TABLE_COLS[:NCOLS])
+              window['FROM_TABLE'].update(TABLE_DATA)
+              ii=0
+              for k in [ '-COGNOME-', '-NOME-', '-UID-' ]:
+                window[k].update(value=TABLE_COLS[ii], values=TABLE_COLS[:NCOLS],disabled=False)
                 ii +=1 
-            Cognome_i=0
-            Nome_i=1
-            UID_i=2
+              Cognome_i=0
+              Nome_i=1
+              UID_i=2
         elif event in [ '-COGNOME-', '-NOME-', '-UID-']:    
             Cognome_i=TABLE_COLS.index(values['-COGNOME-'])
             Nome_i=TABLE_COLS.index(values['-NOME-'])
@@ -629,7 +664,7 @@ background_color='black')
             HAS_HEADER=values['HAS_HEADER']
             window['OUTPUTFILE'].update("Output: {}".format(output_filename) , 
                     background_color = sg.theme_element_background_color() )
-        if HAS_HEADER:
+        if HAS_HEADER and not IS_ESSE3:
             starting_row=1
             window['FROM_TABLE'].update(row_colors=[[0,'green']] ) 
         else:
@@ -639,15 +674,19 @@ background_color='black')
             continue
 
         try:
-            TO_TABLE_DATA=[]
+          TO_TABLE_DATA=[]
+          if IS_ESSE3:
+            for Cognome,Nome,UID in ES.iscritti:  
+                TO_TABLE_DATA.append([ "" , "{}, {}".format(Cognome,Nome), UID, "" ] )
+          else:    
             for row in TABLE_DATA[starting_row:]:
                 Cognome, Nome, UID =  row[Cognome_i],row[Nome_i],row[UID_i]
                 TO_TABLE_DATA.append([ "" , "{}, {}".format(Cognome,Nome), UID, "" ] )
-            window['TO_TABLE'].update(TO_TABLE_DATA)
+          window['TO_TABLE'].update(TO_TABLE_DATA)
         except Exception as v:
-            sg.popup_error_with_traceback(f'An error happened.  Here is the info:', v)
-            print("ERROR: {}".format(v), event, values)
-            continue 
+          sg.popup_error_with_traceback(f'An error happened.  Here is the info:', v)
+          print("ERROR: {}".format(v), event, values)
+          continue 
 
 #-----------------------------------------------------------------------
 
