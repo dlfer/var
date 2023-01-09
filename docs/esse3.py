@@ -10,7 +10,7 @@ import sys,subprocess
 
 def install_package(p):
     print("Trying to install package {}:".format(p) ) 
-    if input("Press <Return> to continue, <q> to abort...").lower() == "q":
+    if input("Press <Return> to continue, <q> to abort: ").strip().lower() == "q":
         print("OK, bye!")
         return False
     else:
@@ -24,13 +24,13 @@ except:
     install_package("six")
 # are they still needed? I forgot about 2 compat 
 
-__version__='2022-12-31'
+__version__='2023-01-09'
 
 __doc__=r"""
 USAGE: esse3.py [options] [argument]
 
 
-# Version: 2022-12-31
+# Version: 2023-01-09
 
 OPTIONS:
     --help|-h
@@ -53,6 +53,7 @@ PYSIMPLEGUI_URL='https://pypi.org/project/PySimpleGUI/'
 OPENPYXL_URL='https://pypi.org/project/openpyxl'
 SERIAL_URL='http://pypi.python.org/pypi/pyserial'
 VERBOSE=False
+MYNAME="ESSE3 Multi-Tool"
 #-------------------------------------------------------------------
 
 
@@ -67,7 +68,7 @@ latex_template=r"""
 \usepackage[no-math]{fontspec}
 \RequirePackage{xltxtra}
 \RequirePackage{xunicode}
-\setmainfont[Mapping=tex-text]{Linux Libertine}
+\setmainfont[Mapping=tex-text]{Linux Libertine O}
 \defaultfontfeatures{Mapping=tex-text}
 \fancypagestyle{plain}{%%
 \renewcommand{\headrulewidth}{0.6pt}
@@ -139,7 +140,7 @@ def getesse3values():
  return [db[k] for k in ESSE3KEYS] 
 #-------------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJndWlkIiwieW1sIiwiYmxhbmt5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogIHN5cy5zdGRlcnIud3JpdGUoIiVzXG4iICUgc3RyKGVycikgKQogIHN5cy5zdGRlcnIud3JpdGUoIltvcHRpb24gLS1oZWxwIGZvciBoZWxwXVxuIikKICBzeXMuZXhpdCgxKQogZm9yIG8sYSBpbiBvcHRzOgogIGlmIG8gaW4gKCItaCIsICItLWhlbHAiKToKICAgcHJpbnQoX19kb2NfXykKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50KCJQcm92aWFtbyBpbCBnc20uLi4iKQogICBTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTj1nZXRlc3NlM3ZhbHVlcygpCiAgIGNhbGxnc20oU0VSSUFMX1BPUlQsVEVMRU5VTUJFUixQSU4pCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLXVpZCIsKToKICAgRE9VSUQ9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXBkZiIsKToKICAgRE9QREY9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9jc3YoYXJnc1swXSxiICsgIi5jc3YiKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLS1ibGFua3ltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9ibGFua3ltbChhcmdzWzBdLGIgKyAiX2JsYW5rLnltbCIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWd1aWQiLCk6CiAgIGd1aWQoKQogICByZXR1cm4gCgogaWYgbGVuKGFyZ3MpPT0wIG9yIERPTk9USElORzoKICBwcmludCgiW2Vzc2UzLnB5IC0taGVscCBmb3IgaGVscF0iKQogIHN5cy5leGl0KDEpCiB4bHNmaWxlPWFyZ3NbMF0KIEVTPUVzc2UzKHhsc2ZpbGUpCiBpZiBET1VJRDoKICBpZiBVU0VTVERPVVQ6CiAgIEVTLm1ha2V1aWQoc3lzLnN0ZG91dC5idWZmZXIpCiAgZWxzZToKICAgRVMubWFrZXVpZChvcGVuKEJBU0VPVVRQVVQrJy51aWQnLCd3YicpKQogICBwcmludCgiXG4gPT0+IGZpbGUgIiwgQkFTRU9VVFBVVCsnLnVpZCcsICIgZ2VuZXJhdG8uIikKIGlmIERPUERGOgogIEVTLm1ha2VwZGYoQkFTRU9VVFBVVCkKICAKCmRlZiBjaGVja19zZWxmKCk6CiBpbXBvcnQgb3MsIGhhc2hsaWIscmUsIHN5cwogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogaWYgc3lzLnZlcnNpb25faW5mb1swXSA+IDI6CiAgIGFsbD1vcGVuKE1FLCdyJyxlbmNvZGluZz0ndXRmLTgnKS5yZWFkKCkKICAgZGVmIG15X2hhc2goaW5wdXRfY29udGVudCk6CiAgICAgcmV0dXJuIGhhc2hsaWIuc2hhMjI0KGlucHV0X2NvbnRlbnQuZW5jb2RlKGVuY29kaW5nPSd1dGYtOCcpKS5oZXhkaWdlc3QoKQogZWxzZToKICAgYWxsPW9wZW4oTUUsJ3InKS5yZWFkKCkKICAgZGVmIG15X2hhc2goaW5wdXRfY29udGVudCk6CiAgICAgcmV0dXJuIGhhc2hsaWIuc2hhMjI0KGlucHV0X2NvbnRlbnQpLmhleGRpZ2VzdCgpCiBwPWFsbC5pbmRleCgiXG4iKQogcmVnPXJlLmNvbXBpbGUoIiMtLUJFR0lOIisiU0lHLS18Iy0tRU5EIisiU0lHLS0iLHJlLk0gYW5kIHJlLkRPVEFMTCApCiBib2R5X2ZpcnN0LGhpZGRlbixib2R5X2xhc3Q9cmVzPXJlZy5zcGxpdChhbGxbcCsxOl0pCiBsPW15X2hhc2goYm9keV9maXJzdC5zdHJpcCgpICsgYm9keV9sYXN0LnN0cmlwKCkpCiBleHBlY3RfbD0nY2FlODIxZGRmOGJhN2Q2NjQ1YzQ5ZWI0YTY2MmIyMGQyZTkyNzY3ZDg1MWFiZjI0NTYxMjNmNDEnCiBpZiBsICE9IGV4cGVjdF9sOgogIHJldHVybiBGYWxzZQogZWxzZToKICByZXR1cm4gVHJ1ZQo=').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiByZXR1cm4gVHJ1ZQoKZGVmIGdldF9vcHQoKToKIGlmIG5vdCBjaGVja19zZWxmKCkgOgogIHN5cy5zdGRlcnIud3JpdGUoIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIgKQogIHN5cy5leGl0KDEpCiBET1BERj1GYWxzZQogRE9VSUQ9RmFsc2UKIERPTk9USElORz1UcnVlCiBCQVNFT1VUUFVUPSdlc3NlM19vdXRwdXQnCiBVU0VTVERPVVQ9VHJ1ZQogdHJ5OgogIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImhiOiIsIFsiaGVscCIsICJiYXNlb3V0cHV0PSIsInVpZCIsInBkZiIsImNhbGwiLCJndWlkIiwieW1sIiwiYmxhbmt5bWwiXSkKIGV4Y2VwdCBnZXRvcHQuR2V0b3B0RXJyb3IgYXMgZXJyOgogIHN5cy5zdGRlcnIud3JpdGUoIiVzXG4iICUgc3RyKGVycikgKQogIHN5cy5zdGRlcnIud3JpdGUoIltvcHRpb24gLS1oZWxwIGZvciBoZWxwXVxuIikKICBzeXMuZXhpdCgxKQogZm9yIG8sYSBpbiBvcHRzOgogIGlmIG8gaW4gKCItaCIsICItLWhlbHAiKToKICAgcHJpbnQoX19kb2NfXykKICAgcmV0dXJuIAogIGVsaWYgbyBpbiAoIi1iIiwgIi0tYmFzZW91dHB1dCIpOgogICBCQVNFT1VUUFVUID0gYQogICBVU0VTVERPVVQ9RmFsc2UKICBlbGlmIG8gaW4gKCItLWNhbGwiLCk6CiAgIHByaW50KCJQcm92aWFtbyBpbCBnc20uLi4iKQogICBTRVJJQUxfUE9SVCxURUxFTlVNQkVSLFBJTj1nZXRlc3NlM3ZhbHVlcygpCiAgIGNhbGxnc20oU0VSSUFMX1BPUlQsVEVMRU5VTUJFUixQSU4pCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLXVpZCIsKToKICAgRE9VSUQ9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXBkZiIsKToKICAgRE9QREY9VHJ1ZQogICBET05PVEhJTkc9RmFsc2UKICBlbGlmIG8gaW4gKCItLXltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9jc3YoYXJnc1swXSxiICsgIi5jc3YiKQogICByZXR1cm4gCiAgZWxpZiBvIGluICgiLS1ibGFua3ltbCIsKToKICAgdG9kb2ZpbGU9YXJnc1swXQogICBiLF89b3MucGF0aC5zcGxpdGV4dCh0b2RvZmlsZSkKICAgeW1sdG9ibGFua3ltbChhcmdzWzBdLGIgKyAiX2JsYW5rLnltbCIpCiAgIHJldHVybiAKICBlbGlmIG8gaW4gKCItLWd1aWQiLCk6CiAgIGd1aWQoKQogICByZXR1cm4gCgogaWYgbGVuKGFyZ3MpPT0wIG9yIERPTk9USElORzoKICAgcHJpbnQoIltlc3NlMy5weSAtLWhlbHAgZm9yIGhlbHBdIikKICAgcz1pbnB1dCgiUHJlc3MgPFJldHVybj4gdG8gZW50ZXIgdGhlIEdVSSwgb3IgPHE+IHRvIHF1aXQ6ICIpLnN0cmlwKCkubG93ZXIoKSAKICAgaWYgbGVuKHMpPjAgOgogICAgIHN5cy5leGl0KDApCiAgIGVsc2U6CiAgICAgZ3VpZCgpCiAgICAgc3lzLmV4aXQoMCkKIHhsc2ZpbGU9YXJnc1swXQogRVM9RXNzZTMoeGxzZmlsZSkKIGlmIERPVUlEOgogIGlmIFVTRVNURE9VVDoKICAgRVMubWFrZXVpZChzeXMuc3Rkb3V0LmJ1ZmZlcikKICBlbHNlOgogICBFUy5tYWtldWlkKG9wZW4oQkFTRU9VVFBVVCsnLnVpZCcsJ3diJykpCiAgIHByaW50KCJcbiA9PT4gZmlsZSAiLCBCQVNFT1VUUFVUKycudWlkJywgIiBnZW5lcmF0by4iKQogaWYgRE9QREY6CiAgICAgaWYgbm90IEVTLm1ha2VwZGYoQkFTRU9VVFBVVCk6CiAgICAgICAgIHJhaXNlIEV4Y2VwdGlvbigibWFrZXBkZiBFcnJvciEiKQogIAoKZGVmIGNoZWNrX3NlbGYoKToKIGltcG9ydCBvcywgaGFzaGxpYixyZSwgc3lzCiBNRV9iYXNlLE1FX2V4dD1vcy5wYXRoLnNwbGl0ZXh0KG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiBNRT1NRV9iYXNlKycucHknCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSdiMzQ5MWJmNzgzM2U2NjU0ZWExM2VjZjk2ZDgyN2I1MzU2ZDJhNjBhNzUzY2EwZWZmZDYzZDQzYicKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-------------------------------------------------------------------
 class Esse3:
@@ -245,16 +246,25 @@ class Esse3:
   fd=open('%s.tex' % baseoutput,'wb') ## __TODO__ output file
   fd.write( (latex_template % {'body':BODY, 'headline':self.HEADLINE}).encode('utf-8') )
   fd.close()
-  os.system('xelatex %s.tex' % baseoutput)
-  os.system('xelatex %s.tex' % baseoutput )
-  os.chdir(curdir)
+  if os.system('xelatex %s.tex' % baseoutput) or os.system('xelatex %s.tex' % baseoutput ):
+      print("\n  ==>file ", baseoutput + '.pdf', "failed (see above for the xelatex error)!!!")
+      print("Not Removing tmpdir {}".format(tmpdir) )
+      return False
   try:
       shutil.copy('%s.pdf' % baseoutput ,os.path.join(curdir,baseoutput+'.pdf'))
       print("\n  ==>file ", baseoutput + '.pdf', "generato")
   except shutil.SameFileError:
       print("\n  ==>file ", baseoutput + '.pdf', "is the same... doing nothing...")
+      print("Not Removing tmpdir {}".format(tmpdir) )
+      return False
+  except Exception as v:
+      print("Unexceptional Exception:", v)
+      print("Not Removing tmpdir {}".format(tmpdir) )
+      return False
+  os.chdir(curdir)
+  print("Removing tmpdir {}".format(tmpdir) )
   shutil.rmtree(tmpdir)
-  return 
+  return True
 
 #-----------------------------------------------------------------------
 
@@ -595,7 +605,7 @@ def guid():
             sg.Button("Registro PDF",disabled=True,tooltip="Generate Registro in PDF"), 
             sg.Push(), sg.Button("Exit",tooltip="Quit. Careful: no confirmation needed, hance save first.") ] 
         ]
-    window = sg.Window('ESSE3 multi-tool', layout)
+    window = sg.Window(MYNAME, layout, resizable=True)
 
     while True:
         event, values = window.read()
@@ -620,7 +630,7 @@ xlrd version: {}
 openpyxl version: {}
 -----------------------------
 (C) Copyright DLFerrario www.dlfer.xyz        
-""".format( sys.argv[0], __version__ , sys.platform , sys.version.split("\n")[0], 
+""".format( MYNAME , __version__ , sys.platform , sys.version.split("\n")[0], 
     sg.version, xlrd_version, openpyxl_version ) , title='Info',
 background_color='black')
         elif event == "Save":
@@ -642,9 +652,18 @@ background_color='black')
             if not IS_ESSE3 or output_filename_basename is None:
                 sg.popup("WRONG STEP", background_color="red")
                 continue
-            ES.makepdf(output_filename_basename,curdir=output_curdir)
-            window['OUTPUTFILE'].update("Output: {} [SAVED]".format(output_filename_basename+".pdf"), 
+            try:
+                retval = ES.makepdf(output_filename_basename,curdir=output_curdir)
+                if retval:
+                    window['OUTPUTFILE'].update("Output: {} [SAVED]".format(output_filename_basename+".pdf"), 
                     background_color='DarkOliveGreen')
+                else:
+                    sg.popup_error_with_traceback('ERROR from makepdf (check console output)')
+                    continue
+            except Exception as v:
+                sg.popup_error_with_traceback(f'ERROR.  Info:', v)
+                print("ERROR: {}".format(v))
+                continue
         elif event == '_FILEBROWSE_':
             # xlsx only
             xlsx_file = values['Browse']
