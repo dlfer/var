@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{1.04}
+\def\fileversion{1.05}
 \def\filedate{%
-2022-08-28
+2023-01-19
 }
 \def\Copyright{****************************************************************
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
@@ -92,6 +92,12 @@ Francisco, California, 94105, USA.
 }
 
 
+\newif\ifwideoption\wideoptionfalse
+\DeclareOption{wide}{%
+\wideoptiontrue
+\typeout{mcq: Option `wide' selected}
+}
+
 \ProcessOptions
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,7 +109,8 @@ Francisco, California, 94105, USA.
 {\examclasstrue%
 \typeout{Exam class: True}%
 }%
-{\examclassfalse%
+{%
+\examclassfalse%
 \typeout{Exam class: False}%
 }%
 
@@ -541,10 +548,24 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 
 % \pagestyle{headandfoot}
 % \runningheader{R1}{R2}{R3}
-
 \else
 \typeout{for Exam Class: NOT Protecting commands from fancyhdr...}
 \RequirePackage{fancyhdr}
+
+% copiato da: https://tex.stackexchange.com/questions/241137/how-can-i-fill-vertical-spaces-with-dotted-horizontal-lines
+\def\fillwithdottedlines{%
+  \begingroup
+  \ifhmode
+    \par
+  \fi
+  \hrule height \z@
+  \nobreak
+  \setbox0=\hbox to \hsize{\hskip \@totalleftmargin
+          \vrule height \dottedlinefillheight depth \z@ width \z@
+          \dotfill}%
+  \cleaders \copy0 \vfill \hbox{}%
+  \endgroup
+}
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\solutionname}{\tt\textbf{Sol:}\/{}\null}
@@ -626,7 +647,11 @@ node  [text width=\blankareawidth, text depth=\blankareaheightinside, anchor=nor
 \ifexamclass%
 \geometry{a4paper,margin={1.4cm,1.4cm}} % ,top=1cm,bottom=1cm}
 \else
+\ifwideoption%
+\geometry{a4paper,margin={1.4cm,1.4cm}} % ,top=1cm,bottom=1cm}
+\else
 \geometry{a4paper,margin={0.9in,1.4in}}
+\fi
 %options: showframe
 \fi
 
