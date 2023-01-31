@@ -2,7 +2,7 @@
 MCQ-XeLaTeX Full Documentation
 ==============================
 
-:Date:   2019-02-07 (updated 2022-08-28)
+:Date:   2019-02-07 (updated 2023-01-28)
 
 
 .. highlight:: latex
