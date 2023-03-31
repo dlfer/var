@@ -5,7 +5,6 @@ psd2pdf: drawing and presentation
 :Date:   2019-03-07
 
 
-
 .. program-output:: python ./soft/psd2pdf.py -h 
 
 
