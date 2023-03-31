@@ -43,16 +43,21 @@
 <dd class="field-odd"><p>2019-03-07</p>
 </dd>
 </dl>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;/home/ferrario/tex/docs/./soft/psd2pdf.py&quot;, line 225, in &lt;module&gt;
-    main()
-  File &quot;/home/ferrario/tex/docs/./soft/psd2pdf.py&quot;, line 211, in main
-    args=get_opt()
-  File &quot;&lt;string&gt;&quot;, line 6, in get_opt
-  File &quot;/home/ferrario/tex/docs/./soft/psd2pdf.py&quot;, line 183, in get_opt_parser
-    if not check_self() :
-  File &quot;&lt;string&gt;&quot;, line 14, in check_self
-AttributeError: &#39;str&#39; object has no attribute &#39;decode&#39;. Did you mean: &#39;encode&#39;?
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
+
+psd2pdf.py: A tool for converting PSD graphics files
+
+positional arguments:
+  psdfile          The input PSD file (multi-layered or raster)
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --autotrace, -a  make a vector-graphics version with autotrace
+  --potrace, -p    make a vector-graphics version with potrace
+  --png            convert and trim the PSD image
+  --crop, -c       crop the final image
+
+[https://www.dlfer.xyz/var/psd2pdf]
 </pre></div>
 </div>
 <section id="what-for">
