@@ -2,7 +2,7 @@
 MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
 ==================================================================
 
-:Date:   2019-02-07 (updated 2022-11-16)
+:Date:   2019-02-07 (updated 2023-04-21)
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
 ========================================================================
@@ -16,7 +16,7 @@ the last few years, to author, manage, mark, analyse and transcode exams
 based on **Multiple Choice Questions** entirely in **LaTeX**. It is
 supposed to be multi-platform (it runs on **unix/linux**, **mac** and
 with a few limitations, due to missing system libraries, on **windows**
-- with or withour cygwin), and features an **OMR (Optical Mark
+- with or withour cygwin), and features a possible **OMR (Optical Mark
 Recognotion)** engine to automatically grade/mark the exam sheets. By
 design it does not have any Graphical User Interface, and it reinforces
 a paranoid control model, where every step of the process is
