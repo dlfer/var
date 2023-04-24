@@ -43,9 +43,22 @@
 <dd class="field-odd"><p>2019-03-07</p>
 </dd>
 </dl>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/6 (<span class="docutils literal">/home/ferrario/tex/docs/psd2pdf.rst</span>, line 9)</p>
-<p>Command 'python ./soft/psd2pdf.py -h' failed: [Errno 2] No such file or directory: 'python'</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: psd2pdf.py [-h] [--autotrace | --potrace | --png] [--crop] psdfile
+
+psd2pdf.py: A tool for converting PSD graphics files
+
+positional arguments:
+  psdfile          The input PSD file (multi-layered or raster)
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --autotrace, -a  make a vector-graphics version with autotrace
+  --potrace, -p    make a vector-graphics version with potrace
+  --png            convert and trim the PSD image
+  --crop, -c       crop the final image
+
+[https://www.dlfer.xyz/var/psd2pdf]
+</pre></div>
 </div>
 <section id="what-for">
 <h2>What for<a class="headerlink" href="#what-for" title="Permalink to this headline">¶</a></h2>
