@@ -21,6 +21,8 @@ Needed files: last versions of
 :download:`mcq.py <soft/mcq.py>` and 
 :download:`mcq.sty <soft/mcq.sty>` .
 
+Just in case, the OMR (Optical Mark Recognition) script can be found here:
+:download:`omarscan.py <soft/omarscan.py>`. 
 
 Multiple Choice Questions
 -------------------------
