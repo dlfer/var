@@ -57,10 +57,10 @@ $ chmod +x mcq.py
 </div>
 <p>Of course you can move both files in more appropriate places (<code class="docutils literal notranslate"><span class="pre">/usr/local/bin/mcq.py</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">mcq.sty</span></code> somewhere in  <code class="docutils literal notranslate"><span class="pre">$TEXINPUTS</span></code>).</p>
-<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2023-06-19</p>
+<span class="target" id="module-mcq"></span><p>MCQ (Multiple Choice Questions) for XeLaTeX, Version: 2023-07-05</p>
 <section id="usage">
 <h3>USAGE:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
-<p>Just put <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.py">mcq.py</a> in your PATH and run:</p>
+<p>Just put <a class="reference external" href="https://www.dlfer.xyz/var/mcq.py">mcq.py</a> in your PATH and run:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="s">$</span><span class="nb"> mcq.py</span>
 </pre></div>
 </div>
@@ -75,7 +75,7 @@ the phase of the program. For example, if the working directory is
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>(Work)mcq[/home/user/tex/myexam]-&gt;&gt;
 </pre></div>
 </div>
-<p>The LaTeX engine to be used is <code class="docutils literal notranslate"><span class="pre">XeLaTeX</span></code>, and the style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has to be
+<p>The LaTeX engine to be used is <code class="docutils literal notranslate"><span class="pre">XeLaTeX</span></code>, and the style file <a class="reference external" href="https://www.dlfer.xyz/var/mcq.sty">mcq.sty</a> has to be
 found by XeLaTeX when compiling.</p>
 </section>
 <section id="examples">
@@ -209,7 +209,7 @@ since there are not irreveversible steps.</p>
 <p>The first time <code class="docutils literal notranslate"><span class="pre">mcq.py</span></code> is executed it will assist the user in generating a LaTeX
 exam file, ready to be modified. This step is not necessary, but useful.</p>
 <p>Otherwise the format of the file is very simple. Let <code class="docutils literal notranslate"><span class="pre">file.tex</span></code> be the name
-of the file. It <strong>has</strong> to be encoded as <code class="docutils literal notranslate"><span class="pre">utf8</span></code>. The style file <a class="reference external" href="https://www.dlfer.xyz/var/_downloads/mcq.sty">mcq.sty</a> has
+of the file. It <strong>has</strong> to be encoded as <code class="docutils literal notranslate"><span class="pre">utf8</span></code>. The style file <a class="reference external" href="https://www.dlfer.xyz/var/mcq.sty">mcq.sty</a> has
 to be in the <code class="docutils literal notranslate"><span class="pre">XeLaTeX</span></code> path.</p>
 <p>The file <code class="docutils literal notranslate"><span class="pre">file.tex</span></code> <strong>must</strong> be compiled with XeLaTeX and it <strong>must</strong> contain
 in the preamble the LaTeX command:</p>
