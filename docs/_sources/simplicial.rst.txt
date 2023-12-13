@@ -2,7 +2,7 @@
 simplicial: simplicial complexes, homology, topology and persistent homology
 ============================================================================
 
-:Date:   2021-01-13
+:Date:   2021-01-13 (updated 2023-12-13)
 
 
 
