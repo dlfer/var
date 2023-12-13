@@ -186,6 +186,7 @@ import itertools
 from sympy.matrices import * 
 from sympy import pprint
 from sympy import combinatorics
+import sympy as sym
 import sys
 #------------------------------------------------------------
 # just the decoration... 
@@ -1187,6 +1188,286 @@ def view(K,show_labels=False):
     else:
         print("Sorry: cannot view a euclidean complex of dim {}".format(K.euclidean_dim) )
     return     
+
+#--------------------------------------------------------------------------------
+
+# face operator
+def face(seq,j):
+    "la j-esima faccia di seq, ottenuta cancellando il posto j"
+    return seq[:j] + seq[j+1:] 
+
+
+#boundary operator
+def Z_boundary_operators(simplices):
+    "return the list of boundary operators"
+    len_simplices = list(map(len,simplices)) 
+    dim=len(len_simplices)-1
+    Delta = [ sym.Matrix.zeros(1,len_simplices[0]) ] + \
+        [ sym.Matrix.zeros(len(simplices[k-1]),len_simplices[k] ) for k in range(1,dim+1) ] 
+    for k in range(1,dim+1):
+        for col in range(len_simplices[k]):
+            sigma=simplices[k][col]
+            for j in range(k+1):
+                Delta[k][simplices[k-1].index(face(sigma,j)) ,col] = (-1)**j 
+    return Delta            
+
+
+# elementary operations on rows
+def change_sign_of_row(M,j):
+    M[j,:] = - M[j,:] 
+
+def swap_rows(M,j,k):
+    M[j,:],M[k,:] = M[k,:],M[j,:]
+
+def add_multiple_to_row(M,j,k,m):
+    M[k,:] += m * M[j,:] 
+
+
+# elementary operations on columns
+def change_sign_of_col(M,j):
+    M[:,j] = - M[:,j] 
+
+def swap_cols(M,j,k):
+    M[:,j],M[:,k] = M[:,k],M[:,j]
+
+def add_multiple_to_col(M,j,k,m):
+    M[:,k] += m * M[:,j] 
+
+
+# make a simpler wrapper
+def _L(*args):
+    # operation on rows
+    if len(args)==2:
+        change_sign_of_row(*args)
+    elif len(args)==3:
+        swap_rows(*args)
+    elif len(args)==4:
+        add_multiple_to_row(*args)
+    else:
+        raise Exception("Wrong number of args {}".format(len(args)))
+
+def _R(*args):
+    # operation on rows
+    if len(args)==2:
+        change_sign_of_col(*args)
+    elif len(args)==3:
+        swap_cols(*args)
+    elif len(args)==4:
+        add_multiple_to_col(*args)
+    else:
+        raise Exception("Wrong number of args {}".format(len(args)))
+
+def _TT(seq):
+    if len(seq)==3:
+        return [seq[1],seq[0],-seq[2] ]
+    else:
+        return seq 
+
+def _Shift(seq,r):
+    if len(seq)==3:
+        return [seq[0]+r,seq[1]+r,seq[2] ]
+    else:
+        return [num+r for num in seq] 
+
+
+######################################################################
+# now a variation of the Smith Normal Form 
+# first: auxiliary functions: 
+def is_lone(M,x):
+    "True if the only non-zero element is at M[x,x] and lower row/column is zero"
+    return all( [ val == 0 for val in M[x,x+1:] ] )  \
+            and all( [val ==0 for val in M[x+1:,x]  ] ) 
+
+def next_target(M,x):
+    "Get the next entry in the x-LR matrix of M which is not zero mod M[x,x]"
+    nrows,ncols=M.shape
+    for i in range(x+1,nrows):
+        for j in range(x+1,ncols):
+            if ( M[x,x] == 0 and M[i,j] != 0 ) or (M[x,x] != 0 and M[i,j] % M[x,x] != 0):
+                return (i,j)
+    return None        
+
+def position_of_min(seq):
+    "find the position of the minumum non-zero entry in a list"
+    non_zeros=[abs(x) for x in seq if x != 0 ]
+    if len(non_zeros)==0:
+        return None
+    min_value=min(non_zeros)
+    for pos,val in enumerate(seq):
+        if abs(val)==min_value:
+            return pos
+##########################################################
+def SNF(M):
+    nrows,ncols=M.shape
+    row_ops=[]
+    col_ops=[]
+    def exec_row(op):
+        row_ops.append(op)
+        _L(*([M,]+ op))
+    def exec_col(op):
+        col_ops.append(op)
+        _R(*([M,]+ op))
+    for s in range(min(nrows,ncols)):
+        if is_lone(M,s) and M[s,s] == 0:
+            ij = next_target(M,s)
+            if ij:
+                i,j = ij
+                exec_row([i,s])
+        while not is_lone(M,s):
+            # first row operations
+            p=position_of_min(M[s:,s])
+            if p is not None and  p>0:
+                # swap s+p and s rows
+                exec_row( [s,s+p] ) 
+            for i in range(s+1,nrows): 
+                if M[i,s] != 0 and (M[i,s] // M[s,s]) != 0:
+                    # add to row
+                    exec_row( [s,i, - (M[i,s] // M[s,s]) ] ) 
+            p=position_of_min(M[s,s:])
+            if p is not None and p>0:
+                # swap s+p and s cols
+                exec_col( [s,s+p] ) 
+            for j in range(s+1,ncols):
+                if M[s,j] != 0 and (M[s,j] // M[s,s]) != 0:
+                    # add to col 
+                    exec_col( [s,j, - (M[s,j] // M[s,s]) ] ) 
+            if is_lone(M,s):
+                ij = next_target(M,s)
+                if ij:
+                    i,j = ij
+                    exec_row( [i, s, 1] )
+        if M[s,s]<0:
+            # change sign
+            exec_row([s])
+    return row_ops, col_ops        
+
+# rank of a normal form matrix
+def Rank(M):
+    "Matrix should be in Diagonal Normal form"
+    nrows,ncols=M.shape
+    return len([M[x,x] for x in range(min(nrows,ncols)) if M[x,x] != 0 ])
+
+#-------------------------------------------------------------------------------------
+# Flush
+def RightFlush(M):
+    "flush to the right the diagonal of a diagonalized SNF Matrix"
+    r=Rank(M)
+    _,ncols=M.shape
+    col_ops=[]
+    for j in range(r):
+        col_ops.append([r-j-1,ncols-j-1])
+        swap_cols(M,r-j-1,ncols-j-1)
+    return col_ops    
+
+#-------------------------------------------------------------------------------------
+def homology_of_chain_complex(D):
+    "Dk is a list of matrices [0,D1,D2, ... , Dn]"
+    n=len(D)-1
+    C=[ list(range(M.shape[1])) for M in D ]
+    Z=[ None for x in D] # generators of Kernels
+    B=[ None for x in D] # generators of B
+    for k in range(1,n): # D[n] the last...
+        row_ops,col_ops=SNF(D[k])
+        for X in col_ops:
+            _L(*([D[k+1],]+_TT(X)))
+        shuffle_ops=RightFlush(D[k])    
+        for X in shuffle_ops:
+            _L(*([D[k+1],]+X)) #_TT is not necessary
+    SNF(D[n])
+    RightFlush(D[n])
+    for k in range(n+1):
+        Z[k] = [ x for x in C[k] if all( entry.is_zero for entry in D[k][:,x]) ] 
+    for k in range(n):
+        if Z[k] == []:
+            B[k] = []
+        else:
+            B[k] = [ max(D[k+1][x,:]) for x in Z[k] ]
+    B[n] = [ 0 for x in Z[n] ]
+    H=[]
+    for k in range(n+1):
+        T=[]
+        free_rank=0
+        for divisor in B[k]:
+            if divisor>1:
+                T.append("Z_{}".format(divisor) )
+            elif divisor==0:
+                free_rank += 1
+        if T != [] or free_rank>0:
+            if free_rank==1:
+                free_part= ["Z" ]
+            elif free_rank>1:
+                free_part= [ "Z^{}".format(free_rank) ] 
+            else:
+                free_part= [] 
+            H.append("+".join( free_part + T) )
+        else:
+            H.append("0")
+    return H
+
+
+def SNF_test():
+    from IPython.display import Math, display
+    def show(s):
+        # sym.pprint(s,use_unicode=False)
+        display(Math(sym.latex(s)))
+    print("simplicial sphere")
+    dim = 2
+    Vertici = list(range(dim+2))
+    Simplessi = [ list(subsets(Vertici, k)) for k in range(1, dim+2 ) ]
+    Delta = Z_boundary_operators(Simplessi)
+
+    for X in Simplessi:
+        show(X)
+
+    A=Delta[1].copy()
+    B=Delta[2].copy()
+    print("\n >Original Matrices")
+    show((B,A))
+
+    seq_of_row_ops=[  [0], [0,1,-1], [1], [1,2,-1], [2], [2,3,-1]   ] 
+    seq_of_col_ops=[ [0,1,-1] , [0,2,-1], [1,2,-1], [1,3,-1],[1,4,-1], [2,4,-1], [2,5,-1] ]
+    seq_of_row_ops_2=[] 
+    seq_of_col_ops_2=[[0,3,-1],[1,3,1],[2,3,-1] ] 
+
+
+    for X in seq_of_row_ops:
+        print("\n >L op: {}".format(X) )
+        _L(*([A,]+X))
+        show((B,A))
+
+    for X in seq_of_col_ops:
+        print("\n >R op: {}".format(X) )
+        _R(*([A,]+X))
+        _L(*([B,]+_TT(X)))
+        show((B,A))
+
+    for Y in seq_of_col_ops_2:
+        print("\n >R op on Delta[2]: {}".format(Y) )
+        _R(*([B,]+Y))
+        show((B,A))
+
+    print("homology:")
+    show(homology_of_chain_complex(Delta))
+    show( Delta[1:][::-1] )
+
+    # now to do: extract the homology groups from the last,
+    # also: get L R sequences and generators in homology
+
+    # try with Csaszar Torus 
+    print("torus")
+    dim = 2
+    Vertici = [0,1,2,3,4,5,6]
+    Simplessi = [ list(subsets(Vertici, k)) for k in range(1, dim+1 ) ] + \
+            [  [ sorted( [j, (j+1) % 7 ,(j+3) % 7 ] ) for j in range(7) ] + \
+            [ sorted( [j,(j+2)%7, (j+3)%7] ) for j in range(7) ]  ]
+    Delta = Z_boundary_operators(Simplessi)
+    for X in Simplessi:
+        show(X)
+
+    print("homology:")
+    show(homology_of_chain_complex(Delta))
+    show( Delta[1:][::-1] )
+
 
 #--------------------------------------------------------------------------------
 
