@@ -2,7 +2,7 @@
 r"""
 omarscan [--verbose] [--Debug] [--help] --xml=<file.xml> scannedsheets.pdf
 
-<-dlf> 2023-11-30
+<-dlf> 2024-01-19
 Local OMRscan for MCQ-XeLaTeX
 
 UBUNTU:
@@ -83,7 +83,7 @@ STDERR = sys.stderr
 
 #-----------------------------------------------------------------
 #--BEGINSIG--
-import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKZGVmIGNoZWNrX3VwZGF0ZSgpOgogICAgcmV0dXJuIEZhbHNlCgpkZWYgZ2V0X29wdCgpOgogICAgZ2xvYmFsIFZFUkJPU0UsIERFQlVHLCBNT0dSSUZZCiAgICBpZiBub3QgY2hlY2tfc2VsZigpOgogICAgICAgIHN5cy5zdGRlcnIud3JpdGUoCiAgICAgICAgIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIpCiAgICAgICAgc3lzLmV4aXQoMSkKICAgIHRyeToKICAgICAgaWYgY2hlY2tfdXBkYXRlKCk6CiAgICAgICAgdXNlcl9pbnB1dCA9IGlucHV0KCJcblxuICAgKioqQSBuZXcgdmVyc2lvbiBpcyBhdmFpbGFibGU6IHt9KioqXG5cbiAgICoqKlBsZWFzZSB1cGRhdGUgb21hcnNjYW4ucHkgQVNBUCEqKipcblxuUHJlc3MgPFJldHVybj4gdG8gY29udGludWUuLi4iLmZvcm1hdChTRUxGX1VSTCkpCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGVycjoKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKCJXQVJOSU5HOiBjaGVja191cGRhdGUgZmFpbGVkIHdpdGggZXJyb3Ige31cbiIuZm9ybWF0KGVycikgKQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImh4OnZEbSIsIFsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaGVscCIsICJ4bWw9IiwgInZlcmJvc2UiLCdEZWJ1ZycsIm1vZ3JpZnkiXSkKICAgICMgZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciwgZXJyOgogICAgZXhjZXB0OgogICAgICAgIFNUREVSUi53cml0ZSgiKioqR0VUT1BUIEVSUk9SKioqXG5bb3B0aW9uIC0taGVscCBmb3IgaGVscF1cbiIpCiAgICAgICAgc3lzLmV4aXQoMSkKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgcHJpbnRfdmVyc2lvbnMoKQogICAgICAgIHN5cy5leGl0KDEpCiAgICBIQVNYTUxGSUxFID0gRmFsc2UKICAgIGZvciBvLCBhIGluIG9wdHM6CiAgICAgICAgaWYgbyA9PSAiLXYiOgogICAgICAgICAgICBWRVJCT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyA9PSAiLUQiOgogICAgICAgICAgICBERUJVRyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbSIsIi0tbW9ncmlmeSIpOgogICAgICAgICAgICBNT0dSSUZZID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICAgICAgICAgICBwcmludChfX2RvY19fKQogICAgICAgICAgICBwcmludF92ZXJzaW9ucygpCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCcteCcsICctLXhtbCcpOgogICAgICAgICAgICBYTUxGSUxFID0gYQogICAgICAgICAgICBIQVNYTUxGSUxFID0gVHJ1ZQogICAgaWYgSEFTWE1MRklMRSBhbmQgb3MucGF0aC5leGlzdHMoWE1MRklMRSk6CiAgICAgICAgcmV0dXJuIChvcy5wYXRoLmFic3BhdGgoWE1MRklMRSksIFtvcy5wYXRoLmFic3BhdGgoeCkgZm9yIHggaW4gYXJnc10pCiAgICBlbHNlOgogICAgICAgIHJhaXNlIEV4Y2VwdGlvbigieG1sIGZpbGUgbm90IGZvdW5kIVxuIikKCmRlZiBjaGVja191cGRhdGUoKToKICAgIGltcG9ydCBvcywgZGF0ZXRpbWUKICAgIHNlbGZfbmFtZSA9IG9zLnBhdGguc3BsaXQob3MucGF0aC5yZWFscGF0aChfX2ZpbGVfXykpWzFdCiAgICBsYXN0X21vZGlmaWVkX2RhdGUgPSBnZXRfcmVtb3RlX2xhc3RfY29tbWl0KHNlbGZfbmFtZSkKICAgIHRoaXNfc2NyaXB0X2RhdGUgPSBkYXRldGltZS5kYXRldGltZS5zdHJwdGltZSgnMjAyMy0xMS0zMCcsICclWS0lbS0lZCcpCiAgICByZXR1cm4gKGxhc3RfbW9kaWZpZWRfZGF0ZSAtIHRoaXNfc2NyaXB0X2RhdGUpLmRheXMgPiAwIApkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLCByZSwgc3lzLCBkYXRldGltZQogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogaWYgKGRhdGV0aW1lLmRhdGV0aW1lLnRvZGF5KCkgLSBkYXRldGltZS5kYXRldGltZS5zdHJwdGltZSgnMjAyMy0xMS0zMCcsICclWS0lbS0lZCcpKS5kYXlzPiA3MjA6CiAgICAgc3lzLnN0ZGVyci53cml0ZSgiXG4gPj4+V0FSTklORyEhISBWZXJ5IG9sZCBzY3JpcHQhIENoZWNrIGlmIHlvdSBjYW4gZG93bmxvYWQgYSBuZXcgb25lITw8PFxuXG4iKQogICAgIGlucHV0KCdQcmVzcyA8UmV0dXJuPiB0byBDb250aW51ZS4uLicpCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPSc5Mjk4YTg2OGI3YTBkNTFkZWZmMDI1ZWU1MGZhODIzYTJmNTFmMzAwYzA2Y2E3ZjAzYjZmNzc1YicKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
+import base64;eval(compile(base64.b64decode(b'CmRlZiBjaGVja19zZWxmKCk6CiAgICByZXR1cm4gVHJ1ZQoKZGVmIGNoZWNrX3VwZGF0ZSgpOgogICAgcmV0dXJuIEZhbHNlCgpkZWYgZ2V0X29wdCgpOgogICAgZ2xvYmFsIFZFUkJPU0UsIERFQlVHLCBNT0dSSUZZCiAgICBpZiBub3QgY2hlY2tfc2VsZigpOgogICAgICAgIHN5cy5zdGRlcnIud3JpdGUoCiAgICAgICAgIlNlbGYtaW50ZWdyaXR5IGNoZWNrc3VtIGZhaWxlZCEgQWJvcnRpbmcuLi5cbkluc3RhbGwgYSBuZXcgY2xlYW4gdmVyc2lvbiFcbiIpCiAgICAgICAgc3lzLmV4aXQoMSkKICAgIHRyeToKICAgICAgaWYgY2hlY2tfdXBkYXRlKCk6CiAgICAgICAgdXNlcl9pbnB1dCA9IGlucHV0KCJcblxuICAgKioqQSBuZXcgdmVyc2lvbiBpcyBhdmFpbGFibGU6IHt9KioqXG5cbiAgICoqKlBsZWFzZSB1cGRhdGUgb21hcnNjYW4ucHkgQVNBUCEqKipcblxuUHJlc3MgPFJldHVybj4gdG8gY29udGludWUuLi4iLmZvcm1hdChTRUxGX1VSTCkpCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGVycjoKICAgICAgICBzeXMuc3RkZXJyLndyaXRlKCJXQVJOSU5HOiBjaGVja191cGRhdGUgZmFpbGVkIHdpdGggZXJyb3Ige31cbiIuZm9ybWF0KGVycikgKQogICAgdHJ5OgogICAgICAgIG9wdHMsIGFyZ3MgPSBnZXRvcHQuZ2V0b3B0KHN5cy5hcmd2WzE6XSwgImh4OnZEbSIsIFsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaGVscCIsICJ4bWw9IiwgInZlcmJvc2UiLCdEZWJ1ZycsIm1vZ3JpZnkiXSkKICAgICMgZXhjZXB0IGdldG9wdC5HZXRvcHRFcnJvciwgZXJyOgogICAgZXhjZXB0OgogICAgICAgIFNUREVSUi53cml0ZSgiKioqR0VUT1BUIEVSUk9SKioqXG5bb3B0aW9uIC0taGVscCBmb3IgaGVscF1cbiIpCiAgICAgICAgc3lzLmV4aXQoMSkKICAgIGlmIGxlbihhcmdzKSA9PSAwOgogICAgICAgIHByaW50KF9fZG9jX18pCiAgICAgICAgcHJpbnRfdmVyc2lvbnMoKQogICAgICAgIHN5cy5leGl0KDEpCiAgICBIQVNYTUxGSUxFID0gRmFsc2UKICAgIGZvciBvLCBhIGluIG9wdHM6CiAgICAgICAgaWYgbyA9PSAiLXYiOgogICAgICAgICAgICBWRVJCT1NFID0gVHJ1ZQogICAgICAgIGVsaWYgbyA9PSAiLUQiOgogICAgICAgICAgICBERUJVRyA9IFRydWUKICAgICAgICBlbGlmIG8gaW4gKCItbSIsIi0tbW9ncmlmeSIpOgogICAgICAgICAgICBNT0dSSUZZID0gVHJ1ZQogICAgICAgIGVsaWYgbyBpbiAoIi1oIiwgIi0taGVscCIpOgogICAgICAgICAgICBwcmludChfX2RvY19fKQogICAgICAgICAgICBwcmludF92ZXJzaW9ucygpCiAgICAgICAgICAgIHN5cy5leGl0KCkKICAgICAgICBlbGlmIG8gaW4gKCcteCcsICctLXhtbCcpOgogICAgICAgICAgICBYTUxGSUxFID0gYQogICAgICAgICAgICBIQVNYTUxGSUxFID0gVHJ1ZQogICAgaWYgSEFTWE1MRklMRSBhbmQgb3MucGF0aC5leGlzdHMoWE1MRklMRSk6CiAgICAgICAgcmV0dXJuIChvcy5wYXRoLmFic3BhdGgoWE1MRklMRSksIFtvcy5wYXRoLmFic3BhdGgoeCkgZm9yIHggaW4gYXJnc10pCiAgICBlbHNlOgogICAgICAgIHJhaXNlIEV4Y2VwdGlvbigieG1sIGZpbGUgbm90IGZvdW5kIVxuIikKCmRlZiBjaGVja191cGRhdGUoKToKICAgIGltcG9ydCBvcywgZGF0ZXRpbWUKICAgIHNlbGZfbmFtZSA9IG9zLnBhdGguc3BsaXQob3MucGF0aC5yZWFscGF0aChfX2ZpbGVfXykpWzFdCiAgICBsYXN0X21vZGlmaWVkX2RhdGUgPSBnZXRfcmVtb3RlX2xhc3RfY29tbWl0KHNlbGZfbmFtZSkKICAgIHRoaXNfc2NyaXB0X2RhdGUgPSBkYXRldGltZS5kYXRldGltZS5zdHJwdGltZSgnMjAyNC0wMS0xOScsICclWS0lbS0lZCcpCiAgICByZXR1cm4gKGxhc3RfbW9kaWZpZWRfZGF0ZSAtIHRoaXNfc2NyaXB0X2RhdGUpLmRheXMgPiAwIApkZWYgY2hlY2tfc2VsZigpOgogaW1wb3J0IG9zLCBoYXNobGliLCByZSwgc3lzLCBkYXRldGltZQogTUVfYmFzZSxNRV9leHQ9b3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQogTUU9TUVfYmFzZSsnLnB5JwogaWYgKGRhdGV0aW1lLmRhdGV0aW1lLnRvZGF5KCkgLSBkYXRldGltZS5kYXRldGltZS5zdHJwdGltZSgnMjAyNC0wMS0xOScsICclWS0lbS0lZCcpKS5kYXlzPiA3MjA6CiAgICAgc3lzLnN0ZGVyci53cml0ZSgiXG4gPj4+V0FSTklORyEhISBWZXJ5IG9sZCBzY3JpcHQhIENoZWNrIGlmIHlvdSBjYW4gZG93bmxvYWQgYSBuZXcgb25lITw8PFxuXG4iKQogICAgIGlucHV0KCdQcmVzcyA8UmV0dXJuPiB0byBDb250aW51ZS4uLicpCiBpZiBzeXMudmVyc2lvbl9pbmZvWzBdID4gMjoKICAgYWxsPW9wZW4oTUUsJ3InLGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudC5lbmNvZGUoZW5jb2Rpbmc9J3V0Zi04JykpLmhleGRpZ2VzdCgpCiBlbHNlOgogICBhbGw9b3BlbihNRSwncicpLnJlYWQoKQogICBkZWYgbXlfaGFzaChpbnB1dF9jb250ZW50KToKICAgICByZXR1cm4gaGFzaGxpYi5zaGEyMjQoaW5wdXRfY29udGVudCkuaGV4ZGlnZXN0KCkKIHA9YWxsLmluZGV4KCJcbiIpCiByZWc9cmUuY29tcGlsZSgiIy0tQkVHSU4iKyJTSUctLXwjLS1FTkQiKyJTSUctLSIscmUuTSBhbmQgcmUuRE9UQUxMICkKIGJvZHlfZmlyc3QsaGlkZGVuLGJvZHlfbGFzdD1yZXM9cmVnLnNwbGl0KGFsbFtwKzE6XSkKIGw9bXlfaGFzaChib2R5X2ZpcnN0LnN0cmlwKCkgKyBib2R5X2xhc3Quc3RyaXAoKSkKIGV4cGVjdF9sPScwZmJiYTQwNmRhMDk2ZjFmOGQ1YmJmZTdiY2FkYzg4Yjc2MWE5MzFkODliMjVlMDQ2ZjMyNzBmYScKIGlmIGwgIT0gZXhwZWN0X2w6CiAgcmV0dXJuIEZhbHNlCiBlbHNlOgogIHJldHVybiBUcnVlCg==').decode('utf-8'),'<string>','exec'))
 #--ENDSIG--
 #-----------------------------------------------------------------
 
@@ -461,11 +461,12 @@ def find_affine_transform(src, dst):
 
 GHOSTSCRIPT_COMMAND='/usr/bin/gs'
 GHOSTSCRIPT_COMMAND_ARGS = "-dSAFER -dBATCH -dNOPAUSE -r200 -sDEVICE=pnggray -sPAPERSIZE=a4 -dLastPage=1 -dTextAlphaBits=1  -dGraphicsAlphaBits=1 -sOutputFile=%s-%%03d.png"
-GHOSTSCRIPT_EXTRACT_COMMAND_ARGS = "-dSAFER -dBATCH -dNOPAUSE -r200 -sDEVICE=pnggray -sPAPERSIZE=a4 -dTextAlphaBits=1  -dGraphicsAlphaBits=1 -sOutputFile=%s-%%03d.png"
+# GHOSTSCRIPT_EXTRACT_COMMAND_ARGS = "-dSAFER -dBATCH -dNOPAUSE -r200 -sDEVICE=pnggray -sPAPERSIZE=a4 -dTextAlphaBits=1  -dGraphicsAlphaBits=1 -sOutputFile=%s-%%03d.png"
+GHOSTSCRIPT_EXTRACT_COMMAND_ARGS = "-dSAFER -dBATCH -dNOPAUSE -r200 -sDEVICE=pnggray -sPAPERSIZE=a4 -dTextAlphaBits=1  -dGraphicsAlphaBits=1" # -sOutputFile=%s-%%03d.png"
 
 
 ENHANCE_CONTRAST_COMMAND = "/usr/bin/mogrify"
-ENHANCE_CONTRAST_ARGS = "-auto-level -sigmoidal-contrast 9x60%% %s"
+ENHANCE_CONTRAST_ARGS = "-auto-level -sigmoidal-contrast 9x60%%"
 
 
 #-----------------------------------------------------------------
@@ -718,9 +719,11 @@ class OMR:
             STDERR.write("Extracting pngs from %s...\n" % pdffile)
         if VERBOSE:
             STDERR.write("Executing command %s...\n\n" % (
-                [GHOSTSCRIPT_COMMAND] + listify ( GHOSTSCRIPT_EXTRACT_COMMAND_ARGS % (TMPTODOBASE+base)) + [ pdffile ]  ) )
-        retval = subprocess.call([GHOSTSCRIPT_COMMAND] + listify(  GHOSTSCRIPT_EXTRACT_COMMAND_ARGS % (
-            TMPTODOBASE+base) ) + [ pdffile ]  , shell=False , stdout=STDERR, stderr=STDERR, stdin=None, close_fds=True)
+                # [GHOSTSCRIPT_COMMAND] + listify( GHOSTSCRIPT_EXTRACT_COMMAND_ARGS % (TMPTODOBASE+base)) + [ pdffile ]  ) )
+                [GHOSTSCRIPT_COMMAND] + listify( GHOSTSCRIPT_EXTRACT_COMMAND_ARGS ) + [\
+        "-s\"OutputFile=%s-%%03d.png\"" % (TMPTODOBASE+base), pdffile ]  ) )
+        retval = subprocess.call([GHOSTSCRIPT_COMMAND] + listify(  GHOSTSCRIPT_EXTRACT_COMMAND_ARGS ) + [\
+            "-s\"OutputFile=%s-%%03d.png\"" % (TMPTODOBASE+base), pdffile ]  , shell=False , stdout=STDERR, stderr=STDERR, stdin=None, close_fds=True)
         result = [os.path.abspath(x) for x in glob.glob(
             "%s*.png" % (TMPTODOBASE+base))]
         for x in sorted(result):
@@ -728,8 +731,8 @@ class OMR:
                 if VERBOSE:
                     STDERR.write("enhancing image: '%s'...\n" % str(x)) 
                                  # str( [ENHANCE_CONTRAST_COMMAND]  + listify( ENHANCE_CONTRAST_ARGS % (x,) )) )
-                retval = subprocess.call([ ENHANCE_CONTRAST_COMMAND ] + listify(ENHANCE_CONTRAST_ARGS  % (
-                    x,) ), shell=False, stdout=STDERR, stderr=STDERR, stdin=None, close_fds=True)
+                retval = subprocess.call([ ENHANCE_CONTRAST_COMMAND ] + listify(ENHANCE_CONTRAST_ARGS ) \
+                + [x], shell=False, stdout=STDERR, stderr=STDERR, stdin=None, close_fds=True)
         result.sort()
         return result
 #-----------------------------------------------------------------
