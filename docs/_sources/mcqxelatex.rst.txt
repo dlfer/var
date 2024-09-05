@@ -2,7 +2,7 @@
 MCQ-XeLaTeX: Multiple Choice Questions for mathematics and XeLaTeX
 ==================================================================
 
-:Date:   2019-02-07 (updated 2024-02-02)
+:Date:   2019-02-07 (updated 2024-09-05)
 
 Multiple Choice Questions in XeLaTeX, and OMR (Optical Mark Recognition)
 ========================================================================

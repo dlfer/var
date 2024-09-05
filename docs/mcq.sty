@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{1.06}
+\def\fileversion{1.07}
 \def\filedate{%
-2024-02-02
+2024-09-05
 }
 \def\Copyright{****************************************************************
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
@@ -505,6 +505,7 @@ please manually use some [-1]'s if you *really* need it ... }\@ehd
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page header and dimension
 \RequirePackage{lastpage}
@@ -657,7 +658,7 @@ node  [text width=\blankareawidth, text depth=\blankareaheightinside, anchor=nor
 \fi
 
 \RequirePackage{color}
-\definecolor{gray}{gray}{0.60}
+\definecolor{bubblegray}{gray}{0.40}
 \usepackage[no-math]{fontspec}
 \RequirePackage{xltxtra} %% it's probably not necessary.
 \RequirePackage{xunicode}
@@ -956,7 +957,7 @@ Use usepackage{mcq} instead.
 \setcounter{tmp@maxnumrisp}{#1}
 \settowidth{\tmp@length}{\UTFcirclednum{0}-}
 \begin{minipage}[t]{0.35\textwidth}
-\renewcommand{\arraystretch}{1.2}\color{gray}%
+\renewcommand{\arraystretch}{1.2}\color{bubblegray}%
 \vspace{-\baselineskip}%
 \begin{tabular}[t]{|*{#1}{p{\tmp@length}|}}
 \hline  %% __TODO__ make into a for loop
@@ -983,7 +984,7 @@ Use usepackage{mcq} instead.
 \newcommand{\ABCDrow}[1]{%
 \setcounter{tmp@numrisp}{0}%
 \setcounter{tmp@maxnumrisp}{#1}%
-{\Ufont\color{gray}\Large%
+{\Ufont\color{bubblegray}\Large%
 \forloop{tmp@numrisp}{0}{\value{tmp@numrisp}<\value{tmp@maxnumrisp}}{%
 \hspace{8pt}\UTFcircledchar{\thetmp@numrisp}\bubble\posMark{\ASCIIcircledchar{\thetmp@numrisp}}%
 }%
@@ -1012,5 +1013,6 @@ Use usepackage{mcq} instead.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
