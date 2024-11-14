@@ -4,7 +4,7 @@
 MCQ-XeLaTeX: How to use it with Moodle and for online exams
 ================================================================
 
-:Date:   2020-04-01  (updated 2024-01-19)
+:Date:   2020-04-01  (updated 2024-11-14)
 
  
 Online exams, Multiple Choice Questions in XeLaTeX, and Moodle
