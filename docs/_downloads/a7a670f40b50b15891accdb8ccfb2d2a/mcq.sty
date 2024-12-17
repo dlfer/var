@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\fileversion{1.07}
+\def\fileversion{1.08}
 \def\filedate{%
-2024-09-05
+2024-12-17
 }
 \def\Copyright{****************************************************************
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non
@@ -25,6 +25,20 @@ Francisco, California, 94105, USA.
 % 2018-10-10: add an option to keep ttf, if necessary.
 % 2017-04-07: fix the Linux Libertine O name. 
 \def\LinuxLibertineName{Linux Libertine O}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2024-12-17 lazy support for lualatex
+% do not use yet, it is slower. Maybe in the future.  
+\RequirePackage{iftex}
+\ifluatex
+\typeout{Compiling with LuaLaTeX: proceed with caution. At your own risk.}
+\let\pdfsavepos\savepos
+\let\pdflastxpos\lastxpos
+\let\pdflastypos\lastypos
+\else
+% \RequirePackage{xltxtra} %% it's probably no longer necessary.
+\RequirePackage{xunicode}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -660,8 +674,6 @@ node  [text width=\blankareawidth, text depth=\blankareaheightinside, anchor=nor
 \RequirePackage{color}
 \definecolor{bubblegray}{gray}{0.40}
 \usepackage[no-math]{fontspec}
-\RequirePackage{xltxtra} %% it's probably not necessary.
-\RequirePackage{xunicode}
 \setmainfont[Mapping=tex-text]{\LinuxLibertineName}
 \defaultfontfeatures{Mapping=tex-text}
 
